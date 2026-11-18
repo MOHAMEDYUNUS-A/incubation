@@ -1,5 +1,6 @@
 import React from "react";
 import Hero from "@/components/hero/Hero";
+import WelcomeSection from "@/components/sections/WelcomeSection";
 import Introduction from "@/components/sections/Introduction";
 import Metrics from "@/components/sections/Metrics";
 import FocusAreas from "@/components/sections/FocusAreas";
@@ -16,43 +17,46 @@ import ApplicationCTA from "@/components/sections/ApplicationCTA";
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Section 01 — Full-screen Dynamic Hero */}
+      {/* Section 01 — Full-screen Dynamic Hero Slider (As Per Reference Image 1) */}
       <Hero />
 
-      {/* Section 02 — Foundation Introduction & Mission M1-M5 */}
+      {/* Section 02 — Welcome to MASTeR Incubation Foundation (As Requested: "AFTER THAT WELCOME TO MASTER INCUBATION") */}
+      <WelcomeSection />
+
+      {/* Section 03 — Institutional Profile & Official Mission M1-M5 */}
       <Introduction />
 
-      {/* Section 03 — Impact & Strategic Footprint */}
+      {/* Section 04 — Impact & Strategic Footprint */}
       <Metrics />
 
-      {/* Section 04 — 7 Priority Technology Focus Areas */}
+      {/* Section 05 — 7 Priority Technology Focus Areas */}
       <FocusAreas />
 
-      {/* Section 05 — 4-Stage Incubation Programs & 6 Core Services */}
+      {/* Section 06 — 4-Stage Incubation Programs & 6 Core Services */}
       <Programs />
 
-      {/* Section 06 — Startup Portfolio & Directory */}
+      {/* Section 07 — Startup Portfolio & Directory */}
       <StartupPortfolio />
 
-      {/* Section 07 — Facilities & Prototyping Infrastructure */}
+      {/* Section 08 — Facilities & Prototyping Infrastructure */}
       <Facilities />
 
-      {/* Section 08 — Mentors & Advisory Ecosystem */}
+      {/* Section 09 — Mentors & Advisory Ecosystem */}
       <MentorsEcosystem />
 
-      {/* Section 09 — Events, Workshops & Hackathons */}
+      {/* Section 10 — Events, Workshops & Hackathons */}
       <EventsNews />
 
-      {/* Section 10 — MASTeR AI Innovation Hub */}
+      {/* Section 11 — MASTeR AI Innovation Hub */}
       <AIHub />
 
-      {/* Section 11 — Founder Voices & Testimonials */}
+      {/* Section 12 — Founder Voices & Testimonials */}
       <Testimonials />
 
-      {/* Section 12 — Statutory Affiliations & Partners */}
+      {/* Section 13 — Statutory Affiliations & Partners */}
       <Partners />
 
-      {/* Section 13 — High-Conversion Application CTA */}
+      {/* Section 14 — High-Conversion Application CTA */}
       <ApplicationCTA />
     </div>
   );

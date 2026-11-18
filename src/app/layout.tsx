@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/sections/Footer";
 import SmoothScroll from "@/components/animations/SmoothScroll";
 import FloatingAIButton from "@/components/ai/FloatingAIButton";
 import SplashScreen from "@/components/ui/SplashScreen";
+import GsapScrollProvider from "@/components/animations/GsapScrollProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,10 +14,11 @@ const inter = Inter({
   display: "swap",
 });
 
-const manrope = Manrope({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-jakarta",
   display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "MASTeR Incubation Foundation (MIF) · MAMCET",
     description:
-      "Where Ideas Become Impact. StartupTN Recognised Pre-Incubation Centre at MAMCET, Trichy.",
+      "Launchpad for your Entrepreneurial Success. StartupTN Recognised Pre-Incubation Centre at MAMCET, Trichy.",
     url: "https://mamcet.edu.in",
     siteName: "MASTeR Incubation Foundation",
     locale: "en_IN",
@@ -52,15 +54,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
       <body className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-blue-100 selection:text-blue-900">
         <SplashScreen />
-        <SmoothScroll>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <FloatingAIButton />
-        </SmoothScroll>
+        <GsapScrollProvider>
+          <SmoothScroll>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <FloatingAIButton />
+          </SmoothScroll>
+        </GsapScrollProvider>
       </body>
     </html>
   );

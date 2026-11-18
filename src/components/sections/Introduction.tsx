@@ -95,7 +95,7 @@ export default function Introduction() {
         </div>
 
         {/* 5 Strengths with ZoomIn & XYZCards */}
-        <div className="mb-20">
+        <div className="mb-20" data-gsap-group="stagger">
           <FadeUp className="flex items-center gap-2 mb-8">
             <Target className="w-5 h-5 text-blue-600" />
             <h3 className="text-2xl font-bold text-slate-900 tracking-wide font-display">

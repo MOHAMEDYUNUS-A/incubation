@@ -79,7 +79,7 @@ export default function StartupPortfolio() {
         </div>
 
         {/* Grid of Clean Startup Cards with ZoomIn & XYZCards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-gsap-group="stagger">
           {filtered.map((st, idx) => (
             <ZoomIn key={st.id} delay={idx * 0.07}>
               <XYZCard depth={10}>

@@ -76,8 +76,9 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
-        display: ["var(--font-manrope)", "sans-serif"],
+        sans: ["var(--font-jakarta)", "var(--font-inter)", "sans-serif"],
+        display: ["var(--font-jakarta)", "sans-serif"],
+        body: ["var(--font-inter)", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

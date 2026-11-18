@@ -55,7 +55,7 @@ export default function FocusAreas() {
         </div>
 
         {/* Dynamic Clean Card Grid with ZoomIn & 3D XYZ Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-gsap-group="stagger">
           {FOCUS_AREAS.map((area, idx) => {
             const Icon = ICON_MAP[area.iconName] || Sparkles;
             const isHovered = activeArea === area.id;
@@ -64,6 +64,7 @@ export default function FocusAreas() {
               <ZoomIn key={area.id} delay={idx * 0.07}>
                 <XYZCard depth={12}>
                   <div
+                    data-gsap-item="card"
                     onMouseEnter={() => setActiveArea(area.id)}
                     onMouseLeave={() => setActiveArea(null)}
                     className={`h-full group relative p-7 rounded-2xl border transition-all duration-300 flex flex-col justify-between ${

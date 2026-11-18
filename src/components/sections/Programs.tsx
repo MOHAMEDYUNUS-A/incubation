@@ -112,7 +112,7 @@ export default function Programs() {
             </p>
           </FadeUp>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-gsap-group="stagger">
             {INCUBATION_SERVICES.map((srv, idx) => (
               <ZoomIn key={srv.id} delay={idx * 0.07}>
                 <XYZCard depth={10}>

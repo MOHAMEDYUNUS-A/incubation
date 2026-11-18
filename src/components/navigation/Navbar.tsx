@@ -4,15 +4,32 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowRight, Phone, Mail, MapPin, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-// Streamlined, professional navigation items (reduced from 9 to 5 high-impact links)
-const STREAMLINED_NAV_LINKS = [
-  { name: "About", href: "/#about" },
-  { name: "Focus Areas", href: "/#focus-areas" },
-  { name: "Programs", href: "/#programs" },
+const NAV_LINKS = [
+  { name: "Home", href: "/" },
+  {
+    name: "About Us",
+    href: "/#about",
+    submenu: [
+      { name: "About Foundation", href: "/about" },
+      { name: "Mission M1-M5", href: "/#about" },
+      { name: "Governance & Leadership", href: "/about#governance" },
+    ],
+  },
+  { name: "Focus Area", href: "/#focus-areas" },
+  {
+    name: "Programs",
+    href: "/#programs",
+    submenu: [
+      { name: "4-Stage Pathway", href: "/programs" },
+      { name: "Incubation Services", href: "/programs#services" },
+      { name: "TANSEED Grant Support", href: "/programs#grants" },
+    ],
+  },
   { name: "Startups & Labs", href: "/#facilities" },
+  { name: "Events", href: "/#events" },
   { name: "Contact", href: "/#contact" },
 ];
 
@@ -20,10 +37,11 @@ export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 25);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -31,26 +49,68 @@ export default function Navbar() {
 
   useEffect(() => {
     setMobileMenuOpen(false);
+    setActiveDropdown(null);
   }, [pathname]);
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "py-2.5" : "py-4 sm:py-5"
-        }`}
-      >
-        <div className="container max-w-7xl mx-auto px-4 sm:px-6">
-          <nav
-            className={`transition-all duration-300 rounded-2xl flex items-center justify-between px-4 sm:px-6 py-2.5 ${
-              scrolled
-                ? "bg-white/95 backdrop-blur-md shadow-md border border-slate-200/90"
-                : "bg-white/85 backdrop-blur-sm border border-slate-200/70 shadow-xs"
-            }`}
-          >
-            {/* Prominent Official Brand Logo */}
+      <header className="fixed top-0 left-0 right-0 z-50">
+        {/* Institutional Top Bar (as in reference site EDII-ABIRF) */}
+        <div
+          className={`bg-slate-900 text-slate-300 text-[11px] transition-all duration-300 border-b border-slate-800 ${
+            scrolled ? "hidden md:block py-1 opacity-90" : "py-1.5 opacity-100"
+          }`}
+        >
+          <div className="container max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+            <div className="flex items-center gap-4 sm:gap-6">
+              <span className="flex items-center gap-1.5">
+                <MapPin className="w-3 h-3 text-cyan-400" />
+                <span className="hidden sm:inline">MAMCET Campus, Siruganur, Trichy</span>
+                <span className="sm:hidden">Trichy</span>
+              </span>
+              <a
+                href="tel:+919361697702"
+                className="flex items-center gap-1.5 hover:text-white transition-colors"
+              >
+                <Phone className="w-3 h-3 text-cyan-400" />
+                <span>+91 9361697702</span>
+              </a>
+              <a
+                href="mailto:incubationmanager@mamcet.com"
+                className="hidden md:flex items-center gap-1.5 hover:text-white transition-colors"
+              >
+                <Mail className="w-3 h-3 text-cyan-400" />
+                <span>incubationmanager@mamcet.com</span>
+              </a>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="text-[10px] font-semibold text-cyan-300 hidden md:inline">
+                StartupTN Recognised Pre-Incubation Centre
+              </span>
+              <span className="h-3 w-px bg-slate-700 hidden md:inline" />
+              <Link
+                href="/admin"
+                className="hover:text-white font-medium transition-colors text-[10px] px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700"
+              >
+                Admin
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Navigation Bar (Clean White Institutional Style as in Image 2) */}
+        <div
+          className={`transition-all duration-300 ${
+            scrolled
+              ? "bg-white/95 backdrop-blur-md shadow-md py-2.5 border-b border-slate-200"
+              : "bg-white py-3 border-b border-slate-200/80 shadow-2xs"
+          }`}
+        >
+          <div className="container max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+            {/* Logo on Left */}
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative w-11 h-11 rounded-xl bg-white p-1 flex items-center justify-center border border-slate-200 shadow-sm group-hover:scale-105 transition-transform duration-200">
+              <div className="w-12 h-12 rounded-xl bg-white p-1 flex items-center justify-center border border-slate-200 shadow-2xs group-hover:scale-105 transition-transform duration-200 shrink-0">
                 <img
                   src="/logos/master-incubation-logo.png"
                   alt="MASTeR Incubation Foundation"
@@ -59,103 +119,142 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-extrabold text-lg tracking-wider text-slate-900 font-display">
+                  <span className="font-extrabold text-xl sm:text-2xl tracking-wide text-slate-900 font-display">
                     MAST<span className="text-blue-600">e</span>R
                   </span>
-                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
+                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 font-mono">
                     MIF
                   </span>
                 </div>
-                <span className="text-[10px] text-slate-500 font-medium tracking-tight hidden sm:inline">
-                  MAMCET · StartupTN Centre
+                <span className="text-[10px] text-slate-500 font-semibold tracking-tight hidden sm:inline">
+                  MAMCET · StartupTN Pre-Incubation Centre
                 </span>
               </div>
             </Link>
 
-            {/* Clean, Focused Professional Navigation (No Clutter) */}
-            <div className="hidden md:flex items-center gap-1 sm:gap-2">
-              {STREAMLINED_NAV_LINKS.map((link) => (
-                <Link
+            {/* Navigation Links in Center */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {NAV_LINKS.map((link) => (
+                <div
                   key={link.name}
-                  href={link.href}
-                  className="px-3.5 py-1.5 text-xs font-semibold text-slate-700 hover:text-blue-600 hover:bg-slate-100 rounded-lg transition-colors"
+                  className="relative"
+                  onMouseEnter={() => link.submenu && setActiveDropdown(link.name)}
+                  onMouseLeave={() => link.submenu && setActiveDropdown(null)}
                 >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
+                  <Link
+                    href={link.href}
+                    className={`px-3 py-2 text-xs font-bold transition-colors flex items-center gap-1 rounded-lg ${
+                      pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
+                        ? "text-orange-600 font-extrabold"
+                        : "text-slate-700 hover:text-orange-600 hover:bg-orange-50/60"
+                    }`}
+                  >
+                    <span>{link.name}</span>
+                    {link.submenu && (
+                      <ChevronDown className="w-3 h-3 text-slate-400 group-hover:rotate-180 transition-transform" />
+                    )}
+                  </Link>
 
-            {/* Action Buttons */}
-            <div className="hidden sm:flex items-center gap-2.5">
-              <Link href="/admin">
-                <Button variant="ghost" size="sm" className="text-xs text-slate-600 hover:text-slate-900 h-9">
-                  Admin
-                </Button>
-              </Link>
+                  {/* Submenu Dropdown */}
+                  {link.submenu && activeDropdown === link.name && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-0 mt-1 w-52 rounded-xl bg-white border border-slate-200 shadow-xl py-2 z-50"
+                    >
+                      {link.submenu.map((sub) => (
+                        <Link
+                          key={sub.name}
+                          href={sub.href}
+                          className="block px-4 py-2 text-xs text-slate-700 hover:bg-orange-50 hover:text-orange-600 font-medium transition-colors"
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </div>
+              ))}
+            </nav>
+
+            {/* Right Action: Prominent Orange CTA Button (as per Reference Image 2) */}
+            <div className="flex items-center gap-3">
               <Link href="/apply">
                 <Button
                   size="sm"
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-sm rounded-xl text-xs gap-1.5 h-9 group"
+                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold shadow-md shadow-orange-500/25 rounded-xl text-xs gap-1.5 h-10 px-4 sm:px-5 group transition-all"
                 >
-                  <span>Apply for Incubation</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <span>Apply For Pre Incubation</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-            </div>
 
-            {/* Mobile Hamburger Button */}
-            <div className="flex items-center gap-2 md:hidden">
-              <Link href="/apply">
-                <Button size="sm" className="h-8 px-3 text-xs bg-blue-600 text-white">
-                  Apply
-                </Button>
-              </Link>
+              {/* Mobile Hamburger Toggle */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 hover:text-slate-900"
-                aria-label="Toggle navigation menu"
+                className="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors"
+                aria-label="Toggle Navigation Menu"
               >
-                {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
-          </nav>
+          </div>
         </div>
       </header>
 
-      {/* Streamlined Mobile Overlay */}
+      {/* Mobile Drawer Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl flex flex-col pt-24 px-6 pb-8 md:hidden overflow-y-auto"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="fixed inset-x-0 top-[100px] z-40 bg-white border-b border-slate-200 shadow-2xl lg:hidden overflow-hidden"
           >
-            <div className="flex flex-col gap-2 my-auto">
-              {STREAMLINED_NAV_LINKS.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block py-3 px-4 rounded-xl text-lg font-bold text-slate-800 hover:text-blue-600 hover:bg-slate-50 transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
+            <div className="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
+              <div className="space-y-1">
+                {NAV_LINKS.map((link) => (
+                  <div key={link.name}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block py-2.5 text-sm font-bold text-slate-800 hover:text-orange-600"
+                    >
+                      {link.name}
+                    </Link>
+                    {link.submenu && (
+                      <div className="pl-4 space-y-1 pb-1">
+                        {link.submenu.map((sub) => (
+                          <Link
+                            key={sub.name}
+                            href={sub.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block py-1.5 text-xs text-slate-500 hover:text-orange-600"
+                          >
+                            ↳ {sub.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
 
-            <div className="pt-6 border-t border-slate-200 flex flex-col gap-3 mt-6">
-              <Link href="/apply" onClick={() => setMobileMenuOpen(false)}>
-                <Button className="w-full h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl shadow-sm">
-                  Apply for Incubation
-                </Button>
-              </Link>
-              <Link href="/admin" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="outline" className="w-full h-10 text-slate-700 text-xs border-slate-300">
-                  Admin Operations Portal
-                </Button>
-              </Link>
+              <div className="pt-4 border-t border-slate-200 space-y-2">
+                <Link href="/apply" onClick={() => setMobileMenuOpen(false)} className="block">
+                  <Button className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-11 text-xs gap-2">
+                    <span>Apply For Pre Incubation</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </Link>
+                <Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="block">
+                  <Button variant="outline" className="w-full text-xs h-10 border-slate-300">
+                    Admin Portal
+                  </Button>
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
