@@ -9,6 +9,7 @@ import StartupPortfolio from "@/components/sections/StartupPortfolio";
 import Facilities from "@/components/sections/Facilities";
 import MentorsEcosystem from "@/components/sections/MentorsEcosystem";
 import EventsNews from "@/components/sections/EventsNews";
+import SocialFeedSection from "@/components/sections/SocialFeedSection";
 import AIHub from "@/components/sections/AIHub";
 import Testimonials from "@/components/sections/Testimonials";
 import Partners from "@/components/sections/Partners";
@@ -47,16 +48,19 @@ export default function HomePage() {
       {/* Section 10 — Events, Workshops & Hackathons */}
       <EventsNews />
 
-      {/* Section 11 — MASTeR AI Innovation Hub */}
+      {/* Section 11 — Live Community Stream: Instagram & LinkedIn Updates */}
+      <SocialFeedSection />
+
+      {/* Section 12 — MASTeR AI Innovation Hub */}
       <AIHub />
 
-      {/* Section 12 — Founder Voices & Testimonials */}
+      {/* Section 13 — Founder Voices & Testimonials */}
       <Testimonials />
 
-      {/* Section 13 — Statutory Affiliations & Partners */}
+      {/* Section 14 — Statutory Affiliations & Partners */}
       <Partners />
 
-      {/* Section 14 — High-Conversion Application CTA */}
+      {/* Section 15 — High-Conversion Application CTA */}
       <ApplicationCTA />
     </div>
   );

@@ -222,18 +222,38 @@ export const INCUBATION_STAGES: IncubationProgramStage[] = [
   },
 ];
 
-// Verified Foundation Leadership Contacts
+// Verified Foundation Leadership & Institutional Profile
 export const FOUNDATION_INFO = {
   name: "MASTeR Incubation Foundation",
   acronym: "MIF",
   legalType: "A Section 8 Company registered under the Companies Act, 2013",
-  recognition: "StartupTN Recognised Pre-Incubation Centre",
+  recognition: "StartupTN Recognised Pre-Incubation Centre & MSME Host Institution",
   institution: "M.A.M. College of Engineering and Technology (MAMCET)",
-  address: "Trichy - Chennai Trunk Road, Siruganur, Trichy, Tamil Nadu - 621 105",
+  parentGroup: "MASTeR Group of Institutions (Maluk Educational, Health & Charitable Trust)",
+  address: "Trichy - Chennai Trunk Road, Siruganur, Tiruchirappalli, Tamil Nadu - 621 105",
   tagline: "Launchpad for your Entrepreneurial Success",
+  inaugurationDate: "March 3, 2026",
+  inauguratedBy: "Thiru S. Regupathy (Hon'ble Minister, Government of Tamil Nadu)",
   website: "https://mamcet.edu.in/",
   email: "incubationmanager@mamcet.com",
   phone: "+91 9361697702",
+  socialLinks: {
+    linkedin: "https://in.linkedin.com/in/master-incubation-foundation-02301b446",
+    instagram: "https://www.instagram.com/master_incubation_foundation/",
+    googleShare: "https://share.google/V18XLHgF6Rh85vNA0",
+  },
+  governance: {
+    chairman: {
+      name: "Dr. M.A. Maluk Mohamed",
+      role: "Chairman",
+      organization: "MASTeR Group of Institutions",
+    },
+    ceo: {
+      name: "Mrs. Fathima Bathool Maluk",
+      role: "Secretary & CEO",
+      organization: "MASTeR Group of Institutions",
+    },
+  },
   manager: {
     name: "Mr. M. Santhosh Kumar",
     role: "Incubation Manager",
@@ -246,12 +266,20 @@ export const FOUNDATION_INFO = {
     email: "hemalathabalakrishnan.ece@mamcet.com",
     phone: "+91 6381945574",
   },
+  milestonesAchieved: {
+    startupsOnboarded: "25+ Startups",
+    industryMous: "8 Strategic MoUs",
+    msmeGrantCap: "Up to ₹15 Lakhs",
+    partnerEcosystem: "IITMIC & StartupTN",
+  },
   affiliations: [
     { name: "MAMCET", label: "M.A.M. College of Engineering & Technology" },
+    { name: "IITMIC", label: "IIT Madras Incubation Cell Ecosystem Partner" },
+    { name: "StartupTN", label: "Government of Tamil Nadu Pre-Incubation Centre" },
+    { name: "Ministry of MSME", label: "Approved Host Institution (HI)" },
     { name: "AICTE", label: "All India Council for Technical Education" },
     { name: "IIC", label: "Institution's Innovation Council (MoE)" },
     { name: "NBA", label: "National Board of Accreditation" },
-    { name: "StartupTN", label: "Government of Tamil Nadu" },
   ],
   vision: "To be a leading institutional hub for innovation and entrepreneurship, transforming engineering knowledge and creativity into pioneering solutions, products and successful startups that shape a brighter future.",
   mission: [
@@ -452,5 +480,75 @@ export const TESTIMONIALS_DATA = [
     author: "Kavitha R.",
     role: "Co-Founder, AquaCycle Bio-Filters",
     cohort: "Cohort 2026",
+  },
+];
+
+// Verified Social Media Feed & Community Updates (From Instagram & LinkedIn)
+export interface SocialFeedItem {
+  id: string;
+  platform: "instagram" | "linkedin";
+  author: string;
+  handle: string;
+  date: string;
+  title: string;
+  content: string;
+  image: string;
+  tags: string[];
+  url: string;
+  likes: string;
+}
+
+export const SOCIAL_FEED_POSTS: SocialFeedItem[] = [
+  {
+    id: "sf1",
+    platform: "linkedin",
+    author: "MASTeR Incubation Foundation",
+    handle: "master-incubation-foundation",
+    date: "March 2026",
+    title: "Official Inauguration of MASTeR Incubation Centre by Hon'ble Minister Thiru S. Regupathy",
+    content: "Historic day at MAMCET as our state-of-the-art incubation hub was officially launched by Thiru S. Regupathy, Hon'ble Minister for Minerals and Mines, Government of Tamil Nadu. Joined by our Secretary & CEO Mrs. Fathima Bathool Maluk and Chairman Dr. M.A. Maluk Mohamed. With 25 startups onboarded and 8 industry MoUs signed, we are building Tamil Nadu's premier hub for deep-tech innovators!",
+    image: "/images/hero-image-2.jpg",
+    tags: ["StartupTN", "MAMCET", "InnovationHub", "Section8", "Entrepreneurs"],
+    url: "https://in.linkedin.com/in/master-incubation-foundation-02301b446",
+    likes: "248+ Reactions",
+  },
+  {
+    id: "sf2",
+    platform: "instagram",
+    author: "MASTeR Incubation Foundation",
+    handle: "@master_incubation_foundation",
+    date: "Recent Update",
+    title: "Supporting Student Innovators & Venture Ideation",
+    content: "Supporting student innovators, aspiring entrepreneurs, and early-stage startups through mentorship, ideation, and venture development at MAMCET campus. Our prototyping lab and co-working pod are abuzz with prototype testing! 🚀💡",
+    image: "/images/mentoring-session.png",
+    tags: ["StudentStartups", "Prototyping", "TrichyEntrepreneurs", "MIF"],
+    url: "https://www.instagram.com/master_incubation_foundation/",
+    likes: "186 Likes",
+  },
+  {
+    id: "sf3",
+    platform: "linkedin",
+    author: "MASTeR Incubation Foundation",
+    handle: "master-incubation-foundation",
+    date: "Ecosystem Milestone",
+    title: "Strategic Collaboration with IIT Madras Incubation Cell (IITMIC)",
+    content: "Our incubation initiative is a strategic evolution of MAMCET's ongoing alliance with the IIT Madras Incubation Cell (IITMIC). This partnership gives student founders in Central Tamil Nadu direct access to IITMIC deep-tech mentorship, investor syndicates, and rapid commercialization pathways.",
+    image: "/images/hero-image.jpg",
+    tags: ["IITMIC", "DeepTech", "TamilNaduStartups", "IITMadras", "ResearchTranslation"],
+    url: "https://in.linkedin.com/in/master-incubation-foundation-02301b446",
+    likes: "312+ Reactions",
+  },
+  {
+    id: "sf4",
+    platform: "instagram",
+    author: "MASTeR Incubation Foundation",
+    handle: "@master_incubation_foundation",
+    date: "Grant Opportunity",
+    title: "Ministry of MSME Host Institution Recognition — Seed Grants up to ₹15 Lakhs",
+    content: "Excited to share that MAMCET is recognized as an approved Host Institution (HI) under the Ministry of MSME, Govt of India! Eligible student and faculty innovators can secure up to ₹15 Lakhs in non-dilutive seed grant funding under the MSME Idea Hackathon. Apply through MIF today! 🏆🇮🇳",
+    image: "/images/hero-image-1.jpg",
+    tags: ["MSMEGrants", "IdeaHackathon", "StartupIndia", "SeedFunding", "MAMCET"],
+    url: "https://www.instagram.com/master_incubation_foundation/",
+    likes: "215 Likes",
   },
 ];

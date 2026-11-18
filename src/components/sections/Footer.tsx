@@ -50,28 +50,45 @@ export default function Footer() {
               &ldquo;{FOUNDATION_INFO.tagline}&rdquo;
             </div>
 
-            {/* QR Codes from Official Brochure */}
+            {/* Direct Social Links & QR Codes */}
             <div className="pt-2">
               <div className="text-[11px] font-bold text-slate-900 uppercase tracking-wider mb-2">
                 Connect with our Community:
               </div>
-              <div className="flex items-center gap-4">
-                <div className="p-2 rounded-xl bg-white border border-slate-200 flex flex-col items-center shadow-2xs">
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://www.instagram.com/master_incubation_foundation/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-xl bg-white border border-slate-200 flex flex-col items-center shadow-2xs hover:border-pink-300 hover:shadow-md transition-all group"
+                  title="Follow on Instagram"
+                >
                   <img
                     src="/images/qr-instagram.png"
                     alt="Instagram QR"
-                    className="w-14 h-14 object-contain"
+                    className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
                   />
-                  <span className="text-[9px] font-bold text-slate-800 mt-1">Instagram</span>
-                </div>
-                <div className="p-2 rounded-xl bg-white border border-slate-200 flex flex-col items-center shadow-2xs">
+                  <span className="text-[9px] font-bold text-slate-800 group-hover:text-pink-600 mt-1">
+                    Instagram ↗
+                  </span>
+                </a>
+
+                <a
+                  href="https://in.linkedin.com/in/master-incubation-foundation-02301b446"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-xl bg-white border border-slate-200 flex flex-col items-center shadow-2xs hover:border-blue-300 hover:shadow-md transition-all group"
+                  title="Connect on LinkedIn"
+                >
                   <img
                     src="/images/qr-linkedin.png"
                     alt="LinkedIn QR"
-                    className="w-14 h-14 object-contain"
+                    className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
                   />
-                  <span className="text-[9px] font-bold text-slate-800 mt-1">LinkedIn</span>
-                </div>
+                  <span className="text-[9px] font-bold text-slate-800 group-hover:text-blue-600 mt-1">
+                    LinkedIn ↗
+                  </span>
+                </a>
               </div>
             </div>
           </div>
@@ -131,10 +148,16 @@ export default function Footer() {
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
               Campus Location
             </h4>
-            <div className="flex items-start gap-2.5 text-xs text-slate-600">
-              <MapPin className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
-              <span>{FOUNDATION_INFO.address}</span>
-            </div>
+            <a
+              href="https://share.google/V18XLHgF6Rh85vNA0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-2.5 text-xs text-slate-600 hover:text-blue-600 transition-colors group"
+              title="Open Location on Google Maps"
+            >
+              <MapPin className="w-4 h-4 text-blue-600 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+              <span>{FOUNDATION_INFO.address} <span className="text-blue-600 font-semibold block mt-0.5">View on Google Maps ↗</span></span>
+            </a>
 
             <div className="pt-2">
               <h5 className="text-[11px] font-bold text-slate-900 uppercase tracking-wider mb-2">
