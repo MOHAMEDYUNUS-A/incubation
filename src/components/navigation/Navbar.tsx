@@ -11,26 +11,28 @@ const NAV_LINKS = [
   { name: "Home", href: "/" },
   {
     name: "About Us",
-    href: "/#about",
+    href: "/about",
     submenu: [
       { name: "About Foundation", href: "/about" },
-      { name: "Mission M1-M5", href: "/#about" },
-      { name: "Governance & Leadership", href: "/about#governance" },
+      { name: "Governance & Trust", href: "/about#governance" },
+      { name: "Mission M1-M5", href: "/about#governance" },
     ],
   },
-  { name: "Focus Area", href: "/#focus-areas" },
+  { name: "Focus Area", href: "/focus-areas" },
   {
     name: "Programs",
-    href: "/#programs",
+    href: "/programs",
     submenu: [
       { name: "4-Stage Pathway", href: "/programs" },
       { name: "Incubation Services", href: "/programs#services" },
-      { name: "TANSEED Grant Support", href: "/programs#grants" },
+      { name: "MSME & TANSEED Grants", href: "/programs#services" },
     ],
   },
-  { name: "Startups & Labs", href: "/#facilities" },
-  { name: "Events", href: "/#events" },
-  { name: "Contact", href: "/#contact" },
+  { name: "Impact", href: "/impact" },
+  { name: "Join Us", href: "/join-us" },
+  { name: "Facilities", href: "/facilities" },
+  { name: "Startups", href: "/startups" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {

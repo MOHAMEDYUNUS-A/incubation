@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, MessageSquare } from "lucide-react";
+import { Sparkles, Bot, Send, ArrowRight } from "lucide-react";
 import AIAssistantModal from "./AIAssistantModal";
 
 export default function FloatingAIButton() {
@@ -9,15 +9,37 @@ export default function FloatingAIButton() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-40">
+      {/* Floating Interactive AI Assistant Pill (Matching Reference Image 1) */}
+      <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
+        {/* Floating Input Pill Bar (Matching Image 1) */}
+        <div
+          onClick={() => setIsOpen(true)}
+          className="cursor-pointer hidden sm:flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-xl hover:shadow-2xl hover:border-blue-400 transition-all duration-300 group"
+        >
+          <span className="text-xs text-slate-500 font-medium group-hover:text-slate-800 transition-colors">
+            Ask me about incubation, funding, labs...
+          </span>
+          <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+            <ArrowRight className="w-3 h-3" />
+          </div>
+        </div>
+
+        {/* 3D Robot Avatar Button (Matching Reference Image 1) */}
         <button
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white font-semibold text-xs shadow-2xl shadow-blue-500/30 hover:scale-105 active:scale-95 transition-all duration-300 border border-white/20"
+          className="relative w-14 h-14 rounded-full bg-gradient-to-tr from-indigo-600 via-blue-600 to-cyan-400 p-0.5 shadow-xl shadow-blue-500/25 hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center border-2 border-white group"
           aria-label="Open AI Incubation Assistant"
         >
-          <span className="flex h-2 w-2 rounded-full bg-cyan-300 animate-ping" />
-          <Sparkles className="w-4 h-4 text-cyan-200" />
-          <span className="tracking-wide hidden sm:inline">MASTeR AI Copilot</span>
+          <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-100 to-blue-50 flex items-center justify-center text-blue-700">
+              <Bot className="w-6 h-6 text-blue-600 group-hover:rotate-12 transition-transform" />
+            </div>
+          </div>
+          {/* Active Ping Glow */}
+          <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-white" />
+          </span>
         </button>
       </div>
 

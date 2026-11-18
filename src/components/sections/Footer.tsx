@@ -101,10 +101,12 @@ export default function Footer() {
             <ul className="space-y-2 text-xs">
               <li><Link href="/" className="hover:text-blue-600 transition-colors">Home</Link></li>
               <li><Link href="/about" className="hover:text-blue-600 transition-colors">About Us</Link></li>
+              <li><Link href="/impact" className="hover:text-blue-600 transition-colors">Ecosystem Impact</Link></li>
+              <li><Link href="/join-us" className="hover:text-blue-600 transition-colors">Join Us (Stakeholders)</Link></li>
               <li><Link href="/focus-areas" className="hover:text-blue-600 transition-colors">7 Focus Tracks</Link></li>
               <li><Link href="/programs" className="hover:text-blue-600 transition-colors">Incubation Programs</Link></li>
+              <li><Link href="/facilities" className="hover:text-blue-600 transition-colors">Infrastructure & Labs</Link></li>
               <li><Link href="/startups" className="hover:text-blue-600 transition-colors">Startup Directory</Link></li>
-              <li><Link href="/facilities" className="hover:text-blue-600 transition-colors">Campus Labs</Link></li>
               <li><Link href="/events" className="hover:text-blue-600 transition-colors">Events & Bootcamps</Link></li>
             </ul>
           </div>
