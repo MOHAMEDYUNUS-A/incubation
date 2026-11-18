@@ -408,7 +408,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description: "Air-conditioned ergonomic work pods, team collaboration bays, high-speed fiber internet, and ideation marker boards.",
     capacity: "60+ Innovator Desks",
     specs: ["Gigabit Wi-Fi", "Dual Monitor Provision", "Private Call Booths", "24/7 Access for Incubatees"],
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop&q=80",
+    image: "/images/coworking-space.jpg",
   },
   {
     id: "f2",

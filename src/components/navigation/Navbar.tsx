@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Rocket, Menu, X, ArrowUpRight, Sparkles } from "lucide-react";
+import { Menu, X, ArrowUpRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const NAV_LINKS = [
@@ -26,18 +27,12 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 40);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
@@ -46,21 +41,25 @@ export default function Navbar() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "py-3" : "py-6"
+          scrolled ? "py-2.5" : "py-5"
         }`}
       >
         <div className="container max-w-7xl mx-auto px-4 sm:px-6">
           <nav
-            className={`transition-all duration-500 rounded-2xl flex items-center justify-between px-5 py-3 ${
+            className={`transition-all duration-500 rounded-2xl flex items-center justify-between px-4 sm:px-6 py-2.5 ${
               scrolled
-                ? "glass-nav shadow-2xl shadow-black/40 border border-slate-700/60"
-                : "bg-transparent border border-transparent"
+                ? "glass-nav shadow-2xl shadow-black/50 border border-slate-700/60"
+                : "bg-slate-950/60 backdrop-blur-md border border-slate-800/80"
             }`}
           >
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-900 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform duration-300 border border-blue-400/30">
-                <Rocket className="w-5 h-5 text-white" />
+              <div className="relative w-11 h-11 rounded-xl bg-white p-1 flex items-center justify-center shadow-md overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                <img
+                  src="/logos/master-incubation-logo.png"
+                  alt="MASTeR Incubation Foundation"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5">
