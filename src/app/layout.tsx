@@ -5,6 +5,7 @@ import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/sections/Footer";
 import SmoothScroll from "@/components/animations/SmoothScroll";
 import FloatingAIButton from "@/components/ai/FloatingAIButton";
+import SplashScreen from "@/components/ui/SplashScreen";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -52,7 +53,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
-      <body className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-blue-600/20 selection:text-blue-900">
+      <body className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-blue-100 selection:text-blue-900">
+        <SplashScreen />
         <SmoothScroll>
           <Navbar />
           <main className="flex-1">{children}</main>

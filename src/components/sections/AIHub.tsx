@@ -5,6 +5,7 @@ import { Sparkles, Brain, Gauge, FileText, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { RevealLeft, RevealRight, ZoomIn, XYZCard } from "@/components/animations/LightAnimations";
 
 export default function AIHub({ onOpenChat }: { onOpenChat?: () => void }) {
   const [activeTab, setActiveTab] = useState<"analyzer" | "readiness" | "pitch">("analyzer");
@@ -48,7 +49,7 @@ export default function AIHub({ onOpenChat }: { onOpenChat?: () => void }) {
     <section id="ai-hub" className="py-20 sm:py-24 bg-white relative overflow-hidden border-t border-slate-200">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div>
+          <RevealLeft>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold uppercase tracking-wider mb-3">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Section 10 — AI Innovation Experience</span>
@@ -59,16 +60,18 @@ export default function AIHub({ onOpenChat }: { onOpenChat?: () => void }) {
             <p className="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
               Algorithmic diagnostic tools for early-stage founders to test assumptions, benchmark technology readiness, and structure grant applications.
             </p>
-          </div>
+          </RevealLeft>
 
           {onOpenChat && (
-            <Button
-              onClick={onOpenChat}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold gap-2 shadow-sm"
-            >
-              <Brain className="w-4 h-4" />
-              <span>Launch 24/7 AI Copilot</span>
-            </Button>
+            <RevealRight>
+              <Button
+                onClick={onOpenChat}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold gap-2 shadow-xs"
+              >
+                <Brain className="w-4 h-4" />
+                <span>Launch 24/7 AI Copilot</span>
+              </Button>
+            </RevealRight>
           )}
         </div>
 

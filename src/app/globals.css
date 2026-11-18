@@ -40,6 +40,9 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-slate-50 text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900;
     font-feature-settings: "rlig" 1, "calt" 1;

@@ -417,7 +417,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description: "Equipped with digital storage oscilloscopes, logic analyzers, SMD soldering stations, and RF testing gear.",
     capacity: "30 Simultaneous Workbenches",
     specs: ["DSO & Waveform Generators", "Reflow Soldering Oven", "LoRa & BLE Development Kits", "Component Inventory Access"],
-    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80",
+    image: "/images/hero-image-1.jpg",
   },
   {
     id: "f3",
@@ -426,7 +426,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description: "Industrial FDM and SLA 3D printers, filament drying units, and post-processing finishing equipment.",
     capacity: "8 Rapid 3D Printers",
     specs: ["Carbon Fiber Filament Support", "0.05mm Layer Resolution", "CAD Workstations with SolidWorks", "Post-curing UV Chambers"],
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80",
+    image: "/images/hero-image.jpg",
   },
   {
     id: "f4",
@@ -435,7 +435,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description: "Acoustically treated conference room with 4K interactive touch display, hybrid VC equipment, and presentation podium.",
     capacity: "25 Seats Boardroom",
     specs: ["Zoom Rooms Integrated", "4K Video Conferencing Bar", "Wireless Screen Sharing", "Recording Facilities"],
-    image: "https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=800&auto=format&fit=crop&q=80",
+    image: "/images/hero-image-2.jpg",
   },
 ];
 

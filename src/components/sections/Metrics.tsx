@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { Cpu, Award, Rocket, Users2, Landmark, ShieldCheck } from "lucide-react";
+import { Cpu, Rocket, Landmark, ShieldCheck } from "lucide-react";
+import { FadeUp, ZoomIn, XYZCard } from "@/components/animations/LightAnimations";
 
 const HIGHLIGHTS = [
   {
@@ -38,7 +39,7 @@ export default function Metrics() {
   return (
     <section className="py-20 bg-slate-50 border-y border-slate-200 relative">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <FadeUp className="text-center max-w-2xl mx-auto mb-14">
           <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
             Section 03 — Institutional Footprint
           </span>
@@ -48,29 +49,34 @@ export default function Metrics() {
           <p className="text-sm text-slate-600 mt-2">
             Providing verifiable ecosystem linkages, accredited infrastructure, and structured mentor access.
           </p>
-        </div>
+        </FadeUp>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {HIGHLIGHTS.map((h, i) => {
             const Icon = h.icon;
             return (
-              <div
-                key={i}
-                className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300 group"
-              >
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 border ${h.color} group-hover:scale-105 transition-transform`}>
-                  <Icon className="w-6 h-6" />
-                </div>
-                <div className="text-3xl font-extrabold text-slate-900 tracking-tight font-display mb-1">
-                  {h.value}
-                </div>
-                <div className="text-xs font-bold text-blue-700 uppercase tracking-wider mb-2">
-                  {h.label}
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  {h.description}
-                </p>
-              </div>
+              <ZoomIn key={i} delay={i * 0.08}>
+                <XYZCard depth={8}>
+                  <div className="h-full p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 group-hover:scale-105 transition-transform">
+                          <Icon className="w-5 h-5 text-blue-600" />
+                        </div>
+                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${h.color}`}>
+                          {h.label}
+                        </span>
+                      </div>
+                      <div className="text-2xl font-extrabold text-slate-900 mb-1 font-display">
+                        {h.value}
+                      </div>
+                      <p className="text-xs text-slate-600 leading-relaxed">
+                        {h.description}
+                      </p>
+                    </div>
+                  </div>
+                </XYZCard>
+              </ZoomIn>
             );
           })}
         </div>
