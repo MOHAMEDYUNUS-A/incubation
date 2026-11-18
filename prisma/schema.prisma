@@ -1,0 +1,188 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  APPLICANT
+  FOUNDER
+  MENTOR
+  ADMIN
+}
+
+enum FocusAreaCategory {
+  AI_DATA_SCIENCE
+  RENEWABLE_ENERGY_CLEAN_TECH
+  DIGITAL_TECH_SOFTWARE
+  ADVANCED_MANUFACTURING
+  ELECTRONICS_IOT_SMART
+  SUSTAINABLE_INFRASTRUCTURE
+  OTHER_ENGINEERING_INNOVATION
+}
+
+enum StartupStage {
+  IDEATION
+  PROOF_OF_CONCEPT
+  PROTOTYPE_MVP
+  EARLY_TRACTION
+  SCALING
+}
+
+enum ApplicationStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  SHORTLISTED_FOR_PITCH
+  INCUBATED
+  REJECTED
+}
+
+model User {
+  id             String               @id @default(uuid())
+  name           String
+  email          String               @unique
+  hashedPassword String?
+  image          String?
+  role           Role                 @default(APPLICANT)
+  phone          String?
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  applications   StartupApplication[]
+  mentorProfile  Mentor?
+  eventRegistrations EventRegistration[]
+}
+
+model StartupApplication {
+  id                 String            @id @default(uuid())
+  userId             String?
+  user               User?             @relation(fields: [userId], references: [id], onDelete: SetNull)
+  startupName        String
+  founderName        String
+  founderEmail       String
+  founderPhone       String
+  coFoundersCount    Int               @default(1)
+  collegeOrEntity    String            @default("MAMCET / External")
+  category           FocusAreaCategory
+  stage              StartupStage      @default(IDEATION)
+  problemStatement   String            @db.Text
+  proposedSolution   String            @db.Text
+  targetMarket       String            @db.Text
+  competitors        String?           @db.Text
+  revenueModel       String?           @db.Text
+  fundingNeeded      String?
+  labRequirement     String?           @db.Text
+  pitchDeckUrl       String?
+  status             ApplicationStatus @default(SUBMITTED)
+  adminRemarks       String?           @db.Text
+  evaluatedBy        String?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  milestones         Milestone[]
+}
+
+model Milestone {
+  id              String             @id @default(uuid())
+  applicationId   String
+  application     StartupApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  title           String
+  description     String?            @db.Text
+  dueDate         DateTime
+  isCompleted     Boolean            @default(false)
+  completedAt     DateTime?
+  createdAt       DateTime           @default(now())
+}
+
+model StartupProfile {
+  id              String            @id @default(uuid())
+  name            String
+  slug            String            @unique
+  oneLiner        String
+  description     String            @db.Text
+  founders        String
+  category        FocusAreaCategory
+  stage           StartupStage
+  cohortYear      String
+  logoUrl         String?
+  websiteUrl      String?
+  isFeatured      Boolean           @default(false)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+model Mentor {
+  id              String            @id @default(uuid())
+  userId          String?           @unique
+  user            User?             @relation(fields: [userId], references: [id], onDelete: SetNull)
+  name            String
+  designation     String
+  organization    String
+  bio             String            @db.Text
+  areasOfExpertise String
+  avatarUrl       String?
+  linkedInUrl     String?
+  isAvailable     Boolean           @default(true)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+model Event {
+  id              String             @id @default(uuid())
+  title           String
+  slug            String             @unique
+  eventType       String             // "Workshop", "Hackathon", "Bootcamp", "Pitch Day"
+  description     String             @db.Text
+  startDate       DateTime
+  endDate         DateTime?
+  location        String             @default("MIF Innovation Lab, MAMCET Campus")
+  mode            String             @default("In-Person") // "In-Person", "Virtual", "Hybrid"
+  capacity        Int                @default(50)
+  registrationOpen Boolean           @default(true)
+  imageUrl        String?
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+  registrations   EventRegistration[]
+}
+
+model EventRegistration {
+  id              String    @id @default(uuid())
+  eventId         String
+  event           Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  userId          String?
+  user            User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  fullName        String
+  email           String
+  phone           String
+  organization    String?
+  registeredAt    DateTime  @default(now())
+}
+
+model ContactEnquiry {
+  id              String    @id @default(uuid())
+  name            String
+  email           String
+  phone           String?
+  subject         String
+  message         String    @db.Text
+  isResolved      Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+}
+
+model NewsletterSubscriber {
+  id              String    @id @default(uuid())
+  email           String    @unique
+  subscribedAt    DateTime  @default(now())
+}
+
+model AIReadinessAssessmentLog {
+  id              String    @id @default(uuid())
+  startupName     String
+  founderEmail    String?
+  readinessScore  Int
+  breakdownJson   String    @db.Text
+  recommendations String    @db.Text
+  createdAt       DateTime  @default(now())
+}
