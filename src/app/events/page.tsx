@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function EventsPage() {
   return (
-    <div className="pt-24 min-h-screen bg-[#050814]">
+    <div className="pt-24 min-h-screen bg-slate-50">
       <EventsNews />
     </div>
   );

@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function FacilitiesPage() {
   return (
-    <div className="pt-24 min-h-screen bg-[#050814]">
+    <div className="pt-24 min-h-screen bg-slate-50">
       <Facilities />
     </div>
   );

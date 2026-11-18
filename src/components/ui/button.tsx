@@ -9,17 +9,17 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-blue-600 text-white shadow-lg shadow-blue-500/25 hover:bg-blue-500 hover:shadow-blue-500/35",
+          "bg-blue-600 text-white shadow-md shadow-blue-500/20 hover:bg-blue-700 hover:shadow-blue-500/30",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "bg-rose-600 text-white hover:bg-rose-700 shadow-sm",
         outline:
-          "border border-slate-700 bg-slate-900/60 text-slate-100 hover:bg-slate-800 hover:text-white backdrop-blur-sm",
+          "border border-slate-300 bg-white text-slate-800 hover:bg-slate-50 hover:text-slate-900 shadow-sm",
         secondary:
-          "bg-slate-800 text-slate-100 hover:bg-slate-700 hover:text-white",
-        ghost: "hover:bg-slate-800/60 hover:text-white text-slate-300",
-        link: "text-blue-400 underline-offset-4 hover:underline",
-        cyan: "bg-cyan-500 text-slate-950 font-semibold shadow-lg shadow-cyan-500/20 hover:bg-cyan-400 hover:shadow-cyan-400/30",
-        glass: "bg-white/10 text-white border border-white/20 backdrop-blur-md hover:bg-white/20",
+          "bg-slate-100 text-slate-900 hover:bg-slate-200",
+        ghost: "hover:bg-slate-100 text-slate-700 hover:text-slate-900",
+        link: "text-blue-600 underline-offset-4 hover:underline",
+        cyan: "bg-cyan-600 text-white font-semibold shadow-md shadow-cyan-500/20 hover:bg-cyan-700",
+        glass: "bg-white/80 text-slate-900 border border-slate-200 backdrop-blur-md hover:bg-white shadow-sm",
       },
       size: {
         default: "h-10 px-5 py-2",

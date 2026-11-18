@@ -51,8 +51,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${manrope.variable} dark`}>
-      <body className="min-h-screen bg-[#050814] text-slate-100 font-sans flex flex-col selection:bg-blue-600/30 selection:text-white">
+    <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
+      <body className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-blue-600/20 selection:text-blue-900">
         <SmoothScroll>
           <Navbar />
           <main className="flex-1">{children}</main>

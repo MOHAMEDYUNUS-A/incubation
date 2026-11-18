@@ -9,13 +9,10 @@ import {
 } from "@/lib/validations/applicationSchema";
 import { FOCUS_AREAS } from "@/lib/db/mockData";
 import {
-  Rocket,
   CheckCircle2,
   ArrowRight,
   ArrowLeft,
   AlertCircle,
-  Building,
-  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -97,45 +94,45 @@ export default function ApplyPage() {
   };
 
   return (
-    <div className="pt-32 pb-24 bg-[#050814] min-h-screen">
+    <div className="pt-32 pb-24 bg-slate-50 min-h-screen">
       <div className="container max-w-4xl mx-auto px-4 sm:px-6">
         {/* Page Title */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-semibold text-cyan-400 uppercase tracking-widest">
+          <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
             Cohort Application Portal
           </span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white mt-2 font-display">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2 font-display">
             Apply for Incubation at MIF
           </h1>
-          <p className="text-sm text-slate-400 mt-2">
+          <p className="text-sm text-slate-600 mt-2">
             MASTeR Incubation Foundation · StartupTN Recognised Pre-Incubation Centre · MAMCET Trichy
           </p>
         </div>
 
         {submittedData ? (
           /* Submission Confirmation Card */
-          <div className="p-8 sm:p-12 rounded-3xl bg-slate-900/80 border border-emerald-500/40 text-center space-y-6 shadow-2xl">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+          <div className="p-8 sm:p-12 rounded-3xl bg-white border border-emerald-300 text-center space-y-6 shadow-sm">
+            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-8 h-8" />
             </div>
 
             <div className="space-y-2">
-              <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider">
+              <span className="text-xs font-bold text-blue-700 uppercase tracking-wider">
                 Application Received Successfully
               </span>
-              <h2 className="text-3xl font-extrabold text-white">
+              <h2 className="text-3xl font-extrabold text-slate-900">
                 Welcome to the Screening Pipeline, {submittedData.founderName}!
               </h2>
-              <p className="text-sm text-slate-300 max-w-lg mx-auto leading-relaxed">
+              <p className="text-sm text-slate-600 max-w-lg mx-auto leading-relaxed">
                 Your application for <strong>{submittedData.startupName}</strong> has been registered with ID:{" "}
-                <span className="font-mono text-cyan-300 bg-slate-800 px-2 py-0.5 rounded">
+                <span className="font-mono text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
                   {submittedData.id}
                 </span>.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-slate-950/70 border border-slate-800 text-left text-xs text-slate-300 space-y-2 max-w-lg mx-auto">
-              <div className="font-bold text-white uppercase text-[11px] mb-2">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-left text-xs text-slate-700 space-y-2 max-w-lg mx-auto">
+              <div className="font-bold text-slate-900 uppercase text-[11px] mb-2">
                 What happens next?
               </div>
               <p>
@@ -155,17 +152,17 @@ export default function ApplyPage() {
                   setSubmittedData(null);
                   setStep(1);
                 }}
-                className="bg-blue-600 hover:bg-blue-500 text-white font-semibold"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold"
               >
                 Submit Another Application
               </Button>
             </div>
           </div>
         ) : (
-          /* Multi-Step Application Form */
-          <div className="p-6 sm:p-10 rounded-3xl bg-slate-900/50 border border-slate-800 shadow-xl">
+          /* Clean Multi-Step Application Form */
+          <div className="p-6 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm">
             {/* Step Indicators */}
-            <div className="grid grid-cols-4 gap-2 mb-10 pb-6 border-b border-slate-800">
+            <div className="grid grid-cols-4 gap-2 mb-10 pb-6 border-b border-slate-100">
               {[
                 { s: 1, title: "Founder" },
                 { s: 2, title: "Venture" },
@@ -176,8 +173,8 @@ export default function ApplyPage() {
                   key={item.s}
                   className={`text-center pb-2 border-b-2 transition-colors ${
                     step >= item.s
-                      ? "border-blue-500 text-cyan-300 font-bold"
-                      : "border-slate-800 text-slate-500 font-normal"
+                      ? "border-blue-600 text-blue-700 font-bold"
+                      : "border-slate-200 text-slate-400 font-normal"
                   }`}
                 >
                   <span className="text-[10px] uppercase tracking-wider block">
@@ -189,7 +186,7 @@ export default function ApplyPage() {
             </div>
 
             {errorMsg && (
-              <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2 mb-6">
+              <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2 mb-6">
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{errorMsg}</span>
               </div>
@@ -199,13 +196,13 @@ export default function ApplyPage() {
               {/* STEP 1: Founder & Team Info */}
               {step === 1 && (
                 <div className="space-y-4 animate-in fade-in duration-200">
-                  <h3 className="text-lg font-bold text-white mb-4">
+                  <h3 className="text-lg font-bold text-slate-900 mb-4">
                     Step 1: Founder & Team Details
                   </h3>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-semibold text-slate-300 block mb-1">
+                      <label className="text-xs font-semibold text-slate-700 block mb-1">
                         Primary Founder / Innovator Name *
                       </label>
                       <Input
@@ -213,14 +210,14 @@ export default function ApplyPage() {
                         placeholder="e.g. Anand Kumar"
                       />
                       {errors.founderName && (
-                        <span className="text-[11px] text-rose-400 mt-1 block">
+                        <span className="text-[11px] text-rose-600 mt-1 block">
                           {errors.founderName.message}
                         </span>
                       )}
                     </div>
 
                     <div>
-                      <label className="text-xs font-semibold text-slate-300 block mb-1">
+                      <label className="text-xs font-semibold text-slate-700 block mb-1">
                         Email Address *
                       </label>
                       <Input
@@ -229,7 +226,7 @@ export default function ApplyPage() {
                         placeholder="e.g. anand@mamcet.edu.in"
                       />
                       {errors.founderEmail && (
-                        <span className="text-[11px] text-rose-400 mt-1 block">
+                        <span className="text-[11px] text-rose-600 mt-1 block">
                           {errors.founderEmail.message}
                         </span>
                       )}
@@ -238,7 +235,7 @@ export default function ApplyPage() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-semibold text-slate-300 block mb-1">
+                      <label className="text-xs font-semibold text-slate-700 block mb-1">
                         Contact Phone Number *
                       </label>
                       <Input
@@ -246,14 +243,14 @@ export default function ApplyPage() {
                         placeholder="+91 9876543210"
                       />
                       {errors.founderPhone && (
-                        <span className="text-[11px] text-rose-400 mt-1 block">
+                        <span className="text-[11px] text-rose-600 mt-1 block">
                           {errors.founderPhone.message}
                         </span>
                       )}
                     </div>
 
                     <div>
-                      <label className="text-xs font-semibold text-slate-300 block mb-1">
+                      <label className="text-xs font-semibold text-slate-700 block mb-1">
                         Co-Founders / Team Size
                       </label>
                       <Input
@@ -266,7 +263,7 @@ export default function ApplyPage() {
                   </div>
 
                   <div>
-                    <label className="text-xs font-semibold text-slate-300 block mb-1">
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">
                       College / Institution / Organization *
                     </label>
                     <Input
@@ -274,7 +271,7 @@ export default function ApplyPage() {
                       placeholder="e.g. MAMCET Trichy (ECE Department)"
                     />
                     {errors.collegeOrEntity && (
-                      <span className="text-[11px] text-rose-400 mt-1 block">
+                      <span className="text-[11px] text-rose-600 mt-1 block">
                         {errors.collegeOrEntity.message}
                       </span>
                     )}
@@ -285,12 +282,12 @@ export default function ApplyPage() {
               {/* STEP 2: Venture Profile */}
               {step === 2 && (
                 <div className="space-y-4 animate-in fade-in duration-200">
-                  <h3 className="text-lg font-bold text-white mb-4">
+                  <h3 className="text-lg font-bold text-slate-900 mb-4">
                     Step 2: Startup & Technology Profile
                   </h3>
 
                   <div>
-                    <label className="text-xs font-semibold text-slate-300 block mb-1">
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">
                       Startup / Project Name *
                     </label>
                     <Input
@@ -298,19 +295,19 @@ export default function ApplyPage() {
                       placeholder="e.g. AgroSens Telemetry"
                     />
                     {errors.startupName && (
-                      <span className="text-[11px] text-rose-400 mt-1 block">
+                      <span className="text-[11px] text-rose-600 mt-1 block">
                         {errors.startupName.message}
                       </span>
                     )}
                   </div>
 
                   <div>
-                    <label className="text-xs font-semibold text-slate-300 block mb-1">
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">
                       Select MIF Focus Track *
                     </label>
                     <select
                       {...register("category")}
-                      className="w-full h-11 rounded-xl border border-slate-700 bg-slate-900 px-3 text-xs text-slate-100"
+                      className="w-full h-11 rounded-xl border border-slate-300 bg-white px-3 text-xs text-slate-900 shadow-xs"
                     >
                       {FOCUS_AREAS.map((fa) => (
                         <option key={fa.categoryKey} value={fa.categoryKey}>
@@ -319,19 +316,19 @@ export default function ApplyPage() {
                       ))}
                     </select>
                     {errors.category && (
-                      <span className="text-[11px] text-rose-400 mt-1 block">
+                      <span className="text-[11px] text-rose-600 mt-1 block">
                         {errors.category.message}
                       </span>
                     )}
                   </div>
 
                   <div>
-                    <label className="text-xs font-semibold text-slate-300 block mb-1">
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">
                       Current Maturity Stage *
                     </label>
                     <select
                       {...register("stage")}
-                      className="w-full h-11 rounded-xl border border-slate-700 bg-slate-900 px-3 text-xs text-slate-100"
+                      className="w-full h-11 rounded-xl border border-slate-300 bg-white px-3 text-xs text-slate-900 shadow-xs"
                     >
                       <option value="IDEATION">Ideation (Structured concept & initial research)</option>
                       <option value="PROOF_OF_CONCEPT">Proof of Concept (Benchtop lab experiment)</option>
@@ -346,12 +343,12 @@ export default function ApplyPage() {
               {/* STEP 3: Problem & Solution */}
               {step === 3 && (
                 <div className="space-y-4 animate-in fade-in duration-200">
-                  <h3 className="text-lg font-bold text-white mb-4">
+                  <h3 className="text-lg font-bold text-slate-900 mb-4">
                     Step 3: Engineering Innovation & Market Validation
                   </h3>
 
                   <div>
-                    <label className="text-xs font-semibold text-slate-300 block mb-1">
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">
                       Problem Statement * (Minimum 30 characters)
                     </label>
                     <Textarea
@@ -360,14 +357,14 @@ export default function ApplyPage() {
                       placeholder="What friction, inefficiency, or societal pain point are you solving?"
                     />
                     {errors.problemStatement && (
-                      <span className="text-[11px] text-rose-400 mt-1 block">
+                      <span className="text-[11px] text-rose-600 mt-1 block">
                         {errors.problemStatement.message}
                       </span>
                     )}
                   </div>
 
                   <div>
-                    <label className="text-xs font-semibold text-slate-300 block mb-1">
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">
                       Proposed Solution & Technical Innovation * (Minimum 30 characters)
                     </label>
                     <Textarea
@@ -376,14 +373,14 @@ export default function ApplyPage() {
                       placeholder="Describe your technology, hardware architecture, or algorithm..."
                     />
                     {errors.proposedSolution && (
-                      <span className="text-[11px] text-rose-400 mt-1 block">
+                      <span className="text-[11px] text-rose-600 mt-1 block">
                         {errors.proposedSolution.message}
                       </span>
                     )}
                   </div>
 
                   <div>
-                    <label className="text-xs font-semibold text-slate-300 block mb-1">
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">
                       Target Market & Beneficiaries * (Minimum 20 characters)
                     </label>
                     <Textarea
@@ -392,7 +389,7 @@ export default function ApplyPage() {
                       placeholder="Who are your initial paying customers or industrial beneficiaries?"
                     />
                     {errors.targetMarket && (
-                      <span className="text-[11px] text-rose-400 mt-1 block">
+                      <span className="text-[11px] text-rose-600 mt-1 block">
                         {errors.targetMarket.message}
                       </span>
                     )}
@@ -403,12 +400,12 @@ export default function ApplyPage() {
               {/* STEP 4: Facility Needs & Final Review */}
               {step === 4 && (
                 <div className="space-y-4 animate-in fade-in duration-200">
-                  <h3 className="text-lg font-bold text-white mb-4">
+                  <h3 className="text-lg font-bold text-slate-900 mb-4">
                     Step 4: Incubation Support Needed & Pitch Link
                   </h3>
 
                   <div>
-                    <label className="text-xs font-semibold text-slate-300 block mb-1">
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">
                       Specific MAMCET Lab or Equipment Required (Optional)
                     </label>
                     <Input
@@ -419,7 +416,7 @@ export default function ApplyPage() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-semibold text-slate-300 block mb-1">
+                      <label className="text-xs font-semibold text-slate-700 block mb-1">
                         Seed Funding Requirement (Optional)
                       </label>
                       <Input
@@ -429,7 +426,7 @@ export default function ApplyPage() {
                     </div>
 
                     <div>
-                      <label className="text-xs font-semibold text-slate-300 block mb-1">
+                      <label className="text-xs font-semibold text-slate-700 block mb-1">
                         Pitch Deck URL / Drive Link (Optional)
                       </label>
                       <Input
@@ -439,8 +436,8 @@ export default function ApplyPage() {
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-xl bg-blue-950/40 border border-blue-800/40 text-xs text-slate-300">
-                    <span className="text-white font-bold block mb-1">
+                  <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 text-xs text-slate-700">
+                    <span className="text-blue-900 font-bold block mb-1">
                       Application Integrity Statement:
                     </span>
                     By submitting this application to MASTeR Incubation Foundation (MIF), you confirm that the technical disclosures are non-confidential and eligible for review by the institutional screening panel.
@@ -449,13 +446,13 @@ export default function ApplyPage() {
               )}
 
               {/* Form Navigation Buttons */}
-              <div className="flex items-center justify-between pt-6 border-t border-slate-800">
+              <div className="flex items-center justify-between pt-6 border-t border-slate-100">
                 {step > 1 ? (
                   <Button
                     type="button"
                     variant="outline"
                     onClick={prevStep}
-                    className="border-slate-700 text-slate-300 text-xs gap-1.5"
+                    className="border-slate-300 text-slate-700 text-xs gap-1.5"
                   >
                     <ArrowLeft className="w-3.5 h-3.5" />
                     <span>Previous</span>
@@ -468,7 +465,7 @@ export default function ApplyPage() {
                   <Button
                     type="button"
                     onClick={nextStep}
-                    className="bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs gap-1.5"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs gap-1.5 shadow-sm"
                   >
                     <span>Continue to Step 0{step + 1}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -477,7 +474,7 @@ export default function ApplyPage() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs px-8 h-11"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs px-8 h-11 shadow-sm"
                   >
                     {isSubmitting ? "Submitting Application..." : "Submit Formal Application"}
                   </Button>

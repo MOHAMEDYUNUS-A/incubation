@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, X, Send, Bot, User, RefreshCw, ArrowRight } from "lucide-react";
+import { Sparkles, X, Send, Bot, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -93,22 +93,22 @@ export default function AIAssistantModal({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.2 }}
-          className="fixed bottom-6 right-6 z-50 w-full max-w-md sm:max-w-lg h-[600px] max-h-[85vh] rounded-3xl bg-slate-950 border border-slate-700/80 shadow-2xl flex flex-col overflow-hidden"
+          className="fixed bottom-6 right-6 z-50 w-full max-w-md sm:max-w-lg h-[600px] max-h-[85vh] rounded-3xl bg-white border border-slate-200 shadow-2xl flex flex-col overflow-hidden"
         >
           {/* Header */}
-          <div className="p-4 px-5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+          <div className="p-4 px-5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-cyan-300">
+              <div className="w-9 h-9 rounded-xl bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-600">
                 <Sparkles className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
                   <span>MASTeR AI Copilot</span>
-                  <span className="text-[9px] px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300 font-mono">
+                  <span className="text-[9px] px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800 font-mono font-bold">
                     ONLINE
                   </span>
                 </h3>
-                <p className="text-[10px] text-slate-400">
+                <p className="text-[10px] text-slate-500">
                   Instant guidance on incubation, labs & grants
                 </p>
               </div>
@@ -125,14 +125,14 @@ export default function AIAssistantModal({
                     },
                   ])
                 }
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors"
                 title="Clear conversation"
               >
                 <RefreshCw className="w-4 h-4" />
               </button>
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -140,7 +140,7 @@ export default function AIAssistantModal({
           </div>
 
           {/* Messages Feed */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-4 text-xs">
+          <div className="flex-1 p-4 overflow-y-auto space-y-4 text-xs bg-slate-50/50">
             {messages.map((m) => (
               <div
                 key={m.id}
@@ -149,15 +149,15 @@ export default function AIAssistantModal({
                 }`}
               >
                 {m.role === "assistant" && (
-                  <div className="w-7 h-7 rounded-lg bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-cyan-300 shrink-0 mt-0.5">
+                  <div className="w-7 h-7 rounded-lg bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-600 shrink-0 mt-0.5 shadow-2xs">
                     <Bot className="w-4 h-4" />
                   </div>
                 )}
                 <div
                   className={`p-3.5 rounded-2xl max-w-[82%] leading-relaxed ${
                     m.role === "user"
-                      ? "bg-blue-600 text-white rounded-br-sm"
-                      : "bg-slate-900 border border-slate-800 text-slate-200 rounded-bl-sm whitespace-pre-line"
+                      ? "bg-blue-600 text-white rounded-br-sm shadow-sm"
+                      : "bg-white border border-slate-200 text-slate-800 rounded-bl-sm whitespace-pre-line shadow-2xs"
                   }`}
                 >
                   {m.content}
@@ -167,13 +167,13 @@ export default function AIAssistantModal({
 
             {loading && (
               <div className="flex gap-3 justify-start">
-                <div className="w-7 h-7 rounded-lg bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-cyan-300 shrink-0">
+                <div className="w-7 h-7 rounded-lg bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-600 shrink-0">
                   <Bot className="w-4 h-4" />
                 </div>
-                <div className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 text-slate-400 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce [animation-delay:0.2s]" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce [animation-delay:0.4s]" />
+                <div className="p-3.5 rounded-2xl bg-white border border-slate-200 text-slate-500 flex items-center gap-1.5 shadow-2xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-bounce" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-bounce [animation-delay:0.2s]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-bounce [animation-delay:0.4s]" />
                 </div>
               </div>
             )}
@@ -181,12 +181,12 @@ export default function AIAssistantModal({
           </div>
 
           {/* Quick Prompt Chips */}
-          <div className="px-4 py-2 bg-slate-900/60 border-t border-slate-800/80 flex gap-2 overflow-x-auto">
+          <div className="px-4 py-2 bg-slate-50 border-t border-slate-200 flex gap-2 overflow-x-auto">
             {PROMPT_CHIPS.map((chip, idx) => (
               <button
                 key={idx}
                 onClick={() => handleSend(chip)}
-                className="text-[11px] px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 whitespace-nowrap transition-colors border border-slate-700/60"
+                className="text-[11px] px-2.5 py-1 rounded-full bg-white text-slate-700 hover:bg-slate-100 whitespace-nowrap transition-colors border border-slate-200 shadow-2xs font-medium"
               >
                 {chip}
               </button>
@@ -199,19 +199,19 @@ export default function AIAssistantModal({
               e.preventDefault();
               handleSend();
             }}
-            className="p-3 bg-slate-900 border-t border-slate-800 flex gap-2"
+            className="p-3 bg-white border-t border-slate-200 flex gap-2"
           >
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about incubation, eligibility, labs..."
-              className="h-10 text-xs bg-slate-950 border-slate-700"
+              className="h-10 text-xs bg-slate-50 border-slate-300"
             />
             <Button
               type="submit"
               disabled={loading || !input.trim()}
               size="sm"
-              className="bg-blue-600 hover:bg-blue-500 text-white shrink-0 h-10 px-4"
+              className="bg-blue-600 hover:bg-blue-700 text-white shrink-0 h-10 px-4"
             >
               <Send className="w-4 h-4" />
             </Button>

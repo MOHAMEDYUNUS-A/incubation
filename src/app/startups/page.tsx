@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function StartupsPage() {
   return (
-    <div className="pt-24 min-h-screen bg-[#070c1d]">
+    <div className="pt-24 min-h-screen bg-slate-50">
       <StartupPortfolio />
     </div>
   );

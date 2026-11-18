@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { FOUNDATION_INFO } from "@/lib/db/mockData";
-import { Mail, Phone, MapPin, CheckCircle2 } from "lucide-react";
+import { MapPin, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -19,13 +19,13 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="bg-[#030611] text-slate-400 border-t border-slate-800/80 pt-20 pb-12">
+    <footer id="contact" className="bg-[#0b1124] text-slate-300 border-t border-slate-800 pt-20 pb-12">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-16 border-b border-slate-800/80">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-16 border-b border-slate-800">
           {/* Col 1: Brand & Institutional Identity */}
           <div className="lg:col-span-4 space-y-4">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-white p-1 flex items-center justify-center border border-white">
+              <div className="w-12 h-12 rounded-xl bg-white p-1 flex items-center justify-center border border-white shadow-sm">
                 <img
                   src="/logos/master-incubation-logo.png"
                   alt="MASTeR Logo"
@@ -36,13 +36,13 @@ export default function Footer() {
                 <span className="font-extrabold text-xl tracking-wider text-white">
                   MAST<span className="text-blue-400">e</span>R
                 </span>
-                <span className="text-[10px] text-slate-300">
+                <span className="text-[10px] text-slate-300 font-medium">
                   Incubation Foundation (MIF)
                 </span>
               </div>
             </Link>
 
-            <p className="text-xs text-slate-400 leading-relaxed pr-4">
+            <p className="text-xs text-slate-300 leading-relaxed pr-4">
               {FOUNDATION_INFO.legalType}. Associated with {FOUNDATION_INFO.institution}, recognized as a {FOUNDATION_INFO.recognition}.
             </p>
 
@@ -52,25 +52,25 @@ export default function Footer() {
 
             {/* QR Codes from Official Brochure */}
             <div className="pt-2">
-              <div className="text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-2">
+              <div className="text-[11px] font-bold text-slate-200 uppercase tracking-wider mb-2">
                 Connect with our Community:
               </div>
               <div className="flex items-center gap-4">
-                <div className="p-2 rounded-xl bg-white flex flex-col items-center">
+                <div className="p-2 rounded-xl bg-white flex flex-col items-center shadow-sm">
                   <img
                     src="/images/qr-instagram.png"
                     alt="Instagram QR"
                     className="w-14 h-14 object-contain"
                   />
-                  <span className="text-[9px] font-bold text-slate-800 mt-1">Instagram</span>
+                  <span className="text-[9px] font-bold text-slate-900 mt-1">Instagram</span>
                 </div>
-                <div className="p-2 rounded-xl bg-white flex flex-col items-center">
+                <div className="p-2 rounded-xl bg-white flex flex-col items-center shadow-sm">
                   <img
                     src="/images/qr-linkedin.png"
                     alt="LinkedIn QR"
                     className="w-14 h-14 object-contain"
                   />
-                  <span className="text-[9px] font-bold text-slate-800 mt-1">LinkedIn</span>
+                  <span className="text-[9px] font-bold text-slate-900 mt-1">LinkedIn</span>
                 </div>
               </div>
             </div>
@@ -98,18 +98,18 @@ export default function Footer() {
               Leadership & Contacts
             </h4>
             <div className="space-y-3 text-xs">
-              <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
+              <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
                 <div className="font-bold text-white text-sm">{FOUNDATION_INFO.manager.name}</div>
                 <div className="text-[11px] text-cyan-400 font-medium">{FOUNDATION_INFO.manager.role}</div>
                 <div className="text-[11px] text-slate-300 mt-1">{FOUNDATION_INFO.manager.phone}</div>
-                <div className="text-[11px] text-slate-400 truncate">{FOUNDATION_INFO.manager.email}</div>
+                <div className="text-[11px] text-slate-300 truncate">{FOUNDATION_INFO.manager.email}</div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
+              <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
                 <div className="font-bold text-white text-sm">{FOUNDATION_INFO.coordinator.name}</div>
                 <div className="text-[11px] text-cyan-400 font-medium">{FOUNDATION_INFO.coordinator.role}</div>
                 <div className="text-[11px] text-slate-300 mt-1">{FOUNDATION_INFO.coordinator.phone}</div>
-                <div className="text-[11px] text-slate-400 truncate">{FOUNDATION_INFO.coordinator.email}</div>
+                <div className="text-[11px] text-slate-300 truncate">{FOUNDATION_INFO.coordinator.email}</div>
               </div>
             </div>
           </div>
@@ -136,7 +136,7 @@ export default function Footer() {
                     value={newsEmail}
                     onChange={(e) => setNewsEmail(e.target.value)}
                     placeholder="Enter email for grant alerts"
-                    className="h-9 text-xs"
+                    className="h-9 text-xs bg-slate-900 border-slate-700 text-white placeholder:text-slate-500"
                   />
                   <Button type="submit" size="sm" className="w-full bg-blue-600 hover:bg-blue-500 text-white text-xs h-9 font-semibold">
                     Subscribe
