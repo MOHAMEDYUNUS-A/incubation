@@ -13,13 +13,10 @@ export default function Facilities() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <RevealLeft>
-            <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
-              Section 07 — Campus Infrastructure
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2 font-display">
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-display">
               World-Class Engineering & Prototyping Facilities
             </h2>
-            <p className="text-sm text-slate-600 mt-2 max-w-2xl">
+            <p className="text-base text-slate-600 mt-2 max-w-2xl">
               Equipped with precision testing benches, rapid 3D fabrication printers, and collaborative ideation pods at MAMCET campus, Siruganur, Trichy.
             </p>
           </RevealLeft>

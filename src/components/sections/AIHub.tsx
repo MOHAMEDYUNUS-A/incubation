@@ -50,14 +50,10 @@ export default function AIHub({ onOpenChat }: { onOpenChat?: () => void }) {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <RevealLeft>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold uppercase tracking-wider mb-3">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Section 10 — AI Innovation Experience</span>
-            </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-display">
               MASTeR AI Incubation Assistant
             </h2>
-            <p className="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
+            <p className="text-base text-slate-600 mt-3 max-w-2xl leading-relaxed">
               Algorithmic diagnostic tools for early-stage founders to test assumptions, benchmark technology readiness, and structure grant applications.
             </p>
           </RevealLeft>

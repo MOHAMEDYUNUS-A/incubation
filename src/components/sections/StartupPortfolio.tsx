@@ -30,13 +30,10 @@ export default function StartupPortfolio() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <RevealLeft>
-            <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
-              Section 06 — Innovation Portfolio
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2 font-display">
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-display">
               Incubated Startups & Cohort Ventures
             </h2>
-            <p className="text-sm text-slate-600 mt-2">
+            <p className="text-base text-slate-600 mt-2">
               Transforming academic engineering prototypes into market-tested ventures.
             </p>
           </RevealLeft>

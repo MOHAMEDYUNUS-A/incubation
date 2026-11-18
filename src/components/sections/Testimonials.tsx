@@ -10,13 +10,10 @@ export default function Testimonials() {
     <section className="py-20 sm:py-24 bg-slate-50 relative border-t border-slate-200">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <FadeUp className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
-            Section 11 — Founder Voices
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2 font-display">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-display">
             Incubator Experience & Perspectives
           </h2>
-          <p className="text-sm text-slate-600 mt-2">
+          <p className="text-base text-slate-600 mt-2">
             Real feedback from innovators utilizing MAMCET&apos;s prototyping labs and mentor network.
           </p>
         </FadeUp>

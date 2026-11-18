@@ -40,13 +40,10 @@ export default function Metrics() {
     <section className="py-20 bg-slate-50 border-y border-slate-200 relative">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <FadeUp className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
-            Section 03 — Institutional Footprint
-          </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2 font-display">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 font-display">
             Built for Tangible Engineering Translation
           </h2>
-          <p className="text-sm text-slate-600 mt-2">
+          <p className="text-base text-slate-600 mt-2">
             Providing verifiable ecosystem linkages, accredited infrastructure, and structured mentor access.
           </p>
         </FadeUp>

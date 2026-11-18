@@ -9,13 +9,10 @@ export default function MentorsEcosystem() {
     <section id="mentors" className="py-20 sm:py-24 bg-white relative border-t border-slate-200">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <FadeUp className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
-            Section 08 — Advisory Network
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2 font-display">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-display">
             Mentors & Startup Advisors
           </h2>
-          <p className="text-sm text-slate-600 mt-3 leading-relaxed">
+          <p className="text-base text-slate-600 mt-3 leading-relaxed">
             Guidance from academic researchers, corporate engineers, and incubation specialists helping you de-risk early-stage ventures.
           </p>
         </FadeUp>

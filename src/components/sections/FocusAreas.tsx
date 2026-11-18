@@ -34,11 +34,8 @@ export default function FocusAreas() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <RevealLeft className="max-w-2xl">
-            <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
-              Section 04 — Core Engineering Domains
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2 font-display">
-              7 Priority Technology Focus Areas
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-display">
+              Priority Technology Focus Areas
             </h2>
             <p className="text-base text-slate-600 mt-3 leading-relaxed">
               Designed around MAMCET&apos;s interdisciplinary research laboratories and Tamil Nadu&apos;s strategic industrial growth sectors.

@@ -13,14 +13,10 @@ export default function Introduction() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <FadeUp className="flex flex-col items-start max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold uppercase tracking-wider mb-3">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Section 02 — Institutional Profile</span>
-          </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight font-display">
-            About MASTeR Incubation Foundation (MIF)
+            About MASTeR Incubation Foundation
           </h2>
-          <p className="text-sm sm:text-base text-blue-700 font-semibold mt-2">
+          <p className="text-base text-blue-700 font-semibold mt-2">
             M.A.M. College of Engineering and Technology (MAMCET) · StartupTN Pre-Incubation Centre
           </p>
         </FadeUp>

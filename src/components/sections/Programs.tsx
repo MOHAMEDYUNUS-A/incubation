@@ -14,10 +14,7 @@ export default function Programs() {
     <section id="programs" className="py-20 sm:py-24 bg-slate-50 relative overflow-hidden border-t border-slate-200">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <RevealLeft className="max-w-3xl mb-14">
-          <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
-            Section 05 — Incubation Roadmap
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2 font-display">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-display">
             The 4-Stage Incubation Pathway
           </h2>
           <p className="text-base text-slate-600 mt-3 leading-relaxed">

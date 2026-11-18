@@ -45,13 +45,10 @@ export default function EventsNews() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <RevealLeft>
-            <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
-              Section 09 — Community & Calendar
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2 font-display">
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-display">
               Upcoming Workshops & Bootcamps
             </h2>
-            <p className="text-sm text-slate-600 mt-2">
+            <p className="text-base text-slate-600 mt-2">
               Join hands-on maker bootcamps, grant writing masterclasses, and pitch days at MAMCET campus.
             </p>
           </RevealLeft>

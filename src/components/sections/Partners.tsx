@@ -41,13 +41,10 @@ export default function Partners() {
     <section className="py-20 bg-white border-t border-slate-200 relative">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <RevealLeft className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
-            Section 12 — Statutory & Ecosystem Affiliations
-          </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2 font-display">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 font-display">
             Institutional Ecosystem Network
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 mt-2">
+          <p className="text-base text-slate-600 mt-2">
             Recognized and accredited under apex national and state innovation frameworks.
           </p>
         </RevealLeft>

@@ -14,6 +14,7 @@ import {
   ArrowRight,
   Download,
   CheckCircle2,
+  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeUp, XYZCard } from "@/components/animations/LightAnimations";
@@ -23,7 +24,7 @@ const PERSONAS = [
     id: "startup",
     label: "Startup",
     icon: Rocket,
-    tagline: "Seed funding, prototyping labs, patent filing & market pilots.",
+    tagline: "Seed funding, prototyping labs, patent filing assistance, and pilot market deployments.",
     ctaText: "Apply For Pre-Incubation",
     href: "/apply?role=startup",
   },
@@ -31,7 +32,7 @@ const PERSONAS = [
     id: "researcher",
     label: "Researcher",
     icon: Lightbulb,
-    tagline: "Commercialize R&D, license IP, and translate lab prototypes into ventures.",
+    tagline: "Commercialize academic R&D, license intellectual property, and translate lab prototypes into commercial ventures.",
     ctaText: "Partner on Research Commercialization",
     href: "/apply?role=researcher",
   },
@@ -39,7 +40,7 @@ const PERSONAS = [
     id: "investor",
     label: "Investor",
     icon: TrendingUp,
-    tagline: "Discover pre-vetted deep-tech student & faculty ventures in Central Tamil Nadu.",
+    tagline: "Discover pre-vetted deep-tech student and faculty ventures across Central Tamil Nadu.",
     ctaText: "Access Curated Deal Flow",
     href: "/contact?subject=investor",
   },
@@ -47,7 +48,7 @@ const PERSONAS = [
     id: "industry",
     label: "Industry",
     icon: Settings,
-    tagline: "Co-create solutions, sponsor hackathons, and tap into college engineering talent.",
+    tagline: "Co-create engineering solutions, sponsor innovation challenges, and tap into college engineering talent.",
     ctaText: "Explore Industry Partnerships",
     href: "/contact?subject=industry",
   },
@@ -55,7 +56,7 @@ const PERSONAS = [
     id: "student",
     label: "Student",
     icon: GraduationCap,
-    tagline: "Transform final-year projects into funded startups with mentor backing.",
+    tagline: "Transform final-year projects and hardware prototypes into funded startups with mentor backing.",
     ctaText: "Join Student Ideation Cohort",
     href: "/apply?role=student",
   },
@@ -63,7 +64,7 @@ const PERSONAS = [
     id: "mentor",
     label: "Mentor",
     icon: Handshake,
-    tagline: "Guide high-potential innovators, conduct masterclasses, and join our advisory board.",
+    tagline: "Guide high-potential innovators, conduct masterclasses, and join our expert advisory board.",
     ctaText: "Join Mentorship Panel",
     href: "/contact?subject=mentor",
   },
@@ -71,7 +72,7 @@ const PERSONAS = [
     id: "government",
     label: "Government",
     icon: Scale,
-    tagline: "Deploy state innovation missions, TANSEED schemes, and MSME clusters.",
+    tagline: "Deploy state innovation missions, TANSEED schemes, and regional MSME technology clusters.",
     ctaText: "Review Ecosystem Impact",
     href: "/impact",
   },
@@ -89,39 +90,34 @@ export default function DisruptiveEpicenter() {
   const [selectedPersona, setSelectedPersona] = useState(PERSONAS[0]);
 
   return (
-    <section className="py-20 sm:py-28 bg-[#070d1e] text-white relative overflow-hidden border-b border-slate-800">
-      {/* Ambient Visual Glow Elements */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-10 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(37,99,235,0.08),transparent)]" />
+    <section className="py-20 sm:py-28 bg-white relative overflow-hidden border-b border-slate-200">
+      {/* Subtle Background Glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-10 w-96 h-96 bg-blue-50/80 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-10 w-96 h-96 bg-orange-50/60 rounded-full blur-3xl" />
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column: Heading & Institutional Purpose (Matching Reference Image 4) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Left Column: Heading & Purpose */}
           <div data-gsap="reveal-left" className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-cyan-300 text-xs font-mono font-bold uppercase tracking-wider">
-              <span>MIF INNOVATION CATALYST</span>
-            </div>
-
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.08] font-display">
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.08] font-display text-slate-900">
               The Epicenter of <br />
-              <span className="italic font-serif text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500">
+              <span className="text-[#ea580c] italic font-serif">
                 Disruptive Breakthroughs
               </span>
             </h2>
 
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal max-w-2xl">
-              <strong className="text-white font-bold">MASTeR Incubation Foundation</strong> is harnessing the synergistic power of startups, industry, academia, Government (<strong className="text-cyan-300 font-bold">StartupTN</strong> & <strong className="text-cyan-300 font-bold">Ministry of MSME</strong>), and apex collaborators to enrich Deep Tech and Emerging Tech in Tamil Nadu & build the future by nurturing a conducive R&D&I ecosystem.
+            <p className="text-base sm:text-xl text-slate-600 leading-relaxed font-normal max-w-2xl">
+              <strong className="text-slate-900 font-bold">MASTeR Incubation Foundation</strong> harnesses the synergistic power of startups, industry, academia, Government (<strong className="text-blue-700 font-bold">StartupTN</strong> & <strong className="text-blue-700 font-bold">Ministry of MSME</strong>), and apex partners to enrich Deep Tech & Emerging Tech in Tamil Nadu and build the future by nurturing a conducive R&D&I ecosystem.
             </p>
 
-            {/* Action Buttons (Matching Image 4) */}
+            {/* Action Buttons */}
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <Link href="/about">
                 <Button
                   size="lg"
-                  className="bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-sm px-8 h-12 rounded-xl shadow-lg shadow-blue-600/30 gap-2"
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm px-8 h-12 rounded-xl shadow-md shadow-blue-600/20 gap-2"
                 >
                   <span>Learn More</span>
                   <ArrowRight className="w-4 h-4" />
@@ -135,32 +131,32 @@ export default function DisruptiveEpicenter() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/30 bg-white/5 hover:bg-white/15 text-white font-bold text-sm px-7 h-12 rounded-xl backdrop-blur-md gap-2"
+                  className="border-slate-300 hover:bg-slate-50 text-slate-800 font-bold text-sm px-7 h-12 rounded-xl shadow-xs gap-2"
                 >
-                  <Download className="w-4 h-4 text-cyan-300" />
+                  <Download className="w-4 h-4 text-slate-600" />
                   <span>Download Overview</span>
                 </Button>
               </a>
             </div>
           </div>
 
-          {/* Right Column: Interactive "Personalized for Your Search" Widget (Matching Reference Image 4) */}
+          {/* Right Column: Interactive "Personalized for Your Search" Light Card */}
           <div data-gsap="reveal-right" className="lg:col-span-5">
-            <XYZCard depth={12}>
-              <div className="p-7 sm:p-9 rounded-3xl bg-slate-900/90 border border-slate-700/80 shadow-2xl backdrop-blur-xl relative">
+            <XYZCard depth={10}>
+              <div className="p-7 sm:p-9 rounded-3xl bg-slate-50 border border-slate-200 shadow-xl relative">
                 {/* Header */}
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-display mb-1">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-1">
                   Personalized for Your Search
                 </h3>
-                
-                {/* "I AM A..." Header with Yellow Oval Ring Accent */}
-                <div className="mt-4 mb-3 flex items-center gap-2">
-                  <div className="px-3 py-1 rounded-full border-2 border-amber-400 text-amber-300 text-xs font-mono font-bold tracking-wider uppercase inline-block">
+
+                {/* "I AM A..." Pill Accent */}
+                <div className="mt-4 mb-3">
+                  <span className="px-3 py-1 rounded-full bg-orange-100 text-orange-800 text-xs font-mono font-bold tracking-wider uppercase inline-block border border-orange-200">
                     I AM A...
-                  </div>
+                  </span>
                 </div>
 
-                {/* 8 Persona Pills Grid (Matching Image 4) */}
+                {/* 8 Persona Pills with Clean Lucide SVGs (No Raw Emojis) */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
                   {PERSONAS.map((p) => {
                     const Icon = p.icon;
@@ -170,33 +166,33 @@ export default function DisruptiveEpicenter() {
                       <button
                         key={p.id}
                         onClick={() => setSelectedPersona(p)}
-                        className={`p-2.5 rounded-xl border text-xs font-bold flex flex-col items-center justify-center gap-1.5 transition-all duration-200 ${
+                        className={`p-3 rounded-xl border text-xs font-bold flex flex-col items-center justify-center gap-2 transition-all duration-200 ${
                           isSelected
-                            ? "bg-gradient-to-r from-orange-600 to-amber-600 border-orange-400 text-white shadow-lg shadow-orange-600/30 scale-105"
-                            : "bg-slate-800/80 border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white hover:border-slate-600"
+                            ? "bg-[#ea580c] border-[#ea580c] text-white shadow-md shadow-orange-500/25 scale-105"
+                            : "bg-white border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-300"
                         }`}
                       >
-                        <Icon className={`w-4 h-4 ${isSelected ? "text-white" : "text-slate-400"}`} />
+                        <Icon className={`w-4 h-4 ${isSelected ? "text-white" : "text-blue-600"}`} />
                         <span className="truncate">{p.label}</span>
                       </button>
                     );
                   })}
                 </div>
 
-                {/* "I'M LOOKING FOR..." Dynamic Guidance Container */}
-                <div className="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 mb-6">
-                  <div className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-1.5 flex items-center gap-1.5">
-                    <span>I&apos;M LOOKING FOR...</span>
+                {/* Dynamic Tailored Guidance Box */}
+                <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs mb-6">
+                  <div className="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-1.5 font-bold">
+                    I&apos;M LOOKING FOR...
                   </div>
-                  <div className="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
+                  <div className="text-xs sm:text-sm text-slate-800 font-medium leading-relaxed flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0 mt-0.5" />
                     <span>{selectedPersona.tagline}</span>
                   </div>
                 </div>
 
-                {/* Dynamic Explore CTA Button (Matching Image 4) */}
+                {/* Dynamic Explore CTA Button */}
                 <Link href={selectedPersona.href} className="block w-full">
-                  <Button className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-sm h-12 rounded-xl shadow-lg shadow-orange-600/30 gap-2 uppercase tracking-wide group transition-all">
+                  <Button className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-sm h-12 rounded-xl shadow-md shadow-orange-600/25 gap-2 uppercase tracking-wide group transition-all">
                     <span>{selectedPersona.ctaText}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
