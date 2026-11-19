@@ -11,10 +11,10 @@ export default function InfrastructureDetails() {
     <section className="py-20 sm:py-28 bg-white relative border-b border-slate-200 overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Real Seminar & Lab Showcase Photo (Matching Reference Image 3) */}
-          <div data-gsap="reveal-left" className="lg:col-span-6">
+          {/* Left Column: Real Seminar & Lab Showcase Photo (RevealLeft) */}
+          <RevealLeft className="lg:col-span-6">
             <XYZCard depth={10}>
-              <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl bg-white group">
+              <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl bg-white group">
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
                   <img
                     src="/images/incubation/image-3.jpeg"
@@ -36,33 +36,33 @@ export default function InfrastructureDetails() {
                     <div className="text-xs text-orange-400 font-bold uppercase tracking-wider mb-1">
                       MAMCET Engineering Campus, Siruganur
                     </div>
-                    <h4 className="text-base sm:text-lg font-bold">
+                    <h4 className="text-base sm:text-xl font-bold font-display">
                       Multidisciplinary Incubation & Mentoring Auditorium
                     </h4>
                   </div>
                 </div>
 
                 {/* Sub-strip with campus preview */}
-                <div className="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
+                <div className="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs text-slate-700">
                   <span className="font-semibold text-slate-800">
                     Host Institution Allotted Incubation Block
                   </span>
-                  <span className="font-mono text-orange-600 font-bold">6,000+ Sq. Ft.</span>
+                  <span className="font-mono text-orange-600 font-bold text-sm">6,000+ Sq. Ft.</span>
                 </div>
               </div>
             </XYZCard>
-          </div>
+          </RevealLeft>
 
-          {/* Right Column: Narrative & Checklist (Matching Reference Image 3) */}
-          <div data-gsap="reveal-right" className="lg:col-span-6 space-y-6">
+          {/* Right Column: Narrative & Checklist (RevealRight) */}
+          <RevealRight className="lg:col-span-6 space-y-6">
             {/* Heading with Orange Underline and Yellow Accent */}
             <div className="relative inline-block">
-              <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight uppercase">
+              <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight uppercase leading-tight">
                 INFRASTRUCTURE <br />
                 <span className="text-[#0f2c59]">DETAILS</span>
               </h2>
               {/* Orange decorative brush stroke */}
-              <div className="h-1.5 w-32 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full mt-2" />
+              <div className="h-2 w-36 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full mt-2" />
               {/* Yellow decorative accent ring */}
               <div className="absolute -top-4 -right-12 w-12 h-12 rounded-full border-4 border-amber-400/40 pointer-events-none hidden sm:block" />
             </div>
@@ -81,7 +81,7 @@ export default function InfrastructureDetails() {
                 "Additive 3D Printing & Rapid Prototyping Maker Lab.",
                 "High-Speed Gigabit Fiber Internet & 24/7 Power Redundancy.",
               ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-3 text-sm sm:text-base text-slate-800 font-medium">
+                <div key={idx} className="flex items-center gap-3 text-sm sm:text-base text-slate-800 font-semibold">
                   <div className="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center shrink-0 border border-orange-200">
                     <Check className="w-4 h-4 text-orange-600 stroke-[3]" />
                   </div>
@@ -93,18 +93,18 @@ export default function InfrastructureDetails() {
             {/* Action CTA */}
             <div className="pt-4 flex flex-wrap items-center gap-4">
               <Link href="/facilities">
-                <Button className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-xs sm:text-sm h-12 px-7 rounded-xl shadow-md shadow-orange-600/20 gap-2">
+                <Button className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-sm h-12 px-7 rounded-xl shadow-md shadow-orange-600/20 gap-2">
                   <span>Explore Complete Lab Specs</span>
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
               <Link href="/apply">
-                <Button variant="outline" className="border-slate-300 text-slate-800 font-bold text-xs sm:text-sm h-12 px-6 rounded-xl hover:bg-slate-50">
+                <Button variant="outline" className="border-slate-300 text-slate-800 font-bold text-sm h-12 px-6 rounded-xl hover:bg-slate-50">
                   Book a Desk / Lab Visit
                 </Button>
               </Link>
             </div>
-          </div>
+          </RevealRight>
         </div>
       </div>
     </section>

@@ -14,7 +14,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { FadeUp, ZoomIn, XYZCard } from "@/components/animations/LightAnimations";
+import { FadeUp, ZoomIn, XYZCard, RevealLeft, RevealRight } from "@/components/animations/LightAnimations";
 
 const STAKEHOLDERS = [
   {
@@ -78,53 +78,48 @@ export default function JoinUsEcosystem() {
           </p>
         </FadeUp>
 
-        {/* 8 Cards Grid (7 Personas + 1 Callout Card, as in Image 6) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-gsap-group="stagger">
+        {/* 8 Cards Grid with Alternating Left/Right Reveals */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {STAKEHOLDERS.map((st, idx) => {
             const Icon = st.icon;
+            const Wrapper = idx % 2 === 0 ? RevealLeft : RevealRight;
             return (
-              <ZoomIn key={st.role} delay={idx * 0.06}>
+              <Wrapper key={st.role} delay={(idx % 4) * 0.08}>
                 <XYZCard depth={10}>
-                  <div
-                    data-gsap-item="card"
-                    className="h-full p-7 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-xl hover:border-orange-400 transition-all duration-300 flex flex-col justify-between group"
-                  >
+                  <div className="h-full p-7 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-orange-400 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                       <div className="flex items-center justify-between mb-4">
                         <h3 className="text-xl sm:text-2xl font-bold text-blue-900 font-display">
                           {st.role}
                         </h3>
-                        <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-200/80 flex items-center justify-center text-orange-600 group-hover:scale-110 transition-transform">
+                        <div className="w-11 h-11 rounded-2xl bg-orange-50 border border-orange-200/80 flex items-center justify-center text-orange-600 group-hover:scale-110 transition-transform shadow-2xs">
                           <Icon className="w-5 h-5" />
                         </div>
                       </div>
 
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+                      <p className="text-sm sm:text-[15px] text-slate-700 leading-relaxed mb-6 font-normal">
                         {st.desc}
                       </p>
                     </div>
 
                     <div className="pt-2">
                       <Link href={`/apply?${st.applyQuery}`} className="block w-full">
-                        <Button className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold text-xs h-10 rounded-xl shadow-sm gap-1.5 transition-all">
+                        <Button className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold text-xs sm:text-sm h-11 rounded-xl shadow-sm gap-1.5 transition-all">
                           <span>Register</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
+                          <ArrowRight className="w-4 h-4" />
                         </Button>
                       </Link>
                     </div>
                   </div>
                 </XYZCard>
-              </ZoomIn>
+              </Wrapper>
             );
           })}
 
-          {/* 8th Callout Card: "COLLABORATE, INNOVATE AND SCALE!" (Matching Image 6) */}
-          <ZoomIn delay={0.48}>
+          {/* 8th Callout Card: "COLLABORATE, INNOVATE AND SCALE!" */}
+          <ZoomIn delay={0.32}>
             <XYZCard depth={10}>
-              <div
-                data-gsap-item="card"
-                className="h-full p-7 rounded-2xl bg-gradient-to-br from-[#0f2c59] to-[#07132b] text-white shadow-xl flex flex-col justify-between border border-blue-900 group"
-              >
+              <div className="h-full p-7 sm:p-8 rounded-3xl bg-gradient-to-br from-[#0f2c59] to-[#07132b] text-white shadow-xl flex flex-col justify-between border border-blue-900 group">
                 <div>
                   <span className="text-[10px] font-mono font-bold text-orange-400 uppercase tracking-widest block mb-4">
                     ACCELERATE IMPACT

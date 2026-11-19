@@ -14,10 +14,10 @@ export default function Programs() {
     <section id="programs" className="py-20 sm:py-24 bg-slate-50 relative overflow-hidden border-t border-slate-200">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <RevealLeft className="max-w-3xl mb-14">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-display">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight">
             The 4-Stage Incubation Pathway
           </h2>
-          <p className="text-base text-slate-600 mt-3 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-700 mt-3 leading-relaxed font-normal">
             From initial idea validation and benchtop hardware fabrication to statutory incorporation, seed grant readiness, and market deployment.
           </p>
         </RevealLeft>
@@ -101,35 +101,38 @@ export default function Programs() {
         {/* 6 Core Incubation Services Preview with ZoomIn & XYZCards */}
         <div className="pt-10 border-t border-slate-200">
           <FadeUp className="text-center max-w-2xl mx-auto mb-12">
-            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 font-display">
+            <h3 className="text-2xl sm:text-4xl font-black text-slate-900 font-display">
               Comprehensive Incubation Services
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 mt-2">
-              All 6 specialized services outlined in the official MIF ecosystem brochure.
+            <p className="text-sm sm:text-base text-slate-600 mt-2 font-medium">
+              All 6 specialized services outlined in the official MIF ecosystem charter.
             </p>
           </FadeUp>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-gsap-group="stagger">
-            {INCUBATION_SERVICES.map((srv, idx) => (
-              <ZoomIn key={srv.id} delay={idx * 0.07}>
-                <XYZCard depth={10}>
-                  <div className="h-full p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between">
-                    <div>
-                      <h4 className="text-base font-bold text-slate-900 mb-2">{srv.title}</h4>
-                      <p className="text-xs text-slate-600 leading-relaxed mb-4">{srv.description}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {INCUBATION_SERVICES.map((srv, idx) => {
+              const Wrapper = idx % 2 === 0 ? RevealLeft : RevealRight;
+              return (
+                <Wrapper key={srv.id} delay={(idx % 3) * 0.08}>
+                  <XYZCard depth={10}>
+                    <div className="h-full p-7 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-blue-400 transition-all flex flex-col justify-between">
+                      <div>
+                        <h4 className="text-lg sm:text-xl font-bold text-slate-900 mb-2 font-display">{srv.title}</h4>
+                        <p className="text-sm text-slate-700 leading-relaxed mb-4">{srv.description}</p>
+                      </div>
+                      <ul className="space-y-2 pt-3 border-t border-slate-100">
+                        {srv.benefits.map((b, bi) => (
+                          <li key={bi} className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 font-medium">
+                            <span className="w-2 h-2 rounded-full bg-blue-600 shrink-0" />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <ul className="space-y-1.5 pt-3 border-t border-slate-100">
-                      {srv.benefits.map((b, bi) => (
-                        <li key={bi} className="flex items-center gap-2 text-[11px] text-slate-700">
-                          <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </XYZCard>
-              </ZoomIn>
-            ))}
+                  </XYZCard>
+                </Wrapper>
+              );
+            })}
           </div>
         </div>
       </div>

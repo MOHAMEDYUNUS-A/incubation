@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Lightbulb, FlaskConical, Handshake, ArrowRight } from "lucide-react";
-import { ZoomIn, XYZCard, FadeUp } from "@/components/animations/LightAnimations";
+import { RevealLeft, RevealRight, ZoomIn, XYZCard, FadeUp } from "@/components/animations/LightAnimations";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -47,49 +47,47 @@ export default function EmpoweringInnovation() {
           </p>
         </FadeUp>
 
-        {/* 3 Grey/Slate Cards (Matching Reference Image 2) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8" data-gsap-group="stagger">
+        {/* 3 Pillar Cards with Left-Center-Right Reveals */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {PILLARS.map((p, idx) => {
             const Icon = p.icon;
+            const Wrapper = idx === 0 ? RevealLeft : idx === 1 ? ZoomIn : RevealRight;
             return (
-              <ZoomIn key={p.title} delay={idx * 0.1}>
+              <Wrapper key={p.title} delay={idx * 0.1}>
                 <XYZCard depth={12}>
-                  <div
-                    data-gsap-item="card"
-                    className="h-full p-8 sm:p-10 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all duration-300 flex flex-col justify-between group"
-                  >
+                  <div className="h-full p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                       {/* Icon & Title Header */}
                       <div className="flex items-center gap-3.5 mb-6">
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border ${p.color}`}>
-                          <Icon className="w-6 h-6" />
+                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border ${p.color} shadow-2xs`}>
+                          <Icon className="w-7 h-7" />
                         </div>
                         <h3 className="text-xl sm:text-2xl font-bold text-[#0f2c59] font-display leading-snug">
                           {p.title}
                         </h3>
                       </div>
 
-                      {/* Descriptive Narrative */}
-                      <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                      {/* Descriptive Narrative with Increased Readability Font */}
+                      <p className="text-base text-slate-700 leading-relaxed font-normal">
                         {p.description}
                       </p>
                     </div>
 
                     <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
-                      <span className="text-xs font-bold text-slate-400 font-mono">
+                      <span className="text-xs font-bold text-slate-400 font-mono uppercase tracking-wider">
                         PILLAR 0{idx + 1}
                       </span>
                       <Link
                         href="/programs"
-                        className="text-xs font-bold text-blue-600 hover:text-orange-600 flex items-center gap-1 group-hover:translate-x-1 transition-all"
+                        className="text-sm font-bold text-blue-600 hover:text-orange-600 flex items-center gap-1 group-hover:translate-x-1 transition-all"
                       >
                         <span>Learn More</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
+                        <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>
                   </div>
                 </XYZCard>
-              </ZoomIn>
+              </Wrapper>
             );
           })}
         </div>

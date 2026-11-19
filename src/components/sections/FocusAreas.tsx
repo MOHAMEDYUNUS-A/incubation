@@ -34,16 +34,16 @@ export default function FocusAreas() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <RevealLeft className="max-w-2xl">
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-display">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight">
               Priority Technology Focus Areas
             </h2>
-            <p className="text-base text-slate-600 mt-3 leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-700 mt-3 leading-relaxed font-normal">
               Designed around MAMCET&apos;s interdisciplinary research laboratories and Tamil Nadu&apos;s strategic industrial growth sectors.
             </p>
           </RevealLeft>
           <RevealRight>
             <Link href="/focus-areas">
-              <Button variant="outline" className="border-slate-300 hover:bg-slate-50 text-slate-800 gap-2 shadow-xs">
+              <Button variant="outline" className="border-slate-300 hover:bg-slate-50 text-slate-800 font-bold text-sm h-11 px-5 gap-2 shadow-xs">
                 <span>View All Domain Roadmaps</span>
                 <ArrowUpRight className="w-4 h-4" />
               </Button>
@@ -51,20 +51,20 @@ export default function FocusAreas() {
           </RevealRight>
         </div>
 
-        {/* Dynamic Clean Card Grid with ZoomIn & 3D XYZ Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-gsap-group="stagger">
+        {/* Dynamic Clean Card Grid with Alternating Left/Right Reveals */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {FOCUS_AREAS.map((area, idx) => {
             const Icon = ICON_MAP[area.iconName] || Sparkles;
             const isHovered = activeArea === area.id;
+            const Wrapper = idx % 2 === 0 ? RevealLeft : RevealRight;
 
             return (
-              <ZoomIn key={area.id} delay={idx * 0.07}>
+              <Wrapper key={area.id} delay={(idx % 3) * 0.08}>
                 <XYZCard depth={12}>
                   <div
-                    data-gsap-item="card"
                     onMouseEnter={() => setActiveArea(area.id)}
                     onMouseLeave={() => setActiveArea(null)}
-                    className={`h-full group relative p-7 rounded-2xl border transition-all duration-300 flex flex-col justify-between ${
+                    className={`h-full group relative p-7 sm:p-8 rounded-3xl border transition-all duration-300 flex flex-col justify-between ${
                       isHovered
                         ? "bg-white border-blue-400 shadow-xl"
                         : "bg-slate-50/70 border-slate-200/90 hover:bg-white hover:border-slate-300 hover:shadow-md"
@@ -106,7 +106,7 @@ export default function FocusAreas() {
                     </div>
                   </div>
                 </XYZCard>
-              </ZoomIn>
+              </Wrapper>
             );
           })}
         </div>

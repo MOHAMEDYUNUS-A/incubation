@@ -45,16 +45,16 @@ export default function EventsNews() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <RevealLeft>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-display">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight">
               Upcoming Workshops & Bootcamps
             </h2>
-            <p className="text-base text-slate-600 mt-2">
+            <p className="text-base sm:text-lg text-slate-700 mt-2 font-normal">
               Join hands-on maker bootcamps, grant writing masterclasses, and pitch days at MAMCET campus.
             </p>
           </RevealLeft>
           <RevealRight>
             <Link href="/events">
-              <Button variant="outline" className="border-slate-300 hover:bg-white text-slate-800 gap-2 shadow-xs">
+              <Button variant="outline" className="border-slate-300 hover:bg-white text-slate-800 font-bold text-sm h-11 px-5 gap-2 shadow-xs">
                 <span>View All Events</span>
                 <ArrowRight className="w-4 h-4" />
               </Button>
@@ -62,56 +62,59 @@ export default function EventsNews() {
           </RevealRight>
         </div>
 
-        {/* Clean Events Grid with ZoomIn & XYZCards */}
+        {/* Clean Events Grid with Left-Center-Right Reveals */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {UPCOMING_EVENTS.map((event, idx) => (
-            <ZoomIn key={event.id} delay={idx * 0.08}>
-              <XYZCard depth={8}>
-                <div className="h-full rounded-2xl border border-slate-200 bg-white p-6 flex flex-col justify-between shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-300">
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                        {event.type}
-                      </span>
-                      <span className="text-[11px] text-slate-500 font-medium">
-                        {event.mode}
-                      </span>
+          {UPCOMING_EVENTS.map((event, idx) => {
+            const Wrapper = idx === 0 ? RevealLeft : idx === 1 ? ZoomIn : RevealRight;
+            return (
+              <Wrapper key={event.id} delay={idx * 0.1}>
+                <XYZCard depth={8}>
+                  <div className="h-full rounded-3xl border border-slate-200/90 bg-white p-7 flex flex-col justify-between shadow-xs hover:shadow-xl hover:border-blue-300 transition-all duration-300">
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                          {event.type}
+                        </span>
+                        <span className="text-xs text-slate-500 font-semibold">
+                          {event.mode}
+                        </span>
+                      </div>
+
+                      <h3 className="text-xl font-bold text-slate-900 mb-3 font-display">{event.title}</h3>
+                      <p className="text-sm text-slate-700 leading-relaxed mb-6 font-normal">
+                        {event.description}
+                      </p>
+
+                      <div className="space-y-2.5 text-xs sm:text-sm text-slate-700 border-t border-slate-100 pt-4 mb-6 font-medium">
+                        <div className="flex items-center gap-2.5">
+                          <Calendar className="w-4 h-4 text-blue-600 shrink-0" />
+                          <span>{event.date}</span>
+                        </div>
+                        <div className="flex items-center gap-2.5">
+                          <Clock className="w-4 h-4 text-cyan-600 shrink-0" />
+                          <span>{event.time}</span>
+                        </div>
+                        <div className="flex items-center gap-2.5">
+                          <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
+                          <span className="truncate">{event.location}</span>
+                        </div>
+                      </div>
                     </div>
 
-                    <h3 className="text-lg font-bold text-slate-900 mb-3">{event.title}</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed mb-6">
-                      {event.description}
-                    </p>
-
-                    <div className="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-4 mb-6">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                        <span>{event.date}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Clock className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
-                        <span>{event.time}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span className="truncate">{event.location}</span>
-                      </div>
-                    </div>
+                    <Button
+                      onClick={() => {
+                        setSelectedEvent(event);
+                        setRegisterSuccess(false);
+                      }}
+                      className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white text-xs sm:text-sm font-bold h-11 rounded-xl shadow-xs transition-colors"
+                    >
+                      Register Free Seat
+                    </Button>
                   </div>
-
-                  <Button
-                    onClick={() => {
-                      setSelectedEvent(event);
-                      setRegisterSuccess(false);
-                    }}
-                    className="w-full bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white border border-blue-200 hover:border-transparent text-xs font-semibold h-10 transition-colors shadow-2xs"
-                  >
-                    Register Free Seat
-                  </Button>
-                </div>
-              </XYZCard>
-            </ZoomIn>
-          ))}
+                </XYZCard>
+              </Wrapper>
+            );
+          })}
         </div>
 
         {/* Registration Modal Dialog (Clean Light Styling) */}

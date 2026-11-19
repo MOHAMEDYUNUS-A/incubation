@@ -11,7 +11,7 @@ import {
   Building,
   GraduationCap,
 } from "lucide-react";
-import { FadeUp, ZoomIn, XYZCard } from "@/components/animations/LightAnimations";
+import { FadeUp, ZoomIn, XYZCard, RevealLeft, RevealRight } from "@/components/animations/LightAnimations";
 
 const IMPACT_METRICS = [
   {
@@ -89,19 +89,17 @@ export default function EcosystemImpact() {
           </p>
         </FadeUp>
 
-        {/* Constellation Metrics Grid in Clean Light Theme */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10" data-gsap-group="stagger">
+        {/* Constellation Metrics Grid with Alternating Left/Right Reveals */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
           {IMPACT_METRICS.map((m, idx) => {
             const Icon = m.icon;
+            const Wrapper = idx % 2 === 0 ? RevealLeft : RevealRight;
             return (
-              <ZoomIn key={m.label} delay={idx * 0.07}>
+              <Wrapper key={m.label} delay={(idx % 4) * 0.08}>
                 <XYZCard depth={8}>
-                  <div
-                    data-gsap-item="card"
-                    className="p-7 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-xl hover:border-blue-400 transition-all duration-300 relative group flex flex-col justify-between h-full"
-                  >
+                  <div className="p-7 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-blue-400 transition-all duration-300 relative group flex flex-col justify-between h-full">
                     {/* Top Corner Orange Accent Notch */}
-                    <div className="absolute top-0 right-0 w-8 h-8 overflow-hidden rounded-tr-2xl pointer-events-none">
+                    <div className="absolute top-0 right-0 w-8 h-8 overflow-hidden rounded-tr-3xl pointer-events-none">
                       <div className="absolute transform rotate-45 bg-orange-500 w-12 h-2.5 -top-1 -right-4" />
                     </div>
 
@@ -110,22 +108,22 @@ export default function EcosystemImpact() {
                         <span className="text-3xl sm:text-4xl font-black text-slate-900 font-display group-hover:text-blue-600 transition-colors">
                           {m.value}
                         </span>
-                        <div className={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${m.color}`}>
+                        <div className={`w-11 h-11 rounded-2xl border flex items-center justify-center shrink-0 ${m.color} shadow-2xs`}>
                           <Icon className="w-5 h-5" />
                         </div>
                       </div>
 
-                      <h4 className="text-base font-bold text-slate-900 mb-1 leading-snug">
+                      <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1 leading-snug">
                         {m.label}
                       </h4>
                     </div>
 
-                    <div className="pt-4 mt-4 border-t border-slate-100 text-xs text-slate-500">
+                    <div className="pt-4 mt-4 border-t border-slate-100 text-xs sm:text-sm text-slate-600 font-medium">
                       {m.sub}
                     </div>
                   </div>
                 </XYZCard>
-              </ZoomIn>
+              </Wrapper>
             );
           })}
         </div>

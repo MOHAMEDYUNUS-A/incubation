@@ -13,6 +13,7 @@ import {
   Users,
   Compass,
   CheckCircle2,
+  MapPin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RevealLeft, RevealRight, ZoomIn, XYZCard } from "@/components/animations/LightAnimations";
@@ -55,60 +56,102 @@ export default function WelcomeSection() {
 
         {/* 2-Column Section: Welcome Copy on Left, Official Institutional Card on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column: Official Welcome Heading & Narrative */}
-          <div data-gsap="reveal-left" className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider">
-              <ShieldCheck className="w-3.5 h-3.5" />
+          {/* Left Column: Official Welcome Heading & Narrative (RevealLeft) */}
+          <RevealLeft className="lg:col-span-7 space-y-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider">
+              <ShieldCheck className="w-4 h-4 text-blue-600" />
               <span>Section 8 Not-For-Profit Company · StartupTN Centre</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight font-display">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight leading-tight font-display">
               WELCOME TO <br />
               <span className="text-[#0f2c59]">MASTeR INCUBATION FOUNDATION</span>
             </h2>
 
-            <div className="text-base sm:text-lg font-semibold text-blue-800 leading-snug">
+            <div className="text-lg sm:text-xl font-bold text-blue-800 leading-snug">
               &ldquo;Launchpad for your Entrepreneurial Success&rdquo;
             </div>
 
-            <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-              <strong className="text-slate-900">MASTeR Incubation Foundation (MIF)</strong> is an institutional technology business incubator incorporated as a <strong className="text-slate-900">Section 8 Company under the Companies Act, 2013</strong>, based at the lush <strong className="text-slate-900">M.A.M. College of Engineering and Technology (MAMCET)</strong> campus in Siruganur, Trichy.
+            <p className="text-base sm:text-lg text-slate-800 leading-relaxed font-normal">
+              <strong className="text-slate-900 font-bold">MASTeR Incubation Foundation (MIF)</strong> is an institutional technology business incubator incorporated as a <strong className="text-slate-900 font-bold">Section 8 Company under the Companies Act, 2013</strong>, based at the lush <strong className="text-slate-900 font-bold">M.A.M. College of Engineering and Technology (MAMCET)</strong> campus in Siruganur, Trichy.
             </p>
 
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Formally recognised as a <strong className="text-blue-700">StartupTN Pre-Incubation Centre</strong> by the Government of Tamil Nadu, MIF is dedicated to cultivating an entrepreneurial mindset among student innovators, research scholars, faculty, and local entrepreneurs. By bridging academic engineering knowledge with industry-grade prototyping facilities, seed funding mentorship (TANSEED), and intellectual property protection, MIF translates bold scientific ideas into sustainable, market-viable commercial enterprises.
+            <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-normal">
+              Formally recognised as a <strong className="text-blue-700 font-bold">StartupTN Pre-Incubation Centre</strong> by the Government of Tamil Nadu, MIF is dedicated to cultivating an entrepreneurial mindset among student innovators, research scholars, faculty, and local entrepreneurs. By bridging academic engineering knowledge with industry-grade prototyping facilities, seed funding mentorship (TANSEED), and intellectual property protection, MIF translates bold scientific ideas into sustainable, market-viable commercial enterprises.
             </p>
+
+            {/* Overview & Location Institutional Card (Reference Design) */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-2xs space-y-3">
+              <h3 className="text-lg font-black text-slate-900 font-display flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-orange-600" />
+                <span>Overview & Location</span>
+              </h3>
+              <ul className="space-y-3 text-sm text-slate-700">
+                <li className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
+                  <span className="font-bold text-slate-900 shrink-0">• Address:</span>
+                  <span className="leading-relaxed">
+                    Trichy–Chennai Trunk Road, Siruganur, Tiruchirappalli, Tamil Nadu – 621105
+                    <span className="inline-flex items-center gap-1 ml-2 px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold">
+                      MAMCET
+                    </span>
+                  </span>
+                </li>
+                <li className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
+                  <span className="font-bold text-slate-900 shrink-0">• Focus:</span>
+                  <span className="leading-relaxed">
+                    Supporting student innovators, aspiring entrepreneurs, and early-stage startups through mentorship, ideation, and venture development.
+                    <a
+                      href="https://www.instagram.com/master_incubation_foundation/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 ml-2 px-2.5 py-0.5 rounded-full bg-pink-50 border border-pink-200 text-pink-700 text-xs font-semibold hover:bg-pink-100 transition-colors"
+                    >
+                      Instagram · master_incubation_foundation
+                    </a>
+                  </span>
+                </li>
+                <li className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
+                  <span className="font-bold text-slate-900 shrink-0">• Ecosystem Ties:</span>
+                  <span className="leading-relaxed">
+                    Connected with MAMCET&apos;s broader innovation setup, including MSME host institution recognition and StartupTN pre-incubation support.
+                    <span className="inline-flex items-center gap-1 ml-2 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">
+                      MSME HI + StartupTN
+                    </span>
+                  </span>
+                </li>
+              </ul>
+            </div>
 
             {/* Core Pillars Bullet Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-              <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <div className="text-xs text-slate-800">
-                  <strong className="block text-slate-900 font-bold">Ideation to Prototyping</strong>
+              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+                <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                <div className="text-sm text-slate-800">
+                  <strong className="block text-slate-900 font-bold mb-0.5">Ideation to Prototyping</strong>
                   Hands-on rapid 3D printing & hardware testing benches.
                 </div>
               </div>
 
-              <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <div className="text-xs text-slate-800">
-                  <strong className="block text-slate-900 font-bold">StartupTN & TANSEED Link</strong>
+              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+                <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                <div className="text-sm text-slate-800">
+                  <strong className="block text-slate-900 font-bold mb-0.5">StartupTN & TANSEED Link</strong>
                   Direct pipeline to government pre-seed grant opportunities.
                 </div>
               </div>
 
-              <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <div className="text-xs text-slate-800">
-                  <strong className="block text-slate-900 font-bold">IPR & Legal Incorporation</strong>
+              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+                <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                <div className="text-sm text-slate-800">
+                  <strong className="block text-slate-900 font-bold mb-0.5">IPR & Legal Incorporation</strong>
                   Patent search assistance and corporate company registration.
                 </div>
               </div>
 
-              <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <div className="text-xs text-slate-800">
-                  <strong className="block text-slate-900 font-bold">Expert Mentor Network</strong>
+              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+                <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                <div className="text-sm text-slate-800">
+                  <strong className="block text-slate-900 font-bold mb-0.5">Expert Mentor Network</strong>
                   Guidance from seasoned corporate CTOs, VCs, and domain mentors.
                 </div>
               </div>
@@ -117,21 +160,21 @@ export default function WelcomeSection() {
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <Link href="/about">
-                <Button className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold text-xs h-11 px-6 rounded-xl shadow-md gap-2">
+                <Button className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-sm h-12 px-7 rounded-xl shadow-md gap-2">
                   <span>About Our Foundation</span>
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
               <Link href="/programs">
-                <Button variant="outline" className="border-slate-300 text-slate-800 font-bold text-xs h-11 px-5 rounded-xl hover:bg-slate-50">
+                <Button variant="outline" className="border-slate-300 text-slate-800 font-bold text-sm h-12 px-6 rounded-xl hover:bg-slate-50">
                   View 4-Stage Pathway
                 </Button>
               </Link>
             </div>
-          </div>
+          </RevealLeft>
 
-          {/* Right Column: Institutional Identity Card with Official Crest */}
-          <div data-gsap="reveal-right" className="lg:col-span-5">
+          {/* Right Column: Institutional Identity Card with Official Crest (RevealRight) */}
+          <RevealRight className="lg:col-span-5">
             <XYZCard depth={12}>
               <div className="p-8 rounded-3xl bg-gradient-to-b from-blue-50/80 via-white to-slate-50 border border-slate-200 shadow-xl relative overflow-hidden">
                 <div className="flex flex-col items-center text-center pb-6 border-b border-slate-200">
@@ -191,7 +234,7 @@ export default function WelcomeSection() {
                 </div>
               </div>
             </XYZCard>
-          </div>
+          </RevealRight>
         </div>
       </div>
     </section>

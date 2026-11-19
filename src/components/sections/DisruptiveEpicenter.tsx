@@ -17,7 +17,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { FadeUp, XYZCard } from "@/components/animations/LightAnimations";
+import { FadeUp, XYZCard, RevealLeft, RevealRight } from "@/components/animations/LightAnimations";
 
 const PERSONAS = [
   {
@@ -99,8 +99,8 @@ export default function DisruptiveEpicenter() {
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Heading & Purpose */}
-          <div data-gsap="reveal-left" className="lg:col-span-7 space-y-6">
+          {/* Left Column: Heading & Purpose (RevealLeft) */}
+          <RevealLeft className="lg:col-span-7 space-y-6">
             <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.08] font-display text-slate-900">
               The Epicenter of <br />
               <span className="text-[#ea580c] italic font-serif">
@@ -108,7 +108,7 @@ export default function DisruptiveEpicenter() {
               </span>
             </h2>
 
-            <p className="text-base sm:text-xl text-slate-600 leading-relaxed font-normal max-w-2xl">
+            <p className="text-lg sm:text-xl text-slate-700 leading-relaxed font-normal max-w-2xl">
               <strong className="text-slate-900 font-bold">MASTeR Incubation Foundation</strong> harnesses the synergistic power of startups, industry, academia, Government (<strong className="text-blue-700 font-bold">StartupTN</strong> & <strong className="text-blue-700 font-bold">Ministry of MSME</strong>), and apex partners to enrich Deep Tech & Emerging Tech in Tamil Nadu and build the future by nurturing a conducive R&D&I ecosystem.
             </p>
 
@@ -138,10 +138,10 @@ export default function DisruptiveEpicenter() {
                 </Button>
               </a>
             </div>
-          </div>
+          </RevealLeft>
 
-          {/* Right Column: Interactive "Personalized for Your Search" Light Card */}
-          <div data-gsap="reveal-right" className="lg:col-span-5">
+          {/* Right Column: Interactive "Personalized for Your Search" Light Card (RevealRight) */}
+          <RevealRight className="lg:col-span-5">
             <XYZCard depth={10}>
               <div className="p-7 sm:p-9 rounded-3xl bg-slate-50 border border-slate-200 shadow-xl relative">
                 {/* Header */}
@@ -199,7 +199,7 @@ export default function DisruptiveEpicenter() {
                 </Link>
               </div>
             </XYZCard>
-          </div>
+          </RevealRight>
         </div>
       </div>
     </section>

@@ -91,15 +91,15 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
       {/* Main Hero Foreground Content */}
       <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 h-full flex flex-col justify-center">
         <div className="max-w-2xl sm:max-w-3xl">
-          {/* Prominent Frosted Card Title (As per Reference Image 1 "EDII - ABIRF") */}
+          {/* Prominent Frosted Card Title with Horizontal Left Reveal */}
           <motion.div
             key={`badge-${currentSlide}`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, x: -45 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="inline-block mb-4"
           >
-            <div className="px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-xl bg-white/95 backdrop-blur-md shadow-2xl border border-white/90">
+            <div className="px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-2xl bg-white/95 backdrop-blur-md shadow-2xl border border-white/90">
               <span className="text-2xl sm:text-4xl md:text-5xl font-black text-[#0f2c59] tracking-wider font-display uppercase">
                 {slide.titleBadge}
               </span>
@@ -109,10 +109,10 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           {/* Sub-headline */}
           <motion.h2
             key={`headline-${currentSlide}`}
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white mb-4 drop-shadow-md font-display leading-snug"
+            initial={{ opacity: 0, x: -35 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 drop-shadow-md font-display leading-snug"
           >
             {slide.headline}
           </motion.h2>
@@ -120,19 +120,19 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           {/* Descriptive Text Matching Reference */}
           <motion.p
             key={`desc-${currentSlide}`}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-sm sm:text-base md:text-lg text-slate-100/95 leading-relaxed mb-8 max-w-2xl drop-shadow-sm font-medium"
+            initial={{ opacity: 0, x: -25 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="text-base sm:text-lg md:text-xl text-slate-100/95 leading-relaxed mb-8 max-w-2xl drop-shadow-sm font-normal"
           >
             {slide.description}
           </motion.p>
 
           {/* Action CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-wrap items-center gap-3.5"
           >
             <Link href="/apply">

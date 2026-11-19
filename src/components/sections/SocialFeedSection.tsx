@@ -12,29 +12,25 @@ import {
   MapPin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ZoomIn, XYZCard, FadeUp } from "@/components/animations/LightAnimations";
+import { ZoomIn, XYZCard, FadeUp, RevealLeft, RevealRight } from "@/components/animations/LightAnimations";
 
 export default function SocialFeedSection() {
   return (
     <section className="py-20 sm:py-24 bg-white relative border-t border-slate-200">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
+        {/* Section Header with Left-Right Reveals */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div data-gsap="reveal-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-700 text-xs font-bold uppercase tracking-wider mb-3">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Community & Real-Time Pulse</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight font-display">
+          <RevealLeft className="max-w-3xl">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight font-display">
               Latest from Instagram & LinkedIn
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-2xl leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-700 mt-3 leading-relaxed font-normal">
               Real-time updates, ministerial inaugurations, IITMIC partnerships, and MSME Idea Hackathon announcements directly from our official channels.
             </p>
-          </div>
+          </RevealLeft>
 
           {/* Social Quick-Access Buttons */}
-          <div data-gsap="reveal-right" className="flex flex-wrap items-center gap-2.5">
+          <RevealRight className="flex flex-wrap items-center gap-2.5">
             <a
               href="https://www.instagram.com/master_incubation_foundation/"
               target="_blank"
@@ -79,16 +75,17 @@ export default function SocialFeedSection() {
                 <span>Google Profile</span>
               </Button>
             </a>
-          </div>
+          </RevealRight>
         </div>
 
-        {/* 4 Social Cards Grid with GSAP and 3D XYZ Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-gsap-group="stagger">
+        {/* 4 Social Cards Grid with Alternating Left/Right Reveals */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {SOCIAL_FEED_POSTS.map((item, idx) => {
             const isInstagram = item.platform === "instagram";
+            const Wrapper = idx % 2 === 0 ? RevealLeft : RevealRight;
 
             return (
-              <ZoomIn key={item.id} delay={idx * 0.08}>
+              <Wrapper key={item.id} delay={(idx % 4) * 0.08}>
                 <XYZCard depth={10}>
                   <div
                     data-gsap-item="card"
@@ -173,7 +170,7 @@ export default function SocialFeedSection() {
                     </div>
                   </div>
                 </XYZCard>
-              </ZoomIn>
+              </Wrapper>
             );
           })}
         </div>
