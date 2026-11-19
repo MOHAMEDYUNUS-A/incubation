@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeUp, ZoomIn, XYZCard, RevealLeft, RevealRight } from "@/components/animations/LightAnimations";
+import { useSiteContent } from "@/context/ContentContext";
 
 export interface GalleryPhoto {
   id: string;
@@ -150,13 +151,16 @@ const GALLERY_PHOTOS: GalleryPhoto[] = [
 type CategoryFilter = "all" | "facilities" | "labs" | "team" | "events";
 
 export default function CampusPhotoGallery() {
+  const { content } = useSiteContent();
+  const photos: GalleryPhoto[] = (content?.gallery as GalleryPhoto[]) || GALLERY_PHOTOS;
+
   const [activeFilter, setActiveFilter] = useState<CategoryFilter>("all");
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto | null>(null);
 
   const filteredPhotos =
     activeFilter === "all"
-      ? GALLERY_PHOTOS
-      : GALLERY_PHOTOS.filter((p) => p.category === activeFilter);
+      ? photos
+      : photos.filter((p) => p.category === activeFilter);
 
   return (
     <section id="gallery" className="py-20 sm:py-24 bg-white relative border-t border-slate-200">

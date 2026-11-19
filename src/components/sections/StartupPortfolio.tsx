@@ -3,21 +3,36 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { STARTUP_SHOWCASE } from "@/lib/db/mockData";
-import { Search, Rocket, ArrowUpRight } from "lucide-react";
+import {
+  Search,
+  Rocket,
+  ArrowUpRight,
+  Globe,
+  Linkedin,
+  Mail,
+  Phone,
+  Coins,
+  ExternalLink,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { RevealLeft, RevealRight, ZoomIn, XYZCard } from "@/components/animations/LightAnimations";
+import { RevealLeft, RevealRight, XYZCard } from "@/components/animations/LightAnimations";
+import { useSiteContent } from "@/context/ContentContext";
 
 export default function StartupPortfolio() {
+  const { content } = useSiteContent();
+  const startups = content?.startups && content.startups.length > 0 ? content.startups : STARTUP_SHOWCASE;
+
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("ALL");
 
-  const filtered = STARTUP_SHOWCASE.filter((st) => {
+  const filtered = startups.filter((st: any) => {
     const matchesSearch =
       st.name.toLowerCase().includes(search.toLowerCase()) ||
       st.oneLiner.toLowerCase().includes(search.toLowerCase()) ||
-      st.founders.toLowerCase().includes(search.toLowerCase());
+      st.founders.toLowerCase().includes(search.toLowerCase()) ||
+      (st.tags && st.tags.some((t: string) => t.toLowerCase().includes(search.toLowerCase())));
 
     const matchesCategory =
       selectedCategory === "ALL" || st.category === selectedCategory;
@@ -59,14 +74,15 @@ export default function StartupPortfolio() {
             />
           </div>
           <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
-            {["ALL", "ELECTRONICS_IOT_SMART", "RENEWABLE_ENERGY_CLEAN_TECH", "ADVANCED_MANUFACTURING", "SUSTAINABLE_INFRASTRUCTURE"].map((cat) => (
+            {["ALL", "ELECTRONICS_IOT_SMART", "RENEWABLE_ENERGY_CLEAN_TECH", "ADVANCED_MANUFACTURING", "SUSTAINABLE_INFRASTRUCTURE", "AI_DATA_SCIENCE"].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-colors ${selectedCategory === cat
-                  ? "bg-[#0f2c59] text-white shadow-sm"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
-                  }`}
+                className={`px-3.5 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-colors ${
+                  selectedCategory === cat
+                    ? "bg-[#0f2c59] text-white shadow-sm"
+                    : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
+                }`}
               >
                 {cat === "ALL" ? "All Tracks" : cat.replace(/_/g, " ")}
               </button>
@@ -76,7 +92,7 @@ export default function StartupPortfolio() {
 
         {/* Grid of Clean Startup Cards with Alternating Left/Right Reveals */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((st, idx) => {
+          {filtered.map((st: any, idx: number) => {
             const Wrapper = idx % 2 === 0 ? RevealLeft : RevealRight;
             return (
               <Wrapper key={st.id} delay={(idx % 3) * 0.08}>
@@ -88,7 +104,7 @@ export default function StartupPortfolio() {
                           <Rocket className="w-6 h-6 text-blue-600" />
                         </div>
                         <Badge variant="cyan" className="text-xs font-bold px-2.5 py-0.5">
-                          {st.stage.replace(/_/g, " ")}
+                          {st.stage ? st.stage.replace(/_/g, " ") : "INCUBATED"}
                         </Badge>
                       </div>
 
@@ -100,6 +116,13 @@ export default function StartupPortfolio() {
                       <p className="text-sm text-slate-700 leading-relaxed mb-4 font-normal">
                         {st.oneLiner}
                       </p>
+
+                      {st.funding && (
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold mb-4">
+                          <Coins className="w-3.5 h-3.5 text-emerald-600" />
+                          <span>{st.funding}</span>
+                        </div>
+                      )}
                     </div>
 
                     <div>
@@ -107,8 +130,52 @@ export default function StartupPortfolio() {
                         <strong className="text-blue-700 font-bold">Traction:</strong> {st.impactMetric}
                       </div>
 
+                      {/* Links & Contacts Strip */}
+                      <div className="flex items-center gap-2 mb-4 pt-2 border-t border-slate-100">
+                        {st.website && (
+                          <a
+                            href={st.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-600 hover:text-blue-600 border border-slate-200 transition-colors"
+                            title="Visit Startup Website"
+                          >
+                            <Globe className="w-4 h-4" />
+                          </a>
+                        )}
+                        {st.linkedin && (
+                          <a
+                            href={st.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-600 hover:text-blue-600 border border-slate-200 transition-colors"
+                            title="View LinkedIn Profile"
+                          >
+                            <Linkedin className="w-4 h-4" />
+                          </a>
+                        )}
+                        {st.email && (
+                          <a
+                            href={`mailto:${st.email}`}
+                            className="p-2 rounded-xl bg-slate-50 hover:bg-orange-50 text-slate-600 hover:text-orange-600 border border-slate-200 transition-colors"
+                            title={`Email founder: ${st.email}`}
+                          >
+                            <Mail className="w-4 h-4" />
+                          </a>
+                        )}
+                        {st.phone && (
+                          <a
+                            href={`tel:${st.phone}`}
+                            className="p-2 rounded-xl bg-slate-50 hover:bg-emerald-50 text-slate-600 hover:text-emerald-600 border border-slate-200 transition-colors"
+                            title={`Call founder: ${st.phone}`}
+                          >
+                            <Phone className="w-4 h-4" />
+                          </a>
+                        )}
+                      </div>
+
                       <div className="flex flex-wrap gap-1.5">
-                        {st.tags.map((tag, i) => (
+                        {st.tags && st.tags.map((tag: string, i: number) => (
                           <span
                             key={i}
                             className="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-medium border border-slate-200/60"

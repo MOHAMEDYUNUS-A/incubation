@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSiteContent } from "@/context/ContentContext";
 
 const ROTATING_TEXTS = [
   "Deep-Tech Startups",
@@ -23,24 +24,30 @@ const HERO_IMAGES = [
 ];
 
 export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
+  const { content } = useSiteContent();
+  const heroImages = content?.hero?.images && content.hero.images.length > 0 ? content.hero.images : HERO_IMAGES;
+  const rotatingTexts = content?.hero?.rotatingTexts && content.hero.rotatingTexts.length > 0 ? content.hero.rotatingTexts : ROTATING_TEXTS;
+  const badgeText = content?.hero?.badge || "StartupTN Pre-Incubation Centre · MAMCET Siruganur";
+  const narrativeText = content?.hero?.narrative;
+
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Smooth text rotation every 3.2 seconds
   useEffect(() => {
     const textInterval = setInterval(() => {
-      setCurrentTextIndex((prev) => (prev + 1) % ROTATING_TEXTS.length);
+      setCurrentTextIndex((prev) => (prev + 1) % rotatingTexts.length);
     }, 3200);
     return () => clearInterval(textInterval);
-  }, []);
+  }, [rotatingTexts.length]);
 
   // Subtle background transition every 7 seconds
   useEffect(() => {
     const imageInterval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % HERO_IMAGES.length);
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
     }, 7000);
     return () => clearInterval(imageInterval);
-  }, []);
+  }, [heroImages.length]);
 
   return (
     <section className="relative w-full min-h-[640px] sm:min-h-[700px] lg:min-h-[760px] overflow-hidden pt-[110px] sm:pt-[130px] pb-16 bg-slate-950 flex flex-col justify-center">
@@ -53,7 +60,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0 z-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_IMAGES[currentImageIndex]})` }}
+          style={{ backgroundImage: `url(${heroImages[currentImageIndex]})` }}
         >
           {/* Institutional Gradient Overlays for High-Contrast Clean Readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-blue-950/40" />
@@ -73,10 +80,8 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-orange-400 font-extrabold uppercase tracking-wider text-[11px] sm:text-xs">
-              StartupTN Pre-Incubation Centre
+              {badgeText}
             </span>
-            <span className="text-white/40">·</span>
-            <span className="text-slate-300 text-[11px] sm:text-xs">MAMCET Siruganur</span>
           </motion.div>
 
           {/* Main Headline with Dynamic Animated Text Rotation (Zero Box Clutter) */}
@@ -97,7 +102,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
                   transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                   className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 font-black"
                 >
-                  {ROTATING_TEXTS[currentTextIndex]}
+                  {rotatingTexts[currentTextIndex]}
                 </motion.span>
               </AnimatePresence>
             </span>
@@ -112,7 +117,11 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-base sm:text-xl text-slate-200 leading-relaxed max-w-2xl mb-8 font-normal drop-shadow-sm"
           >
-            <strong className="text-white font-bold">MASTeR Incubation Foundation (MIF)</strong> empowers student creators, engineering researchers, and regional founders with 6,000+ sq. ft. of prototyping bays, patent filing mentorship, and direct access to TANSEED and MSME seed grants.
+            {narrativeText || (
+              <>
+                <strong className="text-white font-bold">MASTeR Incubation Foundation (MIF)</strong> empowers student creators, engineering researchers, and regional founders with 6,000+ sq. ft. of prototyping bays, patent filing mentorship, and direct access to TANSEED and MSME seed grants.
+              </>
+            )}
           </motion.p>
 
           {/* Action CTAs */}

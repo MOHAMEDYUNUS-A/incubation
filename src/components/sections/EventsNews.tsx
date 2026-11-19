@@ -7,8 +7,11 @@ import { Calendar, Clock, MapPin, ArrowRight, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RevealLeft, RevealRight, ZoomIn, XYZCard } from "@/components/animations/LightAnimations";
+import { useSiteContent } from "@/context/ContentContext";
 
 export default function EventsNews() {
+  const { content } = useSiteContent();
+  const eventsList: EventItem[] = (content?.events as any) || UPCOMING_EVENTS;
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const [fullName, setFullName] = useState("");
@@ -64,7 +67,7 @@ export default function EventsNews() {
 
         {/* Clean Events Grid with Left-Center-Right Reveals */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {UPCOMING_EVENTS.map((event, idx) => {
+          {eventsList.map((event, idx) => {
             const Wrapper = idx === 0 ? RevealLeft : idx === 1 ? ZoomIn : RevealRight;
             return (
               <Wrapper key={event.id} delay={idx * 0.1}>

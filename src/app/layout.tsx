@@ -7,6 +7,7 @@ import SmoothScroll from "@/components/animations/SmoothScroll";
 import FloatingAIButton from "@/components/ai/FloatingAIButton";
 import SplashScreen from "@/components/ui/SplashScreen";
 import GsapScrollProvider from "@/components/animations/GsapScrollProvider";
+import { ContentProvider } from "@/context/ContentContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -66,15 +67,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
       <body className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-blue-100 selection:text-blue-900">
-        <SplashScreen />
-        <GsapScrollProvider>
-          <SmoothScroll>
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <FloatingAIButton />
-          </SmoothScroll>
-        </GsapScrollProvider>
+        <ContentProvider>
+          <SplashScreen />
+          <GsapScrollProvider>
+            <SmoothScroll>
+              <Navbar />
+              <main className="flex-1">{children}</main>
+              <Footer />
+              <FloatingAIButton />
+            </SmoothScroll>
+          </GsapScrollProvider>
+        </ContentProvider>
       </body>
     </html>
   );

@@ -1,0 +1,328 @@
+{
+  "hero": {
+    "images": [
+      "/images/incubation/incubation-centre.jpeg",
+      "/images/incubation/incubation-workspace.jpeg",
+      "/images/incubation/img-54.jpeg",
+      "/images/incubation/team-of-incubation.jpeg",
+      "/images/incubation/image-3.jpeg"
+    ],
+    "rotatingTexts": [
+      "Deep-Tech Startups",
+      "Student Innovators",
+      "Hardware Prototypes",
+      "TANSEED Seed Grants",
+      "Engineering Ventures"
+    ],
+    "badge": "StartupTN Pre-Incubation Centre · MAMCET Siruganur",
+    "headlinePrefix": "Catalyzing",
+    "headlineSuffix": "Into Scalable Reality.",
+    "narrative": "MASTeR Incubation Foundation (MIF) empowers student creators, engineering researchers, and regional founders with 6,000+ sq. ft. of prototyping bays, patent filing mentorship, and direct access to TANSEED and MSME seed grants."
+  },
+  "gallery": [
+    {
+      "id": "g1",
+      "title": "MASTeR Incubation Centre Facility",
+      "category": "facilities",
+      "categoryLabel": "Incubation Facility",
+      "image": "/images/incubation/incubation-centre.jpeg",
+      "caption": "Official institutional incubator hub at MAMCET campus, recognised under StartupTN and MSME.",
+      "location": "Campus Central Wing, Siruganur"
+    },
+    {
+      "id": "g2",
+      "title": "Plug-and-Play Startup Workspace",
+      "category": "facilities",
+      "categoryLabel": "Co-Working Hub",
+      "image": "/images/incubation/incubation-workspace.jpeg",
+      "caption": "Fully furnished ergonomic founder desks with gigabit Wi-Fi and collaboration marker pods.",
+      "location": "MIF Workstation Floor"
+    },
+    {
+      "id": "g3",
+      "title": "MASTeR Incubation Core Committee",
+      "category": "team",
+      "categoryLabel": "Foundation Leadership",
+      "image": "/images/incubation/team-of-incubation.jpeg",
+      "caption": "Dedicated faculty mentors, innovation directors, and advisory committee advancing entrepreneurship.",
+      "location": "MAMCET Trichy"
+    },
+    {
+      "id": "g4",
+      "title": "Dr. Hemalatha Balakrishnan",
+      "category": "team",
+      "categoryLabel": "Incubation Coordinator",
+      "image": "/images/incubation/incubation-coordinator-hemalatha.jpeg",
+      "caption": "Incubation Coordinator driving interdisciplinary prototyping, grant mentoring, and student hackathons.",
+      "location": "MAMCET ECE & MIF"
+    },
+    {
+      "id": "g5",
+      "title": "Multidisciplinary Seminar & Mentoring Auditorium",
+      "category": "events",
+      "categoryLabel": "Seminar Auditorium",
+      "image": "/images/incubation/image-3.jpeg",
+      "caption": "Allotted 6,000+ sq. ft. facility hosting startup pitch cohorts, investor roundtables, and masterclasses.",
+      "location": "Host Institution Incubation Wing"
+    },
+    {
+      "id": "g6",
+      "title": "Hands-on IoT & Sensor Test Bench",
+      "category": "labs",
+      "categoryLabel": "Hardware Makerspace",
+      "image": "/images/incubation/img-54.jpeg",
+      "caption": "Precision benchtop oscilloscopes, signal generators, and embedded test jigs for IoT validation.",
+      "location": "MIF Prototyping Lab"
+    },
+    {
+      "id": "g7",
+      "title": "Electronic Telemetry & Circuit Prototyping",
+      "category": "labs",
+      "categoryLabel": "Electronics Lab",
+      "image": "/images/incubation/img-21.jpeg",
+      "caption": "Hardware workstations for custom PCB design, SMD assembly, and power supply calibration.",
+      "location": "Hardware Testing Bay 2"
+    },
+    {
+      "id": "g8",
+      "title": "Microcontroller Slicing & Firmware Debug",
+      "category": "labs",
+      "categoryLabel": "Firmware Station",
+      "image": "/images/incubation/img-23.jpeg",
+      "caption": "High-performance workstations for firmware compilation, logic analysis, and wireless telemetry.",
+      "location": "IoT Workbench"
+    },
+    {
+      "id": "g9",
+      "title": "Startup Orientation & Ideation Workshop",
+      "category": "events",
+      "categoryLabel": "Ecosystem Event",
+      "image": "/images/incubation/img-32.jpeg",
+      "caption": "Interactive founder sprint introducing lean canvas modeling and design thinking to students.",
+      "location": "Auditorium Hall B"
+    },
+    {
+      "id": "g10",
+      "title": "Collaborative Cohort Ideation Session",
+      "category": "events",
+      "categoryLabel": "Ideation Bootcamp",
+      "image": "/images/incubation/img-33.jpeg",
+      "caption": "Interdisciplinary team brainstorming solving Tier-2/3 agricultural, energy, and medical problems.",
+      "location": "Seminar Room 3"
+    },
+    {
+      "id": "g11",
+      "title": "Founder Mentorship & Technical Review",
+      "category": "events",
+      "categoryLabel": "Mentoring Session",
+      "image": "/images/incubation/img-43.jpeg",
+      "caption": "One-on-one technology readiness level (TRL) evaluation with senior academic and industry advisors.",
+      "location": "Conference Boardroom"
+    },
+    {
+      "id": "g12",
+      "title": "Hardware Prototyping Showcase",
+      "category": "labs",
+      "categoryLabel": "Demo Bay",
+      "image": "/images/incubation/image43.jpeg",
+      "caption": "Student and faculty innovators demonstrating functional prototypes to institutional evaluators.",
+      "location": "Demo Laboratory"
+    },
+    {
+      "id": "g13",
+      "title": "Incubation Ecosystem Awareness Campaign",
+      "category": "events",
+      "categoryLabel": "Community Outreach",
+      "image": "/images/incubation/flyer.jpeg",
+      "caption": "Ecosystem outreach brochure detailing TANSEED funding opportunities and patent assistance.",
+      "location": "MAMCET Siruganur"
+    }
+  ],
+  "startups": [
+    {
+      "website": "https://roboagri.example.com",
+      "id": "s_test_1",
+      "category": "ELECTRONICS_IOT_SMART",
+      "stage": "EARLY_TRACTION",
+      "tags": [
+        "Robotics",
+        "IoT",
+        "AgriTech"
+      ],
+      "name": "RoboAgri Telemetry",
+      "founders": "Karthik R. & MAMCET Robotics Club",
+      "impactMetric": "12 Acres Tested",
+      "cohort": "Cohort 2026",
+      "linkedin": "https://linkedin.com/company/roboagri",
+      "oneLiner": "Autonomous irrigation rover equipped with multispectral weed identification.",
+      "funding": "TANSEED ?10L Recommended",
+      "phone": "+91 98421 99999",
+      "email": "karthik@roboagri.example.com"
+    },
+    {
+      "id": "s1",
+      "name": "AgroSens Telemetry",
+      "category": "ELECTRONICS_IOT_SMART",
+      "stage": "PROTOTYPE_MVP",
+      "oneLiner": "Solar-powered LoRa soil hydration and macronutrient telemetry nodes for delta farmers.",
+      "founders": "Arun K. & ECE Team",
+      "cohort": "Cohort 2026",
+      "website": "https://agrosens.example.com",
+      "linkedin": "https://linkedin.com/company/agrosens-telemetry",
+      "email": "contact@agrosens.example.com",
+      "phone": "+91 9842100001",
+      "funding": "TANSEED ₹10L Shortlisted",
+      "impactMetric": "8 Field Pilots in Trichy District",
+      "tags": [
+        "IoT",
+        "Agriculture",
+        "LoRaWAN"
+      ],
+      "logo": ""
+    },
+    {
+      "id": "s2",
+      "name": "ThermaGrid Analytics",
+      "category": "RENEWABLE_ENERGY_CLEAN_TECH",
+      "stage": "PROOF_OF_CONCEPT",
+      "oneLiner": "Edge AI camera for rooftop photovoltaic thermal fault identification and cleaning schedules.",
+      "founders": "Sivaram M. & K. Divya",
+      "cohort": "Cohort 2026",
+      "website": "https://thermagrid.example.com",
+      "linkedin": "https://linkedin.com/company/thermagrid",
+      "email": "sivaram@thermagrid.example.com",
+      "phone": "+91 9842100002",
+      "funding": "MSME ₹15L Applicant",
+      "impactMetric": "14% Energy Yield Improvement",
+      "tags": [
+        "CleanTech",
+        "Edge AI",
+        "Solar"
+      ],
+      "logo": ""
+    },
+    {
+      "id": "s3",
+      "name": "AeroInspect Drone Tech",
+      "category": "ADVANCED_MANUFACTURING",
+      "stage": "EARLY_TRACTION",
+      "oneLiner": "Autonomous obstacle-avoidance quadcopters for high-tension transmission line inspection.",
+      "founders": "Mohammed R. & Mechanical Team",
+      "cohort": "Cohort 2025",
+      "website": "https://aeroinspect.example.com",
+      "linkedin": "https://linkedin.com/company/aeroinspect",
+      "email": "info@aeroinspect.example.com",
+      "phone": "+91 9842100003",
+      "funding": "EDII-TN IVP Voucher B (₹5L)",
+      "impactMetric": "2 MoUs Signed with Regional Utilities",
+      "tags": [
+        "Drones",
+        "Robotics",
+        "Inspection"
+      ],
+      "logo": ""
+    },
+    {
+      "id": "s4",
+      "name": "AquaCycle Bio-Filters",
+      "category": "SUSTAINABLE_INFRASTRUCTURE",
+      "stage": "PROTOTYPE_MVP",
+      "oneLiner": "Activated agricultural-waste based bio-filtration media for textile dye effluent treatment.",
+      "founders": "Kavitha R. (Civil/Env)",
+      "cohort": "Cohort 2026",
+      "website": "https://aquacycle.example.com",
+      "linkedin": "https://linkedin.com/company/aquacycle",
+      "email": "kavitha@aquacycle.example.com",
+      "phone": "+91 9842100004",
+      "funding": "Seed Facilitation",
+      "impactMetric": "92% Turbidity Reduction Achieved",
+      "tags": [
+        "CleanWater",
+        "Sustainability",
+        "BioMaterials"
+      ],
+      "logo": ""
+    },
+    {
+      "id": "s5",
+      "name": "MedPulse Edge Telecare",
+      "category": "AI_DATA_SCIENCE",
+      "stage": "IDEATION",
+      "oneLiner": "Non-invasive optical pulse transit time biomarker sensor for rural healthcare centers.",
+      "founders": "Naveen V.",
+      "cohort": "Cohort 2026",
+      "website": "https://medpulse.example.com",
+      "linkedin": "https://linkedin.com/company/medpulse",
+      "email": "naveen@medpulse.example.com",
+      "phone": "+91 9842100005",
+      "funding": "Provisional Patent Supported",
+      "impactMetric": "Provisional Patent in Progress",
+      "tags": [
+        "Healthcare",
+        "Sensors",
+        "Telemetry"
+      ],
+      "logo": ""
+    }
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "title": "StartupTN Pre-Incubation Ideathon 2026",
+      "type": "Hackathon",
+      "date": "Dec 12 - 13, 2026",
+      "time": "09:00 AM - 06:00 PM IST",
+      "location": "Auditorium & Innovation Labs, MAMCET Campus, Siruganur",
+      "mode": "In-Person",
+      "description": "48-hour intensive hardware & software sprint for undergraduate engineering students and regional innovators with cash awards & direct incubation entry.",
+      "registrationOpen": true,
+      "registrationLink": "/apply",
+      "flyerImage": "/images/incubation/image-3.jpeg"
+    },
+    {
+      "id": "e2",
+      "title": "Masterclass: TANSEED Grant & Seed Funding Readiness",
+      "type": "Workshop",
+      "date": "Dec 20, 2026",
+      "time": "02:00 PM - 05:00 PM IST",
+      "location": "Virtual & Seminar Hall 1, MAMCET",
+      "mode": "Hybrid",
+      "description": "Step-by-step guidance on drafting competitive grant proposals for Tamil Nadu Startup and Innovation Mission (TANSIM) schemes up to ₹10 Lakhs.",
+      "registrationOpen": true,
+      "registrationLink": "/apply",
+      "flyerImage": "/images/incubation/img-32.jpeg"
+    },
+    {
+      "id": "e3",
+      "title": "Rapid Prototyping with 3D Printing & Embedded IoT",
+      "type": "Bootcamp",
+      "date": "Jan 08, 2027",
+      "time": "10:00 AM - 04:30 PM IST",
+      "location": "MASTeR Maker Space, MAMCET",
+      "mode": "In-Person",
+      "description": "Hands-on maker training on CAD model slicing, stereolithography printing, and ESP32 MQTT cloud data logging.",
+      "registrationOpen": true,
+      "registrationLink": "/apply",
+      "flyerImage": "/images/incubation/img-54.jpeg"
+    }
+  ],
+  "contact": {
+    "address": "Trichy - Chennai Trunk Road, Siruganur, Tiruchirappalli, Tamil Nadu - 621 105",
+    "phone": "+91 9361697702",
+    "email": "incubationmanager@mamcet.com",
+    "managerName": "Mr. M. Santhosh Kumar",
+    "managerRole": "Incubation Manager",
+    "managerPhone": "+91 9361697702",
+    "managerEmail": "incubationmanager@mamcet.com",
+    "coordinatorName": "Ms. Hemalatha Balakrishnan",
+    "coordinatorRole": "Incubation Coordinator & Faculty",
+    "coordinatorPhone": "+91 6381945574",
+    "coordinatorEmail": "hemalathabalakrishnan.ece@mamcet.com",
+    "socialLinks": {
+      "linkedin": "https://in.linkedin.com/in/master-incubation-foundation-02301b446",
+      "instagram": "https://www.instagram.com/master_incubation_foundation/",
+      "googleShare": "https://share.google/V18XLHgF6Rh85vNA0",
+      "website": "https://mamcet.edu.in/"
+    }
+  }
+}
