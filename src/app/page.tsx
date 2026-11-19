@@ -10,6 +10,7 @@ import Programs from "@/components/sections/Programs";
 import JoinUsEcosystem from "@/components/sections/JoinUsEcosystem";
 import StartupPortfolio from "@/components/sections/StartupPortfolio";
 import Facilities from "@/components/sections/Facilities";
+import CampusPhotoGallery from "@/components/sections/CampusPhotoGallery";
 import MentorsEcosystem from "@/components/sections/MentorsEcosystem";
 import EventsNews from "@/components/sections/EventsNews";
 import SocialFeedSection from "@/components/sections/SocialFeedSection";
@@ -54,7 +55,10 @@ export default function HomePage() {
       {/* 11. Facilities & Prototyping Infrastructure */}
       <Facilities />
 
-      {/* 12. Mentors & Advisory Ecosystem */}
+      {/* 12. Authentic Campus Innovation & Prototyping Photo Gallery */}
+      <CampusPhotoGallery />
+
+      {/* 13. Mentors & Advisory Ecosystem */}
       <MentorsEcosystem />
 
       {/* 13. Events, Workshops & Hackathons */}

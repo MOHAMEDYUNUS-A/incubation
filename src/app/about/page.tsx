@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FOUNDATION_INFO } from "@/lib/db/mockData";
 import { Shield, Target, Compass, ArrowRight, ExternalLink, Award, Users, Landmark, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CampusPhotoGallery from "@/components/sections/CampusPhotoGallery";
 
 export const metadata = {
   title: "About Us | MASTeR Incubation Foundation (MIF)",
@@ -148,13 +149,29 @@ export default function AboutPage() {
               <div className="text-[11px] text-slate-500 truncate mt-1">{FOUNDATION_INFO.manager.email}</div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
-              <span className="text-[10px] font-bold text-blue-700 uppercase">Incubation Coordinator</span>
-              <h3 className="text-lg font-bold text-slate-900 mt-1">{FOUNDATION_INFO.coordinator.name}</h3>
+            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+              <div className="flex items-center gap-3.5 mb-3">
+                <div className="w-14 h-14 rounded-xl overflow-hidden border border-slate-200 bg-white shrink-0 shadow-2xs">
+                  <img
+                    src="/images/incubation/incubation-coordinator-hemalatha.jpeg"
+                    alt={FOUNDATION_INFO.coordinator.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-blue-700 uppercase">Incubation Coordinator</span>
+                  <h3 className="text-sm font-bold text-slate-900 mt-0.5">{FOUNDATION_INFO.coordinator.name}</h3>
+                </div>
+              </div>
               <div className="text-xs text-slate-600 mt-0.5">{FOUNDATION_INFO.coordinator.phone}</div>
               <div className="text-[11px] text-slate-500 truncate mt-1">{FOUNDATION_INFO.coordinator.email}</div>
             </div>
           </div>
+        </div>
+
+        {/* Real Campus Photos Gallery */}
+        <div className="mb-20">
+          <CampusPhotoGallery />
         </div>
 
         {/* Social Connect Callout */}

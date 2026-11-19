@@ -8,36 +8,44 @@ import { Button } from "@/components/ui/button";
 
 const HERO_SLIDES = [
   {
-    image: "/images/mamcet-campus.png",
-    titleBadge: "MASTeR - MIF",
+    image: "/images/incubation/incubation-centre.jpeg",
+    titleBadge: "MASTeR INCUBATION CENTRE",
     headline: "M.A.M. College of Engineering & Technology",
     description:
       "Leading Technology Pre-Incubation Centre focused on incubating engineering ideas, nurturing student and faculty innovations, and helping early-stage startups thrive in the marketplace.",
     accent: "StartupTN Recognised Hub",
   },
   {
-    image: "/images/hero-image.jpg",
-    titleBadge: "MASTeR - WORKSPACE",
-    headline: "State-of-the-Art Incubation & Maker Space",
+    image: "/images/incubation/incubation-workspace.jpeg",
+    titleBadge: "MASTeR WORKSPACE",
+    headline: "State-of-the-Art Incubation & Co-Working Space",
     description:
       "Furnished ergonomic co-working pods, high-speed connectivity, hardware benches, and collaborative ideation facilities on the MAMCET Siruganur campus.",
-    accent: "Hardware & IoT Infrastructure",
+    accent: "Plug-and-Play Workstations",
   },
   {
-    image: "/images/hero-image-1.jpg",
-    titleBadge: "MASTeR - PROTOTYPING",
+    image: "/images/incubation/img-54.jpeg",
+    titleBadge: "MASTeR PROTOTYPING LABS",
     headline: "Hands-on Engineering & IoT Testing Labs",
     description:
       "Dedicated test benches equipped with digital storage oscilloscopes, 3D printers, and RF telemetry development tools for rapid PoC fabrication.",
     accent: "Rapid 3D & Electronics Fabrication",
   },
   {
-    image: "/images/hero-image-2.jpg",
-    titleBadge: "MASTeR - ACCELERATION",
+    image: "/images/incubation/team-of-incubation.jpeg",
+    titleBadge: "MASTeR TEAM & ECOSYSTEM",
     headline: "Seed Grants & Ecosystem Mentorship",
     description:
-      "Direct guidance for TANSEED grant applications, venture investor access, and patent filing assistance from industry practitioners.",
+      "Direct guidance for TANSEED grant applications, MSME Idea Hackathon funding, venture investor access, and patent filing assistance from industry practitioners.",
     accent: "TANSEED & Investor Pitching",
+  },
+  {
+    image: "/images/incubation/image-3.jpeg",
+    titleBadge: "CAMPUS INNOVATION HUB",
+    headline: "Empowering Next-Gen Student Innovators",
+    description:
+      "Host institution with 6,000+ sq. ft. of dedicated incubation space, fostering entrepreneurship through interdisciplinary engineering teams and hackathons.",
+    accent: "MAMCET Siruganur, Trichy",
   },
 ];
 

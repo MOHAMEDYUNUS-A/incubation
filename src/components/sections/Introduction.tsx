@@ -61,14 +61,14 @@ export default function Introduction() {
             <XYZCard depth={10}>
               <div className="rounded-2xl border border-slate-200 overflow-hidden shadow-sm relative group bg-white">
                 <img
-                  src="/images/mamcet-campus.png"
-                  alt="MAMCET Campus Trichy"
+                  src="/images/incubation/incubation-centre.jpeg"
+                  alt="MASTeR Incubation Centre Facility"
                   className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
                 <div className="absolute bottom-3 left-4 right-4 text-white">
-                  <span className="text-xs font-bold block">MAMCET Engineering Campus</span>
-                  <span className="text-[11px] text-slate-200">Trichy - Chennai Trunk Road, Siruganur</span>
+                  <span className="text-xs font-bold block">MASTeR Incubation Centre</span>
+                  <span className="text-[11px] text-slate-200">StartupTN Centre · MAMCET Campus, Siruganur</span>
                 </div>
               </div>
             </XYZCard>
@@ -76,14 +76,14 @@ export default function Introduction() {
             <XYZCard depth={10}>
               <div className="rounded-2xl border border-slate-200 overflow-hidden shadow-sm relative group bg-white">
                 <img
-                  src="/images/coworking-space.jpg"
+                  src="/images/incubation/incubation-workspace.jpeg"
                   alt="MIF Co-working and Maker Space"
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
                 <div className="absolute bottom-3 left-4 right-4 text-white">
-                  <span className="text-xs font-bold block">MIF Incubation & Co-working Space</span>
-                  <span className="text-[11px] text-slate-200">Dedicated Resident Startup Pods & Maker Bench</span>
+                  <span className="text-xs font-bold block">MIF Plug-and-Play Co-working Hub</span>
+                  <span className="text-[11px] text-slate-200">Furnished Desks & Innovation Prototyping Workstations</span>
                 </div>
               </div>
             </XYZCard>

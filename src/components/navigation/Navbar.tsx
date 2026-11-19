@@ -30,7 +30,14 @@ const NAV_LINKS = [
   },
   { name: "Impact", href: "/impact" },
   { name: "Join Us", href: "/join-us" },
-  { name: "Facilities", href: "/facilities" },
+  {
+    name: "Facilities",
+    href: "/facilities",
+    submenu: [
+      { name: "All Labs & Workbenches", href: "/facilities" },
+      { name: "Campus Photo Gallery", href: "/#gallery" },
+    ],
+  },
   { name: "Startups", href: "/startups" },
   { name: "Contact", href: "/contact" },
 ];

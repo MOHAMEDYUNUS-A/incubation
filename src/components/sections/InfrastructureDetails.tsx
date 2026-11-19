@@ -17,7 +17,7 @@ export default function InfrastructureDetails() {
               <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl bg-white group">
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
                   <img
-                    src="/images/mentoring-session.png"
+                    src="/images/incubation/image-3.jpeg"
                     alt="MAMCET Training and Incubation Seminar Hall"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
