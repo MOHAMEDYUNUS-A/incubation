@@ -117,25 +117,25 @@ export default function Navbar() {
           }`}
         >
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-            {/* Logo on Left */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-12 h-12 rounded-xl bg-white p-1 flex items-center justify-center border border-slate-200 shadow-2xs group-hover:scale-105 transition-transform duration-200 shrink-0">
+            {/* Logo on Left - Bigger, Responsive, Themed to Logo & No Box/MIF clutter */}
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 group shrink-0">
+              <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
                 <img
-                  src="/logos/master-incubation-logo.png"
-                  alt="MASTeR Incubation Foundation"
-                  className="w-full h-full object-contain"
+                  src="/logos/master-incubation-logo-transparent.png"
+                  alt="MASTeR Incubation Foundation Logo"
+                  className="w-full h-full object-contain drop-shadow-xs"
                 />
               </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5">
-                  <span className="font-extrabold text-xl sm:text-2xl tracking-wide text-slate-900 font-display">
-                    MAST<span className="text-blue-600">e</span>R
-                  </span>
-                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 font-mono">
-                    MIF
+              <div className="flex flex-col justify-center">
+                <div className="flex items-center">
+                  <span className="font-black text-xl sm:text-2xl md:text-3xl tracking-tight text-[#0f2c59] font-display leading-none">
+                    MAST<span className="text-[#ea580c]">e</span>R
                   </span>
                 </div>
-                <span className="text-[10px] text-slate-500 font-semibold tracking-tight hidden sm:inline">
+                <span className="text-[11px] sm:text-xs font-extrabold text-slate-800 tracking-tight leading-none mt-1">
+                  Incubation Foundation
+                </span>
+                <span className="text-[10px] text-slate-500 font-semibold tracking-normal hidden md:inline mt-0.5">
                   MAMCET · StartupTN Pre-Incubation Centre
                 </span>
               </div>
@@ -188,15 +188,16 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Right Action: Prominent Orange CTA Button (as per Reference Image 2) */}
-            <div className="flex items-center gap-3">
+            {/* Right Action: Prominent Orange CTA Button */}
+            <div className="flex items-center gap-2 sm:gap-3">
               <Link href="/apply">
                 <Button
                   size="sm"
-                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold shadow-md shadow-orange-500/25 rounded-xl text-xs gap-1.5 h-10 px-4 sm:px-5 group transition-all"
+                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold shadow-md shadow-orange-500/25 rounded-xl text-xs gap-1.5 h-9 sm:h-10 px-3 sm:px-5 group transition-all"
                 >
-                  <span>Apply For Pre Incubation</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <span className="hidden sm:inline">Apply For Pre Incubation</span>
+                  <span className="sm:hidden">Apply Now</span>
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
 
