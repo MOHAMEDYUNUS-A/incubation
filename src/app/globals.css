@@ -111,3 +111,31 @@
 .glow-cyan {
   box-shadow: 0 10px 40px -10px rgba(6, 182, 212, 0.15);
 }
+
+/* Smooth Running Gallery Marquee (Left-to-Right) */
+@keyframes marquee-ltr {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes marquee-ltr-slow {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-ltr {
+  animation: marquee-ltr 35s linear infinite;
+}
+
+.animate-marquee-ltr-slow {
+  animation: marquee-ltr-slow 45s linear infinite;
+}
+

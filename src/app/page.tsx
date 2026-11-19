@@ -1,82 +1,50 @@
 import React from "react";
 import Hero from "@/components/hero/Hero";
 import WelcomeSection from "@/components/sections/WelcomeSection";
-import EmpoweringInnovation from "@/components/sections/EmpoweringInnovation";
-import InfrastructureDetails from "@/components/sections/InfrastructureDetails";
 import DisruptiveEpicenter from "@/components/sections/DisruptiveEpicenter";
-import EcosystemImpact from "@/components/sections/EcosystemImpact";
+import InfrastructureDetails from "@/components/sections/InfrastructureDetails";
 import FocusAreas from "@/components/sections/FocusAreas";
-import Programs from "@/components/sections/Programs";
-import JoinUsEcosystem from "@/components/sections/JoinUsEcosystem";
-import StartupPortfolio from "@/components/sections/StartupPortfolio";
-import Facilities from "@/components/sections/Facilities";
 import CampusPhotoGallery from "@/components/sections/CampusPhotoGallery";
-import MentorsEcosystem from "@/components/sections/MentorsEcosystem";
+import EcosystemImpact from "@/components/sections/EcosystemImpact";
+import JoinUsEcosystem from "@/components/sections/JoinUsEcosystem";
 import EventsNews from "@/components/sections/EventsNews";
-import SocialFeedSection from "@/components/sections/SocialFeedSection";
-import AIHub from "@/components/sections/AIHub";
-import Testimonials from "@/components/sections/Testimonials";
 import Partners from "@/components/sections/Partners";
 import ApplicationCTA from "@/components/sections/ApplicationCTA";
 
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* 01. Full-width Dynamic Hero Slider (As Per Reference Image 1) */}
+      {/* 01. Dynamic Hero Section with Animated Text Rotation */}
       <Hero />
 
-      {/* 02. Welcome to MASTeR Incubation Foundation (As Requested: "AFTER THAT WELCOME TO MASTER INCUBATION") */}
+      {/* 02. Welcome to MASTeR Incubation Foundation (Redesigned & Prestigious) */}
       <WelcomeSection />
 
-      {/* 03. "Empowering Innovation and Entrepreneurship" 3-Pillar Cards (Reference Image 2) */}
-      <EmpoweringInnovation />
-
-      {/* 04. "INFRASTRUCTURE DETAILS" with Seminar Hall Photo & Checklist (Reference Image 3) */}
-      <InfrastructureDetails />
-
-      {/* 05. "The Epicenter of Disruptive Breakthroughs" + Interactive Persona Selector (Reference Image 4) */}
+      {/* 03. The Epicenter of Disruptive Breakthroughs + Persona Search */}
       <DisruptiveEpicenter />
 
-      {/* 06. "MIF Ecosystem Impact" Constellation Network & Milestones (Reference Image 5) */}
-      <EcosystemImpact />
+      {/* 04. INFRASTRUCTURE DETAILS with 6,000+ Sq. Ft. Facility Photo & Specs */}
+      <InfrastructureDetails />
 
-      {/* 07. 7 Priority Technology Focus Areas */}
+      {/* 05. Priority Focus Areas (Visual Image Cards with Animations) */}
       <FocusAreas />
 
-      {/* 08. 4-Stage Incubation Programs & 6 Core Services */}
-      <Programs />
-
-      {/* 09. "Join Us — Be Part of Our Growing Innovation Ecosystem" 8 Stakeholder Cards (Reference Image 6) */}
-      <JoinUsEcosystem />
-
-      {/* 10. Startup Portfolio & Cohort Directory */}
-      <StartupPortfolio />
-
-      {/* 11. Facilities & Prototyping Infrastructure */}
-      <Facilities />
-
-      {/* 12. Authentic Campus Innovation & Prototyping Photo Gallery */}
+      {/* 06. "Moments That Matter" Running Gallery (Flowing from Left to Right) */}
       <CampusPhotoGallery />
 
-      {/* 13. Mentors & Advisory Ecosystem */}
-      <MentorsEcosystem />
+      {/* 07. MIF Ecosystem Impact with Live Running Counters on Scroll */}
+      <EcosystemImpact />
 
-      {/* 13. Events, Workshops & Hackathons */}
+      {/* 08. Join Us — Be Part of Our Growing Innovation Ecosystem */}
+      <JoinUsEcosystem />
+
+      {/* 09. Upcoming Workshops, Bootcamps & News Events */}
       <EventsNews />
 
-      {/* 14. Live Social Feed (Instagram & LinkedIn Updates) */}
-      <SocialFeedSection />
-
-      {/* 15. MASTeR AI Innovation Hub */}
-      <AIHub />
-
-      {/* 16. Founder Voices & Testimonials */}
-      <Testimonials />
-
-      {/* 17. Statutory Affiliations & Partners */}
+      {/* 10. Accredited Institutional Affiliations */}
       <Partners />
 
-      {/* 18. High-Conversion Application CTA */}
+      {/* 11. Final Application & Call to Action */}
       <ApplicationCTA />
     </div>
   );

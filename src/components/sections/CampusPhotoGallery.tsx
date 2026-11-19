@@ -3,19 +3,15 @@
 import React, { useState } from "react";
 import {
   Camera,
-  Layers,
   Sparkles,
   Maximize2,
   X,
-  ExternalLink,
-  ChevronRight,
+  MapPin,
+  ArrowRight,
   ShieldCheck,
-  Building2,
-  Cpu,
-  Users,
+  Eye,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { FadeUp, ZoomIn, XYZCard, RevealLeft, RevealRight } from "@/components/animations/LightAnimations";
 import { useSiteContent } from "@/context/ContentContext";
 
 export interface GalleryPhoto {
@@ -28,7 +24,7 @@ export interface GalleryPhoto {
   location: string;
 }
 
-const GALLERY_PHOTOS: GalleryPhoto[] = [
+const DEFAULT_GALLERY_PHOTOS: GalleryPhoto[] = [
   {
     id: "g1",
     title: "MASTeR Incubation Centre Facility",
@@ -49,6 +45,24 @@ const GALLERY_PHOTOS: GalleryPhoto[] = [
   },
   {
     id: "g3",
+    title: "Multidisciplinary Seminar & Mentoring Auditorium",
+    category: "events",
+    categoryLabel: "Seminar Auditorium",
+    image: "/images/incubation/image-3.jpeg",
+    caption: "Allotted 6,000+ sq. ft. facility hosting startup pitch cohorts, investor roundtables, and masterclasses.",
+    location: "Host Institution Incubation Wing",
+  },
+  {
+    id: "g4",
+    title: "Hands-on IoT & Sensor Test Bench",
+    category: "labs",
+    categoryLabel: "Hardware Makerspace",
+    image: "/images/incubation/img-54.jpeg",
+    caption: "Precision benchtop oscilloscopes, signal generators, and embedded test jigs for IoT validation.",
+    location: "MIF Prototyping Lab",
+  },
+  {
+    id: "g5",
     title: "MASTeR Incubation Core Committee",
     category: "team",
     categoryLabel: "Foundation Leadership",
@@ -57,7 +71,25 @@ const GALLERY_PHOTOS: GalleryPhoto[] = [
     location: "MAMCET Trichy",
   },
   {
-    id: "g4",
+    id: "g6",
+    title: "Electronic Telemetry & Circuit Prototyping",
+    category: "labs",
+    categoryLabel: "Electronics Lab",
+    image: "/images/incubation/img-21.jpeg",
+    caption: "Hardware workstations for custom PCB design, SMD assembly, and power supply calibration.",
+    location: "Hardware Testing Bay 2",
+  },
+  {
+    id: "g7",
+    title: "Microcontroller Slicing & Firmware Debug",
+    category: "labs",
+    categoryLabel: "Firmware Station",
+    image: "/images/incubation/img-23.jpeg",
+    caption: "High-performance workstations for firmware compilation, logic analysis, and wireless telemetry.",
+    location: "IoT Workbench",
+  },
+  {
+    id: "g8",
     title: "Dr. Hemalatha Balakrishnan",
     category: "team",
     categoryLabel: "Incubation Coordinator",
@@ -66,219 +98,181 @@ const GALLERY_PHOTOS: GalleryPhoto[] = [
     location: "MAMCET ECE & MIF",
   },
   {
-    id: "g5",
-    title: "Entrepreneurship & Bootcamp Flyer",
-    category: "events",
-    categoryLabel: "Events & Announcements",
-    image: "/images/incubation/flyer.jpeg",
-    caption: "Official notification for upcoming maker sprints, TANSEED workshops, and ideation hackathons.",
-    location: "StartupTN Regional Calendar",
-  },
-  {
-    id: "g6",
-    title: "Hardware Prototyping & Test Benches",
-    category: "labs",
-    categoryLabel: "Hardware Labs",
-    image: "/images/incubation/img-21.jpeg",
-    caption: "Equipped with digital oscilloscopes, spectrum analyzers, and SMD soldering workbenches.",
-    location: "Electronics Prototyping Bay",
-  },
-  {
-    id: "g7",
-    title: "Embedded Circuit Development Workstations",
-    category: "labs",
-    categoryLabel: "Hardware Labs",
-    image: "/images/incubation/img-23.jpeg",
-    caption: "Hands-on benchtop environments for IoT sensor integration, LoRa transceivers, and firmware debugging.",
-    location: "Maker Space Station 2",
-  },
-  {
-    id: "g8",
-    title: "Collaborative Ideation & Meeting Pods",
-    category: "facilities",
-    categoryLabel: "Co-Working Hub",
-    image: "/images/incubation/img-32.jpeg",
-    caption: "Interactive breakout zones where student teams and corporate advisors review venture prototypes.",
-    location: "Ideation Zone",
-  },
-  {
     id: "g9",
-    title: "Resident Founder Collaborative Bay",
-    category: "facilities",
-    categoryLabel: "Co-Working Hub",
-    image: "/images/incubation/img-33.jpeg",
-    caption: "Dedicated working environment for early-stage incubated teams to collaborate across disciplines.",
-    location: "Resident Cohort Floor",
+    title: "Startup Orientation & Ideation Workshop",
+    category: "events",
+    categoryLabel: "Ecosystem Event",
+    image: "/images/incubation/img-32.jpeg",
+    caption: "Interactive founder sprint introducing lean canvas modeling and design thinking to students.",
+    location: "Auditorium Hall B",
   },
   {
     id: "g10",
-    title: "Rapid 3D Fabrication & Testing Station",
-    category: "labs",
-    categoryLabel: "Fabrication Lab",
-    image: "/images/incubation/img-43.jpeg",
-    caption: "Industrial additive manufacturing tools for rapid product casing and mechanical PoC validation.",
-    location: "Fabrication Unit",
+    title: "Collaborative Cohort Ideation Session",
+    category: "events",
+    categoryLabel: "Ideation Bootcamp",
+    image: "/images/incubation/img-33.jpeg",
+    caption: "Interdisciplinary team brainstorming solving Tier-2/3 agricultural, energy, and medical problems.",
+    location: "Seminar Room 3",
   },
   {
     id: "g11",
-    title: "Electronic Measurement & Telemetry Bay",
-    category: "labs",
-    categoryLabel: "Hardware Labs",
-    image: "/images/incubation/img-54.jpeg",
-    caption: "Dedicated electronics testing instruments for validating battery management and power circuits.",
-    location: "CleanTech Test Lab",
+    title: "Founder Mentorship & Technical Review",
+    category: "events",
+    categoryLabel: "Mentoring Session",
+    image: "/images/incubation/img-43.jpeg",
+    caption: "One-on-one technology readiness level (TRL) evaluation with senior academic and industry advisors.",
+    location: "Conference Boardroom",
   },
   {
     id: "g12",
-    title: "Incubation Auditorium & Workshop Sessions",
-    category: "events",
-    categoryLabel: "Events & Workshops",
-    image: "/images/incubation/image-3.jpeg",
-    caption: "Packed auditorium of student founders, faculty researchers, and industry specialists at MAMCET.",
-    location: "Main Innovation Hall",
-  },
-  {
-    id: "g13",
-    title: "Interactive Founder Masterclass",
-    category: "events",
-    categoryLabel: "Events & Workshops",
-    image: "/images/incubation/image-43.jpeg",
-    caption: "Live pitch evaluation, technology readiness assessment, and grant writing coaching.",
-    location: "Seminar Wing",
+    title: "Hardware Prototyping Showcase",
+    category: "labs",
+    categoryLabel: "Demo Bay",
+    image: "/images/incubation/image43.jpeg",
+    caption: "Student and faculty innovators demonstrating functional prototypes to institutional evaluators.",
+    location: "Demo Laboratory",
   },
 ];
 
-type CategoryFilter = "all" | "facilities" | "labs" | "team" | "events";
-
 export default function CampusPhotoGallery() {
   const { content } = useSiteContent();
-  const photos: GalleryPhoto[] = (content?.gallery as GalleryPhoto[]) || GALLERY_PHOTOS;
+  const photos: GalleryPhoto[] = (content?.gallery as GalleryPhoto[]) || DEFAULT_GALLERY_PHOTOS;
 
-  const [activeFilter, setActiveFilter] = useState<CategoryFilter>("all");
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto | null>(null);
 
-  const filteredPhotos =
-    activeFilter === "all"
-      ? photos
-      : photos.filter((p) => p.category === activeFilter);
+  // Divide photos into two rows for the dual-running continuous marquee effect
+  const row1 = photos.slice(0, Math.ceil(photos.length / 2));
+  const row2 = photos.slice(Math.ceil(photos.length / 2));
 
   return (
-    <section id="gallery" className="py-20 sm:py-24 bg-white relative border-t border-slate-200">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <RevealLeft className="max-w-2xl">
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 font-display tracking-tight">
-              On-Campus Innovation & Facilities
+    <section id="gallery" className="py-20 sm:py-28 bg-white relative overflow-hidden border-t border-slate-200">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 mb-12">
+        {/* Header - Matching Image 1 "Moments That Matter" */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200/80 text-orange-700 text-xs font-bold uppercase tracking-wider mb-3">
+              <Camera className="w-3.5 h-3.5 text-orange-600" />
+              <span>Campus Innovation Visuals</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight">
+              Moments That Matter
             </h2>
-            <p className="text-base text-slate-600 mt-2 leading-relaxed">
-              Authentic on-site photographs of the MASTeR Incubation Foundation centre, prototyping laboratories, co-working workstations, and mentoring sessions at MAMCET, Siruganur, Trichy.
+            <p className="text-base sm:text-lg text-slate-700 mt-2 font-normal leading-relaxed">
+              Snapshots of student breakthroughs, prototype fabrication, hackathons, and seed grant mentoring on the MAMCET Siruganur campus.
             </p>
-          </RevealLeft>
+          </div>
 
-          {/* Filter Pills */}
-          <RevealRight className="flex flex-wrap items-center gap-2">
-            {[
-              { key: "all", label: "All Photos", count: GALLERY_PHOTOS.length },
-              { key: "facilities", label: "Incubation Centre", count: 4 },
-              { key: "labs", label: "Labs & Fabrication", count: 4 },
-              { key: "team", label: "Team & Leadership", count: 2 },
-              { key: "events", label: "Events & Workshops", count: 3 },
-            ].map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveFilter(tab.key as CategoryFilter)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all duration-200 flex items-center gap-1.5 ${
-                  activeFilter === tab.key
-                    ? "bg-[#0f2c59] text-white shadow-sm"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200/80"
-                }`}
-              >
-                <span>{tab.label}</span>
-                <span
-                  className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                    activeFilter === tab.key ? "bg-white/20 text-white" : "bg-white text-slate-600"
-                  }`}
-                >
-                  {tab.count}
+          <div className="flex items-center gap-3 shrink-0">
+            <span className="text-xs text-slate-500 font-medium hidden sm:inline">
+              Hover to pause · Click photo to expand
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Infinite Running Marquee Strips (Flowing smoothly left to right) */}
+      <div className="relative w-full space-y-6 overflow-hidden">
+        {/* Soft edge gradient fades */}
+        <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+
+        {/* Row 1: Flowing Left to Right */}
+        <div className="flex w-max gap-6 animate-marquee-ltr hover:[animation-play-state:paused]">
+          {[...row1, ...row1, ...row1].map((photo, idx) => (
+            <div
+              key={`r1-${idx}`}
+              onClick={() => setSelectedPhoto(photo)}
+              className="cursor-pointer group relative w-72 sm:w-80 md:w-96 aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-orange-400 transition-all duration-300 shrink-0 bg-slate-100"
+            >
+              <img
+                src={photo.image}
+                alt={photo.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
+
+              <div className="absolute top-3 left-3">
+                <span className="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#0f2c59] text-[10px] font-bold shadow-xs">
+                  {photo.categoryLabel}
                 </span>
-              </button>
-            ))}
-          </RevealRight>
+              </div>
+
+              <div className="absolute bottom-3 left-4 right-4 text-white">
+                <h4 className="font-bold text-sm sm:text-base font-display line-clamp-1 group-hover:text-orange-300 transition-colors">
+                  {photo.title}
+                </h4>
+                <p className="text-[11px] text-slate-300 line-clamp-1 font-normal mt-0.5">
+                  {photo.caption}
+                </p>
+                <div className="flex items-center gap-1 text-[10px] text-orange-400 mt-1 font-semibold">
+                  <MapPin className="w-3 h-3" />
+                  <span>{photo.location}</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Photos Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPhotos.map((photo, idx) => (
-            <ZoomIn key={photo.id} delay={idx * 0.04}>
-              <XYZCard depth={8}>
-                <div
-                  onClick={() => setSelectedPhoto(photo)}
-                  className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-xs hover:shadow-lg hover:border-blue-300 transition-all duration-300 group cursor-pointer flex flex-col justify-between h-full"
-                >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
-                    <img
-                      src={photo.image}
-                      alt={photo.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+        {/* Row 2: Flowing Left to Right (Offset speed / reverse or synchronized) */}
+        <div className="flex w-max gap-6 animate-marquee-ltr-slow hover:[animation-play-state:paused]">
+          {[...row2, ...row2, ...row2].map((photo, idx) => (
+            <div
+              key={`r2-${idx}`}
+              onClick={() => setSelectedPhoto(photo)}
+              className="cursor-pointer group relative w-72 sm:w-80 md:w-96 aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-orange-400 transition-all duration-300 shrink-0 bg-slate-100"
+            >
+              <img
+                src={photo.image}
+                alt={photo.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
 
-                    {/* Badge */}
-                    <div className="absolute top-3 left-3">
-                      <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#0f2c59] border border-white shadow-2xs">
-                        {photo.categoryLabel}
-                      </span>
-                    </div>
+              <div className="absolute top-3 left-3">
+                <span className="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#0f2c59] text-[10px] font-bold shadow-xs">
+                  {photo.categoryLabel}
+                </span>
+              </div>
 
-                    {/* Zoom Icon Button */}
-                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-slate-800 shadow-md">
-                        <Maximize2 className="w-4 h-4" />
-                      </div>
-                    </div>
-
-                    {/* Bottom Info on image */}
-                    <div className="absolute bottom-3 left-4 right-4 text-white">
-                      <span className="text-[11px] text-orange-300 font-semibold uppercase tracking-wider block">
-                        {photo.location}
-                      </span>
-                      <h4 className="text-base font-bold line-clamp-1 mt-0.5">{photo.title}</h4>
-                    </div>
-                  </div>
-
-                  <div className="p-4 bg-white">
-                    <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                      {photo.caption}
-                    </p>
-                  </div>
+              <div className="absolute bottom-3 left-4 right-4 text-white">
+                <h4 className="font-bold text-sm sm:text-base font-display line-clamp-1 group-hover:text-orange-300 transition-colors">
+                  {photo.title}
+                </h4>
+                <p className="text-[11px] text-slate-300 line-clamp-1 font-normal mt-0.5">
+                  {photo.caption}
+                </p>
+                <div className="flex items-center gap-1 text-[10px] text-orange-400 mt-1 font-semibold">
+                  <MapPin className="w-3 h-3" />
+                  <span>{photo.location}</span>
                 </div>
-              </XYZCard>
-            </ZoomIn>
+              </div>
+            </div>
           ))}
         </div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox High-Resolution Full Modal */}
       {selectedPhoto && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={() => setSelectedPhoto(null)}
+          className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200"
         >
           <div
-            className="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-slate-200 relative"
             onClick={(e) => e.stopPropagation()}
+            className="relative max-w-4xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200"
           >
             <button
               onClick={() => setSelectedPhoto(null)}
-              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white flex items-center justify-center transition-colors"
-              aria-label="Close modal"
+              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-slate-900/80 text-white hover:bg-slate-900 flex items-center justify-center transition-colors shadow-lg"
+              aria-label="Close photo preview"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="relative aspect-[16/10] w-full bg-slate-900">
+            <div className="relative aspect-[16/10] w-full bg-black">
               <img
                 src={selectedPhoto.image}
                 alt={selectedPhoto.title}
@@ -286,17 +280,21 @@ export default function CampusPhotoGallery() {
               />
             </div>
 
-            <div className="p-6 sm:p-8">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold mb-2">
-                <Building2 className="w-3.5 h-3.5" />
-                <span>{selectedPhoto.categoryLabel}</span>
-                <span className="mx-1">·</span>
-                <span>{selectedPhoto.location}</span>
+            <div className="p-6 sm:p-8 bg-white border-t border-slate-200">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="px-3 py-1 rounded-full bg-orange-50 text-orange-700 border border-orange-200 text-xs font-bold uppercase tracking-wider">
+                  {selectedPhoto.categoryLabel}
+                </span>
+                <span className="text-xs text-slate-500 font-semibold flex items-center gap-1">
+                  <MapPin className="w-3.5 h-3.5 text-orange-600" />
+                  {selectedPhoto.location}
+                </span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2 font-display">
+
+              <h3 className="text-2xl font-black text-slate-900 font-display mb-2">
                 {selectedPhoto.title}
               </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <p className="text-base text-slate-700 leading-relaxed font-normal">
                 {selectedPhoto.caption}
               </p>
             </div>

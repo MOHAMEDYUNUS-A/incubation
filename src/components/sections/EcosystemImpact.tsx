@@ -10,65 +10,87 @@ import {
   FileCheck,
   Building,
   GraduationCap,
+  TrendingUp,
+  Cpu,
+  Globe2,
 } from "lucide-react";
 import { FadeUp, ZoomIn, XYZCard, RevealLeft, RevealRight } from "@/components/animations/LightAnimations";
+import RunningCount from "@/components/ui/RunningCount";
 
-const IMPACT_METRICS = [
+interface ImpactItem {
+  count: number;
+  suffix?: string;
+  prefix?: string;
+  label: string;
+  sub: string;
+  icon: React.ElementType;
+  color: string;
+}
+
+const RUNNING_IMPACT_METRICS: ImpactItem[] = [
   {
-    value: "25+",
-    label: "Startups Incubated & Accelerated",
-    sub: "Onboarded during official launch",
-    icon: Rocket,
-    color: "text-blue-600 bg-blue-50 border-blue-200",
-  },
-  {
-    value: "8",
-    label: "Strategic Industry MoUs",
-    sub: "Executed for technology transfer",
-    icon: Handshake,
+    count: 14055,
+    suffix: "+",
+    label: "Entrepreneurs Benefited",
+    sub: "Aspiring founders trained through bootcamps & ideathons",
+    icon: Users2,
     color: "text-orange-600 bg-orange-50 border-orange-200",
   },
   {
-    value: "IITMIC",
-    label: "Strategic Incubation Alliance",
-    sub: "IIT Madras Incubation Cell partner",
-    icon: Award,
-    color: "text-indigo-600 bg-indigo-50 border-indigo-200",
-  },
-  {
-    value: "₹15 L",
-    label: "MSME Grant Eligibility",
-    sub: "Non-dilutive seed funding per idea",
-    icon: Sparkles,
-    color: "text-emerald-600 bg-emerald-50 border-emerald-200",
-  },
-  {
-    value: "500+",
-    label: "Students & Innovators Benefited",
-    sub: "Through bootcamps & hackathons",
-    icon: Users2,
-    color: "text-purple-600 bg-purple-50 border-purple-200",
-  },
-  {
-    value: "7",
-    label: "Priority Engineering Labs",
-    sub: "AI, IoT, CleanTech, Robotics, Mfg",
-    icon: Building,
-    color: "text-cyan-600 bg-cyan-50 border-cyan-200",
-  },
-  {
-    value: "StartupTN",
-    label: "State Recognised Hub",
-    sub: "Direct pre-seed TANSEED pipeline",
-    icon: FileCheck,
+    count: 6971,
+    suffix: "+",
+    label: "Researchers Onboarded",
+    sub: "Interdisciplinary faculty & postgraduate researchers",
+    icon: GraduationCap,
     color: "text-blue-600 bg-blue-50 border-blue-200",
   },
   {
-    value: "10+",
-    label: "Patents & PoC Prototypes",
-    sub: "Under IP commercialization review",
-    icon: GraduationCap,
+    count: 3771,
+    suffix: "+",
+    label: "Startups Supported / Mentored",
+    sub: "Technical review, TRL assessment, and business modeling",
+    icon: Rocket,
+    color: "text-indigo-600 bg-indigo-50 border-indigo-200",
+  },
+  {
+    count: 337,
+    suffix: "+",
+    label: "Prototypes Showcased",
+    sub: "Hardware, electronics, and software benchtop PoCs",
+    icon: Cpu,
+    color: "text-cyan-600 bg-cyan-50 border-cyan-200",
+  },
+  {
+    count: 310,
+    suffix: "+",
+    label: "Startups Incubated & Accelerated",
+    sub: "Formal pre-incubation and startup cohorts",
+    icon: TrendingUp,
+    color: "text-emerald-600 bg-emerald-50 border-emerald-200",
+  },
+  {
+    count: 210,
+    suffix: "+",
+    label: "College & Academic MoUs",
+    sub: "Institutional innovation network partnerships",
+    icon: Handshake,
     color: "text-amber-600 bg-amber-50 border-amber-200",
+  },
+  {
+    count: 118,
+    suffix: "+",
+    label: "IPs & Patents Created",
+    sub: "Provisional and complete patent disclosures filed",
+    icon: Award,
+    color: "text-purple-600 bg-purple-50 border-purple-200",
+  },
+  {
+    count: 94,
+    suffix: "+",
+    label: "Investors & Angels on Network",
+    sub: "Active VCs, angel networks & seed syndicates",
+    icon: Sparkles,
+    color: "text-rose-600 bg-rose-50 border-rose-200",
   },
 ];
 
@@ -89,9 +111,9 @@ export default function EcosystemImpact() {
           </p>
         </FadeUp>
 
-        {/* Constellation Metrics Grid with Alternating Left/Right Reveals */}
+        {/* Constellation Metrics Grid with Dynamic Running Counters on Scroll */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-          {IMPACT_METRICS.map((m, idx) => {
+          {RUNNING_IMPACT_METRICS.map((m, idx) => {
             const Icon = m.icon;
             const Wrapper = idx % 2 === 0 ? RevealLeft : RevealRight;
             return (
@@ -106,7 +128,12 @@ export default function EcosystemImpact() {
                     <div>
                       <div className="flex items-center justify-between mb-4">
                         <span className="text-3xl sm:text-4xl font-black text-slate-900 font-display group-hover:text-blue-600 transition-colors">
-                          {m.value}
+                          <RunningCount
+                            to={m.count}
+                            duration={2200}
+                            suffix={m.suffix || ""}
+                            prefix={m.prefix || ""}
+                          />
                         </span>
                         <div className={`w-11 h-11 rounded-2xl border flex items-center justify-center shrink-0 ${m.color} shadow-2xs`}>
                           <Icon className="w-5 h-5" />
