@@ -145,25 +145,29 @@ export default function DisruptiveEpicenter() {
             </div>
           </RevealLeft>
 
-          {/* Right Column: 3D Animated Floating Box (Enhanced Glassmorphism) */}
+          {/* Right Column: 3D Rolling Glassmorphism Box */}
           <RevealRight className="lg:col-span-5">
-            <div className="relative">
-              {/* 3D Animated Floating Card Box */}
-              <div className="animate-float hover:[animation-play-state:paused] p-7 sm:p-9 rounded-3xl bg-white/95 backdrop-blur-xl border border-blue-100 shadow-[0_25px_60px_rgba(15,44,89,0.15)] ring-1 ring-slate-900/5 relative transition-all duration-300">
+            <div className="relative perspective-1000">
+              {/* 3D Animated Rolling Glass Box */}
+              <div className="animate-roll-3d hover:[animation-play-state:paused] p-7 sm:p-9 rounded-3xl bg-white/75 backdrop-blur-2xl border border-white/80 shadow-[0_30px_70px_rgba(15,44,89,0.18)] ring-1 ring-white/60 relative transition-all duration-300 preserve-3d overflow-hidden">
+                {/* Internal Ambient Glass Light Flare */}
+                <div className="absolute -top-10 -right-10 w-36 h-36 bg-gradient-to-br from-blue-400/20 via-orange-300/20 to-transparent rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute -bottom-10 -left-10 w-36 h-36 bg-gradient-to-tr from-orange-400/15 via-blue-300/15 to-transparent rounded-full blur-2xl pointer-events-none" />
+
                 {/* Header */}
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-1">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-1 relative z-10">
                   Personalized for Your Search
                 </h3>
 
                 {/* "I AM A..." Pill Accent */}
-                <div className="mt-3 mb-4">
-                  <span className="px-3 py-1 rounded-full bg-orange-50 text-[#ea580c] text-xs font-mono font-bold tracking-wider uppercase inline-block border border-orange-200/80 shadow-2xs">
+                <div className="mt-3 mb-4 relative z-10">
+                  <span className="px-3 py-1 rounded-full bg-orange-50/90 text-[#ea580c] text-xs font-mono font-bold tracking-wider uppercase inline-block border border-orange-200/80 shadow-2xs backdrop-blur-xs">
                     I AM A...
                   </span>
                 </div>
 
-                {/* 8 Persona Pills with Clean Styling */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6">
+                {/* 8 Persona Pills with Glass Styling */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6 relative z-10">
                   {PERSONAS.map((p) => {
                     const Icon = p.icon;
                     const isSelected = selectedPersona.id === p.id;
@@ -175,7 +179,7 @@ export default function DisruptiveEpicenter() {
                         className={`p-3 rounded-2xl border text-xs font-bold flex flex-col items-center justify-center gap-2 transition-all duration-200 ${
                           isSelected
                             ? "bg-[#ea580c] border-[#ea580c] text-white shadow-md shadow-orange-500/25 scale-105"
-                            : "bg-slate-50/90 border-slate-200 text-slate-700 hover:bg-white hover:border-slate-300 hover:shadow-2xs"
+                            : "bg-white/60 backdrop-blur-md border-white/80 text-slate-700 hover:bg-white hover:border-slate-300 hover:shadow-2xs"
                         }`}
                       >
                         <Icon className={`w-4 h-4 ${isSelected ? "text-white" : "text-[#0f2c59]"}`} />
@@ -186,7 +190,7 @@ export default function DisruptiveEpicenter() {
                 </div>
 
                 {/* Dynamic Tailored Guidance Box */}
-                <div className="p-4 rounded-2xl bg-slate-50/80 backdrop-blur-sm border border-slate-200/90 shadow-2xs mb-6">
+                <div className="p-4 rounded-2xl bg-white/60 backdrop-blur-md border border-white/80 shadow-2xs mb-6 relative z-10">
                   <div className="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-1.5 font-bold">
                     I&apos;M LOOKING FOR...
                   </div>
@@ -197,7 +201,7 @@ export default function DisruptiveEpicenter() {
                 </div>
 
                 {/* Dynamic Explore CTA Button */}
-                <Link href={selectedPersona.href} className="block w-full">
+                <Link href={selectedPersona.href} className="block w-full relative z-10">
                   <Button className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-xs sm:text-sm h-12 rounded-xl shadow-lg shadow-orange-600/30 gap-2 uppercase tracking-wide group transition-all">
                     <span>{selectedPersona.ctaText}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

@@ -196,6 +196,31 @@
   will-change: transform;
 }
 
+/* 3D Glassmorphism Rolling & Tilting Keyframes */
+@keyframes roll-3d {
+  0% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px);
+  }
+  25% {
+    transform: perspective(1000px) rotateX(4deg) rotateY(-5deg) translateY(-8px);
+  }
+  50% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(4deg) translateY(-14px);
+  }
+  75% {
+    transform: perspective(1000px) rotateX(-4deg) rotateY(2deg) translateY(-6px);
+  }
+  100% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px);
+  }
+}
+
+.animate-roll-3d {
+  animation: roll-3d 8s ease-in-out infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
 /* Accessibility: Support prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -209,6 +234,7 @@
   .animate-float,
   .animate-float-delayed,
   .animate-float-reverse,
+  .animate-roll-3d,
   .animate-marquee-ltr,
   .animate-marquee-ltr-slow {
     animation: none !important;

@@ -1,22 +1,51 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
-  ShieldCheck,
   Building2,
   Sparkles,
   ArrowRight,
-  Award,
-  CheckCircle2,
   Lightbulb,
   FlaskConical,
   Handshake,
+  Play,
+  Pause,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RevealLeft, RevealRight, FadeUp } from "@/components/animations/LightAnimations";
 
+const ACCREDITED_LOGOS = [
+  {
+    name: "M.A.M. College of Engineering & Technology (MAMCET)",
+    src: "/logos/mamcet-logo.png",
+    height: "h-9 sm:h-12 md:h-14",
+  },
+  {
+    name: "StartupTN Pre-Incubation Centre (Govt. of Tamil Nadu)",
+    src: "/logos/startuptn.png",
+    height: "h-8 sm:h-11 md:h-12",
+  },
+  {
+    name: "All India Council for Technical Education (AICTE)",
+    src: "/logos/aicte-logo.png",
+    height: "h-9 sm:h-12 md:h-14",
+  },
+  {
+    name: "Institution's Innovation Council (Ministry of Education)",
+    src: "/logos/iic-logo.png",
+    height: "h-9 sm:h-12 md:h-14",
+  },
+  {
+    name: "National Board of Accreditation (NBA)",
+    src: "/logos/nba-logo.png",
+    height: "h-9 sm:h-12 md:h-14",
+  },
+];
+
 export default function WelcomeSection() {
+  const [mobileMarqueeActive, setMobileMarqueeActive] = useState(true);
+
   return (
     <section className="py-20 sm:py-28 bg-white relative border-b border-slate-200 overflow-hidden">
       {/* Subtle Ambient Background Gradients */}
@@ -26,80 +55,81 @@ export default function WelcomeSection() {
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* ================= Accredited Institutional Logos Strip (Single Balanced Row, Prominent & Never Wrapping) ================= */}
+        {/* ================= Accredited Institutional Logos Strip ================= */}
         <div className="flex justify-center mb-14">
-          <div className="w-full max-w-6xl px-6 sm:px-8 py-4 sm:py-5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-sm hover:shadow-md transition-all flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6">
-            <div className="flex items-center gap-2 shrink-0">
+          <div className="w-full max-w-6xl px-4 sm:px-8 py-3.5 sm:py-5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-xs hover:shadow-md transition-all flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-6 overflow-hidden">
+            <div className="flex items-center justify-between w-full lg:w-auto gap-2 shrink-0">
               <span className="text-[11px] sm:text-xs font-black text-[#0f2c59] uppercase tracking-wider whitespace-nowrap">
                 Accredited Institutional Ecosystem:
               </span>
+
+              {/* Mobile Marquee Toggle Button */}
+              <button
+                onClick={() => setMobileMarqueeActive(!mobileMarqueeActive)}
+                className="sm:hidden text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 hover:bg-orange-50 hover:text-orange-600 flex items-center gap-1 border border-slate-200"
+                title="Toggle running marquee"
+              >
+                {mobileMarqueeActive ? (
+                  <>
+                    <Pause className="w-2.5 h-2.5 text-orange-600" />
+                    <span>Pause</span>
+                  </>
+                ) : (
+                  <>
+                    <Play className="w-2.5 h-2.5 text-emerald-600" />
+                    <span>Run</span>
+                  </>
+                )}
+              </button>
             </div>
 
-            <div className="flex items-center justify-between sm:justify-end gap-4 sm:gap-6 md:gap-8 overflow-x-auto w-full lg:w-auto py-1 scrollbar-none">
-              {/* MAMCET Logo */}
-              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="M.A.M. College of Engineering & Technology (MAMCET)">
-                <img
-                  src="/logos/mamcet-logo.png"
-                  alt="M.A.M. College of Engineering & Technology (MAMCET)"
-                  className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-2xs"
-                />
+            {/* Mobile Running Marquee View (sm:hidden) */}
+            <div className="sm:hidden w-full overflow-hidden relative py-1">
+              <div
+                className={`flex items-center gap-6 w-max ${
+                  mobileMarqueeActive ? "animate-marquee-ltr" : "overflow-x-auto"
+                }`}
+              >
+                {[...ACCREDITED_LOGOS, ...ACCREDITED_LOGOS, ...ACCREDITED_LOGOS].map((logo, idx) => (
+                  <div
+                    key={idx}
+                    className="shrink-0 flex items-center px-2"
+                    title={logo.name}
+                  >
+                    <img
+                      src={logo.src}
+                      alt={logo.name}
+                      className="h-9 w-auto object-contain drop-shadow-2xs"
+                    />
+                  </div>
+                ))}
               </div>
+            </div>
 
-              <div className="h-7 w-px bg-slate-200 shrink-0 hidden sm:block" />
-
-              {/* StartupTN Logo */}
-              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="StartupTN Pre-Incubation Centre (Govt. of Tamil Nadu)">
-                <img
-                  src="/logos/startuptn.png"
-                  alt="StartupTN Pre-Incubation Centre (Govt. of Tamil Nadu)"
-                  className="h-9 sm:h-11 md:h-12 w-auto object-contain drop-shadow-2xs"
-                />
-              </div>
-
-              <div className="h-7 w-px bg-slate-200 shrink-0 hidden sm:block" />
-
-              {/* AICTE Logo */}
-              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="All India Council for Technical Education (AICTE)">
-                <img
-                  src="/logos/aicte-logo.png"
-                  alt="All India Council for Technical Education (AICTE)"
-                  className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-2xs"
-                />
-              </div>
-
-              <div className="h-7 w-px bg-slate-200 shrink-0 hidden sm:block" />
-
-              {/* IIC Logo */}
-              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="Institution's Innovation Council (Ministry of Education)">
-                <img
-                  src="/logos/iic-logo.png"
-                  alt="Institution's Innovation Council (Ministry of Education)"
-                  className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-2xs"
-                />
-              </div>
-
-              <div className="h-7 w-px bg-slate-200 shrink-0 hidden sm:block" />
-
-              {/* NBA Logo */}
-              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="National Board of Accreditation (NBA)">
-                <img
-                  src="/logos/nba-logo.png"
-                  alt="National Board of Accreditation (NBA)"
-                  className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-2xs"
-                />
-              </div>
+            {/* Tablet & Desktop Static Row View (hidden sm:flex) */}
+            <div className="hidden sm:flex items-center justify-end gap-5 md:gap-8 w-full lg:w-auto py-1">
+              {ACCREDITED_LOGOS.map((logo, idx) => (
+                <React.Fragment key={logo.name}>
+                  {idx > 0 && <div className="h-7 w-px bg-slate-200 shrink-0" />}
+                  <div
+                    className="shrink-0 flex items-center hover:scale-105 transition-transform"
+                    title={logo.name}
+                  >
+                    <img
+                      src={logo.src}
+                      alt={logo.name}
+                      className={`${logo.height} w-auto object-contain drop-shadow-2xs`}
+                    />
+                  </div>
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Prestigious, Minimalist Welcome Content */}
+        {/* Prestigious, Minimalist Welcome Content (Unwanted Badges Removed) */}
         <div className="max-w-4xl mx-auto text-center space-y-6 mb-16">
           <RevealLeft>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider mb-2">
-              <ShieldCheck className="w-4 h-4 text-blue-600" />
-              <span>Section 8 Not-For-Profit Company · StartupTN Centre</span>
-            </div>
-
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight font-display uppercase leading-tight">
               WELCOME TO <br />
               <span className="text-[#0f2c59]">MASTeR INCUBATION FOUNDATION</span>
@@ -118,26 +148,6 @@ export default function WelcomeSection() {
               <p>
                 Recognised by <strong className="text-blue-800 font-bold">StartupTN</strong> as an official Pre-Incubation Centre and the Ministry of MSME as an approved <strong className="text-slate-900 font-bold">Host Institution (HI)</strong>, MIF empowers student innovators, research faculty, and regional founders to build, protect, and scale deep-tech solutions through structured grant readiness and expert industrial mentorship.
               </p>
-            </div>
-
-            {/* 4 Clean Institutional Trust Badges */}
-            <div className="pt-6 flex flex-wrap items-center justify-center gap-3">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs font-semibold">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                Section 8 Non-Profit
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs font-semibold">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                StartupTN Pre-Incubation Centre
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs font-semibold">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                Approved MSME Host Institution
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs font-semibold">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                IITMIC Partner Network
-              </span>
             </div>
           </RevealRight>
         </div>

@@ -235,15 +235,16 @@ export default function Navbar() {
                       {link.name}
                     </Link>
                     {link.submenu && (
-                      <div className="pl-4 space-y-1 pb-1">
+                      <div className="ml-3 pl-3 border-l-2 border-orange-200/80 space-y-1 py-1 my-1">
                         {link.submenu.map((sub) => (
                           <Link
                             key={sub.name}
                             href={sub.href}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="block py-1.5 text-xs text-slate-500 hover:text-orange-600"
+                            className="flex items-center gap-2 py-2 px-2.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-orange-600 hover:bg-orange-50/70 transition-colors"
                           >
-                            ↳ {sub.name}
+                            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0" />
+                            <span>{sub.name}</span>
                           </Link>
                         ))}
                       </div>

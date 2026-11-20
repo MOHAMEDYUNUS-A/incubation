@@ -534,7 +534,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description: "Dedicated institutional incubator facility inaugurated under the auspices of the Government of Tamil Nadu and MAMCET.",
     capacity: "6,000+ Sq. Ft. Floor Area",
     specs: ["Reception Desk", "Startup Intake Office", "StartupTN Desk", "Biometric Access"],
-    image: "/images/incubation/incubation-centre.jpeg",
+    image: "/images/incubation/infrastructure.jpeg",
   },
   {
     id: "f6",

@@ -19,14 +19,14 @@ export default function InfrastructureDetails() {
             <div className="relative">
               {/* Main Floating in Air Card */}
               <div className="animate-float hover:[animation-play-state:paused] relative rounded-3xl overflow-hidden border-2 border-slate-200/90 shadow-[0_25px_60px_rgba(15,44,89,0.18)] bg-white group transition-all duration-300">
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
                   <img
-                    src="/images/incubation/image-3.jpeg"
-                    alt="MAMCET Training and Incubation Seminar Hall"
+                    src="/images/incubation/infrastructure.jpeg"
+                    alt="MAMCET State-of-the-Art Prototyping Infrastructure & Incubation Centre"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   {/* High Contrast Gradient Overlay for 100% Crisp Legibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent" />
 
                   {/* Caption Overlay with Explicit White Typography */}
                   <div className="absolute bottom-5 left-5 right-5 text-white z-10">
@@ -34,7 +34,7 @@ export default function InfrastructureDetails() {
                       MAMCET Engineering Campus, Siruganur
                     </div>
                     <h4 className="text-base sm:text-xl font-bold font-display !text-white text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
-                      Multidisciplinary Incubation & Mentoring Auditorium
+                      Dedicated Incubation Centre & Advanced Maker Labs
                     </h4>
                   </div>
                 </div>

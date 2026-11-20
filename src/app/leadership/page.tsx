@@ -39,7 +39,7 @@ const EXECUTIVE_OFFICERS: LeaderProfile[] = [
     role: "Incubation Manager",
     affiliation: "MASTeR Incubation Foundation · StartupTN Hub",
     bio: "Drives day-to-day incubation operations, founder cohort selection, TANSEED / MSME grant applications, and strategic industry collaboration for resident ventures.",
-    image: "/images/incubation/team-of-incubation.jpeg",
+    image: "/images/incubation/santhosh.jpeg",
     phone: "+91 9361697702",
     email: "incubationmanager@mamcet.com",
     tags: ["Grant Approvals", "Operations", "Founder Intake"],

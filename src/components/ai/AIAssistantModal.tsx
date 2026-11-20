@@ -24,6 +24,56 @@ interface Message {
   content: string;
 }
 
+function FormattedContent({ content, isUser }: { content: string; isUser: boolean }) {
+  if (isUser) {
+    return <div className="whitespace-pre-line">{content}</div>;
+  }
+
+  // Parse lines for assistant message, stripping any raw asterisks and converting **text** to strong
+  const lines = content.split("\n");
+
+  return (
+    <div className="space-y-1.5 leading-relaxed">
+      {lines.map((line, lIdx) => {
+        const trimmed = line.trim();
+        if (!trimmed) {
+          return <div key={lIdx} className="h-1.5" />;
+        }
+
+        // Bullet point check (- or * or numbered)
+        const isBullet = /^[*-]\s+/.test(trimmed);
+        const textContent = isBullet ? trimmed.replace(/^[*-]\s+/, "") : line;
+
+        // Split by **bold**
+        const parts = textContent.split(/(\*\*[^*]+\*\*)/g);
+
+        const renderedLine = parts.map((part, pIdx) => {
+          if (part.startsWith("**") && part.endsWith("**")) {
+            return (
+              <strong key={pIdx} className="font-bold text-slate-900">
+                {part.slice(2, -2)}
+              </strong>
+            );
+          }
+          // Remove stray single asterisks
+          return <span key={pIdx}>{part.replace(/\*/g, "")}</span>;
+        });
+
+        if (isBullet) {
+          return (
+            <div key={lIdx} className="flex items-start gap-2 pl-0.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0 mt-1.5" />
+              <span>{renderedLine}</span>
+            </div>
+          );
+        }
+
+        return <div key={lIdx}>{renderedLine}</div>;
+      })}
+    </div>
+  );
+}
+
 const PROMPT_CHIPS = [
   "How do I apply for incubation?",
   "What seed grants are available?",
@@ -179,7 +229,7 @@ export default function AIAssistantModal({
                       : "bg-white/90 backdrop-blur-md border border-white/80 text-slate-800 rounded-bl-xs shadow-sm text-xs sm:text-[13px]"
                   }`}
                 >
-                  <div className="whitespace-pre-line prose-xs">{m.content}</div>
+                  <FormattedContent content={m.content} isUser={m.role === "user"} />
 
                   {m.role === "assistant" && (
                     <div className="mt-3 pt-2.5 border-t border-slate-200/70 flex items-center justify-between text-[11px] text-slate-400">
