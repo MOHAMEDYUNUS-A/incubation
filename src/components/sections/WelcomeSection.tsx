@@ -28,9 +28,8 @@ export default function WelcomeSection() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* ================= Accredited Institutional Logos Strip (Single Balanced Row, Prominent & Never Wrapping) ================= */}
         <div className="flex justify-center mb-14">
-          <div className="w-full max-w-6xl px-6 sm:px-8 py-4 sm:py-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6">
+          <div className="w-full max-w-6xl px-6 sm:px-8 py-4 sm:py-5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-sm hover:shadow-md transition-all flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6">
             <div className="flex items-center gap-2 shrink-0">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-[11px] sm:text-xs font-black text-[#0f2c59] uppercase tracking-wider whitespace-nowrap">
                 Accredited Institutional Ecosystem:
               </span>

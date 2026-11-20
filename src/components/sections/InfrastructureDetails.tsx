@@ -25,14 +25,15 @@ export default function InfrastructureDetails() {
                     alt="MAMCET Training and Incubation Seminar Hall"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                  {/* High Contrast Gradient Overlay for 100% Crisp Legibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent" />
 
-                  {/* Caption Overlay */}
-                  <div className="absolute bottom-4 left-5 right-5 text-white">
-                    <div className="text-xs text-orange-400 font-bold uppercase tracking-wider mb-1">
+                  {/* Caption Overlay with Explicit White Typography */}
+                  <div className="absolute bottom-5 left-5 right-5 text-white z-10">
+                    <div className="text-xs text-orange-400 font-extrabold uppercase tracking-wider mb-1 drop-shadow-md">
                       MAMCET Engineering Campus, Siruganur
                     </div>
-                    <h4 className="text-base sm:text-xl font-bold font-display">
+                    <h4 className="text-base sm:text-xl font-bold font-display !text-white text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
                       Multidisciplinary Incubation & Mentoring Auditorium
                     </h4>
                   </div>

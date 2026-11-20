@@ -26,11 +26,11 @@ interface Message {
 
 const PROMPT_CHIPS = [
   "How do I apply for incubation?",
-  "What seed grants are available (TANSEED / MSME)?",
-  "What labs & equipment do you have?",
-  "Contact Incubation Coordinator",
-  "10-slide pitch structure",
-  "Tell me about 7 focus areas",
+  "What seed grants are available?",
+  "What prototyping equipment is in labs?",
+  "Who can I contact for mentoring?",
+  "10-slide pitch deck format",
+  "Tell me about the 7 focus areas",
 ];
 
 export default function AIAssistantModal({
@@ -45,7 +45,7 @@ export default function AIAssistantModal({
       id: "init",
       role: "assistant",
       content:
-        "Hello! I am the **MASTeR AI Incubation Assistant** for MAMCET & StartupTN Centre. How can I assist your startup or project today?\n\nAsk me about **incubation intake**, **TANSEED / MSME grants**, **prototyping equipment**, or **mentor advisory**.",
+        "👋 Hello! I am **MASTerAI**, your guide for incubation at MAMCET & StartupTN Centre.\n\nHow can I help you today? You can ask me about **applying for incubation**, **seed grants (TANSEED / MSME)**, **our labs & prototyping equipment**, or **connecting with mentors**.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -113,23 +113,20 @@ export default function AIAssistantModal({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.22, ease: "easeOut" }}
-          className="fixed bottom-6 right-6 z-50 w-full max-w-md sm:max-w-lg h-[620px] max-h-[85vh] rounded-3xl bg-white/85 backdrop-blur-2xl border border-white/70 shadow-[0_25px_70px_rgba(15,44,89,0.22)] ring-1 ring-slate-900/5 flex flex-col overflow-hidden"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-full sm:max-w-md md:max-w-lg h-[580px] sm:h-[620px] max-h-[85vh] rounded-3xl bg-white/90 backdrop-blur-2xl border border-white/80 shadow-[0_25px_70px_rgba(15,44,89,0.25)] ring-1 ring-slate-900/10 flex flex-col overflow-hidden"
         >
-          {/* Header (Frosted Glassmorphism) */}
-          <div className="p-4 px-5 bg-white/70 backdrop-blur-xl border-b border-slate-200/70 flex items-center justify-between">
+          {/* Header (Clean MASTerAI without Copilot or Online pill) */}
+          <div className="p-4 px-5 bg-white/75 backdrop-blur-xl border-b border-slate-200/70 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-2xl bg-[#0f2c59] flex items-center justify-center text-white shadow-md border border-white/40">
                 <Sparkles className="w-5 h-5 text-orange-400" />
               </div>
               <div>
-                <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2 font-display">
-                  <span>MASTeR AI Copilot</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100/90 text-emerald-800 font-mono font-bold border border-emerald-300/60">
-                    ONLINE
-                  </span>
+                <h3 className="text-base font-black text-slate-900 font-display">
+                  MASTerAI
                 </h3>
-                <p className="text-[11px] text-slate-600 font-medium">
-                  StartupTN & MSME Pre-Incubation Knowledge Assistant
+                <p className="text-[11px] text-slate-500 font-medium">
+                  MIF Incubation & Grants Assistant
                 </p>
               </div>
             </div>
@@ -142,7 +139,7 @@ export default function AIAssistantModal({
                       id: "init",
                       role: "assistant",
                       content:
-                        "Chat refreshed! How can I assist your startup or research project today?",
+                        "Chat refreshed! How can MASTerAI assist your startup or research project today?",
                     },
                   ])
                 }
@@ -186,7 +183,7 @@ export default function AIAssistantModal({
 
                   {m.role === "assistant" && (
                     <div className="mt-3 pt-2.5 border-t border-slate-200/70 flex items-center justify-between text-[11px] text-slate-400">
-                      <span>MASTeR AI Verified</span>
+                      <span>MASTerAI Verified</span>
                       <button
                         onClick={() => handleCopy(m.id, m.content)}
                         className="hover:text-slate-700 p-1 flex items-center gap-1 transition-colors"

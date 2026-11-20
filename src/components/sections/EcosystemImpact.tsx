@@ -96,22 +96,37 @@ const RUNNING_IMPACT_METRICS: ImpactItem[] = [
 
 export default function EcosystemImpact() {
   return (
-    <section className="py-20 sm:py-28 bg-slate-50 relative border-b border-slate-200 overflow-hidden">
+    <section className="py-20 sm:py-28 bg-slate-900/5 relative border-b border-slate-200 overflow-hidden">
+      {/* Background Video with Controlled Opacity & Frosted Light-Theme Overlay */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-20 sm:opacity-25"
+        >
+          <source src="/videos/impact-bg-video.mp4" type="video/mp4" />
+        </video>
+        {/* Ambient Gradient to protect strict light-theme readability and contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/75 to-slate-50/95 backdrop-blur-[2px]" />
+      </div>
+
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <FadeUp className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-mono font-bold text-orange-600 uppercase tracking-widest block mb-2">
-            MEASURABLE TRANSLATION FOOTPRINT
-          </span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200/90 text-[#ea580c] text-xs font-mono font-bold tracking-wider uppercase mb-3 shadow-2xs">
+            <span>MEASURABLE TRANSLATION FOOTPRINT</span>
+          </div>
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight">
             MIF Ecosystem Impact
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 mt-3 font-medium">
-            Transforming academic potential into measurable entrepreneurial capacity across Central Tamil Nadu.
+          <p className="text-base sm:text-lg text-slate-700 mt-3 font-medium">
+            Transforming academic research into measurable entrepreneurial capacity across Central Tamil Nadu.
           </p>
         </FadeUp>
 
-        {/* Constellation Metrics Grid with Dynamic Running Counters on Scroll */}
+        {/* Constellation Metrics Grid with Dynamic Running Counters on Scroll (Frosted Glassmorphism) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
           {RUNNING_IMPACT_METRICS.map((m, idx) => {
             const Icon = m.icon;
@@ -119,10 +134,10 @@ export default function EcosystemImpact() {
             return (
               <Wrapper key={m.label} delay={(idx % 4) * 0.08}>
                 <XYZCard depth={8}>
-                  <div className="p-7 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-blue-400 transition-all duration-300 relative group flex flex-col justify-between h-full">
+                  <div className="p-7 sm:p-8 rounded-3xl bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_10px_30px_rgba(15,44,89,0.06)] hover:shadow-2xl hover:border-blue-400 hover:bg-white hover:-translate-y-1 transition-all duration-300 relative group flex flex-col justify-between h-full">
                     {/* Top Corner Orange Accent Notch */}
                     <div className="absolute top-0 right-0 w-8 h-8 overflow-hidden rounded-tr-3xl pointer-events-none">
-                      <div className="absolute transform rotate-45 bg-orange-500 w-12 h-2.5 -top-1 -right-4" />
+                      <div className="absolute transform rotate-45 bg-[#ea580c] w-12 h-2.5 -top-1 -right-4" />
                     </div>
 
                     <div>
@@ -135,7 +150,7 @@ export default function EcosystemImpact() {
                             prefix={m.prefix || ""}
                           />
                         </span>
-                        <div className={`w-11 h-11 rounded-2xl border flex items-center justify-center shrink-0 ${m.color} shadow-2xs`}>
+                        <div className={`w-11 h-11 rounded-2xl border flex items-center justify-center shrink-0 ${m.color} shadow-2xs group-hover:scale-105 transition-transform`}>
                           <Icon className="w-5 h-5" />
                         </div>
                       </div>
@@ -145,7 +160,7 @@ export default function EcosystemImpact() {
                       </h4>
                     </div>
 
-                    <div className="pt-4 mt-4 border-t border-slate-100 text-xs sm:text-sm text-slate-600 font-medium">
+                    <div className="pt-4 mt-4 border-t border-slate-100/90 text-xs sm:text-sm text-slate-600 font-medium">
                       {m.sub}
                     </div>
                   </div>
