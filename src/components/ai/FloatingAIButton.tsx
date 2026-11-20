@@ -24,15 +24,15 @@ export default function FloatingAIButton() {
           </div>
         </div>
 
-        {/* 3D Robot Avatar Button (Matching Reference Image 1) */}
+        {/* Institutional AI Assistant Avatar Button */}
         <button
           onClick={() => setIsOpen(true)}
-          className="relative w-14 h-14 rounded-full bg-gradient-to-tr from-indigo-600 via-blue-600 to-cyan-400 p-0.5 shadow-xl shadow-blue-500/25 hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center border-2 border-white group"
+          className="relative w-14 h-14 rounded-full bg-[#0f2c59] hover:bg-[#1a3d75] p-0.5 shadow-xl shadow-blue-900/25 hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center border-2 border-white group"
           aria-label="Open AI Incubation Assistant"
         >
           <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-100 to-blue-50 flex items-center justify-center text-blue-700">
-              <Bot className="w-6 h-6 text-blue-600 group-hover:rotate-12 transition-transform" />
+            <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-[#0f2c59]">
+              <Bot className="w-6 h-6 text-[#0f2c59] group-hover:rotate-12 transition-transform" />
             </div>
           </div>
           {/* Active Ping Glow */}

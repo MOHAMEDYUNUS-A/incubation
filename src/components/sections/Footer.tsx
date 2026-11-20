@@ -25,20 +25,23 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-14 border-b border-slate-800">
           {/* Col 1: Brand & Institutional Identity (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-white p-1.5 flex items-center justify-center border border-white/20 shadow-md">
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="w-14 h-14 rounded-2xl bg-white p-2 flex items-center justify-center border border-white/20 shadow-md group-hover:scale-105 transition-transform">
                 <img
                   src="/logos/official-mif-logo.png"
-                  alt="MASTeR Incubation Foundation Logo"
+                  alt="MASTeR Incubation Foundation Crest"
                   className="w-full h-full object-contain"
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-black text-xl tracking-wider text-white font-display">
+                <span className="font-black text-xl sm:text-2xl tracking-tight text-white font-display">
                   MAST<span className="text-[#ea580c]">e</span>R
                 </span>
-                <span className="text-[11px] text-slate-300 font-bold">
+                <span className="text-xs text-slate-200 font-bold">
                   Incubation Foundation (MIF)
+                </span>
+                <span className="text-[10px] text-slate-400 font-medium">
+                  MAMCET · StartupTN Pre-Incubation Centre
                 </span>
               </div>
             </Link>

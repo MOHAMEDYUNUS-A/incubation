@@ -216,9 +216,9 @@ export default function AIAssistantModal({
                   <Bot className="w-4 h-4" />
                 </div>
                 <div className="p-3.5 rounded-2xl bg-white border border-slate-200 text-slate-500 flex items-center gap-1.5 shadow-2xs">
-                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-bounce" />
-                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-bounce [animation-delay:0.2s]" />
-                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-bounce [animation-delay:0.4s]" />
+                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse [animation-delay:0.2s]" />
+                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse [animation-delay:0.4s]" />
                 </div>
               </div>
             )}

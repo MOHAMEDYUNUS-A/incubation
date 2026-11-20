@@ -38,10 +38,10 @@ export default function WelcomeSection() {
 
             <div className="flex items-center justify-between sm:justify-end gap-4 sm:gap-6 md:gap-8 overflow-x-auto w-full lg:w-auto py-1 scrollbar-none">
               {/* MAMCET Logo */}
-              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="M.A.M. College of Engineering and Technology">
+              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="M.A.M. College of Engineering & Technology (MAMCET)">
                 <img
                   src="/logos/mamcet-logo.png"
-                  alt="MAMCET"
+                  alt="M.A.M. College of Engineering & Technology (MAMCET)"
                   className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-2xs"
                 />
               </div>
@@ -49,21 +49,21 @@ export default function WelcomeSection() {
               <div className="h-7 w-px bg-slate-200 shrink-0 hidden sm:block" />
 
               {/* StartupTN Logo */}
-              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="StartupTN Pre-Incubation Centre">
+              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="StartupTN Pre-Incubation Centre (Govt. of Tamil Nadu)">
                 <img
-                  src="/logos/startuptn.jpg"
-                  alt="StartupTN"
-                  className="h-9 sm:h-11 md:h-12 w-auto object-contain rounded drop-shadow-2xs"
+                  src="/logos/startuptn.png"
+                  alt="StartupTN Pre-Incubation Centre (Govt. of Tamil Nadu)"
+                  className="h-9 sm:h-11 md:h-12 w-auto object-contain drop-shadow-2xs"
                 />
               </div>
 
               <div className="h-7 w-px bg-slate-200 shrink-0 hidden sm:block" />
 
               {/* AICTE Logo */}
-              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="All India Council for Technical Education">
+              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="All India Council for Technical Education (AICTE)">
                 <img
                   src="/logos/aicte-logo.png"
-                  alt="AICTE"
+                  alt="All India Council for Technical Education (AICTE)"
                   className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-2xs"
                 />
               </div>
@@ -71,10 +71,10 @@ export default function WelcomeSection() {
               <div className="h-7 w-px bg-slate-200 shrink-0 hidden sm:block" />
 
               {/* IIC Logo */}
-              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="Institution's Innovation Council">
+              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="Institution's Innovation Council (Ministry of Education)">
                 <img
                   src="/logos/iic-logo.png"
-                  alt="IIC"
+                  alt="Institution's Innovation Council (Ministry of Education)"
                   className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-2xs"
                 />
               </div>
@@ -82,10 +82,10 @@ export default function WelcomeSection() {
               <div className="h-7 w-px bg-slate-200 shrink-0 hidden sm:block" />
 
               {/* NBA Logo */}
-              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="National Board of Accreditation">
+              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="National Board of Accreditation (NBA)">
                 <img
                   src="/logos/nba-logo.png"
-                  alt="NBA"
+                  alt="National Board of Accreditation (NBA)"
                   className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-2xs"
                 />
               </div>

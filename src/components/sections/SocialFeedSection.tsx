@@ -106,7 +106,7 @@ export default function SocialFeedSection() {
                           <span
                             className={`text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full text-white shadow-md flex items-center gap-1 ${
                               isInstagram
-                                ? "bg-gradient-to-r from-purple-600 to-pink-600"
+                                ? "bg-[#e1306c]"
                                 : "bg-[#0a66c2]"
                             }`}
                           >

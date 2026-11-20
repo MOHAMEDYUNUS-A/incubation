@@ -14,11 +14,11 @@ const ROTATING_TEXTS = [
 ];
 
 const HERO_IMAGES = [
+  "/images/incubation/hero-1.jpeg",
+  "/images/incubation/hero-2.jpeg",
+  "/images/incubation/hero-3.jpeg",
   "/images/incubation/incubation-centre.jpeg",
   "/images/incubation/incubation-workspace.jpeg",
-  "/images/incubation/img-54.jpeg",
-  "/images/incubation/team-of-incubation.jpeg",
-  "/images/incubation/image-3.jpeg",
 ];
 
 export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
@@ -127,7 +127,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -20, opacity: 0 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 font-black"
+                  className="inline-block text-[#ea580c] font-black drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
                 >
                   {rotatingTexts[currentTextIndex]}
                 </motion.span>

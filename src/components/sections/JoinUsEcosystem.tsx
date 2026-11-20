@@ -124,9 +124,9 @@ export default function JoinUsEcosystem() {
                   <span className="text-[10px] font-mono font-bold text-orange-400 uppercase tracking-widest block mb-4">
                     ACCELERATE IMPACT
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 font-display leading-tight mb-3">
+                  <h3 className="text-2xl sm:text-3xl font-black text-white font-display leading-tight mb-3">
                     COLLABORATE, <br />
-                    INNOVATE <br />
+                    <span className="text-[#ea580c]">INNOVATE</span> <br />
                     AND SCALE!
                   </h3>
                   <p className="text-xs text-slate-300 leading-relaxed font-normal">
