@@ -7,11 +7,6 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Cpu,
-  Coins,
-  ShieldCheck,
-  MapPin,
-  Phone,
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -75,7 +70,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
   };
 
   return (
-    <section className="relative w-full overflow-hidden pt-24 sm:pt-28 pb-10 sm:pb-14 bg-slate-900 flex flex-col justify-center">
+    <section className="relative w-full overflow-hidden pt-28 sm:pt-36 pb-12 sm:pb-16 bg-slate-950 flex flex-col justify-center min-h-[580px] sm:min-h-[640px]">
       {/* ================= Campus Photo Slider: 100% Bright & Crisp, ZERO DARK OPACITY OVERLAY ================= */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <AnimatePresence mode="wait">
@@ -90,7 +85,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           />
         </AnimatePresence>
 
-        {/* Carousel Slider Controls (Matching Reference Image 5) */}
+        {/* Carousel Slider Controls */}
         <button
           onClick={handlePrevImage}
           aria-label="Previous Campus Photo"
@@ -107,8 +102,8 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           <ChevronRight className="w-5 h-5" />
         </button>
 
-        {/* Carousel Slide Indicators with Orange Active Pill (Matching Reference Image 6) */}
-        <div className="absolute bottom-4 sm:bottom-5 right-4 sm:right-8 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20">
+        {/* Carousel Slide Indicators with Orange Active Pill */}
+        <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-8 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20">
           {heroImages.map((_, idx) => (
             <button
               key={idx}
@@ -124,19 +119,19 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
         </div>
       </div>
 
-      {/* Main Foreground Content: Clean Frosted Glass Card for High Contrast & Sleek Typography */}
+      {/* Main Foreground Content: Clean Typography Directly on Hero (Zero Bounding Box BG) */}
       <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 my-auto">
-        <div className="max-w-xl sm:max-w-2xl bg-slate-950/80 backdrop-blur-md p-6 sm:p-7 rounded-3xl border border-white/20 shadow-2xl text-white mb-6">
+        <div className="max-w-xl sm:max-w-2xl text-white">
           {/* Institutional Top Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-white/20 text-white text-xs font-semibold mb-3.5 shadow-2xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 backdrop-blur-md border border-white/30 text-white text-xs font-semibold mb-4 shadow-md">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-orange-400 font-extrabold uppercase tracking-wider text-[10px] sm:text-[11px]">
               {badgeText}
             </span>
           </div>
 
-          {/* Minimized Headline (User Request: Font Minimize) */}
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight font-display leading-[1.2] mb-3 drop-shadow-sm">
+          {/* Minimized Headline (Zero Box Background) */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight font-display leading-[1.15] mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             Catalyzing{" "}
             <span className="inline-block relative overflow-hidden align-baseline">
               <AnimatePresence mode="wait">
@@ -156,8 +151,8 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
             Into Scalable Reality.
           </h1>
 
-          {/* Editorial Narrative with Compact Sizing */}
-          <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-5 font-normal">
+          {/* Editorial Narrative with Drop-shadow */}
+          <p className="text-xs sm:text-sm md:text-base text-slate-100 leading-relaxed mb-6 font-medium max-w-xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
             {narrativeText || (
               <>
                 <strong className="text-white font-bold">MASTeR Incubation Foundation (MIF)</strong> empowers student creators, researchers, and regional founders with 6,000+ sq. ft. of prototyping labs, patent filing mentorship, and direct access to TANSEED and MSME seed grants.
@@ -166,14 +161,14 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           </p>
 
           {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex flex-wrap items-center gap-3 mb-10">
             <Link href="/about">
               <Button
                 size="sm"
-                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold text-xs px-5 h-10 rounded-xl shadow-md gap-1.5 transition-all"
+                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold text-xs sm:text-sm px-6 h-11 rounded-xl shadow-xl shadow-orange-600/30 gap-2 transition-all"
               >
                 <span>About Our Foundation</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
 
@@ -181,7 +176,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
               <Button
                 size="sm"
                 variant="outline"
-                className="border-white/30 bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-4 h-10 rounded-xl backdrop-blur-md transition-all shadow-2xs"
+                className="border-white/50 bg-slate-900/60 hover:bg-slate-900/90 text-white font-bold text-xs sm:text-sm px-5 h-11 rounded-xl backdrop-blur-md transition-all shadow-md"
               >
                 Apply For Pre-Incubation
               </Button>
@@ -191,7 +186,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
               <Button
                 size="sm"
                 variant="outline"
-                className="border-white/30 bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-4 h-10 rounded-xl backdrop-blur-md transition-all shadow-2xs"
+                className="border-white/50 bg-slate-900/60 hover:bg-slate-900/90 text-white font-bold text-xs sm:text-sm px-5 h-11 rounded-xl backdrop-blur-md transition-all shadow-md"
               >
                 4-Stage Pathway
               </Button>
@@ -202,102 +197,32 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
                 onClick={onOpenAI}
                 size="sm"
                 variant="ghost"
-                className="text-cyan-300 hover:text-white hover:bg-white/10 text-xs px-3 h-10 rounded-xl gap-1.5 backdrop-blur-xs hidden sm:flex border border-cyan-400/30"
+                className="text-cyan-300 hover:text-white hover:bg-slate-900/60 text-xs px-3.5 h-11 rounded-xl gap-1.5 backdrop-blur-md hidden sm:flex border border-cyan-400/40"
               >
-                <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
+                <Sparkles className="w-4 h-4 text-cyan-300" />
                 <span>AI Diagnostic</span>
               </Button>
             )}
           </div>
         </div>
 
-        {/* 3 Prototyping & Grant Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-4">
-          {/* Card 1: 6,000+ Sq. Ft. Prototyping Labs */}
-          <div className="p-3.5 sm:p-4 rounded-xl bg-slate-950/80 backdrop-blur-md border border-white/15 text-white shadow-lg hover:border-blue-400 transition-colors">
-            <div className="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center mb-2">
-              <Cpu className="w-4 h-4" />
-            </div>
-            <h3 className="text-sm sm:text-base font-bold text-white font-display mb-1">
-              6,000+ Sq. Ft. Prototyping Labs
-            </h3>
-            <p className="text-[11px] text-slate-300 leading-relaxed font-normal">
-              Equipped with additive 3D printers, digital storage oscilloscopes, RF telemetry benches, and plug-and-play co-working pods.
-            </p>
-          </div>
-
-          {/* Card 2: Seed Grants up to ₹25 Lakhs */}
-          <div className="p-3.5 sm:p-4 rounded-xl bg-slate-950/80 backdrop-blur-md border border-white/15 text-white shadow-lg hover:border-orange-400 transition-colors">
-            <div className="w-8 h-8 rounded-lg bg-orange-500/20 text-orange-400 flex items-center justify-center mb-2">
-              <Coins className="w-4 h-4" />
-            </div>
-            <h3 className="text-sm sm:text-base font-bold text-white font-display mb-1">
-              Seed Grants up to ₹25 Lakhs
-            </h3>
-            <p className="text-[11px] text-slate-300 leading-relaxed font-normal">
-              Direct application guidance for non-dilutive funding via StartupTN TANSEED (up to ₹10L) and MSME Idea Hackathons (up to ₹15L).
-            </p>
-          </div>
-
-          {/* Card 3: IPR & Patent Support */}
-          <div className="p-3.5 sm:p-4 rounded-xl bg-slate-950/80 backdrop-blur-md border border-white/15 text-white shadow-lg hover:border-emerald-400 transition-colors">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2">
-              <ShieldCheck className="w-4 h-4" />
-            </div>
-            <h3 className="text-sm sm:text-base font-bold text-white font-display mb-1">
-              IPR Support & Incubation Advisory
-            </h3>
-            <p className="text-[11px] text-slate-300 leading-relaxed font-normal">
-              Hands-on prior-art patent search, provisional patent drafting, and corporate registration under Startup India.
-            </p>
-          </div>
-        </div>
-
-        {/* Campus Location & Phone Strip */}
-        <div className="p-3 rounded-xl bg-slate-950/80 backdrop-blur-md border border-white/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 text-xs text-slate-300 mb-5">
-          <div className="flex items-center gap-2">
-            <MapPin className="w-3.5 h-3.5 text-orange-400 shrink-0" />
-            <span>
-              <strong className="text-white">Campus:</strong> Trichy–Chennai Trunk Road, Siruganur, Tiruchirappalli, TN – 621105
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <a
-              href="tel:+919361697702"
-              className="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors"
-            >
-              <Phone className="w-3 h-3 text-emerald-400" />
-              <span>+91 9361697702 (Manager)</span>
-            </a>
-            <span className="text-white/20 hidden sm:inline">|</span>
-            <a
-              href="tel:+916381945574"
-              className="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors hidden sm:flex"
-            >
-              <Phone className="w-3 h-3 text-emerald-400" />
-              <span>+91 6381945574 (Coordinator)</span>
-            </a>
-          </div>
-        </div>
-
         {/* Minimal Stats Strip at the bottom of the Hero (Matching Reference Image 1) */}
-        <div className="pt-3 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-3 text-slate-300">
+        <div className="pt-4 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-4 text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
           <div>
-            <span className="block text-lg sm:text-xl font-black text-white font-display">₹25L+</span>
-            <span className="text-slate-400 text-[11px] font-medium">Seed Grant Pathways</span>
+            <span className="block text-xl sm:text-2xl font-black text-white font-display">₹25L+</span>
+            <span className="text-slate-200 text-xs font-semibold">Seed Grant Pathways</span>
           </div>
           <div>
-            <span className="block text-lg sm:text-xl font-black text-white font-display">6,000+</span>
-            <span className="text-slate-400 text-[11px] font-medium">Sq. Ft. Prototyping Space</span>
+            <span className="block text-lg sm:text-2xl font-black text-white font-display">6,000+</span>
+            <span className="text-slate-200 text-xs font-semibold">Sq. Ft. Prototyping Space</span>
           </div>
           <div>
-            <span className="block text-lg sm:text-xl font-black text-white font-display">7 Priority</span>
-            <span className="text-slate-400 text-[11px] font-medium">Tech Focus Sectors</span>
+            <span className="block text-lg sm:text-2xl font-black text-white font-display">7 Priority</span>
+            <span className="text-slate-200 text-xs font-semibold">Tech Focus Sectors</span>
           </div>
           <div>
-            <span className="block text-lg sm:text-xl font-black text-white font-display">Section 8</span>
-            <span className="text-slate-400 text-[11px] font-medium">Not-For-Profit Trust</span>
+            <span className="block text-lg sm:text-2xl font-black text-white font-display">Section 8</span>
+            <span className="text-slate-200 text-xs font-semibold">Not-For-Profit Trust</span>
           </div>
         </div>
       </div>

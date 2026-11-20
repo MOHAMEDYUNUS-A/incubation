@@ -14,7 +14,7 @@ import {
   Handshake,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { RevealLeft, RevealRight, RevealUp } from "@/components/animations/LightAnimations";
+import { RevealLeft, RevealRight, FadeUp } from "@/components/animations/LightAnimations";
 
 export default function WelcomeSection() {
   return (
@@ -26,30 +26,66 @@ export default function WelcomeSection() {
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Accredited Institutional Logos Strip */}
-        <div className="flex justify-center mb-12">
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 px-6 py-2.5 rounded-full bg-slate-50 border border-slate-200/80 shadow-2xs">
-            <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider hidden sm:inline">
+        {/* ================= Accredited Institutional Logos Strip (Significantly Bigger & Prominent) ================= */}
+        <div className="flex justify-center mb-14">
+          <div className="w-full max-w-5xl px-6 sm:px-10 py-5 rounded-3xl bg-white border border-slate-200 shadow-lg flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-8">
+            <span className="text-xs sm:text-sm font-black text-[#0f2c59] uppercase tracking-wider whitespace-nowrap text-center md:text-left">
               Accredited Institutional Ecosystem:
             </span>
-            <div className="flex items-center gap-1.5" title="M.A.M. College of Engineering and Technology">
-              <img src="/logos/mamcet-logo.png" alt="MAMCET" className="h-6 sm:h-8 object-contain" />
-            </div>
-            <div className="h-3.5 w-px bg-slate-200" />
-            <div className="flex items-center gap-1.5" title="StartupTN Pre-Incubation Centre">
-              <img src="/logos/startuptn.jpg" alt="StartupTN" className="h-5 sm:h-7 object-contain rounded" />
-            </div>
-            <div className="h-3.5 w-px bg-slate-200" />
-            <div className="flex items-center gap-1.5" title="All India Council for Technical Education">
-              <img src="/logos/aicte-logo.png" alt="AICTE" className="h-5 sm:h-7 object-contain" />
-            </div>
-            <div className="h-3.5 w-px bg-slate-200" />
-            <div className="flex items-center gap-1.5" title="Institution's Innovation Council">
-              <img src="/logos/iic-logo.png" alt="IIC" className="h-5 sm:h-7 object-contain" />
-            </div>
-            <div className="h-3.5 w-px bg-slate-200" />
-            <div className="flex items-center gap-1.5" title="National Board of Accreditation">
-              <img src="/logos/nba-logo.png" alt="NBA" className="h-5 sm:h-7 object-contain" />
+
+            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-10">
+              {/* MAMCET Logo */}
+              <div className="flex items-center hover:scale-105 transition-transform" title="M.A.M. College of Engineering and Technology">
+                <img
+                  src="/logos/mamcet-logo.png"
+                  alt="MAMCET"
+                  className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-2xs"
+                />
+              </div>
+
+              <div className="h-8 w-px bg-slate-200 hidden sm:block" />
+
+              {/* StartupTN Logo */}
+              <div className="flex items-center hover:scale-105 transition-transform" title="StartupTN Pre-Incubation Centre">
+                <img
+                  src="/logos/startuptn.jpg"
+                  alt="StartupTN"
+                  className="h-9 sm:h-11 md:h-12 object-contain rounded-md drop-shadow-2xs"
+                />
+              </div>
+
+              <div className="h-8 w-px bg-slate-200 hidden sm:block" />
+
+              {/* AICTE Logo */}
+              <div className="flex items-center hover:scale-105 transition-transform" title="All India Council for Technical Education">
+                <img
+                  src="/logos/aicte-logo.png"
+                  alt="AICTE"
+                  className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-2xs"
+                />
+              </div>
+
+              <div className="h-8 w-px bg-slate-200 hidden sm:block" />
+
+              {/* IIC Logo */}
+              <div className="flex items-center hover:scale-105 transition-transform" title="Institution's Innovation Council">
+                <img
+                  src="/logos/iic-logo.png"
+                  alt="IIC"
+                  className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-2xs"
+                />
+              </div>
+
+              <div className="h-8 w-px bg-slate-200 hidden sm:block" />
+
+              {/* NBA Logo */}
+              <div className="flex items-center hover:scale-105 transition-transform" title="National Board of Accreditation">
+                <img
+                  src="/logos/nba-logo.png"
+                  alt="NBA"
+                  className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-2xs"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -104,8 +140,8 @@ export default function WelcomeSection() {
           </RevealRight>
         </div>
 
-        {/* ================= Empowering Innovation and Entrepreneurship (Matching Reference Image 3) ================= */}
-        <div className="max-w-6xl mx-auto pt-6 border-t border-slate-200">
+        {/* ================= Empowering Innovation and Entrepreneurship (3-Card Section) ================= */}
+        <div className="max-w-6xl mx-auto pt-8 border-t border-slate-200">
           <div className="text-center mb-10">
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0f2c59] font-display tracking-tight">
               &ldquo;Empowering Innovation and Entrepreneurship&rdquo;
@@ -114,8 +150,8 @@ export default function WelcomeSection() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Card 1: Incubate Technological Ideas */}
-            <RevealUp delay={0.1}>
-              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-100/90 border border-slate-300 text-slate-800 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between">
+            <FadeUp delay={0.1}>
+              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 shadow-xs hover:shadow-md hover:border-orange-300 transition-all flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2.5 mb-3 text-[#0f2c59]">
                     <Lightbulb className="w-5 h-5 text-orange-600 shrink-0" />
@@ -126,11 +162,11 @@ export default function WelcomeSection() {
                   </p>
                 </div>
               </div>
-            </RevealUp>
+            </FadeUp>
 
             {/* Card 2: Research And Development */}
-            <RevealUp delay={0.2}>
-              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-100/90 border border-slate-300 text-slate-800 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between">
+            <FadeUp delay={0.2}>
+              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 shadow-xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2.5 mb-3 text-[#0f2c59]">
                     <FlaskConical className="w-5 h-5 text-blue-600 shrink-0" />
@@ -141,11 +177,11 @@ export default function WelcomeSection() {
                   </p>
                 </div>
               </div>
-            </RevealUp>
+            </FadeUp>
 
             {/* Card 3: Guide And Support */}
-            <RevealUp delay={0.3}>
-              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-100/90 border border-slate-300 text-slate-800 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between">
+            <FadeUp delay={0.3}>
+              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 shadow-xs hover:shadow-md hover:border-indigo-300 transition-all flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2.5 mb-3 text-[#0f2c59]">
                     <Handshake className="w-5 h-5 text-indigo-600 shrink-0" />
@@ -156,7 +192,7 @@ export default function WelcomeSection() {
                   </p>
                 </div>
               </div>
-            </RevealUp>
+            </FadeUp>
           </div>
 
           {/* Clean Action CTAs */}

@@ -16,106 +16,90 @@ import {
 import { Button } from "@/components/ui/button";
 import { RevealLeft, RevealRight, FadeUp } from "@/components/animations/LightAnimations";
 
-interface MinimalFocusTrack {
+interface FocusSector {
   id: string;
   number: string;
   title: string;
-  focusKey: string;
+  image: string;
+  tag: string;
   icon: React.ElementType;
-  color: string;
-  bgColor: string;
-  borderColor: string;
 }
 
-const FOCUS_TRACKS: MinimalFocusTrack[] = [
+const SECTORS: FocusSector[] = [
   {
     id: "ai-ds",
     number: "01",
-    title: "Artificial Intelligence & Edge Compute",
-    focusKey: "Computer Vision · Edge AI · NLP Models",
+    title: "AI & Edge Compute",
+    image: "/images/incubation/img-23.jpeg",
+    tag: "Computer Vision · Edge AI · NLP",
     icon: BrainCircuit,
-    color: "text-blue-600",
-    bgColor: "bg-blue-50",
-    borderColor: "hover:border-blue-300",
   },
   {
     id: "iot-embedded",
     number: "02",
-    title: "IoT, Sensors & Telemetry Hardware",
-    focusKey: "LoRaWAN Nodes · Custom PCBs · Embedded RTOS",
+    title: "IoT & Telemetry Hardware",
+    image: "/images/incubation/img-54.jpeg",
+    tag: "LoRaWAN Nodes · Custom PCBs · Sensors",
     icon: Radio,
-    color: "text-indigo-600",
-    bgColor: "bg-indigo-50",
-    borderColor: "hover:border-indigo-300",
   },
   {
     id: "clean-energy",
     number: "03",
     title: "Renewable Energy & CleanTech",
-    focusKey: "Solar PV Fault AI · Microgrids · Battery Tech",
+    image: "/images/incubation/img-21.jpeg",
+    tag: "Solar PV Fault AI · Microgrids · Battery",
     icon: Zap,
-    color: "text-amber-600",
-    bgColor: "bg-amber-50",
-    borderColor: "hover:border-amber-300",
   },
   {
     id: "advanced-mfg",
     number: "04",
-    title: "Advanced Manufacturing & Robotics",
-    focusKey: "3D Rapid Prototyping · Drones · CNC Tooling",
+    title: "Robotics & Advanced Mfg",
+    image: "/images/incubation/image43.jpeg",
+    tag: "3D Prototyping · Drones · CNC Tooling",
     icon: Cpu,
-    color: "text-purple-600",
-    bgColor: "bg-purple-50",
-    borderColor: "hover:border-purple-300",
   },
   {
     id: "healthcare",
     number: "05",
-    title: "Healthcare Devices & Telecare",
-    focusKey: "Optical Biomarkers · Rural Diagnostics · MedTech",
+    title: "Healthcare & MedTech",
+    image: "/images/incubation/img-32.jpeg",
+    tag: "Optical Biomarkers · Rural Telecare",
     icon: HeartPulse,
-    color: "text-rose-600",
-    bgColor: "bg-rose-50",
-    borderColor: "hover:border-rose-300",
   },
   {
     id: "sustainability",
     number: "06",
-    title: "Sustainable AgriTech & Bio-Materials",
-    focusKey: "Soil Hydration Telemetry · Bio-Filtration · CleanWater",
+    title: "AgriTech & Bio-Materials",
+    image: "/images/incubation/img-33.jpeg",
+    tag: "Soil Telemetry · Bio-Filters · Water",
     icon: Building2,
-    color: "text-emerald-600",
-    bgColor: "bg-emerald-50",
-    borderColor: "hover:border-emerald-300",
   },
   {
     id: "digital-saas",
     number: "07",
-    title: "Digital Software & Cloud Platforms",
-    focusKey: "Enterprise Cloud SaaS · CyberSecurity · FinTech",
+    title: "Cloud SaaS & CyberSecurity",
+    image: "/images/incubation/incubation-workspace.jpeg",
+    tag: "Enterprise Cloud · FinTech · Security",
     icon: Code2,
-    color: "text-teal-600",
-    bgColor: "bg-teal-50",
-    borderColor: "hover:border-teal-300",
   },
 ];
 
 export default function FocusAreas() {
   return (
-    <section id="focus-areas" className="py-16 sm:py-20 bg-slate-50 relative border-t border-slate-200">
+    <section id="focus-areas" className="py-16 sm:py-24 bg-slate-50 relative border-t border-slate-200">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Minimal, Sleek Header (Zero Clutter) */}
+        {/* Minimal Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
           <RevealLeft>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider mb-2">
               <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-              <span>Core Thrust Areas</span>
+              <span>Technology Thrust Sectors</span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 font-display tracking-tight">
               7 Priority Focus Areas
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-1 font-normal">
-              Specialized research labs and seed grant tracks available at MAMCET campus.
+              Specialized research bays, prototyping equipment, and mentorship tracks at MAMCET.
             </p>
           </RevealLeft>
 
@@ -125,45 +109,58 @@ export default function FocusAreas() {
                 variant="outline"
                 className="border-slate-300 text-slate-700 hover:text-slate-900 text-xs font-bold h-9 px-4 gap-1.5"
               >
-                <span>Full Domain Details</span>
+                <span>View Full Roadmaps</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Button>
             </Link>
           </RevealRight>
         </div>
 
-        {/* Minimal Sector Tiles Grid (Redesigned: Clean, Uncluttered & Modern) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-          {FOCUS_TRACKS.map((track, idx) => {
-            const Icon = track.icon;
+        {/* 7 Image Cards with Minimal Content (User Request: Image needed + less content) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {SECTORS.map((sector, idx) => {
+            const Icon = sector.icon;
             return (
-              <FadeUp key={track.id} delay={idx * 0.05}>
-                <div
-                  className={`h-full p-5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-md ${track.borderColor} transition-all duration-300 flex flex-col justify-between group`}
-                >
+              <FadeUp key={sector.id} delay={idx * 0.05}>
+                <div className="group h-full rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-xs hover:shadow-xl hover:border-blue-400 transition-all duration-300 flex flex-col justify-between">
                   <div>
-                    {/* Top Icon and Track Number */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div
-                        className={`w-11 h-11 rounded-xl ${track.bgColor} ${track.color} flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform`}
-                      >
-                        <Icon className="w-5 h-5" />
+                    {/* Visual Photo Header */}
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
+                      <img
+                        src={sector.image}
+                        alt={sector.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+
+                      {/* Floating Icon Pill */}
+                      <div className="absolute top-2.5 left-2.5">
+                        <div className="w-8 h-8 rounded-lg bg-white/95 backdrop-blur-md text-[#0f2c59] flex items-center justify-center shadow-md">
+                          <Icon className="w-4 h-4 text-orange-600" />
+                        </div>
                       </div>
-                      <span className="text-xs font-mono font-bold text-slate-400">
-                        {track.number}
-                      </span>
+
+                      {/* Track Number */}
+                      <div className="absolute top-2.5 right-2.5">
+                        <span className="px-2 py-0.5 rounded-md bg-slate-950/70 backdrop-blur-md text-white text-[10px] font-mono font-bold">
+                          {sector.number}
+                        </span>
+                      </div>
                     </div>
 
-                    {/* Sector Title */}
-                    <h3 className="text-base font-bold text-slate-900 font-display mb-2 group-hover:text-blue-700 transition-colors">
-                      {track.title}
-                    </h3>
+                    {/* Minimal Content: Title Only */}
+                    <div className="p-4 pb-2">
+                      <h3 className="text-base font-bold text-slate-900 font-display group-hover:text-blue-700 transition-colors">
+                        {sector.title}
+                      </h3>
+                    </div>
                   </div>
 
-                  {/* Concise Key Focus */}
-                  <div className="pt-3 border-t border-slate-100">
-                    <p className="text-[11px] font-medium text-slate-500 leading-snug">
-                      {track.focusKey}
+                  {/* Minimal 1-Line Tag */}
+                  <div className="p-4 pt-0">
+                    <p className="text-[11px] font-medium text-slate-500 pt-2 border-t border-slate-100">
+                      {sector.tag}
                     </p>
                   </div>
                 </div>
@@ -171,25 +168,25 @@ export default function FocusAreas() {
             );
           })}
 
-          {/* 8th Card: Apply for Incubation in Any Track */}
+          {/* 8th Tile: Pitch Your Innovation */}
           <FadeUp delay={0.35}>
-            <div className="h-full p-5 rounded-2xl bg-gradient-to-br from-[#0f2c59] to-[#0a182e] text-white shadow-md flex flex-col justify-between border border-blue-900/60">
+            <div className="h-full rounded-2xl bg-gradient-to-br from-[#0f2c59] to-[#071324] text-white p-5 flex flex-col justify-between shadow-md border border-blue-900/60 group">
               <div>
                 <span className="text-[10px] uppercase font-mono tracking-widest text-orange-400 font-bold block mb-2">
-                  Open Track
+                  Track 08 · Open Call
                 </span>
-                <h3 className="text-base font-bold font-display text-white mb-2">
-                  Have an Innovation in Another Field?
+                <h3 className="text-base sm:text-lg font-bold font-display text-white mb-2">
+                  Building Another Deep-Tech Prototype?
                 </h3>
-                <p className="text-[11px] text-slate-300 leading-relaxed font-normal">
-                  MIF also welcomes cross-disciplinary engineering and patentable prototypes.
+                <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                  MIF accepts interdisciplinary innovations spanning mechatronics, biomedical, and aerospace.
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-white/10 mt-3">
+              <div className="pt-4 border-t border-white/10 mt-4">
                 <Link href="/apply">
                   <span className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-400 hover:text-orange-300 transition-colors">
-                    <span>Submit Your Pitch</span>
+                    <span>Submit Innovation Pitch</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </Link>
