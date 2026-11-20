@@ -28,7 +28,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-2xl bg-white p-1.5 flex items-center justify-center border border-white/20 shadow-md">
                 <img
-                  src="/logos/master-incubation-logo.png"
+                  src="/logos/official-mif-logo.png"
                   alt="MASTeR Incubation Foundation Logo"
                   className="w-full h-full object-contain"
                 />

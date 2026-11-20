@@ -178,14 +178,17 @@
 
 .animate-float {
   animation: float-gentle 5.5s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-float-delayed {
   animation: float-gentle 6.5s ease-in-out 1.2s infinite;
+  will-change: transform;
 }
 
 .animate-float-reverse {
   animation: float-reverse 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 

@@ -26,64 +26,67 @@ export default function WelcomeSection() {
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* ================= Accredited Institutional Logos Strip (Significantly Bigger & Prominent) ================= */}
+        {/* ================= Accredited Institutional Logos Strip (Single Balanced Row, Prominent & Never Wrapping) ================= */}
         <div className="flex justify-center mb-14">
-          <div className="w-full max-w-5xl px-6 sm:px-10 py-5 rounded-3xl bg-white border border-slate-200 shadow-lg flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-8">
-            <span className="text-xs sm:text-sm font-black text-[#0f2c59] uppercase tracking-wider whitespace-nowrap text-center md:text-left">
-              Accredited Institutional Ecosystem:
-            </span>
+          <div className="w-full max-w-6xl px-6 sm:px-8 py-4 sm:py-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6">
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[11px] sm:text-xs font-black text-[#0f2c59] uppercase tracking-wider whitespace-nowrap">
+                Accredited Institutional Ecosystem:
+              </span>
+            </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-10">
+            <div className="flex items-center justify-between sm:justify-end gap-4 sm:gap-6 md:gap-8 overflow-x-auto w-full lg:w-auto py-1 scrollbar-none">
               {/* MAMCET Logo */}
-              <div className="flex items-center hover:scale-105 transition-transform" title="M.A.M. College of Engineering and Technology">
+              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="M.A.M. College of Engineering and Technology">
                 <img
                   src="/logos/mamcet-logo.png"
                   alt="MAMCET"
-                  className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-2xs"
+                  className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-2xs"
                 />
               </div>
 
-              <div className="h-8 w-px bg-slate-200 hidden sm:block" />
+              <div className="h-7 w-px bg-slate-200 shrink-0 hidden sm:block" />
 
               {/* StartupTN Logo */}
-              <div className="flex items-center hover:scale-105 transition-transform" title="StartupTN Pre-Incubation Centre">
+              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="StartupTN Pre-Incubation Centre">
                 <img
                   src="/logos/startuptn.jpg"
                   alt="StartupTN"
-                  className="h-9 sm:h-11 md:h-12 object-contain rounded-md drop-shadow-2xs"
+                  className="h-9 sm:h-11 md:h-12 w-auto object-contain rounded drop-shadow-2xs"
                 />
               </div>
 
-              <div className="h-8 w-px bg-slate-200 hidden sm:block" />
+              <div className="h-7 w-px bg-slate-200 shrink-0 hidden sm:block" />
 
               {/* AICTE Logo */}
-              <div className="flex items-center hover:scale-105 transition-transform" title="All India Council for Technical Education">
+              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="All India Council for Technical Education">
                 <img
                   src="/logos/aicte-logo.png"
                   alt="AICTE"
-                  className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-2xs"
+                  className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-2xs"
                 />
               </div>
 
-              <div className="h-8 w-px bg-slate-200 hidden sm:block" />
+              <div className="h-7 w-px bg-slate-200 shrink-0 hidden sm:block" />
 
               {/* IIC Logo */}
-              <div className="flex items-center hover:scale-105 transition-transform" title="Institution's Innovation Council">
+              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="Institution's Innovation Council">
                 <img
                   src="/logos/iic-logo.png"
                   alt="IIC"
-                  className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-2xs"
+                  className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-2xs"
                 />
               </div>
 
-              <div className="h-8 w-px bg-slate-200 hidden sm:block" />
+              <div className="h-7 w-px bg-slate-200 shrink-0 hidden sm:block" />
 
               {/* NBA Logo */}
-              <div className="flex items-center hover:scale-105 transition-transform" title="National Board of Accreditation">
+              <div className="shrink-0 flex items-center hover:scale-105 transition-transform" title="National Board of Accreditation">
                 <img
                   src="/logos/nba-logo.png"
                   alt="NBA"
-                  className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-2xs"
+                  className="h-10 sm:h-12 md:h-14 w-auto object-contain drop-shadow-2xs"
                 />
               </div>
             </div>

@@ -3,13 +3,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Sparkles,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useSiteContent } from "@/context/ContentContext";
 
 const ROTATING_TEXTS = [
@@ -85,23 +78,6 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           />
         </AnimatePresence>
 
-        {/* Carousel Slider Controls */}
-        <button
-          onClick={handlePrevImage}
-          aria-label="Previous Campus Photo"
-          className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/50 hover:bg-black/80 text-white backdrop-blur-md border border-white/30 flex items-center justify-center transition-all duration-200 shadow-lg hover:scale-110"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-
-        <button
-          onClick={handleNextImage}
-          aria-label="Next Campus Photo"
-          className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/50 hover:bg-black/80 text-white backdrop-blur-md border border-white/30 flex items-center justify-center transition-all duration-200 shadow-lg hover:scale-110"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </button>
-
         {/* Carousel Slide Indicators with Orange Active Pill */}
         <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-8 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20">
           {heroImages.map((_, idx) => (
@@ -119,19 +95,29 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
         </div>
       </div>
 
-      {/* Main Foreground Content: Clean Typography Directly on Hero (Zero Bounding Box BG) */}
+      {/* Main Foreground Content: Clean Typography Directly on Hero with Staggered Transitions */}
       <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 my-auto">
         <div className="max-w-xl sm:max-w-2xl text-white">
-          {/* Institutional Top Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 backdrop-blur-md border border-white/30 text-white text-xs font-semibold mb-4 shadow-md">
+          {/* Institutional Top Badge with Smooth Entrance Transition */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.1, ease: "easeOut" }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 backdrop-blur-md border border-white/30 text-white text-xs font-semibold mb-4 shadow-md"
+          >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-orange-400 font-extrabold uppercase tracking-wider text-[10px] sm:text-[11px]">
               {badgeText}
             </span>
-          </div>
+          </motion.div>
 
-          {/* Minimized Headline (Zero Box Background) */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight font-display leading-[1.15] mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+          {/* Minimized Headline with Dynamic Text Rotation & Transition */}
+          <motion.h1
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight font-display leading-[1.15] mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+          >
             Catalyzing{" "}
             <span className="inline-block relative overflow-hidden align-baseline">
               <AnimatePresence mode="wait">
@@ -149,65 +135,71 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
             </span>
             <br />
             Into Scalable Reality.
-          </h1>
+          </motion.h1>
 
-          {/* Editorial Narrative with Drop-shadow */}
-          <p className="text-xs sm:text-sm md:text-base text-slate-100 leading-relaxed mb-6 font-medium max-w-xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+          {/* Editorial Narrative with Drop-shadow & Transition */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+            className="text-xs sm:text-sm md:text-base text-slate-100 leading-relaxed mb-6 font-medium max-w-xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
+          >
             {narrativeText || (
               <>
                 <strong className="text-white font-bold">MASTeR Incubation Foundation (MIF)</strong> empowers student creators, researchers, and regional founders with 6,000+ sq. ft. of prototyping labs, patent filing mentorship, and direct access to TANSEED and MSME seed grants.
               </>
             )}
-          </p>
+          </motion.p>
 
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-3 mb-10">
+          {/* Action CTAs (High Contrast, Enhanced Hover UI, Zero SVGs) */}
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.4, ease: "easeOut" }}
+            className="flex flex-wrap items-center gap-3 mb-10"
+          >
             <Link href="/about">
-              <Button
-                size="sm"
-                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold text-xs sm:text-sm px-6 h-11 rounded-xl shadow-xl shadow-orange-600/30 gap-2 transition-all"
+              <button
+                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-black text-xs sm:text-sm px-6 h-11 rounded-xl shadow-xl shadow-orange-600/35 hover:shadow-orange-600/50 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 border border-orange-400/40"
               >
-                <span>About Our Foundation</span>
-                <ArrowRight className="w-4 h-4" />
-              </Button>
+                About Our Foundation
+              </button>
             </Link>
 
             <Link href="/apply">
-              <Button
-                size="sm"
-                variant="outline"
-                className="border-white/50 bg-slate-900/60 hover:bg-slate-900/90 text-white font-bold text-xs sm:text-sm px-5 h-11 rounded-xl backdrop-blur-md transition-all shadow-md"
+              <button
+                className="bg-white hover:bg-slate-100 text-[#0f2c59] hover:text-[#ea580c] font-black text-xs sm:text-sm px-6 h-11 rounded-xl shadow-xl hover:shadow-2xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 border-2 border-white"
               >
                 Apply For Pre-Incubation
-              </Button>
+              </button>
             </Link>
 
             <Link href="/programs">
-              <Button
-                size="sm"
-                variant="outline"
-                className="border-white/50 bg-slate-900/60 hover:bg-slate-900/90 text-white font-bold text-xs sm:text-sm px-5 h-11 rounded-xl backdrop-blur-md transition-all shadow-md"
+              <button
+                className="bg-slate-900/80 hover:bg-slate-900 text-white hover:text-white font-black text-xs sm:text-sm px-5 h-11 rounded-xl border-2 border-white/80 hover:border-white backdrop-blur-md shadow-lg hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
               >
                 4-Stage Pathway
-              </Button>
+              </button>
             </Link>
 
             {onOpenAI && (
-              <Button
+              <button
                 onClick={onOpenAI}
-                size="sm"
-                variant="ghost"
-                className="text-cyan-300 hover:text-white hover:bg-slate-900/60 text-xs px-3.5 h-11 rounded-xl gap-1.5 backdrop-blur-md hidden sm:flex border border-cyan-400/40"
+                className="bg-slate-900/80 hover:bg-slate-900 text-cyan-300 hover:text-cyan-200 font-bold text-xs px-4 h-11 rounded-xl border border-cyan-400/50 backdrop-blur-md shadow-md hidden sm:flex items-center transition-all duration-200 hover:scale-[1.03]"
               >
-                <Sparkles className="w-4 h-4 text-cyan-300" />
-                <span>AI Diagnostic</span>
-              </Button>
+                AI Diagnostic
+              </button>
             )}
-          </div>
+          </motion.div>
         </div>
 
-        {/* Minimal Stats Strip at the bottom of the Hero (Matching Reference Image 1) */}
-        <div className="pt-4 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-4 text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+        {/* Minimal Stats Strip at the bottom of the Hero with Transition */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+          className="pt-4 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-4 text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]"
+        >
           <div>
             <span className="block text-xl sm:text-2xl font-black text-white font-display">₹25L+</span>
             <span className="text-slate-200 text-xs font-semibold">Seed Grant Pathways</span>
@@ -224,7 +216,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
             <span className="block text-lg sm:text-2xl font-black text-white font-display">Section 8</span>
             <span className="text-slate-200 text-xs font-semibold">Not-For-Profit Trust</span>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

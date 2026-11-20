@@ -121,7 +121,7 @@ export default function Navbar() {
             <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 group shrink-0">
               <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
                 <img
-                  src="/logos/master-incubation-logo-transparent.png"
+                  src="/logos/official-mif-logo.png"
                   alt="MASTeR Incubation Foundation Logo"
                   className="w-full h-full object-contain drop-shadow-xs"
                 />
