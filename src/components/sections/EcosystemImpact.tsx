@@ -96,37 +96,37 @@ const RUNNING_IMPACT_METRICS: ImpactItem[] = [
 
 export default function EcosystemImpact() {
   return (
-    <section className="py-20 sm:py-28 bg-slate-50 relative border-b border-slate-200 overflow-hidden">
-      {/* Background Video with Whispering-Soft Opacity & Frosted Overlay */}
+    <section className="py-20 sm:py-28 bg-slate-100/70 relative border-b border-slate-200 overflow-hidden">
+      {/* Background Video with Clear Cinematic Visibility */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-[0.06] sm:opacity-[0.08]"
+          className="w-full h-full object-cover opacity-65 sm:opacity-75"
         >
           <source src="/videos/impact-bg-video.mp4" type="video/mp4" />
         </video>
-        {/* Soft light gradient overlay to guarantee crisp light-theme contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-transparent to-white/90 pointer-events-none" />
+        {/* Soft edge gradients so video content remains vividly visible while smoothly connecting sections */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/60 via-transparent to-slate-50/75 pointer-events-none" />
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <FadeUp className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200/90 text-[#ea580c] text-xs font-mono font-bold tracking-wider uppercase mb-3 shadow-2xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-orange-200 text-[#ea580c] text-xs font-mono font-bold tracking-wider uppercase mb-3 shadow-xs">
             <span>MEASURABLE TRANSLATION FOOTPRINT</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight drop-shadow-sm">
             MIF Ecosystem Impact
           </h2>
-          <p className="text-base sm:text-lg text-slate-700 mt-3 font-medium">
+          <p className="text-base sm:text-lg text-slate-800 mt-3 font-semibold drop-shadow-xs max-w-2xl mx-auto">
             Transforming academic research into measurable entrepreneurial capacity across Central Tamil Nadu.
           </p>
         </FadeUp>
 
-        {/* Constellation Metrics Grid with Dynamic Running Counters on Scroll (Frosted Glassmorphism) */}
+        {/* Constellation Metrics Grid with Dynamic Running Counters on Scroll (High-Contrast White Cards) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
           {RUNNING_IMPACT_METRICS.map((m, idx) => {
             const Icon = m.icon;
@@ -134,7 +134,7 @@ export default function EcosystemImpact() {
             return (
               <Wrapper key={m.label} delay={(idx % 4) * 0.08}>
                 <XYZCard depth={8}>
-                  <div className="p-7 sm:p-8 rounded-3xl bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_10px_30px_rgba(15,44,89,0.06)] hover:shadow-2xl hover:border-blue-400 hover:bg-white hover:-translate-y-1 transition-all duration-300 relative group flex flex-col justify-between h-full">
+                  <div className="p-7 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-md hover:shadow-2xl hover:border-orange-400 hover:bg-white hover:-translate-y-1.5 transition-all duration-300 relative group flex flex-col justify-between h-full">
                     {/* Top Corner Orange Accent Notch */}
                     <div className="absolute top-0 right-0 w-8 h-8 overflow-hidden rounded-tr-3xl pointer-events-none">
                       <div className="absolute transform rotate-45 bg-[#ea580c] w-12 h-2.5 -top-1 -right-4" />
