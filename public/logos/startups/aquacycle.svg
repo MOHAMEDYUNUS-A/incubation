@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="aquaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#0e7490" />
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="24" fill="#ecfeff"/>
+  <rect x="2" y="2" width="96" height="96" rx="22" fill="none" stroke="#a5f3fc" stroke-width="2"/>
+  <!-- Water Droplet with Bio Recycling Cycle -->
+  <path d="M50 20 C50 20 28 48 28 64 C28 76 38 84 50 84 C62 84 72 76 72 64 C72 48 50 20 50 20 Z" fill="url(#aquaGrad)"/>
+  <path d="M50 42 C44 42 40 48 40 54" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <circle cx="58" cy="62" r="5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="46" cy="70" r="3" fill="#ffffff" opacity="0.6"/>
+</svg>

@@ -5,7 +5,6 @@ import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/sections/Footer";
 import SmoothScroll from "@/components/animations/SmoothScroll";
 import FloatingAIButton from "@/components/ai/FloatingAIButton";
-import SplashScreen from "@/components/ui/SplashScreen";
 import GsapScrollProvider from "@/components/animations/GsapScrollProvider";
 import { ContentProvider } from "@/context/ContentContext";
 
@@ -68,7 +67,6 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
       <body className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-blue-100 selection:text-blue-900">
         <ContentProvider>
-          <SplashScreen />
           <GsapScrollProvider>
             <SmoothScroll>
               <Navbar />

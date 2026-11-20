@@ -35,6 +35,12 @@ export interface StartupShowcaseItem {
   cohort: string;
   tags: string[];
   impactMetric: string;
+  logo?: string;
+  website?: string;
+  linkedin?: string;
+  email?: string;
+  phone?: string;
+  funding?: string;
 }
 
 export interface MentorProfileItem {
@@ -299,10 +305,16 @@ export const STARTUP_SHOWCASE: StartupShowcaseItem[] = [
     category: "ELECTRONICS_IOT_SMART",
     stage: "PROTOTYPE_MVP",
     oneLiner: "Solar-powered LoRa soil hydration and macronutrient telemetry nodes for delta farmers.",
-    founders: "Arun K. (ECE Dept)",
+    founders: "Arun K. & ECE Team",
     cohort: "Cohort 2026",
     tags: ["IoT", "Agriculture", "Hardware"],
     impactMetric: "8 Field Pilots in Trichy District",
+    logo: "/logos/startups/agrosens.svg",
+    website: "https://agrosens.example.com",
+    linkedin: "https://linkedin.com/company/agrosens-telemetry",
+    email: "contact@agrosens.example.com",
+    phone: "+91 9842100001",
+    funding: "TANSEED ₹10L Shortlisted",
   },
   {
     id: "s2",
@@ -314,6 +326,12 @@ export const STARTUP_SHOWCASE: StartupShowcaseItem[] = [
     cohort: "Cohort 2026",
     tags: ["CleanTech", "Edge AI", "Solar"],
     impactMetric: "14% Energy Yield Improvement",
+    logo: "/logos/startups/thermagrid.svg",
+    website: "https://thermagrid.example.com",
+    linkedin: "https://linkedin.com/company/thermagrid",
+    email: "sivaram@thermagrid.example.com",
+    phone: "+91 9842100002",
+    funding: "MSME ₹15L Applicant",
   },
   {
     id: "s3",
@@ -325,6 +343,12 @@ export const STARTUP_SHOWCASE: StartupShowcaseItem[] = [
     cohort: "Cohort 2025",
     tags: ["Drones", "Manufacturing", "Robotics"],
     impactMetric: "2 MoUs Signed with Regional Utilities",
+    logo: "/logos/startups/aeroinspect.svg",
+    website: "https://aeroinspect.example.com",
+    linkedin: "https://linkedin.com/company/aeroinspect",
+    email: "info@aeroinspect.example.com",
+    phone: "+91 9842100003",
+    funding: "EDII-TN IVP Voucher B (₹5L)",
   },
   {
     id: "s4",
@@ -336,6 +360,12 @@ export const STARTUP_SHOWCASE: StartupShowcaseItem[] = [
     cohort: "Cohort 2026",
     tags: ["Sustainability", "CleanWater", "BioMaterials"],
     impactMetric: "92% Turbidity Reduction Achieved",
+    logo: "/logos/startups/aquacycle.svg",
+    website: "https://aquacycle.example.com",
+    linkedin: "https://linkedin.com/company/aquacycle",
+    email: "kavitha@aquacycle.example.com",
+    phone: "+91 9842100004",
+    funding: "Seed Facilitation",
   },
   {
     id: "s5",
@@ -347,6 +377,29 @@ export const STARTUP_SHOWCASE: StartupShowcaseItem[] = [
     cohort: "Cohort 2026",
     tags: ["Healthcare", "AI", "Sensors"],
     impactMetric: "Provisional Patent in Progress",
+    logo: "/logos/startups/medpulse.svg",
+    website: "https://medpulse.example.com",
+    linkedin: "https://linkedin.com/company/medpulse",
+    email: "naveen@medpulse.example.com",
+    phone: "+91 9842100005",
+    funding: "Provisional Patent Supported",
+  },
+  {
+    id: "s6",
+    name: "RoboAgri Telemetry",
+    category: "ELECTRONICS_IOT_SMART",
+    stage: "EARLY_TRACTION",
+    oneLiner: "Autonomous irrigation rover equipped with multispectral weed identification.",
+    founders: "Karthik R. & MAMCET Robotics Club",
+    cohort: "Cohort 2026",
+    tags: ["Robotics", "IoT", "AgriTech"],
+    impactMetric: "12 Acres Tested",
+    logo: "/logos/startups/roboagri.svg",
+    website: "https://roboagri.example.com",
+    linkedin: "https://linkedin.com/company/roboagri",
+    email: "karthik@roboagri.example.com",
+    phone: "+91 98421 99999",
+    funding: "TANSEED ₹10L Recommended",
   },
 ];
 

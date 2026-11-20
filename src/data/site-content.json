@@ -155,9 +155,10 @@
       "cohort": "Cohort 2026",
       "linkedin": "https://linkedin.com/company/roboagri",
       "oneLiner": "Autonomous irrigation rover equipped with multispectral weed identification.",
-      "funding": "TANSEED ?10L Recommended",
+      "funding": "TANSEED ₹10L Recommended",
       "phone": "+91 98421 99999",
-      "email": "karthik@roboagri.example.com"
+      "email": "karthik@roboagri.example.com",
+      "logo": "/logos/startups/roboagri.svg"
     },
     {
       "id": "s1",
@@ -178,7 +179,7 @@
         "Agriculture",
         "LoRaWAN"
       ],
-      "logo": ""
+      "logo": "/logos/startups/agrosens.svg"
     },
     {
       "id": "s2",
@@ -199,7 +200,7 @@
         "Edge AI",
         "Solar"
       ],
-      "logo": ""
+      "logo": "/logos/startups/thermagrid.svg"
     },
     {
       "id": "s3",
@@ -220,7 +221,7 @@
         "Robotics",
         "Inspection"
       ],
-      "logo": ""
+      "logo": "/logos/startups/aeroinspect.svg"
     },
     {
       "id": "s4",
@@ -241,7 +242,7 @@
         "Sustainability",
         "BioMaterials"
       ],
-      "logo": ""
+      "logo": "/logos/startups/aquacycle.svg"
     },
     {
       "id": "s5",
@@ -262,7 +263,7 @@
         "Sensors",
         "Telemetry"
       ],
-      "logo": ""
+      "logo": "/logos/startups/medpulse.svg"
     }
   ],
   "events": [
