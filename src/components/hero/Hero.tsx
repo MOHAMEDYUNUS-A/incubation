@@ -31,8 +31,6 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
     content?.hero?.rotatingTexts && content.hero.rotatingTexts.length > 0
       ? content.hero.rotatingTexts
       : ROTATING_TEXTS;
-  const badgeText =
-    content?.hero?.badge || "Official Technology Business Incubator · Section 8 Non-Profit";
   const narrativeText = content?.hero?.narrative;
 
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -46,82 +44,51 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
     return () => clearInterval(textInterval);
   }, [rotatingTexts.length]);
 
-  // Background transition every 6 seconds
+  // Seamless continuous background transition every 6.5 seconds
   useEffect(() => {
     const imageInterval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 6000);
+    }, 6500);
     return () => clearInterval(imageInterval);
   }, [heroImages.length]);
 
   return (
     <section className="relative w-full overflow-hidden pt-32 sm:pt-40 pb-20 sm:pb-28 bg-slate-950 flex flex-col justify-center min-h-[620px] sm:min-h-[700px]">
-      {/* ================= Campus Photo Slider with Dynamic Zoom-In / Zoom-Out Ken Burns Transitions ================= */}
+      {/* ================= Campus Photo Slider with Continuous Free Ken Burns Zoom Transitions (Never Flashes Black) ================= */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentImageIndex}
-            initial={{
-              opacity: 0,
-              scale: currentImageIndex % 2 === 0 ? 1.0 : 1.15,
-            }}
-            animate={{
-              opacity: 1,
-              scale: currentImageIndex % 2 === 0 ? 1.14 : 1.0,
-            }}
-            exit={{
-              opacity: 0,
-              scale: currentImageIndex % 2 === 0 ? 1.18 : 0.96,
-            }}
-            transition={{
-              duration: 6.2,
-              ease: "easeOut",
-              opacity: { duration: 0.9, ease: "easeInOut" },
-            }}
-            className="absolute inset-0 bg-cover bg-center brightness-100 contrast-100 will-change-transform"
-            style={{ backgroundImage: `url(${heroImages[currentImageIndex]})` }}
-          />
-        </AnimatePresence>
-
-        {/* Carousel Slide Indicators with Orange Active Pill */}
-        <div className="absolute bottom-6 right-6 sm:right-10 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20">
-          {heroImages.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentImageIndex(idx)}
-              aria-label={`Go to slide ${idx + 1}`}
-              className={`transition-all duration-300 ${
-                currentImageIndex === idx
-                  ? "w-7 h-2 rounded-full bg-[#ea580c]"
-                  : "w-2 h-2 rounded-full bg-white/60 hover:bg-white/90"
-              }`}
+        {heroImages.map((img, idx) => {
+          const isActive = currentImageIndex === idx;
+          return (
+            <motion.div
+              key={img}
+              initial={false}
+              animate={{
+                opacity: isActive ? 1 : 0,
+                scale: isActive ? (idx % 2 === 0 ? 1.08 : 1.0) : 1.04,
+              }}
+              transition={{
+                opacity: { duration: 1.6, ease: "easeInOut" },
+                scale: { duration: 7, ease: "linear" },
+              }}
+              className="absolute inset-0 bg-cover bg-center will-change-transform brightness-95 contrast-[1.02]"
+              style={{ backgroundImage: `url(${img})` }}
             />
-          ))}
-        </div>
+          );
+        })}
+
+        {/* Directional gradient from left so text is 100% crisp while keeping photo bright and vivid */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/45 to-transparent pointer-events-none" />
       </div>
 
       {/* Main Foreground Content: Clean Typography Directly on Hero with Staggered Transitions */}
       <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 my-auto">
         <div className="max-w-xl sm:max-w-2xl text-white">
-          {/* Institutional Top Badge with Smooth Entrance Transition */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.1, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 backdrop-blur-md border border-white/30 text-white text-xs font-semibold mb-5 shadow-lg"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-orange-400 font-extrabold uppercase tracking-wider text-[10px] sm:text-[11px]">
-              {badgeText}
-            </span>
-          </motion.div>
-
           {/* Visionary Headline with Dynamic Text Rotation & Transition */}
           <motion.h1
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight font-display leading-[1.12] mb-5 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]"
+            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight font-display leading-[1.12] mb-5 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]"
           >
             TRANSFORMING <br />
             BOLD IDEAS INTO{" "}
@@ -147,7 +114,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
             className="text-xs sm:text-sm md:text-base text-slate-100 leading-relaxed mb-8 font-medium max-w-xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)]"
           >
             {narrativeText || (
@@ -161,7 +128,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.55, delay: 0.3, ease: "easeOut" }}
             className="flex flex-wrap items-center gap-3.5"
           >
             <Link href="/about">

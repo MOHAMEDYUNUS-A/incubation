@@ -113,22 +113,22 @@ export default function AIAssistantModal({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.22, ease: "easeOut" }}
-          className="fixed bottom-6 right-6 z-50 w-full max-w-md sm:max-w-lg h-[620px] max-h-[85vh] rounded-3xl bg-white border border-slate-200/90 shadow-2xl flex flex-col overflow-hidden"
+          className="fixed bottom-6 right-6 z-50 w-full max-w-md sm:max-w-lg h-[620px] max-h-[85vh] rounded-3xl bg-white/85 backdrop-blur-2xl border border-white/70 shadow-[0_25px_70px_rgba(15,44,89,0.22)] ring-1 ring-slate-900/5 flex flex-col overflow-hidden"
         >
-          {/* Header */}
-          <div className="p-4 px-5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+          {/* Header (Frosted Glassmorphism) */}
+          <div className="p-4 px-5 bg-white/70 backdrop-blur-xl border-b border-slate-200/70 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-sm">
-                <Sparkles className="w-5 h-5 text-cyan-200" />
+              <div className="w-10 h-10 rounded-2xl bg-[#0f2c59] flex items-center justify-center text-white shadow-md border border-white/40">
+                <Sparkles className="w-5 h-5 text-orange-400" />
               </div>
               <div>
                 <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2 font-display">
                   <span>MASTeR AI Copilot</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-mono font-bold">
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100/90 text-emerald-800 font-mono font-bold border border-emerald-300/60">
                     ONLINE
                   </span>
                 </h3>
-                <p className="text-[11px] text-slate-500">
+                <p className="text-[11px] text-slate-600 font-medium">
                   StartupTN & MSME Pre-Incubation Knowledge Assistant
                 </p>
               </div>
@@ -146,14 +146,14 @@ export default function AIAssistantModal({
                     },
                   ])
                 }
-                className="p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors"
+                className="p-1.5 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-white/80 transition-colors"
                 title="Clear conversation"
               >
                 <RefreshCw className="w-4 h-4" />
               </button>
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition-colors"
+                className="p-1.5 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-white/80 transition-colors"
                 title="Close chat"
               >
                 <X className="w-5 h-5" />
@@ -161,8 +161,8 @@ export default function AIAssistantModal({
             </div>
           </div>
 
-          {/* Messages Feed */}
-          <div className="flex-1 p-4 sm:p-5 overflow-y-auto space-y-4 text-xs bg-slate-50/60">
+          {/* Messages Feed with Translucent Frosted Ambiance */}
+          <div className="flex-1 p-4 sm:p-5 overflow-y-auto space-y-4 text-xs bg-slate-50/40 backdrop-blur-xs">
             {messages.map((m) => (
               <div
                 key={m.id}
@@ -171,21 +171,21 @@ export default function AIAssistantModal({
                 }`}
               >
                 {m.role === "assistant" && (
-                  <div className="w-7 h-7 rounded-xl bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-700 shrink-0 mt-0.5 shadow-2xs">
+                  <div className="w-7 h-7 rounded-xl bg-blue-100/90 border border-blue-200/90 flex items-center justify-center text-[#0f2c59] shrink-0 mt-0.5 shadow-2xs">
                     <Bot className="w-4 h-4" />
                   </div>
                 )}
                 <div
                   className={`p-4 rounded-2xl max-w-[85%] leading-relaxed relative group ${
                     m.role === "user"
-                      ? "bg-blue-600 text-white rounded-br-xs shadow-md text-xs sm:text-sm font-medium"
-                      : "bg-white border border-slate-200/90 text-slate-800 rounded-bl-xs shadow-xs text-xs sm:text-[13px]"
+                      ? "bg-gradient-to-r from-[#0f2c59] to-[#1e40af] text-white rounded-br-xs shadow-md text-xs sm:text-sm font-medium border border-blue-800/40"
+                      : "bg-white/90 backdrop-blur-md border border-white/80 text-slate-800 rounded-bl-xs shadow-sm text-xs sm:text-[13px]"
                   }`}
                 >
                   <div className="whitespace-pre-line prose-xs">{m.content}</div>
 
                   {m.role === "assistant" && (
-                    <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                    <div className="mt-3 pt-2.5 border-t border-slate-200/70 flex items-center justify-between text-[11px] text-slate-400">
                       <span>MASTeR AI Verified</span>
                       <button
                         onClick={() => handleCopy(m.id, m.content)}
@@ -212,26 +212,26 @@ export default function AIAssistantModal({
 
             {loading && (
               <div className="flex gap-3 justify-start">
-                <div className="w-7 h-7 rounded-xl bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-700 shrink-0">
+                <div className="w-7 h-7 rounded-xl bg-blue-100/90 border border-blue-200/90 flex items-center justify-center text-[#0f2c59] shrink-0">
                   <Bot className="w-4 h-4" />
                 </div>
-                <div className="p-3.5 rounded-2xl bg-white border border-slate-200 text-slate-500 flex items-center gap-1.5 shadow-2xs">
-                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse [animation-delay:0.2s]" />
-                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse [animation-delay:0.4s]" />
+                <div className="p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-slate-500 flex items-center gap-1.5 shadow-2xs">
+                  <span className="w-2 h-2 rounded-full bg-[#ea580c] animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-[#ea580c] animate-pulse [animation-delay:0.2s]" />
+                  <span className="w-2 h-2 rounded-full bg-[#ea580c] animate-pulse [animation-delay:0.4s]" />
                 </div>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Quick Prompt Chips */}
-          <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-200/80 flex gap-2 overflow-x-auto scrollbar-none">
+          {/* Quick Prompt Chips (Frosted Glassmorphism) */}
+          <div className="px-4 py-2.5 bg-white/60 backdrop-blur-md border-t border-slate-200/70 flex gap-2 overflow-x-auto scrollbar-none">
             {PROMPT_CHIPS.map((chip, idx) => (
               <button
                 key={idx}
                 onClick={() => handleSend(chip)}
-                className="text-[11px] px-3 py-1.5 rounded-full bg-white text-slate-700 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-200 whitespace-nowrap transition-all border border-slate-200 shadow-2xs font-semibold"
+                className="text-[11px] px-3 py-1.5 rounded-full bg-white/80 hover:bg-white text-slate-700 hover:text-orange-700 hover:border-orange-300 whitespace-nowrap transition-all border border-slate-200/80 shadow-2xs font-semibold backdrop-blur-sm"
               >
                 {chip}
               </button>
@@ -239,7 +239,7 @@ export default function AIAssistantModal({
           </div>
 
           {/* Action Callout bar */}
-          <div className="px-4 py-2 bg-blue-50/70 border-t border-blue-100 flex items-center justify-between text-xs">
+          <div className="px-4 py-2 bg-blue-50/50 backdrop-blur-md border-t border-blue-100/60 flex items-center justify-between text-xs">
             <span className="text-blue-900 font-medium">Ready to take the next step?</span>
             <Link
               href="/apply"
@@ -251,25 +251,25 @@ export default function AIAssistantModal({
             </Link>
           </div>
 
-          {/* Input Footer */}
+          {/* Input Footer (Frosted Glassmorphism) */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleSend();
             }}
-            className="p-3 bg-white border-t border-slate-200 flex gap-2"
+            className="p-3 bg-white/75 backdrop-blur-xl border-t border-slate-200/70 flex gap-2"
           >
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about incubation, grants, labs, mentoring..."
-              className="h-11 text-xs sm:text-sm bg-slate-50 border-slate-300 rounded-xl px-3.5 focus-visible:ring-blue-600"
+              className="h-11 text-xs sm:text-sm bg-white/90 backdrop-blur-md border-slate-300/80 rounded-xl px-3.5 focus-visible:ring-orange-500 shadow-2xs"
             />
             <Button
               type="submit"
               disabled={loading || !input.trim()}
               size="sm"
-              className="bg-[#ea580c] hover:bg-[#c2410c] text-white shrink-0 h-11 px-4 rounded-xl shadow-sm transition-all"
+              className="bg-[#ea580c] hover:bg-[#c2410c] text-white shrink-0 h-11 px-4 rounded-xl shadow-md shadow-orange-600/25 transition-all"
             >
               <Send className="w-4 h-4" />
             </Button>

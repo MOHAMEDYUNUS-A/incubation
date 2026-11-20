@@ -137,16 +137,14 @@ export default function CampusPhotoGallery() {
 
   return (
     <section id="gallery" className="py-20 sm:py-28 bg-white relative overflow-hidden border-t border-slate-200">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 mb-12">
-        {/* Header - Moments That Matter */}
-        <div className="max-w-3xl">
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight uppercase">
-            Moments That Matter
-          </h2>
-          <p className="text-base sm:text-lg text-slate-700 mt-2 font-normal leading-relaxed">
-            Snapshots of student breakthroughs, prototype fabrication, hackathons, and seed grant mentoring on the MAMCET Siruganur campus.
-          </p>
-        </div>
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 mb-10 text-center">
+        {/* Header - Moments That Matter (Matching Image 1 Styling) */}
+        <h2 className="text-3xl sm:text-5xl md:text-6xl font-serif font-normal text-slate-900 tracking-tight">
+          Moments That Matter
+        </h2>
+        <p className="text-sm sm:text-base text-slate-600 mt-2.5 font-normal max-w-2xl mx-auto">
+          Snapshots of student breakthroughs, prototype fabrication, hackathons, and seed grant mentoring on the MAMCET Siruganur campus.
+        </p>
       </div>
 
       {/* Running Left to Right Dual Continuous Marquee Reel */}

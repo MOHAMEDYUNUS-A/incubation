@@ -63,18 +63,24 @@ const STAKEHOLDERS = [
 
 export default function JoinUsEcosystem() {
   return (
-    <section id="join-us" className="py-20 sm:py-28 bg-slate-50 relative border-b border-slate-200">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Section Header (Matching Reference Image 6) */}
-        <FadeUp className="max-w-3xl mb-16">
-          <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-widest block mb-2">
-            ONBOARDING PATHWAYS
-          </span>
-          <h2 className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-display">
+    <section id="join-us" className="py-20 sm:py-28 bg-slate-50/70 relative border-b border-slate-200 overflow-hidden">
+      {/* Subtle background glow accents */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-10 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-orange-100/25 rounded-full blur-3xl -z-10" />
+      </div>
+
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header */}
+        <FadeUp className="max-w-3xl mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-mono font-bold tracking-wider uppercase mb-3">
+            <span>ONBOARDING PATHWAYS</span>
+          </div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight font-display">
             Join Us
           </h2>
-          <p className="text-lg sm:text-xl text-slate-600 mt-2 font-medium">
-            Be Part of Our Growing Innovation Ecosystem
+          <p className="text-base sm:text-lg text-slate-600 mt-2 font-medium">
+            Be Part of Our Growing Multi-Stakeholder Innovation Ecosystem
           </p>
         </FadeUp>
 
@@ -85,26 +91,26 @@ export default function JoinUsEcosystem() {
             const Wrapper = idx % 2 === 0 ? RevealLeft : RevealRight;
             return (
               <Wrapper key={st.role} delay={(idx % 4) * 0.08}>
-                <XYZCard depth={10}>
-                  <div className="h-full p-7 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-orange-400 transition-all duration-300 flex flex-col justify-between group">
+                <XYZCard depth={8}>
+                  <div className="h-full p-6 sm:p-7 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-orange-400 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-xl sm:text-2xl font-bold text-blue-900 font-display">
+                        <h3 className="text-xl sm:text-2xl font-bold text-[#0f2c59] font-display group-hover:text-[#ea580c] transition-colors">
                           {st.role}
                         </h3>
-                        <div className="w-11 h-11 rounded-2xl bg-orange-50 border border-orange-200/80 flex items-center justify-center text-orange-600 group-hover:scale-110 transition-transform shadow-2xs">
+                        <div className="w-11 h-11 rounded-2xl bg-orange-50 border border-orange-200/80 flex items-center justify-center text-[#ea580c] group-hover:scale-110 group-hover:bg-[#ea580c] group-hover:text-white transition-all duration-300 shadow-2xs">
                           <Icon className="w-5 h-5" />
                         </div>
                       </div>
 
-                      <p className="text-sm sm:text-[15px] text-slate-700 leading-relaxed mb-6 font-normal">
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 font-normal">
                         {st.desc}
                       </p>
                     </div>
 
                     <div className="pt-2">
                       <Link href={`/apply?${st.applyQuery}`} className="block w-full">
-                        <Button className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold text-xs sm:text-sm h-11 rounded-xl shadow-sm gap-1.5 transition-all">
+                        <Button className="w-full bg-[#0f2c59] hover:bg-[#ea580c] text-white font-extrabold text-xs sm:text-sm h-11 rounded-xl shadow-xs gap-1.5 transition-all duration-200 group-hover:shadow-md">
                           <span>Register</span>
                           <ArrowRight className="w-4 h-4" />
                         </Button>
@@ -118,8 +124,8 @@ export default function JoinUsEcosystem() {
 
           {/* 8th Callout Card: "COLLABORATE, INNOVATE AND SCALE!" */}
           <ZoomIn delay={0.32}>
-            <XYZCard depth={10}>
-              <div className="h-full p-7 sm:p-8 rounded-3xl bg-gradient-to-br from-[#0f2c59] to-[#07132b] text-white shadow-xl flex flex-col justify-between border border-blue-900 group">
+            <XYZCard depth={8}>
+              <div className="h-full p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#0f2c59] via-[#14376b] to-[#07132b] text-white shadow-xl flex flex-col justify-between border-2 border-orange-500/30 group hover:border-orange-500/60 hover:-translate-y-1 transition-all duration-300">
                 <div>
                   <span className="text-[10px] font-mono font-bold text-orange-400 uppercase tracking-widest block mb-4">
                     ACCELERATE IMPACT
@@ -134,11 +140,10 @@ export default function JoinUsEcosystem() {
                   </p>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-slate-800">
+                <div className="pt-4 mt-4 border-t border-slate-700/60">
                   <Link href="/contact" className="block w-full">
                     <Button
-                      variant="outline"
-                      className="w-full border-orange-500/60 bg-orange-500/10 hover:bg-orange-500 text-white font-bold text-xs h-10 rounded-xl gap-2 transition-all"
+                      className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-xs h-11 rounded-xl gap-2 shadow-md shadow-orange-600/30 transition-all"
                     >
                       <span>Connect with Team</span>
                       <ArrowRight className="w-3.5 h-3.5" />

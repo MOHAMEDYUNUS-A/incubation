@@ -145,11 +145,11 @@ export default function DisruptiveEpicenter() {
             </div>
           </RevealLeft>
 
-          {/* Right Column: 3D Animated Floating Box (User Request: 3D animated floating box) */}
+          {/* Right Column: 3D Animated Floating Box (Enhanced Glassmorphism) */}
           <RevealRight className="lg:col-span-5">
             <div className="relative">
               {/* 3D Animated Floating Card Box */}
-              <div className="animate-float hover:[animation-play-state:paused] p-7 sm:p-9 rounded-3xl bg-white border-2 border-blue-200/80 shadow-[0_20px_50px_rgba(15,44,89,0.14)] relative transition-all duration-300">
+              <div className="animate-float hover:[animation-play-state:paused] p-7 sm:p-9 rounded-3xl bg-white/95 backdrop-blur-xl border border-blue-100 shadow-[0_25px_60px_rgba(15,44,89,0.15)] ring-1 ring-slate-900/5 relative transition-all duration-300">
                 {/* Header */}
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-1">
                   Personalized for Your Search
@@ -157,13 +157,13 @@ export default function DisruptiveEpicenter() {
 
                 {/* "I AM A..." Pill Accent */}
                 <div className="mt-3 mb-4">
-                  <span className="px-3 py-1 rounded-full bg-orange-100 text-orange-800 text-xs font-mono font-bold tracking-wider uppercase inline-block border border-orange-200">
+                  <span className="px-3 py-1 rounded-full bg-orange-50 text-[#ea580c] text-xs font-mono font-bold tracking-wider uppercase inline-block border border-orange-200/80 shadow-2xs">
                     I AM A...
                   </span>
                 </div>
 
-                {/* 8 Persona Pills with Clean Lucide SVGs */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
+                {/* 8 Persona Pills with Clean Styling */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6">
                   {PERSONAS.map((p) => {
                     const Icon = p.icon;
                     const isSelected = selectedPersona.id === p.id;
@@ -172,13 +172,13 @@ export default function DisruptiveEpicenter() {
                       <button
                         key={p.id}
                         onClick={() => setSelectedPersona(p)}
-                        className={`p-3 rounded-xl border text-xs font-bold flex flex-col items-center justify-center gap-2 transition-all duration-200 ${
+                        className={`p-3 rounded-2xl border text-xs font-bold flex flex-col items-center justify-center gap-2 transition-all duration-200 ${
                           isSelected
                             ? "bg-[#ea580c] border-[#ea580c] text-white shadow-md shadow-orange-500/25 scale-105"
-                            : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-300"
+                            : "bg-slate-50/90 border-slate-200 text-slate-700 hover:bg-white hover:border-slate-300 hover:shadow-2xs"
                         }`}
                       >
-                        <Icon className={`w-4 h-4 ${isSelected ? "text-white" : "text-blue-600"}`} />
+                        <Icon className={`w-4 h-4 ${isSelected ? "text-white" : "text-[#0f2c59]"}`} />
                         <span className="truncate">{p.label}</span>
                       </button>
                     );
@@ -186,19 +186,19 @@ export default function DisruptiveEpicenter() {
                 </div>
 
                 {/* Dynamic Tailored Guidance Box */}
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 shadow-2xs mb-6">
+                <div className="p-4 rounded-2xl bg-slate-50/80 backdrop-blur-sm border border-slate-200/90 shadow-2xs mb-6">
                   <div className="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-1.5 font-bold">
                     I&apos;M LOOKING FOR...
                   </div>
                   <div className="text-xs sm:text-sm text-slate-800 font-medium leading-relaxed flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#ea580c] shrink-0 mt-0.5" />
                     <span>{selectedPersona.tagline}</span>
                   </div>
                 </div>
 
                 {/* Dynamic Explore CTA Button */}
                 <Link href={selectedPersona.href} className="block w-full">
-                  <Button className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-sm h-12 rounded-xl shadow-md shadow-orange-600/25 gap-2 uppercase tracking-wide group transition-all">
+                  <Button className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-xs sm:text-sm h-12 rounded-xl shadow-lg shadow-orange-600/30 gap-2 uppercase tracking-wide group transition-all">
                     <span>{selectedPersona.ctaText}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
