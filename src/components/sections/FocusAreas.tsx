@@ -11,7 +11,6 @@ import {
   Building2,
   HeartPulse,
   ArrowRight,
-  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RevealLeft, RevealRight, FadeUp } from "@/components/animations/LightAnimations";
@@ -91,15 +90,11 @@ export default function FocusAreas() {
         {/* Minimal Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
           <RevealLeft>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-              <span>Technology Thrust Sectors</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 font-display tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 font-display tracking-tight uppercase">
               7 Priority Focus Areas
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1 font-normal">
-              Specialized research bays, prototyping equipment, and mentorship tracks at MAMCET.
+            <p className="text-xs sm:text-sm text-slate-600 mt-1.5 font-normal">
+              Specialized research bays, prototyping equipment, and mentorship tracks on campus.
             </p>
           </RevealLeft>
 

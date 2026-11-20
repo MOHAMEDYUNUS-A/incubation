@@ -1,19 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  Camera,
-  Sparkles,
-  Maximize2,
-  X,
-  MapPin,
-  ArrowRight,
-  ShieldCheck,
-  Eye,
-  LayoutGrid,
-  Film,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { X, MapPin } from "lucide-react";
 import { useSiteContent } from "@/context/ContentContext";
 
 export interface GalleryPhoto {
@@ -142,7 +130,6 @@ export default function CampusPhotoGallery() {
   const photos: GalleryPhoto[] = (content?.gallery as GalleryPhoto[]) || DEFAULT_GALLERY_PHOTOS;
 
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto | null>(null);
-  const [viewMode, setViewMode] = useState<"reel" | "grid">("reel");
 
   // Divide photos into two rows for the dual-running continuous marquee effect
   const row1 = photos.slice(0, Math.ceil(photos.length / 2));
@@ -151,52 +138,19 @@ export default function CampusPhotoGallery() {
   return (
     <section id="gallery" className="py-20 sm:py-28 bg-white relative overflow-hidden border-t border-slate-200">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 mb-12">
-        {/* Header - Matching Image 7 "Moments That Matter" */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200/80 text-orange-700 text-xs font-bold uppercase tracking-wider mb-3">
-              <Camera className="w-3.5 h-3.5 text-orange-600" />
-              <span>Campus Innovation Visuals</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight">
-              Moments That Matter
-            </h2>
-            <p className="text-base sm:text-lg text-slate-700 mt-2 font-normal leading-relaxed">
-              Snapshots of student breakthroughs, prototype fabrication, hackathons, and seed grant mentoring on the MAMCET Siruganur campus.
-            </p>
-          </div>
-
-          {/* View Mode Toggle: Running Reel vs 4-Column Grid (Matching Reference Image 7) */}
-          <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-slate-100 border border-slate-200 shrink-0">
-            <button
-              onClick={() => setViewMode("reel")}
-              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
-                viewMode === "reel"
-                  ? "bg-[#0f2c59] text-white shadow-xs"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              <Film className="w-3.5 h-3.5" />
-              <span>Running Reel (L → R)</span>
-            </button>
-            <button
-              onClick={() => setViewMode("grid")}
-              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
-                viewMode === "grid"
-                  ? "bg-[#0f2c59] text-white shadow-xs"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              <LayoutGrid className="w-3.5 h-3.5" />
-              <span>Photo Grid (4 Columns)</span>
-            </button>
-          </div>
+        {/* Header - Moments That Matter */}
+        <div className="max-w-3xl">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight uppercase">
+            Moments That Matter
+          </h2>
+          <p className="text-base sm:text-lg text-slate-700 mt-2 font-normal leading-relaxed">
+            Snapshots of student breakthroughs, prototype fabrication, hackathons, and seed grant mentoring on the MAMCET Siruganur campus.
+          </p>
         </div>
       </div>
 
-      {/* Mode 1: Running Left to Right Marquee Reel */}
-      {viewMode === "reel" && (
-        <div className="relative w-full space-y-6 overflow-hidden">
+      {/* Running Left to Right Dual Continuous Marquee Reel */}
+      <div className="relative w-full space-y-6 overflow-hidden">
           {/* Soft edge gradient fades */}
           <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
           <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
@@ -277,39 +231,6 @@ export default function CampusPhotoGallery() {
             ))}
           </div>
         </div>
-      )}
-
-      {/* Mode 2: Curated 4-Column Photo Grid (Matching Reference Image 7 Exactly) */}
-      {viewMode === "grid" && (
-        <div className="container max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-            {photos.map((photo) => (
-              <div
-                key={photo.id}
-                onClick={() => setSelectedPhoto(photo)}
-                className="cursor-pointer group relative aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-orange-400 transition-all duration-300 bg-slate-100"
-              >
-                <img
-                  src={photo.image}
-                  alt={photo.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
-
-                <div className="absolute bottom-3 left-3 right-3 text-white">
-                  <span className="inline-block px-2 py-0.5 rounded-full bg-white/90 backdrop-blur-md text-[#0f2c59] text-[9px] sm:text-[10px] font-bold mb-1 shadow-2xs">
-                    {photo.categoryLabel}
-                  </span>
-                  <h4 className="font-bold text-xs sm:text-sm font-display line-clamp-1 text-white group-hover:text-orange-300 transition-colors">
-                    {photo.title}
-                  </h4>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* Lightbox High-Resolution Full Modal */}
       {selectedPhoto && (

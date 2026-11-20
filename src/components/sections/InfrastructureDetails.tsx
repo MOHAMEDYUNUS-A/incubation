@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Check, ArrowRight, Building, Sparkles, Cpu, Layers } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RevealLeft, RevealRight } from "@/components/animations/LightAnimations";
 
@@ -17,18 +17,6 @@ export default function InfrastructureDetails() {
           {/* Left Column: Floating in Air 3D Facility Photo (User Request: floating in air) */}
           <RevealLeft className="lg:col-span-6">
             <div className="relative">
-              {/* Floating Pill 1 */}
-              <div className="absolute -top-4 -left-3 z-20 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#0f2c59] text-xs font-bold border border-slate-200 shadow-xl flex items-center gap-1.5 animate-float-delayed">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-                <span>6,000+ Sq. Ft. Prototyping Space</span>
-              </div>
-
-              {/* Floating Pill 2 */}
-              <div className="absolute -bottom-4 -right-3 z-20 px-3.5 py-1.5 rounded-full bg-[#0f2c59] text-white text-xs font-bold shadow-xl flex items-center gap-1.5 animate-float-reverse">
-                <Cpu className="w-3.5 h-3.5 text-cyan-300" />
-                <span>Additive 3D & IoT Test Benches</span>
-              </div>
-
               {/* Main Floating in Air Card */}
               <div className="animate-float hover:[animation-play-state:paused] relative rounded-3xl overflow-hidden border-2 border-slate-200/90 shadow-[0_25px_60px_rgba(15,44,89,0.18)] bg-white group transition-all duration-300">
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
@@ -48,14 +36,6 @@ export default function InfrastructureDetails() {
                       Multidisciplinary Incubation & Mentoring Auditorium
                     </h4>
                   </div>
-                </div>
-
-                {/* Sub-strip with facility details */}
-                <div className="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs text-slate-700">
-                  <span className="font-semibold text-slate-800">
-                    Host Institution Allotted Incubation Block
-                  </span>
-                  <span className="font-mono text-orange-600 font-bold text-sm">6,000+ Sq. Ft.</span>
                 </div>
               </div>
             </div>

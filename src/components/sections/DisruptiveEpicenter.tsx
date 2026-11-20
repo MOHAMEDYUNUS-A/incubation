@@ -148,18 +148,6 @@ export default function DisruptiveEpicenter() {
           {/* Right Column: 3D Animated Floating Box (User Request: 3D animated floating box) */}
           <RevealRight className="lg:col-span-5">
             <div className="relative">
-              {/* Floating Decorative Micro-Badge 1 */}
-              <div className="absolute -top-4 -right-2 z-20 px-3 py-1.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[11px] font-extrabold shadow-lg animate-float-delayed flex items-center gap-1.5">
-                <Rocket className="w-3.5 h-3.5" />
-                <span>TANSEED Ready</span>
-              </div>
-
-              {/* Floating Decorative Micro-Badge 2 */}
-              <div className="absolute -bottom-4 -left-2 z-20 px-3.5 py-1.5 rounded-full bg-[#0f2c59] text-white text-[11px] font-bold shadow-lg animate-float-reverse flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-                <span>6,000+ Sq. Ft. Labs</span>
-              </div>
-
               {/* 3D Animated Floating Card Box */}
               <div className="animate-float hover:[animation-play-state:paused] p-7 sm:p-9 rounded-3xl bg-white border-2 border-blue-200/80 shadow-[0_20px_50px_rgba(15,44,89,0.14)] relative transition-all duration-300">
                 {/* Header */}
