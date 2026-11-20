@@ -421,7 +421,7 @@ export const MENTORS_LIST: MentorProfileItem[] = [
     organization: "MASTeR Incubation Foundation (MIF)",
     expertise: ["Startup Operations", "Government Grants (TANSEED)", "Incubation Policy"],
     bio: "Guiding student entrepreneurs through design thinking, grant proposals, and StartupTN integration.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
+    image: "/images/incubation/santhosh.jpeg",
   },
   {
     id: "m3",
