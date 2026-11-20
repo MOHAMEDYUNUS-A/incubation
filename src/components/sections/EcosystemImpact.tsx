@@ -97,19 +97,19 @@ const RUNNING_IMPACT_METRICS: ImpactItem[] = [
 export default function EcosystemImpact() {
   return (
     <section className="py-20 sm:py-28 bg-slate-900/5 relative border-b border-slate-200 overflow-hidden">
-      {/* Background Video with Controlled Opacity & Frosted Light-Theme Overlay */}
+      {/* Background Video with Ultra-Subtle Opacity & Frosted Light-Theme Overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-20 sm:opacity-25"
+          className="w-full h-full object-cover opacity-10 sm:opacity-15"
         >
           <source src="/videos/impact-bg-video.mp4" type="video/mp4" />
         </video>
-        {/* Ambient Gradient to protect strict light-theme readability and contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/75 to-slate-50/95 backdrop-blur-[2px]" />
+        {/* Soft light gradient overlay for maximum readability and clean light-theme aesthetics */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/95 via-slate-50/85 to-slate-50/98 backdrop-blur-[1px]" />
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">

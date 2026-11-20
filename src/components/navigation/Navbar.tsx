@@ -14,6 +14,7 @@ const NAV_LINKS = [
     href: "/about",
     submenu: [
       { name: "About Foundation", href: "/about" },
+      { name: "Leadership & Committee", href: "/leadership" },
       { name: "Governance & Trust", href: "/about#governance" },
       { name: "Mission M1-M5", href: "/about#governance" },
     ],
@@ -28,7 +29,6 @@ const NAV_LINKS = [
       { name: "MSME & TANSEED Grants", href: "/programs#services" },
     ],
   },
-  { name: "Impact", href: "/impact" },
   { name: "Join Us", href: "/join-us" },
   {
     name: "Facilities",
@@ -152,15 +152,15 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={`px-3 py-2 text-xs font-bold transition-colors flex items-center gap-1 rounded-lg ${
+                    className={`px-3 py-2 text-sm font-bold transition-colors flex items-center gap-1 rounded-lg ${
                       pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
-                        ? "text-orange-600 font-extrabold"
-                        : "text-slate-700 hover:text-orange-600 hover:bg-orange-50/60"
+                        ? "text-[#ea580c] font-black"
+                        : "text-slate-800 hover:text-[#ea580c] hover:bg-orange-50/70"
                     }`}
                   >
                     <span>{link.name}</span>
                     {link.submenu && (
-                      <ChevronDown className="w-3 h-3 text-slate-400 group-hover:rotate-180 transition-transform" />
+                      <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform" />
                     )}
                   </Link>
 

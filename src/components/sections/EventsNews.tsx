@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { UPCOMING_EVENTS, EventItem } from "@/lib/db/mockData";
-import { Calendar, Clock, MapPin, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Calendar, Clock, MapPin, ArrowRight, CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RevealLeft, RevealRight, ZoomIn, XYZCard } from "@/components/animations/LightAnimations";
@@ -18,6 +18,16 @@ export default function EventsNews() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleScrollLeft = () => {
+    scrollContainerRef.current?.scrollBy({ left: -380, behavior: "smooth" });
+  };
+
+  const handleScrollRight = () => {
+    scrollContainerRef.current?.scrollBy({ left: 380, behavior: "smooth" });
+  };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,10 +54,13 @@ export default function EventsNews() {
   };
 
   return (
-    <section id="events" className="py-20 sm:py-24 bg-slate-50 relative border-t border-slate-200">
+    <section id="events" className="py-20 sm:py-24 bg-slate-50 relative border-t border-slate-200 overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <RevealLeft>
+            <span className="text-xs font-mono font-bold text-orange-600 uppercase tracking-widest block mb-2">
+              FOUNDER BOOTCAMPS & CALENDAR
+            </span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight">
               Upcoming Workshops & Bootcamps
             </h2>
@@ -55,69 +68,95 @@ export default function EventsNews() {
               Join hands-on maker bootcamps, grant writing masterclasses, and pitch days at MAMCET campus.
             </p>
           </RevealLeft>
+
           <RevealRight>
-            <Link href="/events">
-              <Button variant="outline" className="border-slate-300 hover:bg-white text-slate-800 font-bold text-sm h-11 px-5 gap-2 shadow-xs">
-                <span>View All Events</span>
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
+            <div className="flex items-center gap-3">
+              {/* Horizontal Scroll Controls */}
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={handleScrollLeft}
+                  className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#ea580c] hover:border-orange-300 flex items-center justify-center transition-colors shadow-2xs active:scale-95"
+                  aria-label="Scroll left"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={handleScrollRight}
+                  className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#ea580c] hover:border-orange-300 flex items-center justify-center transition-colors shadow-2xs active:scale-95"
+                  aria-label="Scroll right"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+
+              <Link href="/events">
+                <Button variant="outline" className="border-slate-300 hover:bg-white text-slate-800 font-bold text-sm h-10 px-5 gap-2 shadow-2xs">
+                  <span>View All Events</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
           </RevealRight>
         </div>
 
-        {/* Clean Events Grid with Left-Center-Right Reveals */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {eventsList.map((event, idx) => {
-            const Wrapper = idx === 0 ? RevealLeft : idx === 1 ? ZoomIn : RevealRight;
-            return (
-              <Wrapper key={event.id} delay={idx * 0.1}>
-                <XYZCard depth={8}>
-                  <div className="h-full rounded-3xl border border-slate-200/90 bg-white p-7 flex flex-col justify-between shadow-xs hover:shadow-xl hover:border-blue-300 transition-all duration-300">
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                          {event.type}
-                        </span>
-                        <span className="text-xs text-slate-500 font-semibold">
-                          {event.mode}
-                        </span>
-                      </div>
-
-                      <h3 className="text-xl font-bold text-slate-900 mb-3 font-display">{event.title}</h3>
-                      <p className="text-sm text-slate-700 leading-relaxed mb-6 font-normal">
-                        {event.description}
-                      </p>
-
-                      <div className="space-y-2.5 text-xs sm:text-sm text-slate-700 border-t border-slate-100 pt-4 mb-6 font-medium">
-                        <div className="flex items-center gap-2.5">
-                          <Calendar className="w-4 h-4 text-blue-600 shrink-0" />
-                          <span>{event.date}</span>
-                        </div>
-                        <div className="flex items-center gap-2.5">
-                          <Clock className="w-4 h-4 text-cyan-600 shrink-0" />
-                          <span>{event.time}</span>
-                        </div>
-                        <div className="flex items-center gap-2.5">
-                          <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
-                          <span className="truncate">{event.location}</span>
-                        </div>
-                      </div>
+        {/* Running Scrolling Reel: Fits Any Number of Workshops Gracefully */}
+        <div
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto scrollbar-none gap-6 pb-6 pt-2 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0"
+        >
+          {eventsList.map((event, idx) => (
+            <div
+              key={event.id}
+              className="w-[300px] sm:w-[350px] md:w-[380px] shrink-0 snap-start flex flex-col"
+            >
+              <XYZCard depth={6}>
+                <div className="h-full rounded-3xl border border-slate-200/90 bg-white p-7 flex flex-col justify-between shadow-xs hover:shadow-xl hover:border-orange-400 hover:-translate-y-1 transition-all duration-300">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                        {event.type}
+                      </span>
+                      <span className="text-xs text-slate-500 font-semibold">
+                        {event.mode}
+                      </span>
                     </div>
 
-                    <Button
-                      onClick={() => {
-                        setSelectedEvent(event);
-                        setRegisterSuccess(false);
-                      }}
-                      className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white text-xs sm:text-sm font-bold h-11 rounded-xl shadow-xs transition-colors"
-                    >
-                      Register Free Seat
-                    </Button>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3 font-display line-clamp-2">
+                      {event.title}
+                    </h3>
+                    <p className="text-sm text-slate-600 leading-relaxed mb-6 font-normal line-clamp-3">
+                      {event.description}
+                    </p>
+
+                    <div className="space-y-2.5 text-xs sm:text-sm text-slate-700 border-t border-slate-100 pt-4 mb-6 font-medium">
+                      <div className="flex items-center gap-2.5">
+                        <Calendar className="w-4 h-4 text-blue-600 shrink-0" />
+                        <span>{event.date}</span>
+                      </div>
+                      <div className="flex items-center gap-2.5">
+                        <Clock className="w-4 h-4 text-cyan-600 shrink-0" />
+                        <span>{event.time}</span>
+                      </div>
+                      <div className="flex items-center gap-2.5">
+                        <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
+                        <span className="truncate">{event.location}</span>
+                      </div>
+                    </div>
                   </div>
-                </XYZCard>
-              </Wrapper>
-            );
-          })}
+
+                  <Button
+                    onClick={() => {
+                      setSelectedEvent(event);
+                      setRegisterSuccess(false);
+                    }}
+                    className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white text-xs sm:text-sm font-bold h-11 rounded-xl shadow-xs transition-colors"
+                  >
+                    Register Free Seat
+                  </Button>
+                </div>
+              </XYZCard>
+            </div>
+          ))}
         </div>
 
         {/* Registration Modal Dialog (Clean Light Styling) */}

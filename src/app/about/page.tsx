@@ -174,6 +174,27 @@ export default function AboutPage() {
           <CampusPhotoGallery />
         </div>
 
+        {/* Leadership & Advisory Committee Direct Section */}
+        <div className="mb-16 p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-orange-400 transition-all">
+          <div>
+            <span className="text-xs font-mono font-bold text-orange-600 uppercase tracking-widest block mb-2">
+              FOUNDATION GOVERNANCE
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 font-display">
+              Leadership & Advisory Committee
+            </h3>
+            <p className="text-sm text-slate-600 mt-1 max-w-xl">
+              Meet our Incubation Manager, Technical Coordinator, domain faculty mentors, and institutional board members advancing regional innovation.
+            </p>
+          </div>
+          <Link href="/leadership">
+            <Button className="bg-[#0f2c59] hover:bg-[#ea580c] text-white font-extrabold text-xs sm:text-sm h-11 px-6 rounded-xl shadow-xs gap-2 transition-all shrink-0">
+              <span>View Leadership Directory</span>
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
+        </div>
+
         {/* Social Connect Callout */}
         <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
           <div>

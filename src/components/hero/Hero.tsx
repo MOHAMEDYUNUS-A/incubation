@@ -5,62 +5,70 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSiteContent } from "@/context/ContentContext";
 
-const ROTATING_TEXTS = [
-  "Deep-Tech & IoT Hardware",
-  "Student & Faculty Ventures",
-  "Non-Dilutive Seed Grants",
-  "Patented Innovations",
-  "Scalable Regional Startups",
-];
+interface HeroSlide {
+  image: string;
+  rotatingFocus: string;
+  narrative: string;
+}
 
-const HERO_IMAGES = [
-  "/images/incubation/hero-1.jpeg",
-  "/images/incubation/hero-2.jpeg",
-  "/images/incubation/hero-3.jpeg",
-  "/images/incubation/incubation-centre.jpeg",
-  "/images/incubation/incubation-workspace.jpeg",
+const DEFAULT_SLIDES: HeroSlide[] = [
+  {
+    image: "/images/incubation/hero-1.jpeg",
+    rotatingFocus: "Deep-Tech & IoT Hardware",
+    narrative:
+      "Empowering student creators and engineering researchers with 6,000+ sq. ft. of dedicated prototyping bays, digital storage oscilloscopes, RF telemetry benches, and additive 3D printing.",
+  },
+  {
+    image: "/images/incubation/hero-2.jpeg",
+    rotatingFocus: "Scalable Regional Startups",
+    narrative:
+      "Accelerating student and faculty ventures from laboratory bench to commercial market deployment with one-on-one founder mentorship and regional industry pilots.",
+  },
+  {
+    image: "/images/incubation/hero-3.jpeg",
+    rotatingFocus: "TANSEED Seed Grants",
+    narrative:
+      "Unlocking direct pathways to non-dilutive seed grant funding through StartupTN TANSEED (up to ₹10L) and Ministry of MSME Idea Hackathons (up to ₹15L).",
+  },
+  {
+    image: "/images/incubation/incubation-centre.jpeg",
+    rotatingFocus: "Patented Innovations",
+    narrative:
+      "Providing institutional backing, prior-art patent search, provisional patent drafting, and corporate registration under Startup India for campus innovators.",
+  },
+  {
+    image: "/images/incubation/incubation-workspace.jpeg",
+    rotatingFocus: "Student & Faculty Ventures",
+    narrative:
+      "Nurturing early-stage founders with plug-and-play ergonomic co-working desks, high-speed gigabit fiber connectivity, and 24/7 dedicated incubation access at MAMCET campus.",
+  },
 ];
 
 export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
   const { content } = useSiteContent();
-  const heroImages =
-    content?.hero?.images && content.hero.images.length > 0
-      ? content.hero.images
-      : HERO_IMAGES;
-  const rotatingTexts =
-    content?.hero?.rotatingTexts && content.hero.rotatingTexts.length > 0
-      ? content.hero.rotatingTexts
-      : ROTATING_TEXTS;
-  const narrativeText = content?.hero?.narrative;
+  const slides: HeroSlide[] = DEFAULT_SLIDES;
 
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
-  // Smooth text rotation every 3.2 seconds
+  // Synchronized Slide Transition: Image and Content Change Together every 6 seconds
   useEffect(() => {
-    const textInterval = setInterval(() => {
-      setCurrentTextIndex((prev) => (prev + 1) % rotatingTexts.length);
-    }, 3200);
-    return () => clearInterval(textInterval);
-  }, [rotatingTexts.length]);
+    const slideInterval = setInterval(() => {
+      setCurrentSlideIndex((prev) => (prev + 1) % slides.length);
+    }, 6000);
+    return () => clearInterval(slideInterval);
+  }, [slides.length]);
 
-  // Seamless continuous background transition every 6.5 seconds
-  useEffect(() => {
-    const imageInterval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 6500);
-    return () => clearInterval(imageInterval);
-  }, [heroImages.length]);
+  const activeSlide = slides[currentSlideIndex];
 
   return (
     <section className="relative w-full overflow-hidden pt-32 sm:pt-40 pb-20 sm:pb-28 bg-slate-950 flex flex-col justify-center min-h-[620px] sm:min-h-[700px]">
       {/* ================= Campus Photo Slider with Continuous Free Ken Burns Zoom Transitions (Never Flashes Black) ================= */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {heroImages.map((img, idx) => {
-          const isActive = currentImageIndex === idx;
+        {slides.map((slide, idx) => {
+          const isActive = currentSlideIndex === idx;
           return (
             <motion.div
-              key={img}
+              key={slide.image}
               initial={false}
               animate={{
                 opacity: isActive ? 1 : 0,
@@ -71,7 +79,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
                 scale: { duration: 7, ease: "linear" },
               }}
               className="absolute inset-0 bg-cover bg-center will-change-transform brightness-95 contrast-[1.02]"
-              style={{ backgroundImage: `url(${img})` }}
+              style={{ backgroundImage: `url(${slide.image})` }}
             />
           );
         })}
@@ -80,10 +88,10 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/45 to-transparent pointer-events-none" />
       </div>
 
-      {/* Main Foreground Content: Clean Typography Directly on Hero with Staggered Transitions */}
+      {/* Main Foreground Content: Synchronously Transitions with the Active Slide */}
       <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 my-auto">
         <div className="max-w-xl sm:max-w-2xl text-white">
-          {/* Visionary Headline with Dynamic Text Rotation & Transition */}
+          {/* Visionary Headline: Synchronized Rotating Focus with Slide */}
           <motion.h1
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -95,14 +103,14 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
             <span className="inline-block relative overflow-hidden align-baseline">
               <AnimatePresence mode="wait">
                 <motion.span
-                  key={currentTextIndex}
+                  key={currentSlideIndex}
                   initial={{ y: 22, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -22, opacity: 0 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                   className="inline-block text-[#ea580c] font-black drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
                 >
-                  {rotatingTexts[currentTextIndex]}
+                  {activeSlide.rotatingFocus}
                 </motion.span>
               </AnimatePresence>
             </span>
@@ -110,19 +118,22 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
             AT MAMCET CAMPUS.
           </motion.h1>
 
-          {/* Editorial Narrative with Drop-shadow & Transition */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="text-xs sm:text-sm md:text-base text-slate-100 leading-relaxed mb-8 font-medium max-w-xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)]"
-          >
-            {narrativeText || (
-              <>
-                <strong className="text-white font-bold">MASTeR Incubation Foundation (MIF)</strong> is the premier institutional technology business incubator of Central Tamil Nadu. Providing 6,000+ sq. ft. of dedicated prototyping labs, one-on-one founder mentorship, and direct pathways to TANSEED and MSME grant funding to convert college research into scalable market enterprises.
-              </>
-            )}
-          </motion.p>
+          {/* Editorial Narrative: Synchronously Transitions with the Active Slide */}
+          <div className="min-h-[72px] sm:min-h-[80px] mb-8">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={currentSlideIndex}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="text-xs sm:text-sm md:text-base text-slate-100 leading-relaxed font-medium max-w-xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)]"
+              >
+                <strong className="text-white font-bold">MASTeR Incubation Foundation (MIF):</strong>{" "}
+                {activeSlide.narrative}
+              </motion.p>
+            </AnimatePresence>
+          </div>
 
           {/* Action CTAs (High Contrast, Enhanced Hover UI, Zero SVGs) */}
           <motion.div
