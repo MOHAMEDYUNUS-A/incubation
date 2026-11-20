@@ -4,6 +4,7 @@ import { FOUNDATION_INFO } from "@/lib/db/mockData";
 import { Shield, Target, Compass, ArrowRight, ExternalLink, Award, Users, Landmark, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CampusPhotoGallery from "@/components/sections/CampusPhotoGallery";
+import InauguralMomentsGallery from "@/components/sections/InauguralMomentsGallery";
 
 export const metadata = {
   title: "About Us | MASTeR Incubation Foundation (MIF)",
@@ -61,6 +62,9 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+
+        {/* Official Inaugural Moments Photo Showcase */}
+        <InauguralMomentsGallery />
 
         {/* Vision & Mission Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">

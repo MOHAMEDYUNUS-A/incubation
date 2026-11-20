@@ -108,7 +108,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Main Navigation Bar (Clean White Institutional Style as in Image 2) */}
+        {/* Main Navigation Bar (Clean White Institutional Style with Symmetrical Alignment) */}
         <div
           className={`transition-all duration-300 ${
             scrolled
@@ -116,10 +116,10 @@ export default function Navbar() {
               : "bg-white py-3 border-b border-slate-200/80 shadow-2xs"
           }`}
         >
-          <div className="container max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-            {/* Logo on Left - Bigger, Responsive, Themed to Logo & No Box/MIF clutter */}
-            <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 group shrink-0">
-              <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+          <div className="container max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+            {/* Logo on Left */}
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+              <div className="relative w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
                 <img
                   src="/logos/official-mif-logo.png"
                   alt="MASTeR Incubation Foundation Logo"
@@ -128,21 +128,21 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col justify-center">
                 <div className="flex items-center">
-                  <span className="font-black text-xl sm:text-2xl md:text-3xl tracking-tight text-[#0f2c59] font-display leading-none">
+                  <span className="font-black text-xl sm:text-2xl md:text-[26px] tracking-tight text-[#0f2c59] font-display leading-none">
                     MAST<span className="text-[#ea580c]">e</span>R
                   </span>
                 </div>
                 <span className="text-[11px] sm:text-xs font-extrabold text-slate-800 tracking-tight leading-none mt-1">
                   Incubation Foundation
                 </span>
-                <span className="text-[10px] text-slate-500 font-semibold tracking-normal hidden md:inline mt-0.5">
+                <span className="text-[10px] text-slate-500 font-semibold tracking-normal hidden xl:inline mt-0.5">
                   MAMCET · StartupTN Pre-Incubation Centre
                 </span>
               </div>
             </Link>
 
-            {/* Navigation Links in Center */}
-            <nav className="hidden lg:flex items-center gap-1">
+            {/* Symmetrically Centered Navigation Links */}
+            <nav className="hidden lg:flex items-center justify-center gap-0.5 xl:gap-1.5 flex-1 mx-2">
               {NAV_LINKS.map((link) => (
                 <div
                   key={link.name}
@@ -152,10 +152,10 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={`px-3 py-2 text-sm font-bold transition-colors flex items-center gap-1 rounded-lg ${
+                    className={`px-3 py-2 text-sm font-bold transition-all flex items-center gap-1 rounded-xl whitespace-nowrap ${
                       pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
-                        ? "text-[#ea580c] font-black"
-                        : "text-slate-800 hover:text-[#ea580c] hover:bg-orange-50/70"
+                        ? "text-[#ea580c] font-black bg-orange-50/60"
+                        : "text-slate-700 hover:text-[#ea580c] hover:bg-slate-50"
                     }`}
                   >
                     <span>{link.name}</span>
@@ -171,13 +171,13 @@ export default function Navbar() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute top-full left-0 mt-1 w-52 rounded-xl bg-white border border-slate-200 shadow-xl py-2 z-50"
+                      className="absolute top-full left-0 mt-1 w-56 rounded-2xl bg-white border border-slate-200/90 shadow-xl py-2 z-50 overflow-hidden"
                     >
                       {link.submenu.map((sub) => (
                         <Link
                           key={sub.name}
                           href={sub.href}
-                          className="block px-4 py-2 text-xs text-slate-700 hover:bg-orange-50 hover:text-orange-600 font-medium transition-colors"
+                          className="block px-4 py-2.5 text-xs text-slate-700 hover:bg-orange-50 hover:text-[#ea580c] font-semibold transition-colors"
                         >
                           {sub.name}
                         </Link>
@@ -189,11 +189,11 @@ export default function Navbar() {
             </nav>
 
             {/* Right Action: Prominent Orange CTA Button */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               <Link href="/apply">
                 <Button
                   size="sm"
-                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold shadow-md shadow-orange-500/25 rounded-xl text-xs gap-1.5 h-9 sm:h-10 px-3 sm:px-5 group transition-all"
+                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold shadow-md shadow-orange-500/25 rounded-xl text-xs gap-1.5 h-10 px-4 sm:px-5 group transition-all"
                 >
                   <span className="hidden sm:inline">Apply For Pre Incubation</span>
                   <span className="sm:hidden">Apply Now</span>
