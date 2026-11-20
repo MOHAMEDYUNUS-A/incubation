@@ -9,9 +9,12 @@ import {
   ArrowRight,
   Award,
   CheckCircle2,
+  Lightbulb,
+  FlaskConical,
+  Handshake,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { RevealLeft, RevealRight } from "@/components/animations/LightAnimations";
+import { RevealLeft, RevealRight, RevealUp } from "@/components/animations/LightAnimations";
 
 export default function WelcomeSection() {
   return (
@@ -52,7 +55,7 @@ export default function WelcomeSection() {
         </div>
 
         {/* Prestigious, Minimalist Welcome Content */}
-        <div className="max-w-4xl mx-auto text-center space-y-6">
+        <div className="max-w-4xl mx-auto text-center space-y-6 mb-16">
           <RevealLeft>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider mb-2">
               <ShieldCheck className="w-4 h-4 text-blue-600" />
@@ -98,22 +101,78 @@ export default function WelcomeSection() {
                 IITMIC Partner Network
               </span>
             </div>
-
-            {/* Clean Action CTAs */}
-            <div className="pt-8 flex flex-wrap items-center justify-center gap-4">
-              <Link href="/about">
-                <Button className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-sm h-12 px-8 rounded-xl shadow-md gap-2">
-                  <span>About Our Foundation</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
-              <Link href="/programs">
-                <Button variant="outline" className="border-slate-300 text-slate-800 font-bold text-sm h-12 px-7 rounded-xl hover:bg-slate-50">
-                  View 4-Stage Pathway
-                </Button>
-              </Link>
-            </div>
           </RevealRight>
+        </div>
+
+        {/* ================= Empowering Innovation and Entrepreneurship (Matching Reference Image 3) ================= */}
+        <div className="max-w-6xl mx-auto pt-6 border-t border-slate-200">
+          <div className="text-center mb-10">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0f2c59] font-display tracking-tight">
+              &ldquo;Empowering Innovation and Entrepreneurship&rdquo;
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1: Incubate Technological Ideas */}
+            <RevealUp delay={0.1}>
+              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-100/90 border border-slate-300 text-slate-800 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2.5 mb-3 text-[#0f2c59]">
+                    <Lightbulb className="w-5 h-5 text-orange-600 shrink-0" />
+                    <h4 className="text-lg font-bold font-display">Incubate Technological Ideas</h4>
+                  </div>
+                  <p className="text-sm text-slate-700 leading-relaxed font-normal">
+                    MASTeR Incubation Foundation is a dedicated facility to incubate technological ideas and engineering innovations, enabling early-stage start-ups to succeed in the competitive commercial marketplace.
+                  </p>
+                </div>
+              </div>
+            </RevealUp>
+
+            {/* Card 2: Research And Development */}
+            <RevealUp delay={0.2}>
+              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-100/90 border border-slate-300 text-slate-800 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2.5 mb-3 text-[#0f2c59]">
+                    <FlaskConical className="w-5 h-5 text-blue-600 shrink-0" />
+                    <h4 className="text-lg font-bold font-display">Research And Development</h4>
+                  </div>
+                  <p className="text-sm text-slate-700 leading-relaxed font-normal">
+                    We bridge critical gaps across the innovation-entrepreneurship-investment ecosystem, ensuring full commercial and patent utilization of academic and departmental R&D breakthroughs.
+                  </p>
+                </div>
+              </div>
+            </RevealUp>
+
+            {/* Card 3: Guide And Support */}
+            <RevealUp delay={0.3}>
+              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-100/90 border border-slate-300 text-slate-800 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2.5 mb-3 text-[#0f2c59]">
+                    <Handshake className="w-5 h-5 text-indigo-600 shrink-0" />
+                    <h4 className="text-lg font-bold font-display">Guide And Support</h4>
+                  </div>
+                  <p className="text-sm text-slate-700 leading-relaxed font-normal">
+                    To guide and support potent student and faculty entrepreneurs to avail non-dilutive seed funding (TANSEED, MSME, EDII-TN) for product realization, field validation, and marketing.
+                  </p>
+                </div>
+              </div>
+            </RevealUp>
+          </div>
+
+          {/* Clean Action CTAs */}
+          <div className="pt-10 flex flex-wrap items-center justify-center gap-4">
+            <Link href="/about">
+              <Button className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-sm h-12 px-8 rounded-xl shadow-md gap-2">
+                <span>About Our Foundation</span>
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
+            <Link href="/programs">
+              <Button variant="outline" className="border-slate-300 text-slate-800 font-bold text-sm h-12 px-7 rounded-xl hover:bg-slate-50">
+                View 4-Stage Pathway
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

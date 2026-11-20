@@ -99,6 +99,9 @@ export function FadeUp({ children, className = "", delay = 0 }: AnimationProps) 
   );
 }
 
+// 7. Reveal-Up Animation (Alias for FadeUp with clean vertical motion)
+export const RevealUp = FadeUp;
+
 // 7. Interactive X-Y-Z 3D Hover Transition Card (Pitch, Yaw, Lift & Z-depth)
 export function XYZCard({
   children,
