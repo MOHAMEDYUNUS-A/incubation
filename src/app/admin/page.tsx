@@ -750,9 +750,11 @@ export default function AdminPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {startupsList
                 .filter((st: any) => {
+                  if (!st || !st.name) return false;
+                  const q = startupSearch.toLowerCase();
                   const matchSearch =
-                    st.name.toLowerCase().includes(startupSearch.toLowerCase()) ||
-                    st.founders.toLowerCase().includes(startupSearch.toLowerCase());
+                    (st.name && st.name.toLowerCase().includes(q)) ||
+                    (st.founders && st.founders.toLowerCase().includes(q));
                   const matchCat =
                     startupCategoryFilter === "ALL" || st.category === startupCategoryFilter;
                   return matchSearch && matchCat;

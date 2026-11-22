@@ -58,12 +58,14 @@ export default function StartupPortfolio() {
   const [viewGrouped, setViewGrouped] = useState(false);
 
   const filtered = startups.filter((st: any) => {
+    if (!st || !st.name) return false;
+    const s = search.toLowerCase();
     const matchesSearch =
-      st.name.toLowerCase().includes(search.toLowerCase()) ||
-      (st.oneLiner && st.oneLiner.toLowerCase().includes(search.toLowerCase())) ||
-      (st.founders && st.founders.toLowerCase().includes(search.toLowerCase())) ||
-      (st.tags &&
-        st.tags.some((t: string) => t.toLowerCase().includes(search.toLowerCase())));
+      (st.name && st.name.toLowerCase().includes(s)) ||
+      (st.oneLiner && st.oneLiner.toLowerCase().includes(s)) ||
+      (st.founders && st.founders.toLowerCase().includes(s)) ||
+      (Array.isArray(st.tags) &&
+        st.tags.some((t: string) => typeof t === "string" && t.toLowerCase().includes(s)));
 
     const matchesCategory =
       selectedCategory === "ALL" || st.category === selectedCategory;

@@ -20,6 +20,7 @@ const ContentContext = createContext<ContentContextType>({
 });
 
 const STORAGE_KEY = "mif_site_content_v2";
+const STORAGE_TIME_KEY = "mif_site_content_updated_at_v2";
 
 export function ContentProvider({ children }: { children: React.ReactNode }) {
   const [content, setContent] = useState<SiteContent>(initialContent);
@@ -46,10 +47,35 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
       const res = await fetch("/api/admin/content");
       const json = await res.json();
       if (json.success && json.data) {
-        setContent(json.data);
+        // Check if user has local client modifications in localStorage
+        let clientHasNewerData = false;
         try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(json.data));
+          const localTimeStr = typeof window !== "undefined" ? localStorage.getItem(STORAGE_TIME_KEY) : null;
+          const localDataStr = typeof window !== "undefined" ? localStorage.getItem(STORAGE_KEY) : null;
+          const serverTime = json.timestamp || 0;
+          if (localTimeStr && localDataStr) {
+            const localTime = parseInt(localTimeStr, 10);
+            if (localTime > 0 && localTime >= serverTime) {
+              clientHasNewerData = true;
+              const parsedLocal = JSON.parse(localDataStr);
+              // Preserve client state!
+              setContent((prev) => ({ ...prev, ...parsedLocal }));
+              // Synchronize client modifications to server in background
+              fetch("/api/admin/content", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ fullContent: parsedLocal, timestamp: localTime }),
+              }).catch(() => {});
+            }
+          }
         } catch (e) {}
+
+        if (!clientHasNewerData) {
+          setContent(json.data);
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(json.data));
+          } catch (e) {}
+        }
       }
     } catch (err) {
       console.warn("Failed to fetch dynamic content, using bundled fallback:", err);
@@ -85,6 +111,7 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const updateSection = async (section: keyof SiteContent, data: any): Promise<boolean> => {
+    const now = Date.now();
     // 1. Optimistically update local state immediately
     const updated = {
       ...content,
@@ -94,6 +121,7 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      localStorage.setItem(STORAGE_TIME_KEY, now.toString());
       window.dispatchEvent(new CustomEvent("mif_content_changed", { detail: updated }));
     } catch (e) {}
 
@@ -102,13 +130,14 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
       const res = await fetch("/api/admin/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section, data }),
+        body: JSON.stringify({ section, data, timestamp: now }),
       });
       const json = await res.json();
       if (json.success && json.data) {
         setContent(json.data);
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(json.data));
+          localStorage.setItem(STORAGE_TIME_KEY, now.toString());
         } catch (e) {}
         return true;
       }
