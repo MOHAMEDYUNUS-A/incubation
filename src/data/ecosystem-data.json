@@ -1,0 +1,778 @@
+{
+  "passports": [
+    {
+      "id": "sp_aerodrone_001",
+      "passportId": "MASTER-SP-2026-0001",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "slug": "aerodrone-ai-labs",
+      "status": "ACTIVE",
+      "issuedAt": "2026-01-15T09:30:00.000Z",
+      "activationDate": "2026-01-18T10:00:00.000Z",
+      "lastVerifiedAt": "2026-11-22T12:12:55.868Z",
+      "verificationCount": 143,
+      "securityHash": "SHA256-MIF-2026-AERODRONE-99882201",
+      "qrCodeData": "https://master-incubation.edu.in/startup-passport/verify/MASTER-SP-2026-0001",
+      "remarks": "Formally approved by MIF Governing Council. Recipient of TANSEED 4.0 Pre-Seed Grant."
+    },
+    {
+      "id": "sp_agrosens_002",
+      "passportId": "MASTER-SP-2026-0002",
+      "startupId": "s_1795332004113",
+      "startupName": "AgroSens Telemetry",
+      "slug": "agrosens-telemetry",
+      "status": "ACTIVE",
+      "issuedAt": "2026-02-10T11:00:00.000Z",
+      "activationDate": "2026-02-12T14:30:00.000Z",
+      "lastVerifiedAt": "2026-11-20T16:40:00.000Z",
+      "verificationCount": 89,
+      "securityHash": "SHA256-MIF-2026-AGROSENS-44118832",
+      "qrCodeData": "https://master-incubation.edu.in/startup-passport/verify/MASTER-SP-2026-0002",
+      "remarks": "Incubated in Electronics & IoT Hardware Innovation Track. Hardware prototype verified in FabLab."
+    },
+    {
+      "id": "sp_thermagrid_003",
+      "passportId": "MASTER-SP-2025-0001",
+      "startupId": "s_1795332004114",
+      "startupName": "ThermaGrid Analytics",
+      "slug": "thermagrid-analytics",
+      "status": "ACTIVE",
+      "issuedAt": "2025-08-01T10:00:00.000Z",
+      "activationDate": "2025-08-05T12:00:00.000Z",
+      "lastVerifiedAt": "2026-11-21T09:12:00.000Z",
+      "verificationCount": 315,
+      "securityHash": "SHA256-MIF-2025-THERMAGRID-77223311",
+      "qrCodeData": "https://master-incubation.edu.in/startup-passport/verify/MASTER-SP-2025-0001",
+      "remarks": "Graduated to Alumni status. Series-seed raised from cleantech syndicates."
+    }
+  ],
+  "founders": [
+    {
+      "id": "f_aero_1",
+      "startupId": "s_1795332004112",
+      "fullName": "Karthik Rajendran",
+      "role": "CEO & Drone Systems Architect",
+      "email": "karthik.aero@mamcet.edu.in",
+      "phone": "+91 94432 11022",
+      "bio": "Aerospace engineer and autonomous flight systems researcher with 3 published papers on low-altitude multispectral payload stabilization.",
+      "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&q=80",
+      "linkedInUrl": "https://linkedin.com/in/karthik-rajendran-aero",
+      "githubUrl": "https://github.com/karthik-aero",
+      "education": "B.E. Aeronautical Engineering, MAMCET (Cohort 2024)",
+      "skills": [
+        "Autonomous UAV Design",
+        "PX4 Flight Stack",
+        "Computer Vision",
+        "ROS2"
+      ],
+      "isPublicContact": false
+    },
+    {
+      "id": "f_aero_2",
+      "startupId": "s_1795332004112",
+      "fullName": "Sowmya Natarajan",
+      "role": "Co-Founder & Edge AI Lead",
+      "email": "sowmya.n@mamcet.edu.in",
+      "phone": "+91 98840 55123",
+      "bio": "Embedded machine learning specialist focused on on-drone plant disease segmentation using NVIDIA Jetson Orin.",
+      "avatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&q=80",
+      "linkedInUrl": "https://linkedin.com/in/sowmya-natarajan-ai",
+      "education": "B.Tech AI & Data Science, MAMCET",
+      "skills": [
+        "PyTorch",
+        "TensorRT",
+        "Edge Computing",
+        "GeoJSON Pipelines"
+      ],
+      "isPublicContact": false
+    },
+    {
+      "id": "f_agro_1",
+      "startupId": "s_1795332004113",
+      "fullName": "Dinesh Kumar",
+      "role": "Founder & IoT Hardware Lead",
+      "email": "dinesh.k@agrosens.io",
+      "phone": "+91 97910 88771",
+      "bio": "Hardware hacker and wireless telemetry engineer developing ultra-low power LoRaWAN agricultural nodes for Cauvery delta farmers.",
+      "avatarUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80",
+      "linkedInUrl": "https://linkedin.com/in/dinesh-kumar-iot",
+      "education": "B.E. Electronics & Communication Engineering, MAMCET",
+      "skills": [
+        "PCB Design",
+        "LoRaWAN",
+        "FreeRTOS",
+        "Soil Chemistry Telemetry"
+      ],
+      "isPublicContact": false
+    },
+    {
+      "id": "f_therma_1",
+      "startupId": "s_1795332004114",
+      "fullName": "Vigneshwaran Sundaram",
+      "role": "Co-Founder & Managing Director",
+      "email": "vignesh@thermagrid.energy",
+      "phone": "+91 99401 22334",
+      "bio": "Power systems engineer and MAMCET alumnus. Built AI thermal distribution algorithms deployed across 4 industrial microgrids.",
+      "avatarUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80",
+      "linkedInUrl": "https://linkedin.com/in/vignesh-thermagrid",
+      "education": "B.E. Electrical & Electronics Engineering, MAMCET (Cohort 2022)",
+      "skills": [
+        "Microgrid Optimization",
+        "SCADA Integration",
+        "CleanTech Policy",
+        "Series Funding"
+      ],
+      "isPublicContact": true
+    }
+  ],
+  "milestones": [
+    {
+      "id": "m_aero_1",
+      "startupId": "s_1795332004112",
+      "stageOrder": 1,
+      "stageName": "Idea Submitted",
+      "title": "Initial Venture Proposal & Agritech Abstract",
+      "description": "Submission of problem statement addressing Cauvery delta pest infestations and preliminary drone scouting approach.",
+      "weight": 5,
+      "status": "COMPLETED",
+      "targetDate": "2025-10-15T00:00:00.000Z",
+      "completedDate": "2025-10-14T16:00:00.000Z",
+      "evidence": [
+        {
+          "id": "ev_1",
+          "title": "Problem Statement Dossier",
+          "description": "Survey of 50 paddy farmers in Siruganur and Lalgudi taluks.",
+          "fileUrl": "https://mif.mamcet.edu.in/docs/aerodrone-problem-survey.pdf",
+          "fileType": "pdf",
+          "submittedAt": "2025-10-14T15:30:00.000Z"
+        }
+      ],
+      "adminRemarks": "High-impact rural problem statement. Approved for screening.",
+      "reviewedBy": "Dr. R. Rajavel, Head of Incubation",
+      "reviewedAt": "2025-10-15T10:00:00.000Z"
+    },
+    {
+      "id": "m_aero_2",
+      "startupId": "s_1795332004112",
+      "stageOrder": 2,
+      "stageName": "Application Received",
+      "title": "Formal Incubation Application Intake",
+      "description": "Complete submission of team credentials, IP declarations, and financial projections.",
+      "weight": 5,
+      "status": "COMPLETED",
+      "targetDate": "2025-11-01T00:00:00.000Z",
+      "completedDate": "2025-10-28T11:00:00.000Z",
+      "evidence": [],
+      "adminRemarks": "All regulatory and institutional vetting clear.",
+      "reviewedBy": "MIF Intake Committee",
+      "reviewedAt": "2025-11-02T10:00:00.000Z"
+    },
+    {
+      "id": "m_aero_3",
+      "startupId": "s_1795332004112",
+      "stageOrder": 3,
+      "stageName": "Initial Review",
+      "title": "Technical Pitch Deck Evaluation",
+      "description": "Evaluation by the MIF Technical Advisory Board on UAV aerodynamics and autonomous failsafes.",
+      "weight": 5,
+      "status": "COMPLETED",
+      "targetDate": "2025-11-20T00:00:00.000Z",
+      "completedDate": "2025-11-18T14:00:00.000Z",
+      "evidence": [],
+      "adminRemarks": "Recommended for full physical lab residency.",
+      "reviewedBy": "External Industry Jury",
+      "reviewedAt": "2025-11-19T12:00:00.000Z"
+    },
+    {
+      "id": "m_aero_4",
+      "startupId": "s_1795332004112",
+      "stageOrder": 4,
+      "stageName": "Selected for Incubation",
+      "title": "Governing Council Sanction & Agreement",
+      "description": "Signing of incubation MoU, allocation of lab bay in MIF Advanced IoT & Robotics Center.",
+      "weight": 5,
+      "status": "COMPLETED",
+      "targetDate": "2025-12-10T00:00:00.000Z",
+      "completedDate": "2025-12-08T10:00:00.000Z",
+      "evidence": [],
+      "adminRemarks": "MoU executed with MAMCET Siruganur.",
+      "reviewedBy": "MIF Secretariat",
+      "reviewedAt": "2025-12-09T09:00:00.000Z"
+    },
+    {
+      "id": "m_aero_5",
+      "startupId": "s_1795332004112",
+      "stageOrder": 5,
+      "stageName": "Passport Activated",
+      "title": "Digital Startup Passport Issuance",
+      "description": "Issuance of verified Startup Passport ID MASTER-SP-2026-0001 with cryptographically signed verification badge.",
+      "weight": 5,
+      "status": "COMPLETED",
+      "targetDate": "2026-01-18T00:00:00.000Z",
+      "completedDate": "2026-01-18T10:00:00.000Z",
+      "evidence": [],
+      "adminRemarks": "Official digital identity generated and activated.",
+      "reviewedBy": "Admin Console",
+      "reviewedAt": "2026-01-18T10:05:00.000Z"
+    },
+    {
+      "id": "m_aero_6",
+      "startupId": "s_1795332004112",
+      "stageOrder": 6,
+      "stageName": "Mentor Assigned",
+      "title": "Industrial & Agritech Mentorship Onboarding",
+      "description": "Assignment of Dr. S. Annamalai (Ex-ISRO Avionics) and Er. Meera Krishnan (Agritech Angel).",
+      "weight": 5,
+      "status": "COMPLETED",
+      "targetDate": "2026-02-01T00:00:00.000Z",
+      "completedDate": "2026-01-25T11:00:00.000Z",
+      "evidence": [],
+      "adminRemarks": "Both mentors formally confirmed advisory commitment.",
+      "reviewedBy": "Mentorship Coordinator",
+      "reviewedAt": "2026-01-26T14:00:00.000Z"
+    },
+    {
+      "id": "m_aero_7",
+      "startupId": "s_1795332004112",
+      "stageOrder": 7,
+      "stageName": "Problem Validation",
+      "title": "Multi-Crop Spectral Signature Validation",
+      "description": "Field validation of false-color NIR imaging against manual laboratory chlorophyll extraction.",
+      "weight": 10,
+      "status": "COMPLETED",
+      "targetDate": "2026-03-15T00:00:00.000Z",
+      "completedDate": "2026-03-12T17:00:00.000Z",
+      "evidence": [
+        {
+          "id": "ev_2",
+          "title": "Correlation Analysis Report",
+          "description": "94.2% correlation between NDVI index and nitrogen deficiency in Siruganur pilot field.",
+          "fileUrl": "https://mif.mamcet.edu.in/docs/aerodrone-spectral-validation.pdf",
+          "fileType": "pdf",
+          "submittedAt": "2026-03-12T16:45:00.000Z"
+        }
+      ],
+      "adminRemarks": "Data reviewed by Agri-Tech faculty panel. Excellent empirical correlation.",
+      "reviewedBy": "Dr. R. Rajavel",
+      "reviewedAt": "2026-03-13T10:00:00.000Z"
+    },
+    {
+      "id": "m_aero_8",
+      "startupId": "s_1795332004112",
+      "stageOrder": 8,
+      "stageName": "Business Model Development",
+      "title": "DaaS (Drone-as-a-Service) Unit Economics",
+      "description": "Formulation of ₹350/acre scouting tier with village level entrepreneur (VLE) revenue share model.",
+      "weight": 10,
+      "status": "COMPLETED",
+      "targetDate": "2026-05-01T00:00:00.000Z",
+      "completedDate": "2026-04-26T15:00:00.000Z",
+      "evidence": [],
+      "adminRemarks": "Financial model demonstrates payback under 4 months for local VLE operators.",
+      "reviewedBy": "Er. Meera Krishnan",
+      "reviewedAt": "2026-04-28T11:00:00.000Z"
+    },
+    {
+      "id": "m_aero_9",
+      "startupId": "s_1795332004112",
+      "stageOrder": 9,
+      "stageName": "Prototype Development",
+      "title": "AeroScan Alpha Quadcopter Assembly",
+      "description": "Carbon fiber hexacopter build with 28-minute endurance and onboard Jetson Xavier NX edge inference.",
+      "weight": 15,
+      "status": "COMPLETED",
+      "targetDate": "2026-07-20T00:00:00.000Z",
+      "completedDate": "2026-07-15T12:00:00.000Z",
+      "evidence": [
+        {
+          "id": "ev_3",
+          "title": "Flight Telemetry & Bench Test Video",
+          "description": "Autonomous waypoint navigation video over MAMCET testing grounds.",
+          "fileUrl": "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=800&q=80",
+          "fileType": "image",
+          "submittedAt": "2026-07-15T11:30:00.000Z"
+        }
+      ],
+      "adminRemarks": "Physical drone inspected at MIF flight cage. DGCA compliance verified.",
+      "reviewedBy": "Dr. S. Annamalai",
+      "reviewedAt": "2026-07-16T15:00:00.000Z"
+    },
+    {
+      "id": "m_aero_10",
+      "startupId": "s_1795332004112",
+      "stageOrder": 10,
+      "stageName": "Product Testing",
+      "title": "500-Acre Live Farmland Trial",
+      "description": "Continuous flight trials across 5 agrarian clusters in Trichy district under varied weather and wind conditions.",
+      "weight": 10,
+      "status": "COMPLETED",
+      "targetDate": "2026-09-30T00:00:00.000Z",
+      "completedDate": "2026-09-22T18:00:00.000Z",
+      "evidence": [
+        {
+          "id": "ev_4",
+          "title": "Farmer Endorsement Certificates",
+          "description": "Testimonials and soil survey certificates from 18 farmer societies.",
+          "fileUrl": "https://mif.mamcet.edu.in/docs/farmer-testimonials.pdf",
+          "fileType": "pdf",
+          "submittedAt": "2026-09-22T17:30:00.000Z"
+        }
+      ],
+      "adminRemarks": "Zero system failure incidents logged in 42 hours of cumulative flight.",
+      "reviewedBy": "MIF Quality Board",
+      "reviewedAt": "2026-09-24T10:00:00.000Z"
+    },
+    {
+      "id": "m_aero_11",
+      "startupId": "s_1795332004112",
+      "stageOrder": 11,
+      "stageName": "Market Validation",
+      "title": "Commercial Pre-Orders & LoIs",
+      "description": "Signed letters of intent for 12,000 acres of seasonal paddy surveillance across Tiruchirappalli and Thanjavur districts.",
+      "weight": 10,
+      "status": "COMPLETED",
+      "targetDate": "2026-11-05T00:00:00.000Z",
+      "completedDate": "2026-11-02T11:00:00.000Z",
+      "evidence": [
+        {
+          "id": "ev_5",
+          "title": "Signed Letters of Intent (FPO Trichy)",
+          "description": "Formal LoI totaling ₹8.4 Lakhs in seasonal drone scouting contracts.",
+          "fileUrl": "https://mif.mamcet.edu.in/docs/loi-trichy-fpo.pdf",
+          "fileType": "pdf",
+          "submittedAt": "2026-11-02T10:45:00.000Z"
+        }
+      ],
+      "adminRemarks": "Revenue pipeline validated. Ready for public product launch showcase.",
+      "reviewedBy": "Dr. R. Rajavel",
+      "reviewedAt": "2026-11-04T16:00:00.000Z"
+    },
+    {
+      "id": "m_aero_12",
+      "startupId": "s_1795332004112",
+      "stageOrder": 12,
+      "stageName": "Product Launch",
+      "title": "AeroScan Pro Commercial Launch",
+      "description": "Official unveiling of the AeroScan Pro autonomous drone at Tamil Nadu AgriTech Conclave.",
+      "weight": 10,
+      "status": "IN_PROGRESS",
+      "targetDate": "2026-12-15T00:00:00.000Z",
+      "evidence": [],
+      "founderRemarks": "Product launch event booth booked. Final firmware updates underway.",
+      "adminRemarks": "MIF to co-sponsor product showcase booth."
+    },
+    {
+      "id": "m_aero_13",
+      "startupId": "s_1795332004112",
+      "stageOrder": 13,
+      "stageName": "Post-Incubation",
+      "title": "Seed Acceleration & Expansion",
+      "description": "Expansion of manufacturing facility and expansion of pilot fleet to 15 drones.",
+      "weight": 5,
+      "status": "NOT_STARTED",
+      "targetDate": "2027-04-30T00:00:00.000Z",
+      "evidence": []
+    },
+    {
+      "id": "m_aero_14",
+      "startupId": "s_1795332004112",
+      "stageOrder": 14,
+      "stageName": "Alumni Status",
+      "title": "Graduation to MIF Alumni Guild",
+      "description": "Transition to self-sustaining corporate entity and permanent induction into the Alumni Network.",
+      "weight": 5,
+      "status": "NOT_STARTED",
+      "targetDate": "2027-08-31T00:00:00.000Z",
+      "evidence": []
+    }
+  ],
+  "mentors": [
+    {
+      "id": "mentor_1",
+      "name": "Dr. S. Annamalai",
+      "designation": "Former Group Director, Avionics & Guidance",
+      "organization": "ISRO / Defence Research Consultant",
+      "areasOfExpertise": [
+        "Autonomous Guidance",
+        "Aerospace Robotics",
+        "Hardware Failsafes"
+      ],
+      "bio": "Over 28 years leading mission-critical aerospace hardware development. Advises MIF deeptech startups on DO-178C safety standards and inertial navigation.",
+      "avatarUrl": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&q=80",
+      "linkedInUrl": "https://linkedin.com/in/dr-s-annamalai",
+      "isAvailable": true,
+      "assignedStartups": [
+        "s_1795332004112"
+      ]
+    },
+    {
+      "id": "mentor_2",
+      "name": "Er. Meera Krishnan",
+      "designation": "Managing Partner",
+      "organization": "Kavery Agri Ventures & Angel Network",
+      "areasOfExpertise": [
+        "AgriTech Commercialization",
+        "Venture Capital",
+        "Farmer Producer Orgs"
+      ],
+      "bio": "Experienced venture builder and angel investor who has backed 14 rural tech startups across Southern India with over ₹22 Cr in cumulative follow-on capital.",
+      "avatarUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80",
+      "linkedInUrl": "https://linkedin.com/in/meera-krishnan-vc",
+      "isAvailable": true,
+      "assignedStartups": [
+        "s_1795332004112",
+        "s_1795332004113"
+      ]
+    },
+    {
+      "id": "mentor_3",
+      "name": "Prof. T. Sundararajan",
+      "designation": "Director of Technology",
+      "organization": "CleanGrid Systems / IEEE Senior Member",
+      "areasOfExpertise": [
+        "Smart Grids",
+        "Battery Storage",
+        "Power Electronics"
+      ],
+      "bio": "Pioneer in distributed renewable microgrids and industrial energy storage with 12 US and Indian patents.",
+      "avatarUrl": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&q=80",
+      "linkedInUrl": "https://linkedin.com/in/t-sundararajan",
+      "isAvailable": true,
+      "assignedStartups": [
+        "s_1795332004114"
+      ]
+    }
+  ],
+  "sessions": [
+    {
+      "id": "sess_101",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "mentorId": "mentor_1",
+      "mentorName": "Dr. S. Annamalai",
+      "date": "2026-08-14T10:30:00.000Z",
+      "durationMinutes": 75,
+      "topic": "Fail-Safe RTH (Return-To-Home) Algorithm Architecture",
+      "notes": "Reviewed GPS denial telemetry tests. Recommended dual-frequency GNSS receiver with magnetometer shielding to counter high-voltage transmission lines.",
+      "mentorFeedback": "Founders have extraordinary hardware agility. Flight safety firmware meets strict DGCA Green Zone specifications.",
+      "founderFeedback": "Invaluable advice on avoiding compass interference near delta power substations.",
+      "actionItems": "Procure copper foil shielding for the compass pod; run automated bench tests on sudden signal loss."
+    },
+    {
+      "id": "sess_102",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "mentorId": "mentor_2",
+      "mentorName": "Er. Meera Krishnan",
+      "date": "2026-10-18T14:00:00.000Z",
+      "durationMinutes": 60,
+      "topic": "Farmer Producer Company (FPC) Contracting & Pricing",
+      "notes": "Explored tiered pricing vs pay-per-acre models for local farming collectives. Agreed to structure pilot contracts with minimum acreage guarantees.",
+      "mentorFeedback": "The team understood the unit economics thoroughly. Ready for investor demo day.",
+      "founderFeedback": "Gave us clear guidance on structuring contract milestones for the FPO deals.",
+      "actionItems": "Finalize draft service agreement with Trichy FPC legal advisors before November 10."
+    }
+  ],
+  "achievements": [
+    {
+      "id": "ach_1",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "title": "TANSEED 4.0 Pre-Seed Grant (₹10,00,000)",
+      "type": "INNOVATION_GRANT",
+      "issuer": "StartupTN, Government of Tamil Nadu",
+      "awardDate": "2026-03-20T00:00:00.000Z",
+      "description": "Selected among top 40 innovative deeptech startups across Tamil Nadu for non-dilutive pre-seed commercialization funding.",
+      "grantAmount": "₹10,00,000",
+      "certificateUrl": "https://mif.mamcet.edu.in/certs/tanseed-aerodrone.pdf",
+      "isVerified": true,
+      "isPublic": true
+    },
+    {
+      "id": "ach_2",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "title": "Best AgriTech Hardware Innovation Award",
+      "type": "AWARD",
+      "issuer": "Confederation of Indian Industry (CII) Southern Region",
+      "awardDate": "2026-08-05T00:00:00.000Z",
+      "description": "Recognized for developing the lightest multispectral crop scanner optimized for smallholder paddy fields.",
+      "isVerified": true,
+      "isPublic": true
+    },
+    {
+      "id": "ach_3",
+      "startupId": "s_1795332004114",
+      "startupName": "ThermaGrid Analytics",
+      "title": "DST-NIDHI Prayas Grant (₹10,00,000)",
+      "type": "INNOVATION_GRANT",
+      "issuer": "Department of Science and Technology, Govt of India",
+      "awardDate": "2024-11-12T00:00:00.000Z",
+      "description": "Sanctioned for rapid hardware prototyping of thermal microgrid smart switches.",
+      "grantAmount": "₹10,00,000",
+      "isVerified": true,
+      "isPublic": true
+    }
+  ],
+  "launches": [
+    {
+      "id": "launch_1",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "productName": "AeroScan Pro Multi-Spectral UAV",
+      "tagline": "Real-time crop health intelligence under 15 minutes per hectare",
+      "launchDate": "2026-11-15T10:00:00.000Z",
+      "version": "v1.2 Commercial Edition",
+      "demoUrl": "https://aerodrone.mamcet.edu.in/demo",
+      "pressReleaseUrl": "https://mif.mamcet.edu.in/news/aerodrone-product-launch",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=800&q=80",
+        "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=800&q=80"
+      ],
+      "description": "Engineered at the MASTeR Incubation Foundation FabLab, the AeroScan Pro combines dual RGB + NIR optical sensors with on-drone edge AI to generate pinpoint vegetation index maps without needing cloud uplink.",
+      "isFeatured": true
+    },
+    {
+      "id": "launch_2",
+      "startupId": "s_1795332004114",
+      "startupName": "ThermaGrid Analytics",
+      "productName": "GridSense Edge Energy Controller",
+      "tagline": "Industrial thermal load balancing with 18% peak reduction",
+      "launchDate": "2025-09-10T10:00:00.000Z",
+      "version": "v2.0 Enterprise",
+      "demoUrl": "https://thermagrid.energy/platform",
+      "mediaUrls": [
+        "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80"
+      ],
+      "description": "Smart IoT hardware controller deployed in manufacturing and cold-storage facilities to dynamically redistribute thermal loads.",
+      "isFeatured": true
+    }
+  ],
+  "stories": [
+    {
+      "id": "story_1",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "slug": "from-campus-drone-club-to-statewide-agritech-trailblazer",
+      "title": "From Campus Drone Club to Statewide AgriTech Trailblazer",
+      "heroImage": "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=1200&q=80",
+      "problemStatement": "In the Cauvery delta belt, paddy blast and sheath blight disease can destroy up to 40% of seasonal yield if caught late. Traditional satellite imagery is hampered by monsoon cloud cover, while manual ground scouting is slow and labor-prohibitive across vast acreage.",
+      "theBreakthrough": "MAMCET student founders Karthik Rajendran and Sowmya Natarajan designed a ruggedized, lightweight carbon-fiber drone equipped with dual multispectral optics. Instead of streaming gigabytes of raw footage to remote servers, their onboard neural network parses reflectance values in real time, delivering color-coded infection heatmaps straight to the farmer's WhatsApp within 10 minutes of landing.",
+      "mifJourney": "Incubated in late 2025 at MASTeR Incubation Foundation, the team gained direct access to high-precision CNC routers, 3D printing, and the outdoor flight cage. MIF connected them to former ISRO scientists for aerodynamics optimization, facilitated their ₹10 Lakh TANSEED grant from StartupTN, and coordinated field trials with local farming cooperatives across Tiruchirappalli.",
+      "impactMetrics": [
+        {
+          "label": "Acreage Monitored",
+          "value": "12,500+",
+          "detail": "Across Trichy, Thanjavur and Karur paddy belts"
+        },
+        {
+          "label": "Crop Loss Prevented",
+          "value": "₹42 Lakhs",
+          "detail": "Calculated across 80+ enrolled farming families"
+        },
+        {
+          "label": "Pesticide Reduction",
+          "value": "32%",
+          "detail": "Through targeted micro-spraying interventions"
+        },
+        {
+          "label": "Venture Funding",
+          "value": "₹10L TANSEED",
+          "detail": "Government of Tamil Nadu non-dilutive grant"
+        }
+      ],
+      "founderQuote": "MASTeR Incubation Foundation didn't just give us desk space; they gave us test cages, rigorous mentorship from veteran aerospace scientists, and the credibility of an officially verified Startup Passport that opened institutional doors across Tamil Nadu.",
+      "quoteAuthor": "Karthik Rajendran, Co-Founder & CEO",
+      "status": "PUBLISHED",
+      "isEditorialPick": true,
+      "publishedAt": "2026-11-01T10:00:00.000Z",
+      "interview": {
+        "id": "int_1",
+        "storyId": "story_1",
+        "interviewTitle": "Building Autonomous Wings for Smallholder Farmers",
+        "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "conductedAt": "2026-10-25T11:00:00.000Z",
+        "transcript": [
+          {
+            "time": "00:15",
+            "speaker": "MIF Editorial",
+            "text": "Karthik, what inspired you and Sowmya to pivot from competitive racing drones to agricultural robotics?"
+          },
+          {
+            "time": "00:45",
+            "speaker": "Karthik Rajendran",
+            "text": "Growing up near Siruganur, we saw farmers losing entire paddy harvests to sudden bacterial blight outbreaks. We realized that our autonomous flight controllers could detect vegetative stress days before the human eye could."
+          },
+          {
+            "time": "02:10",
+            "speaker": "Sowmya Natarajan",
+            "text": "The hardest part was running inference on-device under strict battery constraints. In the MIF IoT Lab, we spent three months quantizing our PyTorch models down to 4-bit weights so an edge board could process 30 frames per second."
+          },
+          {
+            "time": "04:30",
+            "speaker": "Karthik Rajendran",
+            "text": "Having the official MIF Startup Passport was a game changer for us. When approaching government officials and Farmer Producer Collectives, the verified QR code and institutional backing gave us instant trust."
+          }
+        ],
+        "keyTakeaways": [
+          "Validate core hardware in the field directly with end users before scaling production.",
+          "On-device edge intelligence eliminates the bottleneck of rural cloud connectivity.",
+          "Institutional incubation provides structural credibility through certified Startup Passports."
+        ]
+      }
+    },
+    {
+      "id": "story_2",
+      "startupId": "s_1795332004114",
+      "startupName": "ThermaGrid Analytics",
+      "slug": "decarbonizing-industrial-microgrids-thermagrid-scale-story",
+      "title": "Decarbonizing Industrial Microgrids: ThermaGrid's Scale Story",
+      "heroImage": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&q=80",
+      "problemStatement": "Heavy manufacturing and cold chain logistics waste millions of kilowatt-hours annually due to uncoordinated peak power spikes and unmonitored thermal inertia in industrial refrigeration systems.",
+      "theBreakthrough": "ThermaGrid developed predictive micro-dispatch algorithms embedded into plug-and-play DIN-rail hardware modules that autonomously predict factory cooling needs 4 hours ahead using ambient humidity and manufacturing schedules.",
+      "mifJourney": "Originating from MAMCET's Electrical & Electronics Engineering department, ThermaGrid was among MIF's inaugural 2024 cohort. They utilized MIF's power electronics test bench to benchmark hardware under 440V industrial grid conditions before scaling commercially.",
+      "impactMetrics": [
+        {
+          "label": "Energy Saved",
+          "value": "1.4 MWh",
+          "detail": "Across 14 operational industrial installations"
+        },
+        {
+          "label": "Carbon Abatement",
+          "value": "180+ Tons",
+          "detail": "Equivalent CO2 emissions eliminated annually"
+        },
+        {
+          "label": "Peak Cost Reduction",
+          "value": "18.5%",
+          "detail": "Average reduction in monthly commercial demand charges"
+        },
+        {
+          "label": "Private Capital",
+          "value": "₹1.2 Cr",
+          "detail": "Raised in Seed round post-incubation graduation"
+        }
+      ],
+      "founderQuote": "MIF provided us with the high-voltage test bench and industry connections needed to cross the valley of death between academic prototyping and commercially certified hardware.",
+      "quoteAuthor": "Vigneshwaran Sundaram, Founder & MD",
+      "status": "PUBLISHED",
+      "isEditorialPick": false,
+      "publishedAt": "2026-09-15T09:00:00.000Z"
+    }
+  ],
+  "alumni": [
+    {
+      "id": "alum_1",
+      "startupId": "s_1795332004114",
+      "startupName": "ThermaGrid Analytics",
+      "slug": "thermagrid-analytics",
+      "graduationCohort": "Class of 2025",
+      "growthStatus": "SCALING",
+      "currentHeadcount": "18 Employees",
+      "totalCapitalRaised": "₹1.45 Cr",
+      "currentRevenueRange": "₹50L - ₹1Cr ARR",
+      "headquarters": "Trichy / Chennai, Tamil Nadu",
+      "willingToMentor": true,
+      "isPublicDirectory": true,
+      "founders": [
+        {
+          "name": "Vigneshwaran Sundaram",
+          "role": "Managing Director",
+          "linkedInUrl": "https://linkedin.com/in/vignesh-thermagrid"
+        },
+        {
+          "name": "P. Balamurugan",
+          "role": "CTO",
+          "linkedInUrl": "https://linkedin.com/in/balamurugan-power"
+        }
+      ],
+      "tags": [
+        "CleanTech",
+        "Smart Energy",
+        "IoT Hardware",
+        "Series-A Bound"
+      ]
+    },
+    {
+      "id": "alum_2",
+      "startupId": "s_1795332004115",
+      "startupName": "BioLoop Circular Biomaterials",
+      "slug": "bioloop-circular-biomaterials",
+      "graduationCohort": "Class of 2024",
+      "growthStatus": "PROFITABLE",
+      "currentHeadcount": "12 Employees",
+      "totalCapitalRaised": "₹65 Lakhs",
+      "currentRevenueRange": "₹25L - ₹50L ARR",
+      "headquarters": "Siruganur, Tiruchirappalli",
+      "willingToMentor": true,
+      "isPublicDirectory": true,
+      "founders": [
+        {
+          "name": "Ananya Sri",
+          "role": "Co-Founder & Materials Chemist",
+          "linkedInUrl": "https://linkedin.com/in/ananya-sri-bioloop"
+        }
+      ],
+      "tags": [
+        "Sustainable Packaging",
+        "Bio-Plastics",
+        "Circular Economy"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_1",
+      "alumniId": "alum_1",
+      "startupName": "ThermaGrid Analytics",
+      "requesterName": "Karthik Rajendran",
+      "requesterEmail": "karthik.aero@mamcet.edu.in",
+      "requesterOrg": "AeroDrone AI Labs (MIF Cohort 2026)",
+      "message": "Hi Vignesh, we are currently testing high-density Li-ion battery pods for our drone docks and would love your guidance on BMS safety standards and CE certification.",
+      "status": "ACCEPTED",
+      "createdAt": "2026-10-12T14:20:00.000Z"
+    }
+  ],
+  "activity": [
+    {
+      "id": "act_1795349575868_k1g8a",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "action": "Public Verification: MASTER-SP-2026-0001",
+      "category": "PASSPORT",
+      "details": "Public verification request successfully validated for AeroDrone AI Labs.",
+      "performedBy": "Public Portal",
+      "timestamp": "2026-11-22T12:12:55.868Z"
+    },
+    {
+      "id": "act_1",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "action": "Milestone Approved: Market Validation",
+      "category": "MILESTONE",
+      "details": "Admin evaluated commercial letters of intent and approved stage completion (weight: 10%). Total progress updated to 80%.",
+      "performedBy": "Dr. R. Rajavel, Head of Incubation",
+      "timestamp": "2026-11-04T16:00:00.000Z"
+    },
+    {
+      "id": "act_2",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "action": "Product Launch Published",
+      "category": "LAUNCH",
+      "details": "AeroScan Pro Multi-Spectral UAV published to the MIF Institutional Innovation Showcase.",
+      "performedBy": "Editorial Desk",
+      "timestamp": "2026-11-15T10:00:00.000Z"
+    },
+    {
+      "id": "act_3",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "action": "Public Verification Logged",
+      "category": "PASSPORT",
+      "details": "Startup Passport MASTER-SP-2026-0001 verified via institutional QR inspection.",
+      "performedBy": "Public Visitor (IP: 106.208.x.x)",
+      "timestamp": "2026-11-22T14:15:00.000Z"
+    }
+  ]
+}

@@ -29,7 +29,25 @@ const NAV_LINKS = [
       { name: "MSME & TANSEED Grants", href: "/programs#services" },
     ],
   },
-  { name: "Join Us", href: "/join-us" },
+  {
+    name: "Startups",
+    href: "/startups",
+    submenu: [
+      { name: "Startup Directory", href: "/startups" },
+      { name: "Digital Startup Passport", href: "/startup-passport/MASTER-SP-2026-0001" },
+      { name: "Passport Verification", href: "/startup-passport/verify/MASTER-SP-2026-0001" },
+      { name: "Founder Dashboard", href: "/dashboard/startup-passport" },
+    ],
+  },
+  {
+    name: "Ecosystem",
+    href: "/success-stories",
+    submenu: [
+      { name: "Success Stories", href: "/success-stories" },
+      { name: "Alumni Guild", href: "/alumni" },
+      { name: "Track Application", href: "/apply/status" },
+    ],
+  },
   {
     name: "Facilities",
     href: "/facilities",
@@ -38,7 +56,6 @@ const NAV_LINKS = [
       { name: "Campus Photo Gallery", href: "/#gallery" },
     ],
   },
-  { name: "Startups", href: "/startups" },
   { name: "Contact", href: "/contact" },
 ];
 

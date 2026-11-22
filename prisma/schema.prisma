@@ -41,6 +41,56 @@ enum ApplicationStatus {
   REJECTED
 }
 
+enum PassportStatus {
+  PENDING
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  ARCHIVED
+}
+
+enum JourneyMilestoneStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  SUBMITTED_FOR_REVIEW
+  UNDER_REVIEW
+  COMPLETED
+  REJECTED
+  ON_HOLD
+}
+
+enum AchievementType {
+  AWARD
+  RECOGNITION
+  CERTIFICATION
+  COMPETITION_RESULT
+  INNOVATION_GRANT
+  PARTNERSHIP
+  FUNDING_ROUND
+  PUBLICATION
+}
+
+enum AlumniGrowthStatus {
+  SCALING
+  ACQUIRED
+  PROFITABLE
+  ACTIVE
+  PIVOTED
+}
+
+enum ConnectionStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+}
+
+enum StoryPublishStatus {
+  DRAFT
+  IN_REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
 model User {
   id             String               @id @default(uuid())
   name           String
@@ -97,36 +147,45 @@ model Milestone {
 }
 
 model StartupProfile {
-  id              String            @id @default(uuid())
-  name            String
-  slug            String            @unique
-  oneLiner        String
-  description     String            @db.Text
-  founders        String
-  category        FocusAreaCategory
-  stage           StartupStage
-  cohortYear      String
-  logoUrl         String?
-  websiteUrl      String?
-  isFeatured      Boolean           @default(false)
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
+  id               String               @id @default(uuid())
+  name             String
+  slug             String               @unique
+  oneLiner         String
+  description      String               @db.Text
+  founders         String
+  category         FocusAreaCategory
+  stage            StartupStage
+  cohortYear       String
+  logoUrl          String?
+  websiteUrl       String?
+  isFeatured       Boolean              @default(false)
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  passport         StartupPassport?
+  foundersList     StartupFounder[]
+  milestonesList   StartupMilestone[]
+  mentorAssignments MentorAssignment[]
+  achievements     StartupAchievement[]
+  productLaunches  ProductLaunch[]
+  successStories   SuccessStory[]
+  alumniProfile    AlumniProfile?
 }
 
 model Mentor {
-  id              String            @id @default(uuid())
-  userId          String?           @unique
-  user            User?             @relation(fields: [userId], references: [id], onDelete: SetNull)
-  name            String
-  designation     String
-  organization    String
-  bio             String            @db.Text
+  id               String               @id @default(uuid())
+  userId           String?              @unique
+  user             User?                @relation(fields: [userId], references: [id], onDelete: SetNull)
+  name             String
+  designation      String
+  organization     String
+  bio              String               @db.Text
   areasOfExpertise String
-  avatarUrl       String?
-  linkedInUrl     String?
-  isAvailable     Boolean           @default(true)
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
+  avatarUrl        String?
+  linkedInUrl      String?
+  isAvailable      Boolean              @default(true)
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  assignments      MentorAssignment[]
 }
 
 model Event {
@@ -185,4 +244,201 @@ model AIReadinessAssessmentLog {
   breakdownJson   String    @db.Text
   recommendations String    @db.Text
   createdAt       DateTime  @default(now())
+}
+
+model StartupPassport {
+  id                String                 @id @default(uuid())
+  passportId        String                 @unique // e.g. MASTER-SP-2026-0001
+  startupId         String                 @unique
+  startup           StartupProfile         @relation(fields: [startupId], references: [id], onDelete: Cascade)
+  status            PassportStatus         @default(ACTIVE)
+  issuedAt          DateTime               @default(now())
+  activationDate    DateTime?
+  lastVerifiedAt    DateTime?
+  verificationCount Int                    @default(0)
+  securityHash      String?
+  qrCodeData        String?                @db.Text
+  remarks           String?                @db.Text
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+  verificationLogs  PassportVerificationLog[]
+}
+
+model StartupFounder {
+  id               String         @id @default(uuid())
+  startupId        String
+  startup          StartupProfile @relation(fields: [startupId], references: [id], onDelete: Cascade)
+  fullName         String
+  role             String         // e.g. "CEO & Co-Founder"
+  email            String         // private by default
+  phone            String?        // private by default
+  bio              String?        @db.Text
+  avatarUrl        String?
+  linkedInUrl      String?
+  githubUrl        String?
+  twitterUrl       String?
+  education        String?
+  skills           String?
+  isPublicContact  Boolean        @default(false)
+  createdAt        DateTime       @default(now())
+}
+
+model StartupMilestone {
+  id             String                     @id @default(uuid())
+  startupId      String
+  startup        StartupProfile             @relation(fields: [startupId], references: [id], onDelete: Cascade)
+  stageOrder     Int
+  stageName      String                     // e.g. "Problem Validation", "Prototype Development"
+  title          String
+  description    String?                    @db.Text
+  weight         Int                        @default(10) // Weight percentage contributing to progress
+  status         JourneyMilestoneStatus     @default(NOT_STARTED)
+  targetDate     DateTime?
+  completedDate  DateTime?
+  founderRemarks String?                    @db.Text
+  adminRemarks   String?                    @db.Text
+  reviewedBy     String?
+  reviewedAt     DateTime?
+  createdAt      DateTime                   @default(now())
+  updatedAt      DateTime                   @updatedAt
+  evidence       StartupMilestoneEvidence[]
+}
+
+model StartupMilestoneEvidence {
+  id          String           @id @default(uuid())
+  milestoneId String
+  milestone   StartupMilestone @relation(fields: [milestoneId], references: [id], onDelete: Cascade)
+  title       String
+  description String?          @db.Text
+  fileUrl     String           @db.Text
+  fileType    String?          // "pdf", "image", "link"
+  submittedAt DateTime         @default(now())
+}
+
+model MentorAssignment {
+  id         String             @id @default(uuid())
+  startupId  String
+  startup    StartupProfile     @relation(fields: [startupId], references: [id], onDelete: Cascade)
+  mentorId   String
+  mentor     Mentor             @relation(fields: [mentorId], references: [id], onDelete: Cascade)
+  role       String             @default("Lead Mentor")
+  assignedAt DateTime           @default(now())
+  sessions   MentoringSession[]
+}
+
+model MentoringSession {
+  id              String           @id @default(uuid())
+  assignmentId    String
+  assignment      MentorAssignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  date            DateTime
+  durationMinutes Int              @default(60)
+  topic           String
+  notes           String?          @db.Text // internal confidential
+  mentorFeedback  String?          @db.Text
+  founderFeedback String?          @db.Text
+  actionItems     String?          @db.Text
+  createdAt       DateTime         @default(now())
+}
+
+model StartupAchievement {
+  id             String          @id @default(uuid())
+  startupId      String
+  startup        StartupProfile  @relation(fields: [startupId], references: [id], onDelete: Cascade)
+  title          String
+  type           AchievementType
+  issuer         String          // e.g. "StartupTN", "DST-NIDHI", "MSME"
+  awardDate      DateTime
+  description    String?         @db.Text
+  grantAmount    String?
+  certificateUrl String?
+  isVerified     Boolean         @default(true)
+  isPublic       Boolean         @default(true)
+  createdAt      DateTime        @default(now())
+}
+
+model ProductLaunch {
+  id              String         @id @default(uuid())
+  startupId       String
+  startup         StartupProfile @relation(fields: [startupId], references: [id], onDelete: Cascade)
+  productName     String
+  tagline         String
+  launchDate      DateTime
+  version         String         @default("v1.0")
+  demoUrl         String?
+  pressReleaseUrl String?
+  mediaUrls       String?        @db.Text
+  description     String         @db.Text
+  isFeatured      Boolean        @default(false)
+  createdAt       DateTime       @default(now())
+}
+
+model SuccessStory {
+  id               String             @id @default(uuid())
+  startupId        String
+  startup          StartupProfile     @relation(fields: [startupId], references: [id], onDelete: Cascade)
+  title            String
+  slug             String             @unique
+  heroImage        String?
+  problemStatement String             @db.Text
+  theBreakthrough  String             @db.Text
+  mifJourney       String             @db.Text
+  impactMetrics    String             @db.Text
+  founderQuote     String?            @db.Text
+  quoteAuthor      String?
+  status           StoryPublishStatus @default(PUBLISHED)
+  isEditorialPick  Boolean            @default(false)
+  publishedAt      DateTime           @default(now())
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  interview        FounderInterview?
+}
+
+model FounderInterview {
+  id             String       @id @default(uuid())
+  storyId        String       @unique
+  story          SuccessStory @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  interviewTitle String
+  videoUrl       String?
+  audioUrl       String?
+  transcript     String?      @db.Text
+  keyTakeaways   String?      @db.Text
+  conductedAt    DateTime     @default(now())
+}
+
+model AlumniProfile {
+  id                  String             @id @default(uuid())
+  startupId           String             @unique
+  startup             StartupProfile     @relation(fields: [startupId], references: [id], onDelete: Cascade)
+  graduationCohort    String             // e.g. "Class of 2024"
+  growthStatus        AlumniGrowthStatus @default(ACTIVE)
+  currentHeadcount    String?
+  totalCapitalRaised  String?
+  currentRevenueRange String?
+  headquarters        String             @default("Tamil Nadu, India")
+  willingToMentor     Boolean            @default(true)
+  isPublicDirectory   Boolean            @default(true)
+  createdAt           DateTime           @default(now())
+  connections         AlumniConnection[]
+}
+
+model AlumniConnection {
+  id             String           @id @default(uuid())
+  alumniId       String
+  alumni         AlumniProfile    @relation(fields: [alumniId], references: [id], onDelete: Cascade)
+  requesterName  String
+  requesterEmail String
+  requesterOrg   String?
+  message        String           @db.Text
+  status         ConnectionStatus @default(PENDING)
+  createdAt      DateTime         @default(now())
+}
+
+model PassportVerificationLog {
+  id          String          @id @default(uuid())
+  passportId  String
+  passport    StartupPassport @relation(fields: [passportId], references: [id], onDelete: Cascade)
+  verifiedAt  DateTime        @default(now())
+  ipAddress   String?
+  userAgent   String?
+  referrer    String?
 }

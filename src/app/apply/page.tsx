@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -13,6 +14,8 @@ import {
   ArrowRight,
   ArrowLeft,
   AlertCircle,
+  Mail,
+  Search,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -96,12 +99,22 @@ export default function ApplyPage() {
   return (
     <div className="pt-32 pb-24 bg-slate-50 min-h-screen">
       <div className="container max-w-4xl mx-auto px-4 sm:px-6">
-        {/* Page Title */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
-            Cohort Application Portal
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2 font-display">
+        {/* Page Title & Status Link */}
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-2 mb-2">
+            <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
+              Cohort Application Portal
+            </span>
+            <span className="text-slate-300">·</span>
+            <Link
+              href="/apply/status"
+              className="text-xs font-bold text-orange-600 hover:text-orange-700 hover:underline flex items-center gap-1"
+            >
+              <Search className="w-3 h-3" />
+              <span>Track Existing Application Status →</span>
+            </Link>
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-1 font-display">
             Apply for Incubation at MIF
           </h1>
           <p className="text-sm text-slate-600 mt-2">
@@ -131,6 +144,14 @@ export default function ApplyPage() {
               </p>
             </div>
 
+            {/* Email Confirmation Notice */}
+            <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center justify-center gap-2 max-w-lg mx-auto font-medium">
+              <Mail className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>
+                An automated confirmation receipt has been dispatched to <strong>{submittedData.founderEmail}</strong>.
+              </span>
+            </div>
+
             <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-left text-xs text-slate-700 space-y-2 max-w-lg mx-auto">
               <div className="font-bold text-slate-900 uppercase text-[11px] mb-2">
                 What happens next?
@@ -142,17 +163,25 @@ export default function ApplyPage() {
                 2. Shortlisted applicants will receive an invitation to pitch at the MIF Conference Boardroom (or virtually).
               </p>
               <p>
-                3. You may view or update your status using the Admin Portal or contact MIF coordinator <strong>Ms. Hemalatha Balakrishnan</strong>.
+                3. You can track your application review live anytime using your Application ID.
               </p>
             </div>
 
-            <div className="pt-4">
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                href={`/apply/status?id=${encodeURIComponent(submittedData.id)}`}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-11 px-6 rounded-xl text-xs shadow-sm"
+              >
+                <Search className="w-4 h-4" />
+                <span>Track Application Live Status</span>
+              </Link>
               <Button
                 onClick={() => {
                   setSubmittedData(null);
                   setStep(1);
                 }}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+                variant="outline"
+                className="w-full sm:w-auto border-slate-300 text-slate-700 font-semibold h-11 px-6 rounded-xl text-xs"
               >
                 Submit Another Application
               </Button>

@@ -21,6 +21,7 @@ import {
   MapPin,
   CheckCircle2,
   Filter,
+  ShieldCheck,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -371,18 +372,29 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
                 )}
               </div>
 
-              {/* Bottom Touch to Rotate Button */}
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsFlipped(true);
-                }}
-                className="w-full mt-3 py-2 px-3 rounded-xl bg-[#0f2c59] hover:bg-[#ea580c] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition-colors"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>Touch / Click to Rotate for Contacts</span>
-              </button>
+              {/* Action Buttons: View Profile/Passport & Touch to Rotate */}
+              <div className="flex flex-col gap-2 mt-3">
+                <Link
+                  href={`/startups/${st.slug || st.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                  onClick={(e) => e.stopPropagation()}
+                  className="w-full py-1.5 px-3 rounded-xl bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition-colors"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>View Profile & Passport</span>
+                </Link>
+
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsFlipped(true);
+                  }}
+                  className="w-full py-1.5 px-3 rounded-xl bg-[#0f2c59] hover:bg-[#ea580c] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition-colors"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  <span>Flip for Direct Contacts</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -638,6 +650,16 @@ function StartupMobileCard({ st, delay }: { st: any; delay: number }) {
                 ))}
               </div>
             )}
+
+            <div className="pt-2">
+              <Link
+                href={`/startups/${st.slug || st.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                className="w-full py-1.5 px-3 rounded-xl bg-orange-600 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-2xs"
+              >
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>View Profile & Verified Passport</span>
+              </Link>
+            </div>
           </div>
         )}
 

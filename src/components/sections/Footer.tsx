@@ -148,6 +148,31 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/startup-passport/MASTER-SP-2026-0001" className="hover:text-orange-400 transition-colors">
+                  Startup Passport
+                </Link>
+              </li>
+              <li>
+                <Link href="/startup-passport/verify/MASTER-SP-2026-0001" className="hover:text-orange-400 transition-colors">
+                  Verify Credentials
+                </Link>
+              </li>
+              <li>
+                <Link href="/success-stories" className="hover:text-orange-400 transition-colors">
+                  Success Stories
+                </Link>
+              </li>
+              <li>
+                <Link href="/alumni" className="hover:text-orange-400 transition-colors">
+                  Alumni Guild
+                </Link>
+              </li>
+              <li>
+                <Link href="/apply/status" className="hover:text-orange-400 transition-colors">
+                  Track Application
+                </Link>
+              </li>
+              <li>
                 <Link href="/events" className="hover:text-orange-400 transition-colors">
                   Events & Bootcamps
                 </Link>

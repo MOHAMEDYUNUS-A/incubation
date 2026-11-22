@@ -44,18 +44,31 @@ import {
   UserCheck,
   Hash,
   Tag,
+  Download,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import MediaUploadZone from "@/components/ui/MediaUploadZone";
 import { useSiteContent, SiteContent } from "@/context/ContentContext";
+import EcosystemAdminTabs from "@/components/admin/EcosystemAdminTabs";
 
 export default function AdminPage() {
   const { content, updateSection, refreshContent, loading: contentLoading } = useSiteContent();
 
   const [activeTab, setActiveTab] = useState<
-    "dashboard" | "startups" | "gallery" | "hero" | "events" | "contact" | "applications"
+    | "dashboard"
+    | "startups"
+    | "gallery"
+    | "hero"
+    | "events"
+    | "contact"
+    | "applications"
+    | "passports"
+    | "milestones"
+    | "mentors"
+    | "stories"
+    | "alumni"
   >("dashboard");
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
@@ -101,11 +114,122 @@ export default function AdminPage() {
     fetchApps();
   }, []);
 
-  const handleUpdateAppStatus = (appId: string, newStatus: string) => {
-    setApplications((prev) =>
-      prev.map((app) => (app.id === appId ? { ...app, status: newStatus } : app))
-    );
-    showToast(`Application status updated to ${newStatus}`);
+  const [selectedAppDossier, setSelectedAppDossier] = useState<any | null>(null);
+  const [notifyFounderOnUpdate, setNotifyFounderOnUpdate] = useState(true);
+
+  const handleUpdateAppStatus = async (
+    appId: string,
+    newStatus: string,
+    notifyApplicant: boolean = false
+  ) => {
+    try {
+      const res = await fetch("/api/applications", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: appId, status: newStatus, notifyApplicant }),
+      });
+      if (res.ok) {
+        setApplications((prev) =>
+          prev.map((app) => (app.id === appId ? { ...app, status: newStatus } : app))
+        );
+        showToast(
+          notifyApplicant
+            ? `Status updated to ${newStatus} & email sent to founder!`
+            : `Application status updated to ${newStatus}`
+        );
+      }
+    } catch {
+      setApplications((prev) =>
+        prev.map((app) => (app.id === appId ? { ...app, status: newStatus } : app))
+      );
+      showToast(`Application status updated to ${newStatus}`);
+    }
+  };
+
+  const exportApplicationsToCSV = () => {
+    if (!applications || applications.length === 0) {
+      showToast("No intake applications to export.");
+      return;
+    }
+    const headers = [
+      "Application ID",
+      "Startup Name",
+      "Founder Name",
+      "Email",
+      "Phone",
+      "Institution",
+      "Category Track",
+      "TRL Stage",
+      "Pipeline Status",
+      "Submitted Date",
+      "Problem Statement",
+    ];
+    const rows = applications.map((app) => [
+      `"${app.id || ""}"`,
+      `"${(app.startupName || "").replace(/"/g, '""')}"`,
+      `"${(app.founderName || "").replace(/"/g, '""')}"`,
+      `"${app.founderEmail || ""}"`,
+      `"${app.founderPhone || ""}"`,
+      `"${(app.collegeOrEntity || "").replace(/"/g, '""')}"`,
+      `"${app.category || ""}"`,
+      `"${app.stage || ""}"`,
+      `"${app.status || ""}"`,
+      `"${app.createdAt || ""}"`,
+      `"${(app.problemStatement || "").replace(/"/g, '""').replace(/\r?\n|\r/g, " ")}"`,
+    ]);
+    const csvContent = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", `mif_intake_applications_${new Date().toISOString().split("T")[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showToast("Downloaded applications CSV roster!");
+  };
+
+  const exportStartupsToCSV = () => {
+    if (!startupsList || startupsList.length === 0) {
+      showToast("No startups to export.");
+      return;
+    }
+    const headers = [
+      "Startup ID",
+      "Company Name",
+      "Founders & Department",
+      "Category",
+      "TRL Stage",
+      "Cohort",
+      "Website",
+      "LinkedIn",
+      "Email",
+      "Funding Support",
+      "Milestone Progress",
+    ];
+    const rows = startupsList.map((st: any) => [
+      `"${st.id || ""}"`,
+      `"${(st.name || "").replace(/"/g, '""')}"`,
+      `"${(st.founders || "").replace(/"/g, '""')}"`,
+      `"${st.category || ""}"`,
+      `"${st.stage || ""}"`,
+      `"${st.cohort || ""}"`,
+      `"${st.website || ""}"`,
+      `"${st.linkedin || ""}"`,
+      `"${st.email || ""}"`,
+      `"${st.fundingStatus || ""}"`,
+      `"${(st.metrics || "").replace(/"/g, '""')}"`,
+    ]);
+    const csvContent = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", `mif_startups_portfolio_${new Date().toISOString().split("T")[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showToast("Downloaded startups portfolio CSV!");
   };
 
   // ==========================================
@@ -604,7 +728,42 @@ export default function AdminPage() {
             </div>
           </div>
 
-          {/* Group 2: Content & Identity */}
+          {/* Group 2: Startup Passport & Ecosystem */}
+          <div>
+            <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
+              Passport & Ecosystem
+            </div>
+            <div className="space-y-1">
+              {[
+                { id: "passports", label: "Startup Passports", icon: ShieldCheck },
+                { id: "milestones", label: "Milestones Review", icon: CheckCircle2 },
+                { id: "mentors", label: "Mentors & Guidance", icon: UserCheck },
+                { id: "stories", label: "Success Stories CMS", icon: Sparkles },
+                { id: "alumni", label: "Alumni Guild", icon: GraduationCap },
+              ].map((item) => {
+                const Icon = item.icon;
+                const isActive = activeTab === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id as any)}
+                    className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+                      isActive
+                        ? "bg-[#ea580c] text-white shadow-md shadow-orange-950/30 font-bold"
+                        : "text-slate-300 hover:text-white hover:bg-slate-800/60"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <Icon className={`w-4 h-4 ${isActive ? "text-white" : "text-slate-400"}`} />
+                      <span>{item.label}</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Group 3: Content & Identity */}
           <div>
             <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
               Identity & Configuration
@@ -779,6 +938,11 @@ export default function AdminPage() {
                     { id: "gallery", label: "Gallery Photos", icon: ImageIcon, count: galleryList.length },
                     { id: "events", label: "News & Events", icon: Calendar, count: eventsList.length },
                     { id: "applications", label: "Intake Applications", icon: Layers, count: applications.length },
+                    { id: "passports", label: "Startup Passports", icon: ShieldCheck },
+                    { id: "milestones", label: "Milestones Review", icon: CheckCircle2 },
+                    { id: "mentors", label: "Mentors & Guidance", icon: UserCheck },
+                    { id: "stories", label: "Success Stories CMS", icon: Sparkles },
+                    { id: "alumni", label: "Alumni Guild", icon: GraduationCap },
                     { id: "hero", label: "Hero Studio", icon: Sparkles },
                     { id: "contact", label: "Contact & Leadership", icon: Phone },
                   ].map((item) => {
@@ -813,19 +977,23 @@ export default function AdminPage() {
               <div>
                 <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">Extra Links</div>
                 <div className="space-y-1">
-                  <Link href="/" target="_blank" className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
+                  <Link href="/" target="_blank" onClick={() => setMobileSidebarOpen(false)} className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
                     <span className="flex items-center gap-2"><Home className="w-3.5 h-3.5 text-blue-400" /> Public Website</span>
                     <ExternalLink className="w-3 h-3 text-slate-500" />
                   </Link>
-                  <Link href="/startups" target="_blank" className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
+                  <Link href="/startups" target="_blank" onClick={() => setMobileSidebarOpen(false)} className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
                     <span className="flex items-center gap-2"><Rocket className="w-3.5 h-3.5 text-orange-400" /> Startups Page</span>
                     <ExternalLink className="w-3 h-3 text-slate-500" />
                   </Link>
-                  <Link href="/apply" target="_blank" className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
+                  <Link href="/apply" target="_blank" onClick={() => setMobileSidebarOpen(false)} className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
                     <span className="flex items-center gap-2"><Layers className="w-3.5 h-3.5 text-purple-400" /> Application Form</span>
                     <ExternalLink className="w-3 h-3 text-slate-500" />
                   </Link>
-                  <a href="https://mamcet.edu.in" target="_blank" rel="noreferrer" className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
+                  <Link href="/apply/status" target="_blank" onClick={() => setMobileSidebarOpen(false)} className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
+                    <span className="flex items-center gap-2"><Search className="w-3.5 h-3.5 text-amber-400" /> Applicant Tracker</span>
+                    <ExternalLink className="w-3 h-3 text-slate-500" />
+                  </Link>
+                  <a href="https://mamcet.edu.in" target="_blank" rel="noreferrer" onClick={() => setMobileSidebarOpen(false)} className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
                     <span className="flex items-center gap-2"><Building2 className="w-3.5 h-3.5 text-emerald-400" /> MAMCET Portal</span>
                     <ExternalLink className="w-3 h-3 text-slate-500" />
                   </a>
@@ -853,17 +1021,13 @@ export default function AdminPage() {
             </button>
 
             <div className="min-w-0">
-              <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5">
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200 hidden sm:inline">
-                  ADMIN CONSOLE
+              <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium mb-0.5">
+                <span className="font-semibold text-slate-700 text-[11px] uppercase tracking-wider font-mono">
+                  MIF Operations
                 </span>
-                <span className="text-slate-400 text-xs hidden sm:inline">/</span>
-                <span className="text-[11px] font-bold text-slate-500 hidden sm:inline capitalize">
-                  {activeTab}
-                </span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200 shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="hidden sm:inline">Production</span> Live
+                <span className="text-slate-300">/</span>
+                <span className="text-[11px] font-bold text-slate-600 capitalize">
+                  {activeTab === "dashboard" ? "Overview" : activeTab}
                 </span>
               </div>
               <h1 className="text-sm sm:text-xl font-black text-slate-900 font-display truncate">
@@ -907,6 +1071,36 @@ export default function AdminPage() {
                   <>
                     <span className="sm:hidden">Intake Pipeline</span>
                     <span className="hidden sm:inline">Startup Intake Application Pipeline</span>
+                  </>
+                )}
+                {activeTab === "passports" && (
+                  <>
+                    <span className="sm:hidden">Passports</span>
+                    <span className="hidden sm:inline">Startup Passport Digital Identity Registry</span>
+                  </>
+                )}
+                {activeTab === "milestones" && (
+                  <>
+                    <span className="sm:hidden">Milestones</span>
+                    <span className="hidden sm:inline">14-Stage Incubation Roadmap & Evidence Review</span>
+                  </>
+                )}
+                {activeTab === "mentors" && (
+                  <>
+                    <span className="sm:hidden">Mentors</span>
+                    <span className="hidden sm:inline">Mentors Directory & Advisory Session Logs</span>
+                  </>
+                )}
+                {activeTab === "stories" && (
+                  <>
+                    <span className="sm:hidden">Success Stories</span>
+                    <span className="hidden sm:inline">From Ideas to Impact Stories & AI Assistant</span>
+                  </>
+                )}
+                {activeTab === "alumni" && (
+                  <>
+                    <span className="sm:hidden">Alumni Guild</span>
+                    <span className="hidden sm:inline">Alumni Network & Connection Requests</span>
                   </>
                 )}
               </h1>
@@ -980,61 +1174,46 @@ export default function AdminPage() {
         {/* ========================================================================= */}
         {activeTab === "dashboard" && (
           <div className="space-y-5 sm:space-y-8 animate-in fade-in duration-300">
-            {/* Executive Command Center Banner */}
-            <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#07152a] via-[#091b34] to-[#0f2c59] text-white p-4 sm:p-7 border border-blue-900/40 shadow-sm">
-              <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
-              <div className="absolute right-1/3 -bottom-16 w-56 h-56 rounded-full bg-orange-500/10 blur-3xl pointer-events-none" />
-
-              <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6">
+            {/* Executive Institutional Welcome & Overview Card */}
+            <div className="rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 p-4 sm:p-7 shadow-xs">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6">
                 <div className="space-y-1.5 sm:space-y-2 max-w-2xl">
-                  <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                    <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-wider border border-blue-400/30 flex items-center gap-1">
-                      <Activity className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-blue-400" />
-                      Command Center
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 text-[10px] font-bold font-mono uppercase tracking-wider border border-blue-200">
+                      StartupTN Pre-Incubation Centre
                     </span>
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[9px] sm:text-[10px] font-mono font-bold border border-emerald-400/30">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      Production Sync: Active
+                    <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[10px] font-bold font-mono uppercase tracking-wider border border-slate-200">
+                      MSME Recognized HI
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold font-mono uppercase tracking-wider border border-emerald-200 flex items-center gap-1">
+                      <Mail className="w-3 h-3 text-emerald-600" />
+                      <span>Automated No-Reply: Active</span>
                     </span>
                   </div>
-                  <h2 className="text-lg sm:text-2xl lg:text-3xl font-black font-display tracking-tight text-white leading-snug">
+                  <h2 className="text-lg sm:text-2xl lg:text-3xl font-black text-slate-900 font-display tracking-tight">
                     MASTeR Incubation Platform Operations
                   </h2>
-                  <p className="text-xs text-slate-300 font-normal leading-relaxed line-clamp-2 sm:line-clamp-none">
-                    Live content management, venture intake screening, campus media curation, and institutional communications for MAMCET Siruganur.
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    Central operations console for MAMCET Siruganur. Manage portfolio ventures, review incoming intake applications, curate campus media, and maintain official leadership hotlines.
                   </p>
                 </div>
 
-                {/* Telemetry Status Grid - Streamlined for Mobile */}
-                <div className="grid grid-cols-2 gap-2 sm:gap-3 shrink-0 text-[10px] sm:text-[11px] font-mono pt-1 sm:pt-0">
-                  <div className="px-2.5 py-2 sm:p-3 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                    <div className="text-slate-400 text-[9px]">HOST NODE</div>
-                    <div className="font-bold text-white flex items-center gap-1 mt-0.5 truncate">
-                      <Server className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-cyan-400 shrink-0" />
-                      <span className="truncate">Vercel Serverless</span>
-                    </div>
-                  </div>
-                  <div className="px-2.5 py-2 sm:p-3 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                    <div className="text-slate-400 text-[9px]">DATA PERSISTENCE</div>
-                    <div className="font-bold text-emerald-400 flex items-center gap-1 mt-0.5 truncate">
-                      <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" />
-                      <span className="truncate">Live Storage Sync</span>
-                    </div>
-                  </div>
-                  <div className="px-2.5 py-2 sm:p-3 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                    <div className="text-slate-400 text-[9px]">AFFILIATION</div>
-                    <div className="font-bold text-white flex items-center gap-1 mt-0.5 truncate">
-                      <Building2 className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-orange-400 shrink-0" />
-                      <span className="truncate">StartupTN Hub</span>
-                    </div>
-                  </div>
-                  <div className="px-2.5 py-2 sm:p-3 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                    <div className="text-slate-400 text-[9px]">CAMPUS NODE</div>
-                    <div className="font-bold text-white flex items-center gap-1 mt-0.5 truncate">
-                      <MapPin className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-pink-400 shrink-0" />
-                      <span className="truncate">Siruganur, Trichy</span>
-                    </div>
-                  </div>
+                <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 shrink-0">
+                  <Button
+                    onClick={handleOpenAddStartup}
+                    className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 sm:h-11 px-5 rounded-xl text-xs gap-2 shadow-sm touch-manipulation flex-1 sm:flex-none justify-center"
+                  >
+                    <Plus className="w-4 h-4" />
+                    <span>Add Startup</span>
+                  </Button>
+                  <Button
+                    onClick={exportApplicationsToCSV}
+                    variant="outline"
+                    className="border-slate-300 text-slate-700 hover:bg-slate-50 font-bold h-10 sm:h-11 px-4 rounded-xl text-xs gap-2 shadow-2xs touch-manipulation flex-1 sm:flex-none justify-center"
+                  >
+                    <Download className="w-4 h-4 text-purple-600" />
+                    <span>Export Intake CSV</span>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -1347,13 +1526,23 @@ export default function AdminPage() {
                   Add, update, or remove incubated ventures, founder contacts, funding status, and external portfolio links.
                 </p>
               </div>
-              <Button
-                onClick={handleOpenAddStartup}
-                className="w-full sm:w-auto bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 sm:h-11 px-4 sm:px-5 rounded-xl text-xs gap-2 shrink-0 shadow-sm justify-center"
-              >
-                <Plus className="w-4 h-4" />
-                <span>Add New Startup</span>
-              </Button>
+              <div className="flex flex-col sm:flex-row items-center gap-2.5 shrink-0 w-full sm:w-auto">
+                <Button
+                  onClick={exportStartupsToCSV}
+                  variant="outline"
+                  className="w-full sm:w-auto border-slate-300 text-slate-700 hover:bg-slate-50 font-bold h-10 sm:h-11 px-4 rounded-xl text-xs gap-2 shadow-2xs justify-center touch-manipulation"
+                >
+                  <Download className="w-4 h-4 text-blue-600" />
+                  <span>Export Portfolio (CSV)</span>
+                </Button>
+                <Button
+                  onClick={handleOpenAddStartup}
+                  className="w-full sm:w-auto bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 sm:h-11 px-4 sm:px-5 rounded-xl text-xs gap-2 shadow-sm justify-center touch-manipulation"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Add New Startup</span>
+                </Button>
+              </div>
             </div>
 
             {/* Search Input with Instant Clear Button & 1-Tap Category Filter Pills */}
@@ -2441,15 +2630,26 @@ export default function AdminPage() {
                   Review student, faculty, and external applications submitted through the /apply portal.
                 </p>
               </div>
-              <Button
-                onClick={fetchApps}
-                variant="outline"
-                size="sm"
-                className="w-full sm:w-auto justify-center text-xs border-slate-300 text-slate-700 hover:bg-slate-50 gap-2 h-10 px-4 shadow-2xs font-bold touch-manipulation"
-              >
-                <RefreshCw className={`w-3.5 h-3.5 ${appsLoading ? "animate-spin" : ""}`} />
-                <span>Refresh Queue</span>
-              </Button>
+              <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full sm:w-auto shrink-0">
+                <Button
+                  onClick={exportApplicationsToCSV}
+                  variant="outline"
+                  size="sm"
+                  className="w-full sm:w-auto justify-center text-xs border-slate-300 text-slate-700 hover:bg-slate-50 gap-2 h-10 px-4 shadow-2xs font-bold touch-manipulation"
+                >
+                  <Download className="w-3.5 h-3.5 text-purple-600" />
+                  <span>Export to CSV</span>
+                </Button>
+                <Button
+                  onClick={fetchApps}
+                  variant="outline"
+                  size="sm"
+                  className="w-full sm:w-auto justify-center text-xs border-slate-300 text-slate-700 hover:bg-slate-50 gap-2 h-10 px-4 shadow-2xs font-bold touch-manipulation"
+                >
+                  <RefreshCw className={`w-3.5 h-3.5 ${appsLoading ? "animate-spin" : ""}`} />
+                  <span>Refresh Queue</span>
+                </Button>
+              </div>
             </div>
 
             {/* Search Input with Instant Clear & Stage Filter Pills */}
@@ -2636,6 +2836,17 @@ export default function AdminPage() {
                         <p className="text-xs text-slate-700 leading-relaxed font-normal bg-slate-50/60 p-3 rounded-2xl border border-slate-100">
                           {app.problemStatement || app.solutionDescription || "Application submission received. Intake screening pending."}
                         </p>
+
+                        <div className="flex items-center justify-between pt-0.5">
+                          <button
+                            type="button"
+                            onClick={() => setSelectedAppDossier(app)}
+                            className="text-xs font-bold text-purple-700 hover:text-purple-900 hover:underline flex items-center gap-1.5 touch-manipulation"
+                          >
+                            <FileText className="w-3.5 h-3.5" />
+                            <span>View Full Dossier & Pitch Deck →</span>
+                          </button>
+                        </div>
                       </div>
 
                       {/* Pipeline Stage Selector Control */}
@@ -2659,6 +2870,15 @@ export default function AdminPage() {
               );
             })()}
           </div>
+        )}
+
+        {/* ECOSYSTEM EXTENSION TABS: PASSPORTS, MILESTONES, MENTORS, STORIES, ALUMNI */}
+        {(activeTab === "passports" ||
+          activeTab === "milestones" ||
+          activeTab === "mentors" ||
+          activeTab === "stories" ||
+          activeTab === "alumni") && (
+          <EcosystemAdminTabs tab={activeTab} showToast={showToast} />
         )}
         </main>
       </div>
@@ -3237,6 +3457,172 @@ export default function AdminPage() {
                 </Button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* MODAL 4: INTAKE APPLICATION DOSSIER & EVALUATION MODAL */}
+      {/* ========================================================================= */}
+      {selectedAppDossier && (
+        <div className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-hidden">
+          <div className="relative w-full max-w-2xl max-h-[90vh] bg-white rounded-3xl shadow-2xl border border-slate-200/90 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            {/* Pinned Sticky Header */}
+            <div className="px-6 py-4 border-b border-slate-200 bg-white flex items-center justify-between shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-purple-50 text-purple-700 flex items-center justify-center border border-purple-100 shrink-0">
+                  <Layers className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display">
+                    {selectedAppDossier.startupName}
+                  </h3>
+                  <p className="text-xs text-slate-500 font-medium">
+                    Application Dossier · ID: <span className="font-mono text-slate-700 font-bold">{selectedAppDossier.id}</span>
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedAppDossier(null)}
+                className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+                aria-label="Close dossier"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Scrollable Dossier Content */}
+            <div className="p-6 overflow-y-auto flex-1 space-y-5 text-xs sm:text-sm">
+              {/* Founder & Contact Strip */}
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div>
+                  <span className="text-slate-500 text-[11px] block">Lead Founder:</span>
+                  <span className="font-bold text-slate-900 text-sm">{selectedAppDossier.founderName}</span>
+                </div>
+                <div>
+                  <span className="text-slate-500 text-[11px] block">College / Institution:</span>
+                  <span className="font-bold text-slate-800">{selectedAppDossier.collegeOrEntity || "MAMCET Siruganur"}</span>
+                </div>
+                <div>
+                  <span className="text-slate-500 text-[11px] block">Email:</span>
+                  <a href={`mailto:${selectedAppDossier.founderEmail}`} className="text-blue-600 hover:underline font-mono">
+                    {selectedAppDossier.founderEmail}
+                  </a>
+                </div>
+                <div>
+                  <span className="text-slate-500 text-[11px] block">Phone / Hotline:</span>
+                  <a href={`tel:${selectedAppDossier.founderPhone}`} className="text-emerald-700 font-mono font-bold">
+                    {selectedAppDossier.founderPhone || "Not provided"}
+                  </a>
+                </div>
+              </div>
+
+              {/* Problem Statement */}
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
+                  Problem Statement
+                </label>
+                <p className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs leading-relaxed">
+                  {selectedAppDossier.problemStatement || "No problem statement submitted."}
+                </p>
+              </div>
+
+              {/* Proposed Solution */}
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
+                  Proposed Technical Solution
+                </label>
+                <p className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs leading-relaxed">
+                  {selectedAppDossier.proposedSolution || "No solution description provided."}
+                </p>
+              </div>
+
+              {/* Market & Revenue Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                  <span className="text-[11px] font-bold text-slate-600 uppercase block">Target Market</span>
+                  <p className="text-xs text-slate-700">{selectedAppDossier.targetMarket || "General"}</p>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                  <span className="text-[11px] font-bold text-slate-600 uppercase block">Funding Needed</span>
+                  <p className="text-xs text-slate-700">{selectedAppDossier.fundingNeeded || "Not specified"}</p>
+                </div>
+              </div>
+
+              {/* Pitch Deck Link */}
+              {selectedAppDossier.pitchDeckUrl && (
+                <div className="p-3 rounded-xl bg-purple-50 border border-purple-200 flex items-center justify-between">
+                  <span className="text-xs font-bold text-purple-900">Pitch Deck / Presentation:</span>
+                  <a
+                    href={selectedAppDossier.pitchDeckUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs font-bold text-purple-700 hover:underline flex items-center gap-1"
+                  >
+                    <span>View Document</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              )}
+
+              {/* Status Decision Controls */}
+              <div className="p-4 rounded-2xl bg-slate-100 border border-slate-300 space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-bold text-slate-900 uppercase">
+                    Update Screening Pipeline Status:
+                  </label>
+                  <span className="text-[11px] font-mono text-slate-500">Current: {selectedAppDossier.status}</span>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {[
+                    { id: "SUBMITTED", label: "Submitted" },
+                    { id: "UNDER_REVIEW", label: "Under Review" },
+                    { id: "SHORTLISTED_FOR_PITCH", label: "Pitch Shortlist" },
+                    { id: "INCUBATED", label: "Accept / Incubate" },
+                    { id: "REJECTED", label: "Reject / Archive" },
+                  ].map((st) => (
+                    <button
+                      key={st.id}
+                      type="button"
+                      onClick={() => {
+                        handleUpdateAppStatus(selectedAppDossier.id, st.id, notifyFounderOnUpdate);
+                        setSelectedAppDossier({ ...selectedAppDossier, status: st.id });
+                      }}
+                      className={`py-2 px-3 rounded-xl text-xs font-bold transition-all ${
+                        selectedAppDossier.status === st.id
+                          ? "bg-[#091b34] text-white shadow-sm"
+                          : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50"
+                      }`}
+                    >
+                      {st.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Email Notification Checkbox */}
+                <label className="flex items-center gap-2 pt-1 text-xs text-slate-700 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={notifyFounderOnUpdate}
+                    onChange={(e) => setNotifyFounderOnUpdate(e.target.checked)}
+                    className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500"
+                  />
+                  <span>Send automated email notification to founder ({selectedAppDossier.founderEmail}) upon status change</span>
+                </label>
+              </div>
+            </div>
+
+            {/* Pinned Sticky Footer */}
+            <div className="px-6 py-4 border-t border-slate-200 bg-slate-50 flex items-center justify-end shrink-0">
+              <Button
+                onClick={() => setSelectedAppDossier(null)}
+                className="bg-slate-900 hover:bg-slate-800 text-white font-bold h-10 px-5 rounded-xl text-xs"
+              >
+                Close Dossier
+              </Button>
+            </div>
           </div>
         </div>
       )}
