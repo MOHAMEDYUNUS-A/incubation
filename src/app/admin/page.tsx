@@ -29,6 +29,7 @@ import {
   Eye,
   Sliders,
   AlertCircle,
+  Video,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -526,19 +527,17 @@ export default function AdminPage() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap ${
-                  isActive
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap ${isActive
                     ? "bg-[#0f2c59] text-white shadow-md"
                     : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200/80"
-                }`}
+                  }`}
               >
                 <Icon className="w-4 h-4" />
                 <span>{tab.label}</span>
                 {tab.count !== undefined && (
                   <span
-                    className={`text-[10px] px-2 py-0.2 rounded-full font-mono ${
-                      isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600"
-                    }`}
+                    className={`text-[10px] px-2 py-0.2 rounded-full font-mono ${isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600"
+                      }`}
                   >
                     {tab.count}
                   </span>
@@ -893,11 +892,10 @@ export default function AdminPage() {
                 <button
                   key={cat}
                   onClick={() => setGalleryCategoryFilter(cat)}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-colors ${
-                    galleryCategoryFilter === cat
+                  className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-colors ${galleryCategoryFilter === cat
                       ? "bg-[#0f2c59] text-white"
                       : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50"
-                  }`}
+                    }`}
                 >
                   {cat.toUpperCase()}
                 </button>
@@ -917,16 +915,31 @@ export default function AdminPage() {
                     className="rounded-3xl bg-white border border-slate-200/90 shadow-xs overflow-hidden flex flex-col justify-between group hover:border-orange-400 transition-all"
                   >
                     <div>
-                      <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
-                        <img
-                          src={p.image}
-                          alt={p.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                        <div className="absolute top-3 left-3">
-                          <span className="px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-bold">
+                      <div className="relative aspect-[16/10] bg-slate-900 overflow-hidden">
+                        {p.image?.startsWith("data:video/") || p.image?.endsWith(".mp4") || p.image?.endsWith(".webm") ? (
+                          <video
+                            src={p.image}
+                            muted
+                            loop
+                            playsInline
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <img
+                            src={p.image}
+                            alt={p.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        )}
+                        <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                          <span className="px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-bold shadow-xs">
                             {p.categoryLabel || p.category}
                           </span>
+                          {(p.image?.startsWith("data:video/") || p.image?.endsWith(".mp4") || p.image?.endsWith(".webm")) && (
+                            <span className="px-2 py-0.5 rounded-full bg-cyan-600/90 text-white text-[9px] font-bold uppercase tracking-wider flex items-center gap-1">
+                              <Video className="w-2.5 h-2.5" /> Video
+                            </span>
+                          )}
                         </div>
                       </div>
 
@@ -1195,9 +1208,8 @@ export default function AdminPage() {
 
                   <div className="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
                     <span
-                      className={`font-semibold ${
-                        ev.registrationOpen ? "text-emerald-600" : "text-slate-400"
-                      }`}
+                      className={`font-semibold ${ev.registrationOpen ? "text-emerald-600" : "text-slate-400"
+                        }`}
                     >
                       {ev.registrationOpen ? "● Open for Registrations" : "Closed"}
                     </span>
@@ -1400,8 +1412,8 @@ export default function AdminPage() {
                             app.status === "INCUBATED"
                               ? "emerald"
                               : app.status === "SHORTLISTED_FOR_PITCH"
-                              ? "cyan"
-                              : "secondary"
+                                ? "cyan"
+                                : "secondary"
                           }
                           className="text-[10px] font-bold"
                         >
@@ -1443,218 +1455,235 @@ export default function AdminPage() {
       {/* MODAL 1: ADD / EDIT STARTUP MODAL */}
       {/* ========================================================================= */}
       {isStartupModalOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-200 p-6 sm:p-8 my-8 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-200">
-              <h3 className="text-xl font-bold text-slate-900 font-display">
-                {editingStartup ? "Edit Startup Profile" : "Add New Incubated Startup"}
-              </h3>
+        <div className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-hidden">
+          <div className="relative w-full max-w-2xl max-h-[90vh] sm:max-h-[86vh] bg-white rounded-3xl shadow-2xl border border-slate-200/90 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            {/* Pinned Sticky Header */}
+            <div className="px-6 py-4 border-b border-slate-200 bg-white flex items-center justify-between shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center border border-blue-100 shrink-0">
+                  <Rocket className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display">
+                    {editingStartup ? "Edit Startup Profile" : "Add New Incubated Startup"}
+                  </h3>
+                  <p className="text-xs text-slate-500 font-medium">
+                    Configure company details, founder contacts, links & traction metrics
+                  </p>
+                </div>
+              </div>
               <button
+                type="button"
                 onClick={() => setIsStartupModalOpen(false)}
-                className="p-2 rounded-xl text-slate-500 hover:bg-slate-100"
+                className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+                aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <form onSubmit={handleSaveStartup} className="space-y-4 text-xs sm:text-sm">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Scrollable Interior Form Body */}
+            <form onSubmit={handleSaveStartup} className="flex flex-col flex-1 min-h-0 overflow-hidden">
+              <div className="p-6 overflow-y-auto flex-1 space-y-4 text-xs sm:text-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Startup Name *
+                    </label>
+                    <Input
+                      required
+                      value={startupForm.name}
+                      onChange={(e) => setStartupForm({ ...startupForm, name: e.target.value })}
+                      placeholder="e.g. AgroSens Telemetry"
+                      className="h-10 text-xs"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Founders & Dept *
+                    </label>
+                    <Input
+                      required
+                      value={startupForm.founders}
+                      onChange={(e) => setStartupForm({ ...startupForm, founders: e.target.value })}
+                      placeholder="e.g. Arun K. (ECE Dept)"
+                      className="h-10 text-xs"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Category Track
+                    </label>
+                    <select
+                      value={startupForm.category}
+                      onChange={(e) => setStartupForm({ ...startupForm, category: e.target.value })}
+                      className="w-full h-10 px-3 text-xs bg-slate-50 border border-slate-300 rounded-xl"
+                    >
+                      <option value="ELECTRONICS_IOT_SMART">Electronics & IoT</option>
+                      <option value="RENEWABLE_ENERGY_CLEAN_TECH">Renewable Energy</option>
+                      <option value="ADVANCED_MANUFACTURING">Advanced Manufacturing</option>
+                      <option value="SUSTAINABLE_INFRASTRUCTURE">Sustainable Infrastructure</option>
+                      <option value="AI_DATA_SCIENCE">AI & Data Science</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      TRL / Stage
+                    </label>
+                    <select
+                      value={startupForm.stage}
+                      onChange={(e) => setStartupForm({ ...startupForm, stage: e.target.value })}
+                      className="w-full h-10 px-3 text-xs bg-slate-50 border border-slate-300 rounded-xl"
+                    >
+                      <option value="IDEATION">Ideation</option>
+                      <option value="PROOF_OF_CONCEPT">Proof of Concept</option>
+                      <option value="PROTOTYPE_MVP">Prototype / MVP</option>
+                      <option value="EARLY_TRACTION">Early Traction</option>
+                      <option value="GROWTH_SCALE">Growth & Scale</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Cohort Year
+                    </label>
+                    <Input
+                      value={startupForm.cohort}
+                      onChange={(e) => setStartupForm({ ...startupForm, cohort: e.target.value })}
+                      placeholder="Cohort 2026"
+                      className="h-10 text-xs"
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Startup Name *
+                    One-Liner Problem / Solution Summary *
                   </label>
-                  <Input
+                  <textarea
                     required
-                    value={startupForm.name}
-                    onChange={(e) => setStartupForm({ ...startupForm, name: e.target.value })}
-                    placeholder="e.g. AgroSens Telemetry"
-                    className="h-10 text-xs"
+                    rows={2}
+                    value={startupForm.oneLiner}
+                    onChange={(e) => setStartupForm({ ...startupForm, oneLiner: e.target.value })}
+                    placeholder="Concise description of the hardware/software prototype..."
+                    className="w-full p-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
+                </div>
+
+                {/* Startup Website Link & LinkedIn Link */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-blue-50/50 border border-blue-200">
+                  <div>
+                    <label className="block text-xs font-bold text-blue-900 uppercase mb-1 flex items-center gap-1.5">
+                      <Globe className="w-3.5 h-3.5 text-blue-600" />
+                      <span>Startup Website Link</span>
+                    </label>
+                    <Input
+                      value={startupForm.website}
+                      onChange={(e) => setStartupForm({ ...startupForm, website: e.target.value })}
+                      placeholder="https://yourstartup.com"
+                      className="h-10 text-xs bg-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-blue-900 uppercase mb-1 flex items-center gap-1.5">
+                      <Linkedin className="w-3.5 h-3.5 text-blue-600" />
+                      <span>Startup LinkedIn Link</span>
+                    </label>
+                    <Input
+                      value={startupForm.linkedin}
+                      onChange={(e) => setStartupForm({ ...startupForm, linkedin: e.target.value })}
+                      placeholder="https://linkedin.com/company/yourstartup"
+                      className="h-10 text-xs bg-white"
+                    />
+                  </div>
+                </div>
+
+                {/* Founder Direct Contacts */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Founder Contact Email
+                    </label>
+                    <Input
+                      type="email"
+                      value={startupForm.email}
+                      onChange={(e) => setStartupForm({ ...startupForm, email: e.target.value })}
+                      placeholder="founder@venture.com"
+                      className="h-10 text-xs"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Founder Phone Number
+                    </label>
+                    <Input
+                      value={startupForm.phone}
+                      onChange={(e) => setStartupForm({ ...startupForm, phone: e.target.value })}
+                      placeholder="+91 98421 00000"
+                      className="h-10 text-xs"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Funding / Grant Status
+                    </label>
+                    <Input
+                      value={startupForm.funding}
+                      onChange={(e) => setStartupForm({ ...startupForm, funding: e.target.value })}
+                      placeholder="e.g. TANSEED ₹10L Shortlisted"
+                      className="h-10 text-xs"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Traction / Impact Metric
+                    </label>
+                    <Input
+                      value={startupForm.impactMetric}
+                      onChange={(e) => setStartupForm({ ...startupForm, impactMetric: e.target.value })}
+                      placeholder="e.g. 8 Field Pilots in Trichy"
+                      className="h-10 text-xs"
+                    />
+                  </div>
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Founders & Dept *
+                    Tags (Comma separated)
                   </label>
                   <Input
-                    required
-                    value={startupForm.founders}
-                    onChange={(e) => setStartupForm({ ...startupForm, founders: e.target.value })}
-                    placeholder="e.g. Arun K. (ECE Dept)"
-                    className="h-10 text-xs"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Category Track
-                  </label>
-                  <select
-                    value={startupForm.category}
-                    onChange={(e) => setStartupForm({ ...startupForm, category: e.target.value })}
-                    className="w-full h-10 px-3 text-xs bg-slate-50 border border-slate-300 rounded-xl"
-                  >
-                    <option value="ELECTRONICS_IOT_SMART">Electronics & IoT</option>
-                    <option value="RENEWABLE_ENERGY_CLEAN_TECH">Renewable Energy</option>
-                    <option value="ADVANCED_MANUFACTURING">Advanced Manufacturing</option>
-                    <option value="SUSTAINABLE_INFRASTRUCTURE">Sustainable Infrastructure</option>
-                    <option value="AI_DATA_SCIENCE">AI & Data Science</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    TRL / Stage
-                  </label>
-                  <select
-                    value={startupForm.stage}
-                    onChange={(e) => setStartupForm({ ...startupForm, stage: e.target.value })}
-                    className="w-full h-10 px-3 text-xs bg-slate-50 border border-slate-300 rounded-xl"
-                  >
-                    <option value="IDEATION">Ideation</option>
-                    <option value="PROOF_OF_CONCEPT">Proof of Concept</option>
-                    <option value="PROTOTYPE_MVP">Prototype / MVP</option>
-                    <option value="EARLY_TRACTION">Early Traction</option>
-                    <option value="GROWTH_SCALE">Growth & Scale</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Cohort Year
-                  </label>
-                  <Input
-                    value={startupForm.cohort}
-                    onChange={(e) => setStartupForm({ ...startupForm, cohort: e.target.value })}
-                    placeholder="Cohort 2026"
-                    className="h-10 text-xs"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  One-Liner Problem / Solution Summary *
-                </label>
-                <textarea
-                  required
-                  rows={2}
-                  value={startupForm.oneLiner}
-                  onChange={(e) => setStartupForm({ ...startupForm, oneLiner: e.target.value })}
-                  placeholder="Concise description of the hardware/software prototype..."
-                  className="w-full p-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              {/* Startup Website Link & LinkedIn Link */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-blue-50/50 border border-blue-200">
-                <div>
-                  <label className="block text-xs font-bold text-blue-900 uppercase mb-1 flex items-center gap-1.5">
-                    <Globe className="w-3.5 h-3.5 text-blue-600" />
-                    <span>Startup Website Link</span>
-                  </label>
-                  <Input
-                    value={startupForm.website}
-                    onChange={(e) => setStartupForm({ ...startupForm, website: e.target.value })}
-                    placeholder="https://yourstartup.com"
-                    className="h-10 text-xs bg-white"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-blue-900 uppercase mb-1 flex items-center gap-1.5">
-                    <Linkedin className="w-3.5 h-3.5 text-blue-600" />
-                    <span>Startup LinkedIn Link</span>
-                  </label>
-                  <Input
-                    value={startupForm.linkedin}
-                    onChange={(e) => setStartupForm({ ...startupForm, linkedin: e.target.value })}
-                    placeholder="https://linkedin.com/company/yourstartup"
-                    className="h-10 text-xs bg-white"
-                  />
-                </div>
-              </div>
-
-              {/* Founder Direct Contacts */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Founder Contact Email
-                  </label>
-                  <Input
-                    type="email"
-                    value={startupForm.email}
-                    onChange={(e) => setStartupForm({ ...startupForm, email: e.target.value })}
-                    placeholder="founder@venture.com"
-                    className="h-10 text-xs"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Founder Phone Number
-                  </label>
-                  <Input
-                    value={startupForm.phone}
-                    onChange={(e) => setStartupForm({ ...startupForm, phone: e.target.value })}
-                    placeholder="+91 98421 00000"
+                    value={startupForm.tagsInput}
+                    onChange={(e) => setStartupForm({ ...startupForm, tagsInput: e.target.value })}
+                    placeholder="IoT, Hardware, Agriculture"
                     className="h-10 text-xs"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Funding / Grant Status
-                  </label>
-                  <Input
-                    value={startupForm.funding}
-                    onChange={(e) => setStartupForm({ ...startupForm, funding: e.target.value })}
-                    placeholder="e.g. TANSEED ₹10L Shortlisted"
-                    className="h-10 text-xs"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Traction / Impact Metric
-                  </label>
-                  <Input
-                    value={startupForm.impactMetric}
-                    onChange={(e) => setStartupForm({ ...startupForm, impactMetric: e.target.value })}
-                    placeholder="e.g. 8 Field Pilots in Trichy"
-                    className="h-10 text-xs"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Tags (Comma separated)
-                </label>
-                <Input
-                  value={startupForm.tagsInput}
-                  onChange={(e) => setStartupForm({ ...startupForm, tagsInput: e.target.value })}
-                  placeholder="IoT, Hardware, Agriculture"
-                  className="h-10 text-xs"
-                />
-              </div>
-
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200">
+              {/* Pinned Sticky Footer */}
+              <div className="px-6 py-4 bg-slate-50/90 border-t border-slate-200 flex items-center justify-end gap-3 shrink-0">
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => setIsStartupModalOpen(false)}
-                  className="h-10 text-xs"
+                  className="h-10 text-xs px-5 border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold"
                 >
                   Cancel
                 </Button>
                 <Button
                   type="submit"
-                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 px-6 text-xs"
+                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 px-6 text-xs shadow-sm hover:shadow"
                 >
                   {editingStartup ? "Update Startup" : "Add Startup"}
                 </Button>
@@ -1668,122 +1697,140 @@ export default function AdminPage() {
       {/* MODAL 2: ADD / EDIT GALLERY PHOTO MODAL */}
       {/* ========================================================================= */}
       {isGalleryModalOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-200 p-6 sm:p-8 my-8">
-            <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-200">
-              <h3 className="text-xl font-bold text-slate-900 font-display">
-                {editingPhoto ? "Edit Gallery Image" : "Add New Gallery Photo"}
-              </h3>
+        <div className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-hidden">
+          <div className="relative w-full max-w-xl max-h-[90vh] sm:max-h-[86vh] bg-white rounded-3xl shadow-2xl border border-slate-200/90 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            {/* Pinned Sticky Header */}
+            <div className="px-6 py-4 border-b border-slate-200 bg-white flex items-center justify-between shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center border border-orange-100 shrink-0">
+                  <ImageIcon className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display">
+                    {editingPhoto ? "Edit Gallery Image" : "Add New Gallery Photo"}
+                  </h3>
+                  <p className="text-xs text-slate-500 font-medium">
+                    Upload high-res campus media, assign category track & captions
+                  </p>
+                </div>
+              </div>
               <button
+                type="button"
                 onClick={() => setIsGalleryModalOpen(false)}
-                className="p-2 rounded-xl text-slate-500 hover:bg-slate-100"
+                className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+                aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <form onSubmit={handleSavePhoto} className="space-y-4 text-xs sm:text-sm">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Photo Title *
-                </label>
-                <Input
-                  required
-                  value={photoForm.title}
-                  onChange={(e) => setPhotoForm({ ...photoForm, title: e.target.value })}
-                  placeholder="e.g. 3D Printing & Fabrication Lab"
-                  className="h-10 text-xs"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
+            {/* Scrollable Interior Form Body */}
+            <form onSubmit={handleSavePhoto} className="flex flex-col flex-1 min-h-0 overflow-hidden">
+              <div className="p-6 overflow-y-auto flex-1 space-y-4 text-xs sm:text-sm">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Category Track
+                    Photo Title *
                   </label>
-                  <select
-                    value={photoForm.category}
-                    onChange={(e) =>
-                      setPhotoForm({
-                        ...photoForm,
-                        category: e.target.value as any,
-                        categoryLabel:
-                          e.target.value === "facilities"
-                            ? "Incubation Facility"
-                            : e.target.value === "labs"
-                            ? "Hardware Labs"
-                            : e.target.value === "team"
-                            ? "Foundation Leadership"
-                            : "Events & Workshops",
-                      })
-                    }
-                    className="w-full h-10 px-3 text-xs bg-slate-50 border border-slate-300 rounded-xl"
-                  >
-                    <option value="facilities">Facilities</option>
-                    <option value="labs">Labs</option>
-                    <option value="team">Team / Mentors</option>
-                    <option value="events">Events & Workshops</option>
-                  </select>
+                  <Input
+                    required
+                    value={photoForm.title}
+                    onChange={(e) => setPhotoForm({ ...photoForm, title: e.target.value })}
+                    placeholder="e.g. 3D Printing & Fabrication Lab"
+                    className="h-10 text-xs"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Category Track
+                    </label>
+                    <select
+                      value={photoForm.category}
+                      onChange={(e) =>
+                        setPhotoForm({
+                          ...photoForm,
+                          category: e.target.value as any,
+                          categoryLabel:
+                            e.target.value === "facilities"
+                              ? "Incubation Facility"
+                              : e.target.value === "labs"
+                                ? "Hardware Labs"
+                                : e.target.value === "team"
+                                  ? "Foundation Leadership"
+                                  : "Events & Workshops",
+                        })
+                      }
+                      className="w-full h-10 px-3 text-xs bg-slate-50 border border-slate-300 rounded-xl"
+                    >
+                      <option value="facilities">Facilities</option>
+                      <option value="labs">Labs</option>
+                      <option value="team">Team / Mentors</option>
+                      <option value="events">Events & Workshops</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Display Label
+                    </label>
+                    <Input
+                      value={photoForm.categoryLabel}
+                      onChange={(e) => setPhotoForm({ ...photoForm, categoryLabel: e.target.value })}
+                      placeholder="e.g. Makerspace"
+                      className="h-10 text-xs"
+                    />
+                  </div>
+                </div>
+
+                <MediaUploadZone
+                  value={photoForm.image}
+                  onChange={(val) => setPhotoForm({ ...photoForm, image: val })}
+                  label="Gallery Photograph or Video Asset"
+                  helperText="Upload JPG, PNG, WebP image or MP4/WebM video from your device"
+                  aspectRatio="aspect-video"
+                  required
+                />
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                    Caption / Description
+                  </label>
+                  <textarea
+                    rows={2}
+                    value={photoForm.caption}
+                    onChange={(e) => setPhotoForm({ ...photoForm, caption: e.target.value })}
+                    placeholder="Brief description of the facility or session..."
+                    className="w-full p-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Display Label
+                    On-Campus Location
                   </label>
                   <Input
-                    value={photoForm.categoryLabel}
-                    onChange={(e) => setPhotoForm({ ...photoForm, categoryLabel: e.target.value })}
-                    placeholder="e.g. Makerspace"
+                    value={photoForm.location}
+                    onChange={(e) => setPhotoForm({ ...photoForm, location: e.target.value })}
+                    placeholder="e.g. MAMCET Central Wing, Siruganur"
                     className="h-10 text-xs"
                   />
                 </div>
               </div>
 
-              <MediaUploadZone
-                value={photoForm.image}
-                onChange={(val) => setPhotoForm({ ...photoForm, image: val })}
-                label="Gallery Photograph or Video Asset"
-                helperText="Upload JPG, PNG, WebP image or MP4/WebM video from your device"
-                required
-              />
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Caption / Description
-                </label>
-                <textarea
-                  rows={2}
-                  value={photoForm.caption}
-                  onChange={(e) => setPhotoForm({ ...photoForm, caption: e.target.value })}
-                  placeholder="Brief description of the facility or session..."
-                  className="w-full p-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  On-Campus Location
-                </label>
-                <Input
-                  value={photoForm.location}
-                  onChange={(e) => setPhotoForm({ ...photoForm, location: e.target.value })}
-                  placeholder="e.g. MAMCET Central Wing, Siruganur"
-                  className="h-10 text-xs"
-                />
-              </div>
-
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200">
+              {/* Pinned Sticky Footer */}
+              <div className="px-6 py-4 bg-slate-50/90 border-t border-slate-200 flex items-center justify-end gap-3 shrink-0">
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => setIsGalleryModalOpen(false)}
-                  className="h-10 text-xs"
+                  className="h-10 text-xs px-5 border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold"
                 >
                   Cancel
                 </Button>
                 <Button
                   type="submit"
-                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 px-6 text-xs"
+                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 px-6 text-xs shadow-sm hover:shadow"
                 >
                   {editingPhoto ? "Save Changes" : "Add Image"}
                 </Button>
@@ -1797,156 +1844,173 @@ export default function AdminPage() {
       {/* MODAL 3: ADD / EDIT EVENT MODAL */}
       {/* ========================================================================= */}
       {isEventModalOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-200 p-6 sm:p-8 my-8">
-            <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-200">
-              <h3 className="text-xl font-bold text-slate-900 font-display">
-                {editingEvent ? "Edit Workshop / Event" : "Schedule New Event"}
-              </h3>
+        <div className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-hidden">
+          <div className="relative w-full max-w-xl max-h-[90vh] sm:max-h-[86vh] bg-white rounded-3xl shadow-2xl border border-slate-200/90 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            {/* Pinned Sticky Header */}
+            <div className="px-6 py-4 border-b border-slate-200 bg-white flex items-center justify-between shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100 shrink-0">
+                  <Calendar className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display">
+                    {editingEvent ? "Edit Workshop / Event" : "Schedule New Event"}
+                  </h3>
+                  <p className="text-xs text-slate-500 font-medium">
+                    Schedule workshops, bootcamps, and upload promotional flyers
+                  </p>
+                </div>
+              </div>
               <button
+                type="button"
                 onClick={() => setIsEventModalOpen(false)}
-                className="p-2 rounded-xl text-slate-500 hover:bg-slate-100"
+                className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+                aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <form onSubmit={handleSaveEvent} className="space-y-4 text-xs sm:text-sm">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Event Title *
-                </label>
-                <Input
-                  required
-                  value={eventForm.title}
-                  onChange={(e) => setEventForm({ ...eventForm, title: e.target.value })}
-                  placeholder="e.g. TANSEED Grant Proposal Bootcamp"
-                  className="h-10 text-xs"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
+            {/* Scrollable Interior Form Body */}
+            <form onSubmit={handleSaveEvent} className="flex flex-col flex-1 min-h-0 overflow-hidden">
+              <div className="p-6 overflow-y-auto flex-1 space-y-4 text-xs sm:text-sm">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Event Type
-                  </label>
-                  <select
-                    value={eventForm.type}
-                    onChange={(e) => setEventForm({ ...eventForm, type: e.target.value })}
-                    className="w-full h-10 px-3 text-xs bg-slate-50 border border-slate-300 rounded-xl"
-                  >
-                    <option value="Workshop">Workshop</option>
-                    <option value="Hackathon">Hackathon</option>
-                    <option value="Bootcamp">Bootcamp</option>
-                    <option value="Pitch Day">Pitch Day</option>
-                    <option value="Masterclass">Masterclass</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Delivery Mode
-                  </label>
-                  <select
-                    value={eventForm.mode}
-                    onChange={(e) => setEventForm({ ...eventForm, mode: e.target.value })}
-                    className="w-full h-10 px-3 text-xs bg-slate-50 border border-slate-300 rounded-xl"
-                  >
-                    <option value="In-Person">In-Person</option>
-                    <option value="Hybrid">Hybrid</option>
-                    <option value="Virtual">Virtual</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Date *
+                    Event Title *
                   </label>
                   <Input
                     required
-                    value={eventForm.date}
-                    onChange={(e) => setEventForm({ ...eventForm, date: e.target.value })}
-                    placeholder="e.g. Jan 15, 2027"
+                    value={eventForm.title}
+                    onChange={(e) => setEventForm({ ...eventForm, title: e.target.value })}
+                    placeholder="e.g. TANSEED Grant Proposal Bootcamp"
+                    className="h-10 text-xs"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Event Type
+                    </label>
+                    <select
+                      value={eventForm.type}
+                      onChange={(e) => setEventForm({ ...eventForm, type: e.target.value })}
+                      className="w-full h-10 px-3 text-xs bg-slate-50 border border-slate-300 rounded-xl"
+                    >
+                      <option value="Workshop">Workshop</option>
+                      <option value="Hackathon">Hackathon</option>
+                      <option value="Bootcamp">Bootcamp</option>
+                      <option value="Pitch Day">Pitch Day</option>
+                      <option value="Masterclass">Masterclass</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Delivery Mode
+                    </label>
+                    <select
+                      value={eventForm.mode}
+                      onChange={(e) => setEventForm({ ...eventForm, mode: e.target.value })}
+                      className="w-full h-10 px-3 text-xs bg-slate-50 border border-slate-300 rounded-xl"
+                    >
+                      <option value="In-Person">In-Person</option>
+                      <option value="Hybrid">Hybrid</option>
+                      <option value="Virtual">Virtual</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Date *
+                    </label>
+                    <Input
+                      required
+                      value={eventForm.date}
+                      onChange={(e) => setEventForm({ ...eventForm, date: e.target.value })}
+                      placeholder="e.g. Jan 15, 2027"
+                      className="h-10 text-xs"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      Time
+                    </label>
+                    <Input
+                      value={eventForm.time}
+                      onChange={(e) => setEventForm({ ...eventForm, time: e.target.value })}
+                      placeholder="10:00 AM - 04:00 PM IST"
+                      className="h-10 text-xs"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                    Location / Venue
+                  </label>
+                  <Input
+                    value={eventForm.location}
+                    onChange={(e) => setEventForm({ ...eventForm, location: e.target.value })}
+                    placeholder="Auditorium, MAMCET Campus, Siruganur"
                     className="h-10 text-xs"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Time
+                    Description
                   </label>
-                  <Input
-                    value={eventForm.time}
-                    onChange={(e) => setEventForm({ ...eventForm, time: e.target.value })}
-                    placeholder="10:00 AM - 04:00 PM IST"
-                    className="h-10 text-xs"
+                  <textarea
+                    rows={2}
+                    value={eventForm.description}
+                    onChange={(e) => setEventForm({ ...eventForm, description: e.target.value })}
+                    placeholder="Outline topics covered and target audience..."
+                    className="w-full p-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
+                </div>
+
+                <MediaUploadZone
+                  value={eventForm.flyerImage}
+                  onChange={(val) => setEventForm({ ...eventForm, flyerImage: val })}
+                  label="Event Poster / Video Teaser"
+                  helperText="Upload event poster graphic (JPG, PNG) or promotional video clip"
+                  aspectRatio="aspect-video"
+                />
+
+                <div className="flex items-center justify-between pt-2">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={eventForm.registrationOpen}
+                      onChange={(e) =>
+                        setEventForm({ ...eventForm, registrationOpen: e.target.checked })
+                      }
+                      className="w-4 h-4 rounded text-orange-600 focus:ring-orange-500"
+                    />
+                    <span className="text-xs font-bold text-slate-800">
+                      Registration Open
+                    </span>
+                  </label>
                 </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Location / Venue
-                </label>
-                <Input
-                  value={eventForm.location}
-                  onChange={(e) => setEventForm({ ...eventForm, location: e.target.value })}
-                  placeholder="Auditorium, MAMCET Campus, Siruganur"
-                  className="h-10 text-xs"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Description
-                </label>
-                <textarea
-                  rows={2}
-                  value={eventForm.description}
-                  onChange={(e) => setEventForm({ ...eventForm, description: e.target.value })}
-                  placeholder="Outline topics covered and target audience..."
-                  className="w-full p-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              <MediaUploadZone
-                value={eventForm.flyerImage}
-                onChange={(val) => setEventForm({ ...eventForm, flyerImage: val })}
-                label="Event Poster / Video Teaser"
-                helperText="Upload event poster graphic (JPG, PNG) or promotional video clip"
-                aspectRatio="aspect-video"
-              />
-
-              <div className="flex items-center justify-between pt-2">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={eventForm.registrationOpen}
-                    onChange={(e) =>
-                      setEventForm({ ...eventForm, registrationOpen: e.target.checked })
-                    }
-                    className="w-4 h-4 rounded text-orange-600 focus:ring-orange-500"
-                  />
-                  <span className="text-xs font-bold text-slate-800">
-                    Registration Open
-                  </span>
-                </label>
-              </div>
-
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200">
+              {/* Pinned Sticky Footer */}
+              <div className="px-6 py-4 bg-slate-50/90 border-t border-slate-200 flex items-center justify-end gap-3 shrink-0">
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => setIsEventModalOpen(false)}
-                  className="h-10 text-xs"
+                  className="h-10 text-xs px-5 border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold"
                 >
                   Cancel
                 </Button>
                 <Button
                   type="submit"
-                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 px-6 text-xs"
+                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 px-6 text-xs shadow-sm hover:shadow"
                 >
                   {editingEvent ? "Save Event" : "Schedule Event"}
                 </Button>

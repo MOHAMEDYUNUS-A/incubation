@@ -21,7 +21,7 @@ export default function MediaUploadZone({
   label = "Upload Image or Video",
   accept = "image/*,video/*",
   helperText = "Supports PNG, JPG, WebP, MP4, WebM (up to 25MB)",
-  aspectRatio = "aspect-[16/10]",
+  aspectRatio = "aspect-video",
   required = false,
 }: MediaUploadZoneProps) {
   const [mode, setMode] = useState<"upload" | "url">("upload");
@@ -146,26 +146,26 @@ export default function MediaUploadZone({
         <>
           {value ? (
             /* Media Preview Card with Controls */
-            <div className="relative rounded-2xl overflow-hidden border-2 border-slate-200 bg-slate-900 group shadow-sm">
-              <div className={`w-full ${aspectRatio} flex items-center justify-center bg-slate-950 overflow-hidden`}>
+            <div className="relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-950 group shadow-sm">
+              <div className={`w-full ${aspectRatio} max-h-48 sm:max-h-56 flex items-center justify-center bg-slate-950 overflow-hidden`}>
                 {isVideo ? (
                   <video
                     src={value}
                     controls
                     playsInline
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 ) : (
                   <img
                     src={value}
                     alt="Media preview"
-                    className="w-full h-full object-contain bg-slate-900/40"
+                    className="w-full h-full object-contain bg-slate-950"
                   />
                 )}
               </div>
 
               {/* Media Info Overlay */}
-              <div className="absolute top-3 left-3 flex items-center gap-2">
+              <div className="absolute top-2.5 left-2.5 flex items-center gap-2">
                 <span className="px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 shadow-md">
                   {isVideo ? <Video className="w-3 h-3 text-cyan-400" /> : <ImageIcon className="w-3 h-3 text-orange-400" />}
                   <span>{isVideo ? "Video File" : "Image File"}</span>
@@ -178,7 +178,7 @@ export default function MediaUploadZone({
               </div>
 
               {/* Actions Toolbar */}
-              <div className="absolute top-3 right-3 flex items-center gap-1.5">
+              <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5">
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
@@ -198,7 +198,7 @@ export default function MediaUploadZone({
               </div>
 
               {fileName && (
-                <div className="absolute bottom-0 inset-x-0 p-2.5 bg-gradient-to-t from-black/80 to-transparent text-white text-[11px] font-mono truncate px-3">
+                <div className="absolute bottom-0 inset-x-0 p-2 bg-gradient-to-t from-black/80 to-transparent text-white text-[11px] font-mono truncate px-3">
                   {fileName}
                 </div>
               )}
@@ -210,30 +210,30 @@ export default function MediaUploadZone({
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
-              className={`border-2 border-dashed rounded-2xl p-6 sm:p-8 text-center cursor-pointer transition-all duration-200 flex flex-col items-center justify-center gap-3 ${
+              className={`border-2 border-dashed rounded-2xl p-4 sm:p-5 text-center cursor-pointer transition-all duration-200 flex flex-col items-center justify-center gap-2.5 ${
                 isDragging
                   ? "border-[#ea580c] bg-orange-50/80 scale-[0.99] ring-4 ring-orange-500/10"
                   : "border-slate-300 hover:border-blue-500 hover:bg-blue-50/40 bg-slate-50/70"
               }`}
             >
               <div
-                className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-transform ${
+                className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-transform ${
                   isDragging ? "bg-orange-600 text-white scale-110" : "bg-white text-slate-600 border border-slate-200 shadow-xs"
                 }`}
               >
-                <UploadCloud className="w-6 h-6" />
+                <UploadCloud className="w-5 h-5 text-[#ea580c]" />
               </div>
 
               <div>
                 <p className="text-xs sm:text-sm font-bold text-slate-800">
                   <span className="text-[#ea580c] hover:underline">Click to upload</span> or drag & drop
                 </p>
-                <p className="text-[11px] text-slate-500 mt-1 font-normal">
+                <p className="text-[11px] text-slate-500 mt-0.5 font-normal">
                   {helperText}
                 </p>
               </div>
 
-              <div className="flex items-center gap-2 pt-1 text-[10px] font-bold text-slate-400">
+              <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400">
                 <span className="flex items-center gap-1">
                   <ImageIcon className="w-3 h-3 text-orange-500" /> Images (JPG, PNG, WebP)
                 </span>
@@ -257,16 +257,16 @@ export default function MediaUploadZone({
             className="h-10 text-xs font-mono bg-white"
           />
           {value && (
-            <div className={`mt-2 rounded-xl overflow-hidden ${aspectRatio} border border-slate-200 bg-slate-100 flex items-center justify-center relative`}>
+            <div className={`mt-2 rounded-xl overflow-hidden ${aspectRatio} max-h-48 sm:max-h-56 border border-slate-200 bg-slate-950 flex items-center justify-center relative`}>
               {isVideo ? (
-                <video src={value} controls playsInline className="w-full h-full object-cover" />
+                <video src={value} controls playsInline className="w-full h-full object-contain" />
               ) : (
-                <img src={value} alt="Preview" className="w-full h-full object-cover" />
+                <img src={value} alt="Preview" className="w-full h-full object-contain" />
               )}
               <button
                 type="button"
                 onClick={handleClear}
-                className="absolute top-2 right-2 p-1 rounded-full bg-slate-900/70 text-white hover:bg-red-600 transition-colors"
+                className="absolute top-2 right-2 p-1.5 rounded-full bg-slate-900/80 text-white hover:bg-red-600 transition-colors shadow-md"
                 title="Clear"
               >
                 <X className="w-3.5 h-3.5" />
