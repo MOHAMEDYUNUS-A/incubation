@@ -115,7 +115,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
     if (tab === "mentors") fetchMentors();
     if (tab === "stories") fetchStories();
     if (tab === "alumni") fetchAlumni();
-  }, [tab]);
+  }, [tab, milestonesStartupId]);
 
   // 1. Passports API
   const fetchPassports = async () => {
@@ -445,7 +445,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
                 ) : passports.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="py-12 text-center text-slate-400">
-                      No startup passports issued yet. Click "Issue Startup Passport" to begin.
+                      No startup passports issued yet. Click &quot;Issue Startup Passport&quot; to begin.
                     </td>
                   </tr>
                 ) : (
@@ -808,7 +808,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
                 <p className="font-semibold text-slate-800">{sess.topic}</p>
                 {sess.mentorFeedback && (
                   <p className="text-slate-600 bg-white p-2.5 rounded-lg border border-slate-200 italic">
-                    "{sess.mentorFeedback}"
+                    &ldquo;{sess.mentorFeedback}&rdquo;
                   </p>
                 )}
               </div>
@@ -984,7 +984,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
 
               <div className="space-y-4 text-xs">
                 <p className="text-slate-600 leading-relaxed">
-                  The AI Story Assistant analyzes the venture's verified milestones, official StartupTN grants, and mentor sessions to draft a factual case study adhering strictly to verified institutional evidence.
+                  The AI Story Assistant analyzes the venture&apos;s verified milestones, official StartupTN grants, and mentor sessions to draft a factual case study adhering strictly to verified institutional evidence.
                 </p>
 
                 <div>

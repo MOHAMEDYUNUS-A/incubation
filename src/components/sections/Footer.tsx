@@ -11,11 +11,6 @@ import { Input } from "@/components/ui/input";
 export default function Footer() {
   const pathname = usePathname();
 
-  // Admin portal has its own dedicated administrative layout and sidebar
-  if (pathname?.startsWith("/admin")) {
-    return null;
-  }
-
   const [newsEmail, setNewsEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
@@ -25,6 +20,11 @@ export default function Footer() {
       setSubscribed(true);
     }
   };
+
+  // Admin portal has its own dedicated administrative layout and sidebar
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <footer id="contact" className="bg-[#071426] text-slate-300 border-t border-slate-800 pt-16 sm:pt-20 pb-12">

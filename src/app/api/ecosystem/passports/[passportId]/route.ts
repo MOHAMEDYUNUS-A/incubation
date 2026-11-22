@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   getPassportById,
+  generatePassportQRCode,
   getFounders,
   getMilestones,
   getMentoringSessions,
@@ -22,6 +23,11 @@ export async function GET(
         { success: false, error: `Passport ${passportId} not found.` },
         { status: 404 }
       );
+    }
+
+    // Ensure valid base64 QR code data URL
+    if (!passport.qrCodeData || !passport.qrCodeData.startsWith("data:image")) {
+      passport.qrCodeData = await generatePassportQRCode(passport.passportId);
     }
 
     const founders = getFounders(passport.startupId).map((f) => {

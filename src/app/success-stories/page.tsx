@@ -106,7 +106,7 @@ export default function SuccessStoriesIndexPage() {
                     {editorialPick.founderQuote && (
                       <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 space-y-2">
                         <p className="text-xs text-slate-700 italic line-clamp-2">
-                          "{editorialPick.founderQuote}"
+                          &ldquo;{editorialPick.founderQuote}&rdquo;
                         </p>
                         <p className="text-[11px] font-bold text-slate-900">— {editorialPick.quoteAuthor}</p>
                       </div>

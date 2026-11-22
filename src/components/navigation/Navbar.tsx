@@ -62,11 +62,6 @@ const NAV_LINKS = [
 export default function Navbar() {
   const pathname = usePathname();
 
-  // Admin portal has its own dedicated administrative layout and sidebar
-  if (pathname?.startsWith("/admin")) {
-    return null;
-  }
-
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -89,6 +84,11 @@ export default function Navbar() {
     setActiveDropdown(null);
     setOpenMobileDropdown(null);
   }, [pathname]);
+
+  // Admin portal has its own dedicated administrative layout and sidebar
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <>

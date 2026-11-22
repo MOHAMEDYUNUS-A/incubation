@@ -160,7 +160,7 @@ export default function SingleSuccessStoryPage({
             <div className="bg-gradient-to-br from-blue-950 to-blue-900 text-white p-6 sm:p-8 rounded-2xl space-y-3 shadow-md">
               <Quote className="w-8 h-8 text-orange-400" />
               <p className="text-sm sm:text-base italic leading-relaxed text-blue-50">
-                "{story.founderQuote}"
+                &ldquo;{story.founderQuote}&rdquo;
               </p>
               <p className="text-xs font-bold text-orange-300">
                 — {story.quoteAuthor}
@@ -248,7 +248,7 @@ export default function SingleSuccessStoryPage({
         <div className="bg-gradient-to-r from-blue-950 to-blue-900 text-white p-6 sm:p-8 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
           <div>
             <span className="text-xs text-orange-400 font-bold uppercase tracking-wider block">Official Credential</span>
-            <h4 className="text-xl font-bold mt-0.5">Explore {story.startupName}'s Startup Passport</h4>
+            <h4 className="text-xl font-bold mt-0.5">Explore {story.startupName}&apos;s Startup Passport</h4>
             <p className="text-xs text-blue-200 mt-1">Review verified milestones, mentor evaluations, and institutional achievements.</p>
           </div>
           <Link

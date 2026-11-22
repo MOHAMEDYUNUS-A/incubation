@@ -448,7 +448,7 @@ export default function StartupPassportViewPage({
                       <p className="text-sm font-bold text-slate-800">{sess.topic}</p>
                       {sess.mentorFeedback && (
                         <p className="text-xs text-slate-600 italic bg-blue-50/50 p-2.5 rounded-lg border border-blue-100">
-                          "{sess.mentorFeedback}"
+                          &ldquo;{sess.mentorFeedback}&rdquo;
                         </p>
                       )}
                     </div>

@@ -89,9 +89,9 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
   }, [phase, startZoom]);
 
   // Handle immediate user skip
-  const handleSkip = () => {
+  const handleSkip = useCallback(() => {
     startZoom();
-  };
+  }, [startZoom]);
 
   // Keyboard shortcut: Escape to skip
   useEffect(() => {
@@ -102,7 +102,7 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [phase, startZoom]);
+  }, [phase, handleSkip]);
 
   if (phase === "complete") {
     return null;

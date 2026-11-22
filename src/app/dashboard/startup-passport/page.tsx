@@ -61,9 +61,7 @@ export default function FounderPassportDashboardPage() {
         const json = await res.json();
         if (json.success && json.data.length > 0) {
           setPassports(json.data);
-          if (!selectedPassportId) {
-            setSelectedPassportId(json.data[0].passportId);
-          }
+          setSelectedPassportId((prev) => prev || json.data[0].passportId);
         }
       } catch (e) {
         console.error(e);
