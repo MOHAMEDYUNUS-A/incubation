@@ -1,4 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useState, useCallback, useEffect } from "react";
+import { motion } from "framer-motion";
+import SplashScreen from "@/components/ui/SplashScreen";
 import Hero from "@/components/hero/Hero";
 import WelcomeSection from "@/components/sections/WelcomeSection";
 import DisruptiveEpicenter from "@/components/sections/DisruptiveEpicenter";
@@ -11,37 +15,85 @@ import EventsNews from "@/components/sections/EventsNews";
 import ApplicationCTA from "@/components/sections/ApplicationCTA";
 
 export default function HomePage() {
+  const [isZooming, setIsZooming] = useState(false);
+  const [splashFinished, setSplashFinished] = useState(false);
+
+  // Check if splash already viewed to avoid any initial scale shift
+  useEffect(() => {
+    try {
+      const viewed = sessionStorage.getItem("mif_splash_viewed");
+      const urlParams = new URLSearchParams(window.location.search);
+      const forceSplash = urlParams.get("splash") === "true";
+      if (viewed && !forceSplash) {
+        setSplashFinished(true);
+      }
+    } catch {
+      setSplashFinished(true);
+    }
+  }, []);
+
+  const handleZoomStart = useCallback(() => {
+    setIsZooming(true);
+  }, []);
+
+  const handleComplete = useCallback(() => {
+    setIsZooming(true);
+    setSplashFinished(true);
+  }, []);
+
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* 01. Dynamic Hero Section (Zero Opacity Campus Slider, Minimized Fonts, Clean Typography) */}
-      <Hero />
+    <>
+      {/* 00. Institutional Opening Splash Screen with Dramatic Zoom-in Transition */}
+      <SplashScreen onZoomStart={handleZoomStart} onComplete={handleComplete} />
 
-      {/* 02. Welcome to MASTeR Incubation Foundation (Prominent Accredited Logos & 3-Card Value Pillar) */}
-      <WelcomeSection />
+      <motion.div
+        initial={false}
+        animate={
+          splashFinished || isZooming
+            ? {
+                scale: 1,
+                opacity: 1,
+                filter: "blur(0px)",
+                transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+              }
+            : {
+                scale: 0.96,
+                opacity: 0.85,
+                filter: "blur(2px)",
+              }
+        }
+        className="flex flex-col min-h-screen origin-center"
+      >
+        {/* 01. Dynamic Hero Section (Zero Opacity Campus Slider, Minimized Fonts, Clean Typography) */}
+        <Hero />
 
-      {/* 03. The Epicenter of Disruptive Breakthroughs (3D Animated Floating Box with Interactive Personas) */}
-      <DisruptiveEpicenter />
+        {/* 02. Welcome to MASTeR Incubation Foundation (Prominent Accredited Logos & 3-Card Value Pillar) */}
+        <WelcomeSection />
 
-      {/* 04. MIF Ecosystem Impact (Positioned Immediately After Epicenter with Live Animated Counters) */}
-      <EcosystemImpact />
+        {/* 03. The Epicenter of Disruptive Breakthroughs (3D Animated Floating Box with Interactive Personas) */}
+        <DisruptiveEpicenter />
 
-      {/* 05. INFRASTRUCTURE DETAILS (Floating in Air Facility Showcase & Orange Verified Checklist) */}
-      <InfrastructureDetails />
+        {/* 04. MIF Ecosystem Impact (Positioned Immediately After Epicenter with Live Animated Counters) */}
+        <EcosystemImpact />
 
-      {/* 06. 7 Priority Focus Areas (Real Lab Imagery + Minimal Clean Content) */}
-      <FocusAreas />
+        {/* 05. INFRASTRUCTURE DETAILS (Floating in Air Facility Showcase & Orange Verified Checklist) */}
+        <InfrastructureDetails />
 
-      {/* 07. "Moments That Matter" Running Gallery (Flowing Left to Right + 4-Column Photo Grid Toggle) */}
-      <CampusPhotoGallery />
+        {/* 06. 7 Priority Focus Areas (Real Lab Imagery + Minimal Clean Content) */}
+        <FocusAreas />
 
-      {/* 08. Join Us — Be Part of Our Growing Innovation Ecosystem */}
-      <JoinUsEcosystem />
+        {/* 07. "Moments That Matter" Running Gallery (Flowing Left to Right + 4-Column Photo Grid Toggle) */}
+        <CampusPhotoGallery />
 
-      {/* 09. Upcoming Workshops, Bootcamps & News Events */}
-      <EventsNews />
+        {/* 08. Join Us — Be Part of Our Growing Innovation Ecosystem */}
+        <JoinUsEcosystem />
 
-      {/* 10. Final Application & Call to Action */}
-      <ApplicationCTA />
-    </div>
+        {/* 09. Upcoming Workshops, Bootcamps & News Events */}
+        <EventsNews />
+
+        {/* 10. Final Application & Call to Action */}
+        <ApplicationCTA />
+      </motion.div>
+    </>
   );
 }
