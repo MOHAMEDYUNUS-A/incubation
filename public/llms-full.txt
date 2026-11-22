@@ -1,0 +1,47 @@
+# MASTeR Incubation Foundation (MIF) — Complete Knowledge Document
+
+## Institutional Profile
+- **Full Legal Name**: MASTeR Incubation Foundation
+- **Parent Institution**: M.A.M. College of Engineering and Technology (MAMCET)
+- **Legal Form**: Section 8 Company under the Indian Companies Act, 2013 (Not-for-Profit)
+- **Accreditation**: Recognized Pre-Incubation Centre by StartupTN (Tamil Nadu Startup and Innovation Mission, Government of Tamil Nadu)
+- **Affiliations**: Entrepreneurship Development and Innovation Institute (EDII-TN), Ministry of Micro, Small and Medium Enterprises (MSME), All India Council for Technical Education (AICTE), Institution's Innovation Council (IIC).
+- **Physical Campus**: MAMCET Campus, Trichy-Chennai Trunk Road, National Highway 45, Siruganur, Tiruchirappalli, Tamil Nadu - 621105, India.
+- **Geographic Coordinates**: 10.9856° North, 78.7423° East.
+
+## Governance & Leadership
+- **Chairman & Managing Trustee**: Alhaj. Er. M.A. Mohamed Nizam
+- **Secretary**: Alhaj. M.A. Peer Mohamed
+- **Principal (MAMCET)**: Dr. P. Lilly Florence
+- **Incubation Manager**: Mr. M. Santhosh Kumar (incubationmanager@mamcet.com | +91 9361697702)
+- **Academic Coordinator**: Ms. Hemalatha Balakrishnan (hemalathabalakrishnan.ece@mamcet.com | +91 6381945574)
+
+## Core Incubation Pathway
+The incubation process at MASTeR Incubation Foundation consists of four structured stages:
+1. **Stage 1 — Ideation & Problem Validation**: Rigorous problem-solution fit testing, customer interviews, preliminary patent landscape review, and business model canvas curation.
+2. **Stage 2 — Prototyping & MVP Development**: Access to hardware workbenches, component libraries, 3D printing, embedded firmware labs, and rapid iterations.
+3. **Stage 3 — Market Testing & Commercial Pilot**: Field testing with delta zone farmers, manufacturing units, and industrial partners across Central Tamil Nadu.
+4. **Stage 4 — Seed Funding & Passport Graduation**: Securing TANSEED/MSME grants, private angel syndicates, issuing official Digital Startup Passports, and joining the MIF Alumni Guild.
+
+## Digital Startup Passport Framework
+- **Format**: `MASTER-SP-YYYY-NNNN` (e.g. `MASTER-SP-2026-0001`).
+- **Features**:
+  - Cryptographically signed credential with unique SHA-256 tamper-proof hash.
+  - Granular journey milestone logging with evidence submission and governing board approvals.
+  - Dedicated founder profile dossier with public privacy safeguards.
+  - Public verification portal with QR code validation for institutional investors and regulatory agencies.
+  - Direct sync with public startup directories and verified product launches.
+
+## Focus Areas & Specialized Laboratories
+1. **Internet of Things (IoT) & Smart Hardware**: Embedded sensor networks, LoRaWAN gateways, telemetry nodes, and industrial automation.
+2. **CleanTech, Renewable Energy & Microgrids**: Solar photovoltaic diagnostics, battery management systems (BMS), thermal drone analysis.
+3. **Autonomous Robotics & Dronetech**: Precision agriculture drones, autonomous inspection UAVs, flight telemetry and edge vision.
+4. **BioTech & Sustainable Infrastructure**: Circular water filtration, bio-sensor telemetry, organic agro-processing machinery.
+5. **Applied Artificial Intelligence**: Edge AI computer vision, predictive crop analytics, and smart grid automation.
+
+## Contact Information
+- **Desk Phone**: +91 9361697702
+- **Direct Email**: incubationmanager@mamcet.com
+- **Application Portal**: https://incubation.mamcet.com/apply
+- **Verification Portal**: https://incubation.mamcet.com/startup-passport/verify/MASTER-SP-2026-0001
+- **Official Website**: https://incubation.mamcet.com

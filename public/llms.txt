@@ -1,0 +1,36 @@
+# MASTeR Incubation Foundation (MIF)
+
+> Official StartupTN Recognised Pre-Incubation Centre & Section 8 Non-Profit Technology Business Incubator hosted at M.A.M. College of Engineering and Technology (MAMCET), Siruganur, Tiruchirappalli (Trichy), Tamil Nadu, India.
+
+## Quick Facts
+- **Institution**: M.A.M. College of Engineering and Technology (MAMCET), Trichy
+- **Recognition**: StartupTN Recognised Pre-Incubation Centre (Government of Tamil Nadu)
+- **Legal Entity**: Section 8 Non-Profit Technology Business Incubator
+- **Focus Areas**: DeepTech, Internet of Things (IoT), Hardware Prototyping, Autonomous Robotics, CleanTech, AgriTech, Artificial Intelligence
+- **Funding Facilitation**: TANSEED 4.0 & 5.0 (up to ₹15 Lakhs), MSME Idea Hackathon (up to ₹15 Lakhs), EDII-TN IVP Vouchers (up to ₹5 Lakhs)
+- **Flagship Initiative**: Digital Startup Passport (tamper-evident cryptographic milestone & credential verification)
+- **Incubation Manager**: Mr. M. Santhosh Kumar (+91 9361697702 | incubationmanager@mamcet.com)
+- **Campus Address**: Trichy-Chennai Trunk Road, NH 45, Siruganur, Tiruchirappalli, Tamil Nadu 621105, India
+- **GeoCoordinates**: 10.9856° N, 78.7423° E
+
+## Core URLs
+- [Public Portal](https://incubation.mamcet.com)
+- [Incubation Application](https://incubation.mamcet.com/apply)
+- [Application Status Tracker](https://incubation.mamcet.com/apply/status)
+- [Startups Directory](https://incubation.mamcet.com/startups)
+- [Digital Startup Passport](https://incubation.mamcet.com/startup-passport/MASTER-SP-2026-0001)
+- [Public Passport Verification](https://incubation.mamcet.com/startup-passport/verify/MASTER-SP-2026-0001)
+- [Success Stories](https://incubation.mamcet.com/success-stories)
+- [Alumni Network](https://incubation.mamcet.com/alumni)
+- [Facilities & Prototyping Labs](https://incubation.mamcet.com/facilities)
+- [Leadership & Governance](https://incubation.mamcet.com/leadership)
+- [Contact Incubation Desk](https://incubation.mamcet.com/contact)
+
+## Startup Passport Specification
+Every officially approved startup receives a unique sequential passport identifier in the format `MASTER-SP-YYYY-NNNN` (e.g. `MASTER-SP-2026-0001`). The passport cryptographically binds the startup's corporate identity, founder details, milestone completions, mentor logs, TANSEED grant disbursements, and patent filings into an indelible digital record with public QR verification.
+
+## Funding & Support Programs
+1. **TANSEED Seed Grant Facilitation**: Support for Tamil Nadu Startup Seed Grant Fund up to ₹10–15 Lakhs per venture.
+2. **MSME Idea Hackathon**: Direct access to Ministry of MSME funding up to ₹15 Lakhs.
+3. **EDII-TN Innovation Voucher Programme**: Access to IVP-A (₹2 Lakhs) for design/feasibility and IVP-B (₹5 Lakhs) for product prototyping.
+4. **Makerspace & Prototyping**: Complete PCB prototyping, 3D printing, CNC milling, IoT spectrum analyzers, and testing benches.

@@ -98,29 +98,31 @@ export default function StartupPortfolio() {
           </RevealLeft>
 
           <RevealRight className="flex items-center gap-3">
-            {/* View Mode Toggle (Hidden on small mobile for clarity) */}
-            <div className="hidden sm:flex items-center gap-1 p-1 rounded-xl bg-slate-100 border border-slate-200">
+            {/* View Mode Toggle (Sleek Segmented Control with Crisp Typography & Anti-Aliased Rendering) */}
+            <div className="hidden sm:inline-flex items-center p-1 rounded-xl bg-slate-100/90 border border-slate-200/90 shadow-2xs antialiased">
               <button
+                type="button"
                 onClick={() => setViewGrouped(false)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs transition-all duration-200 select-none ${
                   !viewGrouped
-                    ? "bg-[#0f2c59] text-white shadow-2xs"
-                    : "text-slate-600 hover:text-slate-900"
+                    ? "bg-[#0f2c59] text-white shadow-xs font-bold"
+                    : "text-slate-600 hover:text-slate-900 font-medium hover:bg-white/60"
                 }`}
               >
-                <LayoutGrid className="w-3.5 h-3.5" />
-                <span>Card Grid</span>
+                <LayoutGrid className="w-3.5 h-3.5 shrink-0" />
+                <span className="leading-none">Card Grid</span>
               </button>
               <button
+                type="button"
                 onClick={() => setViewGrouped(true)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs transition-all duration-200 select-none ${
                   viewGrouped
-                    ? "bg-[#0f2c59] text-white shadow-2xs"
-                    : "text-slate-600 hover:text-slate-900"
+                    ? "bg-[#0f2c59] text-white shadow-xs font-bold"
+                    : "text-slate-600 hover:text-slate-900 font-medium hover:bg-white/60"
                 }`}
               >
-                <Layers className="w-3.5 h-3.5" />
-                <span>Section-Wise</span>
+                <Layers className="w-3.5 h-3.5 shrink-0" />
+                <span className="leading-none">Section-Wise</span>
               </button>
             </div>
 

@@ -220,11 +220,10 @@ export default function StartupPassportViewPage({
               <span className="text-[10px] sm:text-[10.5px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-900 border border-blue-200">
                 Official Digital Credential
               </span>
-              <span className={`text-[10px] sm:text-[10.5px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full border flex items-center gap-1.5 ${
-                isPassportActive 
-                  ? "bg-emerald-50 text-emerald-800 border-emerald-300"
-                  : "bg-amber-50 text-amber-800 border-amber-300"
-              }`}>
+              <span className={`text-[10px] sm:text-[10.5px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full border flex items-center gap-1.5 ${isPassportActive
+                ? "bg-emerald-50 text-emerald-800 border-emerald-300"
+                : "bg-amber-50 text-amber-800 border-amber-300"
+                }`}>
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 {passport.status}
               </span>
@@ -396,17 +395,15 @@ export default function StartupPassportViewPage({
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`py-2 px-3 text-sm font-bold tracking-tight rounded-lg transition whitespace-nowrap flex items-center gap-2 ${
-                  activeTab === tab.id
-                    ? "bg-blue-950 text-white shadow-sm"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
-                }`}
+                className={`py-2 px-3 text-sm font-bold tracking-tight rounded-lg transition whitespace-nowrap flex items-center gap-2 ${activeTab === tab.id
+                  ? "bg-blue-950 text-white shadow-sm"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                  }`}
               >
                 {tab.label}
                 {tab.count !== null && (
-                  <span className={`text-[11px] px-1.5 py-0.2 rounded-full ${
-                    activeTab === tab.id ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600"
-                  }`}>
+                  <span className={`text-[11px] px-1.5 py-0.2 rounded-full ${activeTab === tab.id ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600"
+                    }`}>
                     {tab.count}
                   </span>
                 )}
@@ -507,15 +504,14 @@ export default function StartupPassportViewPage({
                   return (
                     <div key={m.id} className="relative group">
                       {/* Status Icon Marker */}
-                      <div className={`absolute -left-[35px] sm:-left-[43px] top-1 w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs border-2 ${
-                        isCompleted
-                          ? "bg-emerald-500 border-emerald-600 text-white shadow-sm"
-                          : isReview
+                      <div className={`absolute -left-[35px] sm:-left-[43px] top-1 w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs border-2 ${isCompleted
+                        ? "bg-emerald-500 border-emerald-600 text-white shadow-sm"
+                        : isReview
                           ? "bg-amber-400 border-amber-500 text-amber-950 animate-pulse"
                           : isInProgress
-                          ? "bg-blue-600 border-blue-700 text-white"
-                          : "bg-slate-100 border-slate-300 text-slate-400"
-                      }`}>
+                            ? "bg-blue-600 border-blue-700 text-white"
+                            : "bg-slate-100 border-slate-300 text-slate-400"
+                        }`}>
                         {isCompleted ? <CheckCircle2 className="w-4 h-4" /> : m.stageOrder}
                       </div>
 
@@ -525,15 +521,14 @@ export default function StartupPassportViewPage({
                             <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                               Stage {m.stageOrder} · {m.stageName}
                             </span>
-                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                              isCompleted
-                                ? "bg-emerald-100 text-emerald-800"
-                                : isReview
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${isCompleted
+                              ? "bg-emerald-100 text-emerald-800"
+                              : isReview
                                 ? "bg-amber-100 text-amber-800"
                                 : isInProgress
-                                ? "bg-blue-100 text-blue-800"
-                                : "bg-slate-200 text-slate-600"
-                            }`}>
+                                  ? "bg-blue-100 text-blue-800"
+                                  : "bg-slate-200 text-slate-600"
+                              }`}>
                               {m.status.replace(/_/g, " ")}
                             </span>
                           </div>

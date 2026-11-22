@@ -273,11 +273,10 @@ export default function FounderPassportDashboardPage() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`py-2 px-3 text-xs sm:text-sm font-bold tracking-tight rounded-lg transition whitespace-nowrap ${
-                  activeTab === tab.id
-                    ? "bg-blue-950 text-white shadow-sm"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
-                }`}
+                className={`py-2 px-3 text-xs sm:text-sm font-bold tracking-tight rounded-lg transition whitespace-nowrap ${activeTab === tab.id
+                  ? "bg-blue-950 text-white shadow-sm"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                  }`}
               >
                 {tab.label}
               </button>
@@ -367,13 +366,12 @@ export default function FounderPassportDashboardPage() {
                         <div className="flex items-center gap-2">
                           <span className="text-xs font-bold text-slate-400">Stage {m.stageOrder}:</span>
                           <span className="text-sm font-bold text-slate-900">{m.title}</span>
-                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                            isCompleted
-                              ? "bg-emerald-100 text-emerald-800"
-                              : isUnderReview
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${isCompleted
+                            ? "bg-emerald-100 text-emerald-800"
+                            : isUnderReview
                               ? "bg-amber-100 text-amber-800"
                               : "bg-slate-100 text-slate-600"
-                          }`}>
+                            }`}>
                             {m.status.replace(/_/g, " ")}
                           </span>
                         </div>
