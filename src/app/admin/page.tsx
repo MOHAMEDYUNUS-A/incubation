@@ -841,50 +841,86 @@ export default function AdminPage() {
       {/* ========================================================================= */}
       <div className="flex-1 flex flex-col min-w-0 min-h-screen bg-slate-100">
         {/* Dedicated Admin Topbar */}
-        <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-4 sm:px-8 py-3.5 flex items-center justify-between shadow-xs">
-          <div className="flex items-center gap-3 min-w-0">
+        <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-3 sm:px-8 py-2.5 sm:py-3.5 flex items-center justify-between shadow-xs">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileSidebarOpen(true)}
-              className="lg:hidden p-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 border border-slate-200"
+              className="lg:hidden p-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 touch-manipulation shrink-0"
               aria-label="Toggle Sidebar Menu"
             >
               <Menu className="w-5 h-5" />
             </button>
 
             <div className="min-w-0">
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
+              <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5">
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200 hidden sm:inline">
                   ADMIN CONSOLE
                 </span>
                 <span className="text-slate-400 text-xs hidden sm:inline">/</span>
-                <span className="text-xs font-bold text-slate-600 hidden sm:inline capitalize">
+                <span className="text-[11px] font-bold text-slate-500 hidden sm:inline capitalize">
                   {activeTab}
                 </span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200 shrink-0">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   <span className="hidden sm:inline">Production</span> Live
                 </span>
               </div>
-              <h1 className="text-lg sm:text-xl font-black text-slate-900 font-display truncate">
-                {activeTab === "dashboard" && "Platform Operations & Metrics"}
-                {activeTab === "startups" && "Incubated Startups Directory"}
-                {activeTab === "gallery" && "Campus Media & Gallery Hub"}
-                {activeTab === "hero" && "Hero Studio & Visual Branding"}
-                {activeTab === "events" && "Foundation Calendar & Events"}
-                {activeTab === "contact" && "Campus Contact & Desk Settings"}
-                {activeTab === "applications" && "Intake Application Pipeline"}
+              <h1 className="text-sm sm:text-xl font-black text-slate-900 font-display truncate">
+                {activeTab === "dashboard" && (
+                  <>
+                    <span className="sm:hidden">Operations Hub</span>
+                    <span className="hidden sm:inline">Platform Operations & Metrics</span>
+                  </>
+                )}
+                {activeTab === "startups" && (
+                  <>
+                    <span className="sm:hidden">Startups Portfolio</span>
+                    <span className="hidden sm:inline">Incubated Startups Directory</span>
+                  </>
+                )}
+                {activeTab === "gallery" && (
+                  <>
+                    <span className="sm:hidden">Campus Gallery</span>
+                    <span className="hidden sm:inline">Campus Media & Gallery Hub</span>
+                  </>
+                )}
+                {activeTab === "hero" && (
+                  <>
+                    <span className="sm:hidden">Hero Studio</span>
+                    <span className="hidden sm:inline">Hero Studio & Visual Identity</span>
+                  </>
+                )}
+                {activeTab === "events" && (
+                  <>
+                    <span className="sm:hidden">Events Calendar</span>
+                    <span className="hidden sm:inline">Foundation Calendar & Events</span>
+                  </>
+                )}
+                {activeTab === "contact" && (
+                  <>
+                    <span className="sm:hidden">Desk Operations</span>
+                    <span className="hidden sm:inline">Campus Contact & Desk Settings</span>
+                  </>
+                )}
+                {activeTab === "applications" && (
+                  <>
+                    <span className="sm:hidden">Intake Pipeline</span>
+                    <span className="hidden sm:inline">Startup Intake Application Pipeline</span>
+                  </>
+                )}
               </h1>
             </div>
           </div>
 
           {/* Right Header Extra Action Buttons */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <Link href="/" target="_blank">
               <Button
                 variant="outline"
                 size="sm"
-                className="border-slate-300 text-slate-700 hover:bg-slate-50 text-xs h-9 px-3 gap-1.5 shadow-xs font-semibold"
+                className="border-slate-300 text-slate-700 hover:bg-slate-50 text-xs h-8 sm:h-9 px-2 sm:px-3 gap-1.5 shadow-xs font-semibold"
+                title="View Public Website"
               >
                 <Eye className="w-3.5 h-3.5 text-orange-600" />
                 <span className="hidden md:inline">View Public Website</span>
@@ -896,7 +932,7 @@ export default function AdminPage() {
               onClick={refreshContent}
               variant="outline"
               size="sm"
-              className="border-slate-300 text-slate-700 hover:bg-slate-50 text-xs h-9 px-2.5 shadow-xs"
+              className="border-slate-300 text-slate-700 hover:bg-slate-50 text-xs h-8 sm:h-9 px-2.5 shadow-xs"
               title="Reload live content"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${contentLoading ? "animate-spin" : ""}`} />
@@ -907,7 +943,7 @@ export default function AdminPage() {
               <Button
                 onClick={handleOpenAddStartup}
                 size="sm"
-                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-9 px-3.5 text-xs gap-1.5 shadow-sm"
+                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-8 sm:h-9 px-2.5 sm:px-3.5 text-xs gap-1 sm:gap-1.5 shadow-sm"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Add Startup</span>
@@ -917,7 +953,7 @@ export default function AdminPage() {
               <Button
                 onClick={handleOpenAddPhoto}
                 size="sm"
-                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-9 px-3.5 text-xs gap-1.5 shadow-sm"
+                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-8 sm:h-9 px-2.5 sm:px-3.5 text-xs gap-1 sm:gap-1.5 shadow-sm"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Add Image</span>
@@ -927,7 +963,7 @@ export default function AdminPage() {
               <Button
                 onClick={handleOpenAddEvent}
                 size="sm"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-9 px-3.5 text-xs gap-1.5 shadow-sm"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-8 sm:h-9 px-2.5 sm:px-3.5 text-xs gap-1 sm:gap-1.5 shadow-sm"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Schedule Event</span>
@@ -937,162 +973,166 @@ export default function AdminPage() {
         </header>
 
         {/* Tab Viewport Main Content */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
+        <main className="flex-1 p-3 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-4 sm:space-y-6">
 
         {/* ========================================================================= */}
         {/* TAB 1: DASHBOARD OVERVIEW */}
         {/* ========================================================================= */}
         {activeTab === "dashboard" && (
-          <div className="space-y-8 animate-in fade-in duration-300">
+          <div className="space-y-5 sm:space-y-8 animate-in fade-in duration-300">
             {/* Executive Command Center Banner */}
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#07152a] via-[#091b34] to-[#0f2c59] text-white p-6 sm:p-8 border border-blue-900/40 shadow-md">
+            <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#07152a] via-[#091b34] to-[#0f2c59] text-white p-4 sm:p-7 border border-blue-900/40 shadow-sm">
               <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
               <div className="absolute right-1/3 -bottom-16 w-56 h-56 rounded-full bg-orange-500/10 blur-3xl pointer-events-none" />
 
-              <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                <div className="space-y-2 max-w-2xl">
-                  <div className="flex items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-mono text-[10px] font-bold uppercase tracking-wider border border-blue-400/30 flex items-center gap-1.5">
-                      <Activity className="w-3 h-3 text-blue-400" />
-                      Executive Command Center
+              <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6">
+                <div className="space-y-1.5 sm:space-y-2 max-w-2xl">
+                  <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                    <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-wider border border-blue-400/30 flex items-center gap-1">
+                      <Activity className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-blue-400" />
+                      Command Center
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-mono font-bold border border-emerald-400/30">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[9px] sm:text-[10px] font-mono font-bold border border-emerald-400/30">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       Production Sync: Active
                     </span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-white">
+                  <h2 className="text-lg sm:text-2xl lg:text-3xl font-black font-display tracking-tight text-white leading-snug">
                     MASTeR Incubation Platform Operations
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+                  <p className="text-xs text-slate-300 font-normal leading-relaxed line-clamp-2 sm:line-clamp-none">
                     Live content management, venture intake screening, campus media curation, and institutional communications for MAMCET Siruganur.
                   </p>
                 </div>
 
-                {/* Telemetry Status Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 shrink-0 text-[11px] font-mono">
-                  <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                    <div className="text-slate-400 text-[10px]">HOST NODE</div>
-                    <div className="font-bold text-white flex items-center gap-1 mt-0.5">
-                      <Server className="w-3 h-3 text-cyan-400" /> Vercel Serverless
+                {/* Telemetry Status Grid - Streamlined for Mobile */}
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 shrink-0 text-[10px] sm:text-[11px] font-mono pt-1 sm:pt-0">
+                  <div className="px-2.5 py-2 sm:p-3 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
+                    <div className="text-slate-400 text-[9px]">HOST NODE</div>
+                    <div className="font-bold text-white flex items-center gap-1 mt-0.5 truncate">
+                      <Server className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-cyan-400 shrink-0" />
+                      <span className="truncate">Vercel Serverless</span>
                     </div>
                   </div>
-                  <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                    <div className="text-slate-400 text-[10px]">DATA PERSISTENCE</div>
-                    <div className="font-bold text-emerald-400 flex items-center gap-1 mt-0.5">
-                      <Check className="w-3 h-3" /> Live Storage Sync
+                  <div className="px-2.5 py-2 sm:p-3 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
+                    <div className="text-slate-400 text-[9px]">DATA PERSISTENCE</div>
+                    <div className="font-bold text-emerald-400 flex items-center gap-1 mt-0.5 truncate">
+                      <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" />
+                      <span className="truncate">Live Storage Sync</span>
                     </div>
                   </div>
-                  <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                    <div className="text-slate-400 text-[10px]">AFFILIATION</div>
-                    <div className="font-bold text-white flex items-center gap-1 mt-0.5">
-                      <Building2 className="w-3 h-3 text-orange-400" /> StartupTN Hub
+                  <div className="px-2.5 py-2 sm:p-3 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
+                    <div className="text-slate-400 text-[9px]">AFFILIATION</div>
+                    <div className="font-bold text-white flex items-center gap-1 mt-0.5 truncate">
+                      <Building2 className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-orange-400 shrink-0" />
+                      <span className="truncate">StartupTN Hub</span>
                     </div>
                   </div>
-                  <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                    <div className="text-slate-400 text-[10px]">CAMPUS NODE</div>
-                    <div className="font-bold text-white flex items-center gap-1 mt-0.5">
-                      <MapPin className="w-3 h-3 text-pink-400" /> Siruganur, Trichy
+                  <div className="px-2.5 py-2 sm:p-3 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
+                    <div className="text-slate-400 text-[9px]">CAMPUS NODE</div>
+                    <div className="font-bold text-white flex items-center gap-1 mt-0.5 truncate">
+                      <MapPin className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-pink-400 shrink-0" />
+                      <span className="truncate">Siruganur, Trichy</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Quick Metrics Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Quick Metrics Cards - 2x2 Grid on Mobile for Instant Scannability */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               <div
                 onClick={() => setActiveTab("startups")}
-                className="cursor-pointer p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-400 transition-all group relative overflow-hidden"
+                className="cursor-pointer p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-400 transition-all group relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-indigo-600" />
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                    Incubated Startups
+                <div className="flex items-center justify-between mb-2 sm:mb-3">
+                  <span className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider truncate">
+                    Startups
                   </span>
-                  <div className="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Rocket className="w-5 h-5" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                    <Rocket className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                 </div>
-                <div className="text-3xl sm:text-4xl font-black text-slate-900 font-display">
+                <div className="text-2xl sm:text-4xl font-black text-slate-900 font-display">
                   {startupsList.length}
                 </div>
-                <div className="text-xs text-slate-500 mt-2 flex items-center justify-between">
-                  <span>5 Industry Tracks</span>
-                  <span className="text-blue-600 font-bold flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                    Manage <ArrowRight className="w-3.5 h-3.5" />
+                <div className="text-[11px] sm:text-xs text-slate-500 mt-1.5 sm:mt-2 flex items-center justify-between">
+                  <span className="hidden sm:inline">5 Tech Tracks</span>
+                  <span className="text-blue-600 font-bold flex items-center gap-0.5 sm:gap-1 group-hover:translate-x-0.5 transition-transform text-[11px] sm:text-xs">
+                    Manage <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </span>
                 </div>
               </div>
 
               <div
                 onClick={() => setActiveTab("gallery")}
-                className="cursor-pointer p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-orange-400 transition-all group relative overflow-hidden"
+                className="cursor-pointer p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-orange-400 transition-all group relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-amber-600" />
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                    Gallery Assets
+                <div className="flex items-center justify-between mb-2 sm:mb-3">
+                  <span className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider truncate">
+                    Gallery
                   </span>
-                  <div className="w-10 h-10 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <ImageIcon className="w-5 h-5" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                    <ImageIcon className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                 </div>
-                <div className="text-3xl sm:text-4xl font-black text-slate-900 font-display">
+                <div className="text-2xl sm:text-4xl font-black text-slate-900 font-display">
                   {galleryList.length}
                 </div>
-                <div className="text-xs text-slate-500 mt-2 flex items-center justify-between">
-                  <span>Photos & Videos</span>
-                  <span className="text-orange-600 font-bold flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                    Curate <ArrowRight className="w-3.5 h-3.5" />
+                <div className="text-[11px] sm:text-xs text-slate-500 mt-1.5 sm:mt-2 flex items-center justify-between">
+                  <span className="hidden sm:inline">Photos & Videos</span>
+                  <span className="text-orange-600 font-bold flex items-center gap-0.5 sm:gap-1 group-hover:translate-x-0.5 transition-transform text-[11px] sm:text-xs">
+                    Curate <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </span>
                 </div>
               </div>
 
               <div
                 onClick={() => setActiveTab("events")}
-                className="cursor-pointer p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-emerald-400 transition-all group relative overflow-hidden"
+                className="cursor-pointer p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-emerald-400 transition-all group relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-600" />
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                    Events & Workshops
+                <div className="flex items-center justify-between mb-2 sm:mb-3">
+                  <span className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider truncate">
+                    Events
                   </span>
-                  <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Calendar className="w-5 h-5" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                    <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                 </div>
-                <div className="text-3xl sm:text-4xl font-black text-slate-900 font-display">
+                <div className="text-2xl sm:text-4xl font-black text-slate-900 font-display">
                   {eventsList.length}
                 </div>
-                <div className="text-xs text-slate-500 mt-2 flex items-center justify-between">
-                  <span>Upcoming Schedule</span>
-                  <span className="text-emerald-600 font-bold flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                    Schedule <ArrowRight className="w-3.5 h-3.5" />
+                <div className="text-[11px] sm:text-xs text-slate-500 mt-1.5 sm:mt-2 flex items-center justify-between">
+                  <span className="hidden sm:inline">Schedule</span>
+                  <span className="text-emerald-600 font-bold flex items-center gap-0.5 sm:gap-1 group-hover:translate-x-0.5 transition-transform text-[11px] sm:text-xs">
+                    Schedule <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </span>
                 </div>
               </div>
 
               <div
                 onClick={() => setActiveTab("applications")}
-                className="cursor-pointer p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-purple-400 transition-all group relative overflow-hidden"
+                className="cursor-pointer p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-purple-400 transition-all group relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-fuchsia-600" />
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                    Intake Applications
+                <div className="flex items-center justify-between mb-2 sm:mb-3">
+                  <span className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider truncate">
+                    Intake
                   </span>
-                  <div className="w-10 h-10 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Layers className="w-5 h-5" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                    <Layers className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                 </div>
-                <div className="text-3xl sm:text-4xl font-black text-slate-900 font-display">
+                <div className="text-2xl sm:text-4xl font-black text-slate-900 font-display">
                   {applications.length}
                 </div>
-                <div className="text-xs text-slate-500 mt-2 flex items-center justify-between">
-                  <span>Pitch Pipeline</span>
-                  <span className="text-purple-600 font-bold flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                    Screen Queue <ArrowRight className="w-3.5 h-3.5" />
+                <div className="text-[11px] sm:text-xs text-slate-500 mt-1.5 sm:mt-2 flex items-center justify-between">
+                  <span className="hidden sm:inline">Queue</span>
+                  <span className="text-purple-600 font-bold flex items-center gap-0.5 sm:gap-1 group-hover:translate-x-0.5 transition-transform text-[11px] sm:text-xs">
+                    Screen <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </span>
                 </div>
               </div>
@@ -1288,28 +1328,28 @@ export default function AdminPage() {
         {/* TAB 2: STARTUPS DIRECTORY */}
         {/* ========================================================================= */}
         {activeTab === "startups" && (
-          <div className="space-y-6 animate-in fade-in duration-300">
+          <div className="space-y-4 sm:space-y-6 animate-in fade-in duration-300">
             {/* Header Strip */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-xs">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-700 font-mono text-[10px] font-bold border border-orange-200">
+                  <span className="px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 font-mono text-[9px] sm:text-[10px] font-bold border border-orange-200">
                     PORTFOLIO MANAGEMENT
                   </span>
-                  <span className="text-xs text-slate-400 font-mono">
+                  <span className="text-[11px] sm:text-xs text-slate-400 font-mono">
                     Total: {startupsList.length} ventures
                   </span>
                 </div>
-                <h2 className="text-2xl font-black text-slate-900 font-display">
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 font-display">
                   Startup Portfolio & Venture Adder
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1 font-normal">
+                <p className="text-xs sm:text-sm text-slate-600 mt-0.5 sm:mt-1 font-normal line-clamp-2 sm:line-clamp-none">
                   Add, update, or remove incubated ventures, founder contacts, funding status, and external portfolio links.
                 </p>
               </div>
               <Button
                 onClick={handleOpenAddStartup}
-                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-11 px-5 rounded-xl text-xs gap-2 shrink-0 shadow-sm"
+                className="w-full sm:w-auto bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 sm:h-11 px-4 sm:px-5 rounded-xl text-xs gap-2 shrink-0 shadow-sm justify-center"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add New Startup</span>
@@ -1329,7 +1369,7 @@ export default function AdminPage() {
                 {startupSearch && (
                   <button
                     onClick={() => setStartupSearch("")}
-                    className="absolute right-3.5 top-3.5 text-slate-400 hover:text-slate-600 p-0.5 rounded-full hover:bg-slate-100"
+                    className="absolute right-3.5 top-3.5 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 touch-manipulation"
                     title="Clear search"
                   >
                     <X className="w-4 h-4" />
@@ -1337,8 +1377,8 @@ export default function AdminPage() {
                 )}
               </div>
 
-              {/* 1-Tap Category Filter Pills with Live Counters */}
-              <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+              {/* 1-Tap Category Filter Pills with Touch-Pan-X & Live Counters */}
+              <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-2 scrollbar-none touch-pan-x select-none">
                 {[
                   { id: "ALL", label: "All Ventures", count: startupsList.length },
                   {
@@ -1372,7 +1412,7 @@ export default function AdminPage() {
                     <button
                       key={cat.id}
                       onClick={() => setStartupCategoryFilter(cat.id)}
-                      className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                      className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl text-xs font-bold whitespace-nowrap shrink-0 transition-all touch-manipulation ${
                         isActive
                           ? "bg-[#091b34] text-white shadow-sm font-black"
                           : "bg-white text-slate-700 border border-slate-200/90 hover:bg-slate-50"
@@ -1408,7 +1448,7 @@ export default function AdminPage() {
 
               if (filteredStartups.length === 0) {
                 return (
-                  <div className="p-12 text-center rounded-3xl bg-white border border-slate-200 shadow-2xs space-y-3">
+                  <div className="p-8 sm:p-12 text-center rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-2xs space-y-3">
                     <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto">
                       <Search className="w-6 h-6" />
                     </div>
@@ -1434,17 +1474,17 @@ export default function AdminPage() {
               }
 
               return (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   {filteredStartups.map((st: any) => (
                     <div
                       key={st.id}
-                      className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col justify-between hover:border-orange-400 hover:shadow-md transition-all group"
+                      className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col justify-between hover:border-orange-400 hover:shadow-md transition-all group"
                     >
                       <div>
                         {/* Top Card Row */}
-                        <div className="flex items-start justify-between mb-3 gap-3">
-                          <div className="flex items-center gap-3 min-w-0">
-                            <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/40 border border-slate-200/90 p-2 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
+                        <div className="flex items-start justify-between mb-2.5 sm:mb-3 gap-2.5 sm:gap-3">
+                          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                            <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-xl sm:rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/40 border border-slate-200/90 p-1.5 sm:p-2 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
                               {st.logo ? (
                                 <img
                                   src={st.logo}
@@ -1452,11 +1492,11 @@ export default function AdminPage() {
                                   className="max-h-full max-w-full object-contain"
                                 />
                               ) : (
-                                <Rocket className="w-6 h-6 text-orange-600" />
+                                <Rocket className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600" />
                               )}
                             </div>
                             <div className="min-w-0">
-                              <div className="flex items-center gap-1.5 flex-wrap mb-1">
+                              <div className="flex items-center gap-1 sm:gap-1.5 flex-wrap mb-1">
                                 <Badge
                                   variant={
                                     st.stage === "EARLY_TRACTION"
@@ -1465,32 +1505,32 @@ export default function AdminPage() {
                                       ? "default"
                                       : "cyan"
                                   }
-                                  className="text-[9px] font-bold px-2 py-0.2"
+                                  className="text-[9px] font-bold px-1.5 sm:px-2 py-0.2"
                                 >
                                   {st.stage ? st.stage.replace(/_/g, " ") : "INCUBATED"}
                                 </Badge>
-                                <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.2 rounded-full border border-slate-200">
+                                <span className="text-[9px] sm:text-[10px] font-semibold text-slate-500 bg-slate-100 px-1.5 sm:px-2 py-0.2 rounded-full border border-slate-200">
                                   {st.cohort || "Cohort 2026"}
                                 </span>
                               </div>
-                              <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display leading-tight truncate">
+                              <h3 className="text-base sm:text-xl font-bold text-slate-900 font-display leading-tight truncate">
                                 {st.name}
                               </h3>
                             </div>
                           </div>
 
                           {/* Quick Actions (Edit / Delete) */}
-                          <div className="flex items-center gap-1 shrink-0">
+                          <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
                             <button
                               onClick={() => handleOpenEditStartup(st)}
-                              className="p-2 rounded-xl text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                              className="p-2 rounded-xl text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-colors touch-manipulation"
                               title="Edit Startup Profile"
                             >
                               <Edit className="w-4 h-4" />
                             </button>
                             <button
                               onClick={() => handleDeleteStartup(st.id)}
-                              className="p-2 rounded-xl text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors"
+                              className="p-2 rounded-xl text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors touch-manipulation"
                               title="Delete Startup"
                             >
                               <Trash2 className="w-4 h-4" />
@@ -1504,12 +1544,12 @@ export default function AdminPage() {
                         </div>
 
                         {/* One-Liner Description */}
-                        <p className="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 font-normal line-clamp-2">
+                        <p className="text-xs sm:text-sm text-slate-700 leading-relaxed mb-3 sm:mb-4 font-normal line-clamp-2">
                           {st.oneLiner}
                         </p>
 
                         {/* Direct Contact & Social Links Strip */}
-                        <div className="p-3 rounded-2xl bg-slate-50/80 border border-slate-200/70 space-y-2 mb-4 text-xs">
+                        <div className="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-50/80 border border-slate-200/70 space-y-1.5 sm:space-y-2 mb-3 sm:mb-4 text-xs">
                           <div className="flex items-center justify-between gap-2">
                             <div className="flex items-center gap-2 min-w-0">
                               <Globe className="w-3.5 h-3.5 text-blue-600 shrink-0" />
@@ -1529,7 +1569,7 @@ export default function AdminPage() {
                             </div>
                             {st.website && (
                               <a href={st.website} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="w-3 h-3 text-slate-400 hover:text-blue-600" />
+                                <ExternalLink className="w-3 h-3 text-slate-400 hover:text-blue-600 shrink-0" />
                               </a>
                             )}
                           </div>
@@ -1553,13 +1593,13 @@ export default function AdminPage() {
                             </div>
                             {st.linkedin && (
                               <a href={st.linkedin} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="w-3 h-3 text-slate-400 hover:text-cyan-600" />
+                                <ExternalLink className="w-3 h-3 text-slate-400 hover:text-cyan-600 shrink-0" />
                               </a>
                             )}
                           </div>
 
                           {(st.email || st.phone) && (
-                            <div className="flex items-center gap-4 pt-1.5 border-t border-slate-200/60 text-[11px] text-slate-600">
+                            <div className="flex items-center gap-3 sm:gap-4 pt-1.5 border-t border-slate-200/60 text-[11px] text-slate-600 flex-wrap">
                               {st.email && (
                                 <a
                                   href={`mailto:${st.email}`}
@@ -1572,9 +1612,9 @@ export default function AdminPage() {
                               {st.phone && (
                                 <a
                                   href={`tel:${st.phone}`}
-                                  className="flex items-center gap-1 hover:text-emerald-600 transition-colors shrink-0"
+                                  className="flex items-center gap-1 hover:text-emerald-600 transition-colors shrink-0 font-mono"
                                 >
-                                  <Phone className="w-3 h-3 text-emerald-600" />
+                                  <Phone className="w-3 h-3 text-emerald-600 shrink-0" />
                                   <span>{st.phone}</span>
                                 </a>
                               )}
@@ -1584,12 +1624,12 @@ export default function AdminPage() {
                       </div>
 
                       {/* Bottom Metrics & Funding Status */}
-                      <div className="flex items-center justify-between text-xs text-slate-600 pt-3 border-t border-slate-100">
-                        <span className="font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 text-[11px]">
+                      <div className="flex items-center justify-between text-xs text-slate-600 pt-2.5 sm:pt-3 border-t border-slate-100 flex-wrap gap-1">
+                        <span className="font-semibold text-emerald-700 bg-emerald-50 px-2 sm:px-2.5 py-0.5 rounded-full border border-emerald-200 text-[10px] sm:text-[11px]">
                           {st.funding || "Grant Eligible"}
                         </span>
                         {st.impactMetric && (
-                          <span className="font-mono text-slate-500 text-[11px] font-medium">
+                          <span className="font-mono text-slate-500 text-[10px] sm:text-[11px] font-medium truncate">
                             {st.impactMetric}
                           </span>
                         )}
@@ -1606,28 +1646,28 @@ export default function AdminPage() {
         {/* TAB 3: GALLERY MANAGER */}
         {/* ========================================================================= */}
         {activeTab === "gallery" && (
-          <div className="space-y-6 animate-in fade-in duration-300">
+          <div className="space-y-4 sm:space-y-6 animate-in fade-in duration-300">
             {/* Header Strip */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-xs">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-700 font-mono text-[10px] font-bold border border-orange-200">
+                  <span className="px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 font-mono text-[9px] sm:text-[10px] font-bold border border-orange-200">
                     CAMPUS MEDIA & LABS
                   </span>
-                  <span className="text-xs text-slate-400 font-mono">
+                  <span className="text-[11px] sm:text-xs text-slate-400 font-mono">
                     Total: {galleryList.length} media items
                   </span>
                 </div>
-                <h2 className="text-2xl font-black text-slate-900 font-display">
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 font-display">
                   Campus Photo Gallery Manager
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1 font-normal">
+                <p className="text-xs sm:text-sm text-slate-600 mt-0.5 sm:mt-1 font-normal line-clamp-2 sm:line-clamp-none">
                   Curate high-resolution campus photography, lab infrastructure, student co-working facilities, and video tours.
                 </p>
               </div>
               <Button
                 onClick={handleOpenAddPhoto}
-                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-11 px-5 rounded-xl text-xs gap-2 shrink-0 shadow-sm"
+                className="w-full sm:w-auto bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 sm:h-11 px-4 sm:px-5 rounded-xl text-xs gap-2 shrink-0 shadow-sm justify-center"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add Gallery Photo</span>
@@ -1647,7 +1687,7 @@ export default function AdminPage() {
                 {gallerySearch && (
                   <button
                     onClick={() => setGallerySearch("")}
-                    className="absolute right-3.5 top-3.5 text-slate-400 hover:text-slate-600 p-0.5 rounded-full hover:bg-slate-100"
+                    className="absolute right-3.5 top-3.5 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 touch-manipulation"
                     title="Clear search"
                   >
                     <X className="w-4 h-4" />
@@ -1655,7 +1695,7 @@ export default function AdminPage() {
                 )}
               </div>
 
-              <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+              <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-2 scrollbar-none touch-pan-x select-none">
                 {[
                   { id: "all", label: "All Media", count: galleryList.length },
                   {
@@ -1684,7 +1724,7 @@ export default function AdminPage() {
                     <button
                       key={cat.id}
                       onClick={() => setGalleryCategoryFilter(cat.id)}
-                      className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                      className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl text-xs font-bold whitespace-nowrap shrink-0 transition-all touch-manipulation ${
                         isActive
                           ? "bg-[#091b34] text-white shadow-sm font-black"
                           : "bg-white text-slate-700 border border-slate-200/90 hover:bg-slate-50"
@@ -1721,7 +1761,7 @@ export default function AdminPage() {
 
               if (filteredGallery.length === 0) {
                 return (
-                  <div className="p-12 text-center rounded-3xl bg-white border border-slate-200 shadow-2xs space-y-3">
+                  <div className="p-8 sm:p-12 text-center rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-2xs space-y-3">
                     <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto">
                       <ImageIcon className="w-6 h-6" />
                     </div>
@@ -1747,7 +1787,7 @@ export default function AdminPage() {
               }
 
               return (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
                   {filteredGallery.map((p: any) => {
                     const isVideo =
                       p.image?.startsWith("data:video/") ||
@@ -1757,7 +1797,7 @@ export default function AdminPage() {
                     return (
                       <div
                         key={p.id}
-                        className="rounded-3xl bg-white border border-slate-200/90 shadow-xs overflow-hidden flex flex-col justify-between group hover:border-orange-400 hover:shadow-md transition-all"
+                        className="rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs overflow-hidden flex flex-col justify-between group hover:border-orange-400 hover:shadow-md transition-all"
                       >
                         <div>
                           <div className="relative aspect-[16/10] bg-slate-900 overflow-hidden">
@@ -1776,23 +1816,23 @@ export default function AdminPage() {
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                               />
                             )}
-                            <div className="absolute top-3 left-3 flex items-center gap-1.5">
-                              <span className="px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md text-white text-[10px] font-bold shadow-xs border border-white/10">
+                            <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 flex items-center gap-1.5">
+                              <span className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-slate-900/85 backdrop-blur-md text-white text-[9px] sm:text-[10px] font-bold shadow-xs border border-white/10">
                                 {p.categoryLabel || p.category}
                               </span>
                               {isVideo && (
                                 <span className="px-2 py-0.5 rounded-full bg-cyan-600/95 text-white text-[9px] font-bold uppercase tracking-wider flex items-center gap-1 shadow-xs">
-                                  <Video className="w-2.5 h-2.5" /> Video Clip
+                                  <Video className="w-2.5 h-2.5" /> Video
                                 </span>
                               )}
                             </div>
                           </div>
 
-                          <div className="p-5">
-                            <h4 className="font-bold text-slate-900 text-base mb-1 font-display">
+                          <div className="p-4 sm:p-5">
+                            <h4 className="font-bold text-slate-900 text-sm sm:text-base mb-1 font-display">
                               {p.title}
                             </h4>
-                            <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-3">
+                            <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-2.5 sm:mb-3">
                               {p.caption}
                             </p>
                             <div className="text-[11px] text-slate-500 flex items-center gap-1 font-medium">
@@ -1802,19 +1842,19 @@ export default function AdminPage() {
                           </div>
                         </div>
 
-                        <div className="p-4 bg-slate-50/80 border-t border-slate-200/80 flex items-center justify-between">
+                        <div className="p-3 sm:p-4 bg-slate-50/80 border-t border-slate-200/80 flex items-center justify-between">
                           <span className="text-[10px] font-mono text-slate-400">{p.id}</span>
                           <div className="flex items-center gap-1">
                             <button
                               onClick={() => handleOpenEditPhoto(p)}
-                              className="p-1.5 rounded-xl text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                              className="p-1.5 rounded-xl text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-colors touch-manipulation"
                               title="Edit Media Details"
                             >
                               <Edit className="w-4 h-4" />
                             </button>
                             <button
                               onClick={() => handleDeletePhoto(p.id)}
-                              className="p-1.5 rounded-xl text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors"
+                              className="p-1.5 rounded-xl text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors touch-manipulation"
                               title="Delete Photo/Video"
                             >
                               <Trash2 className="w-4 h-4" />
@@ -1834,43 +1874,43 @@ export default function AdminPage() {
         {/* TAB 4: HERO STUDIO */}
         {/* ========================================================================= */}
         {activeTab === "hero" && (
-          <div className="space-y-8 animate-in fade-in duration-300">
+          <div className="space-y-5 sm:space-y-8 animate-in fade-in duration-300">
             {/* Header Strip */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-xs">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-mono text-[10px] font-bold border border-blue-200">
+                  <span className="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-mono text-[9px] sm:text-[10px] font-bold border border-blue-200">
                     HERO STUDIO & BRANDING
                   </span>
-                  <span className="text-xs text-slate-400 font-mono">
-                    {heroForm.images.length} Backdrops · {heroForm.rotatingTexts.length} Rotating Keywords
+                  <span className="text-[11px] sm:text-xs text-slate-400 font-mono">
+                    {heroForm.images.length} Backdrops · {heroForm.rotatingTexts.length} Keywords
                   </span>
                 </div>
-                <h2 className="text-2xl font-black text-slate-900 font-display">
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 font-display">
                   Hero Studio & Visual Identity
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1 font-normal">
+                <p className="text-xs sm:text-sm text-slate-600 mt-0.5 sm:mt-1 font-normal line-clamp-2 sm:line-clamp-none">
                   Control the main landing hero backdrops, rotating animated keywords, institutional badges, and narrative.
                 </p>
               </div>
             </div>
 
             {/* INTERACTIVE LIVE HERO PREVIEW CARD */}
-            <div className="rounded-3xl bg-slate-900 border border-slate-800 text-white overflow-hidden shadow-lg relative">
-              <div className="p-4 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-xs font-mono font-bold text-slate-200 uppercase tracking-wider">
+            <div className="rounded-2xl sm:rounded-3xl bg-slate-900 border border-slate-800 text-white overflow-hidden shadow-lg relative">
+              <div className="p-3 sm:p-4 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between text-xs">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[11px] sm:text-xs font-mono font-bold text-slate-200 uppercase tracking-wider">
                     Interactive Live Hero Simulation
                   </span>
                 </div>
-                <span className="text-[11px] font-mono text-slate-400">
-                  Rotating phrase {previewPhraseIndex + 1} of {heroForm.rotatingTexts.length}
+                <span className="text-[10px] sm:text-[11px] font-mono text-slate-400">
+                  {previewPhraseIndex + 1} / {heroForm.rotatingTexts.length}
                 </span>
               </div>
 
               {/* Simulated Hero Viewport */}
-              <div className="relative p-8 sm:p-12 min-h-[320px] sm:min-h-[380px] flex flex-col justify-center items-center text-center overflow-hidden">
+              <div className="relative p-5 sm:p-12 min-h-[220px] sm:min-h-[360px] flex flex-col justify-center items-center text-center overflow-hidden">
                 {/* Backdrop Image */}
                 {heroForm.images.length > 0 && (
                   <img
@@ -1881,33 +1921,33 @@ export default function AdminPage() {
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/60" />
 
-                <div className="relative z-10 max-w-3xl space-y-4">
+                <div className="relative z-10 max-w-3xl space-y-3 sm:space-y-4">
                   {/* Top Badge */}
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] font-semibold text-orange-300">
-                    <Sparkles className="w-3.5 h-3.5 text-orange-400" />
-                    <span>{heroForm.badge}</span>
+                  <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] sm:text-[11px] font-semibold text-orange-300">
+                    <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-orange-400" />
+                    <span className="truncate max-w-[260px] sm:max-w-none">{heroForm.badge}</span>
                   </div>
 
                   {/* Dynamic Headline */}
-                  <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white font-display tracking-tight leading-tight">
-                    Accelerating Student & Regional Entrepreneurs into{" "}
+                  <h1 className="text-xl sm:text-3xl lg:text-5xl font-black text-white font-display tracking-tight leading-tight">
+                    Accelerating Innovators into{" "}
                     <span className="text-[#ea580c] underline decoration-orange-500/60 underline-offset-4 animate-in fade-in duration-300">
                       {heroForm.rotatingTexts[previewPhraseIndex] || "DeepTech Ventures"}
                     </span>
                   </h1>
 
                   {/* Narrative Subtitle */}
-                  <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed line-clamp-2 sm:line-clamp-none">
                     {heroForm.narrative ||
                       "MAMCET's ecosystem bridge empowering Tamil Nadu innovators from prototype validation to funding readiness."}
                   </p>
 
                   {/* Sample Mock CTA Buttons */}
-                  <div className="flex items-center justify-center gap-3 pt-2">
-                    <div className="px-5 py-2.5 rounded-xl bg-[#ea580c] text-white text-xs font-bold shadow-md cursor-default">
+                  <div className="flex items-center justify-center gap-2 sm:gap-3 pt-1 sm:pt-2">
+                    <div className="px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-[#ea580c] text-white text-[11px] sm:text-xs font-bold shadow-md cursor-default">
                       Apply for Incubation →
                     </div>
-                    <div className="px-5 py-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold cursor-default">
+                    <div className="px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-bold cursor-default">
                       Explore Startups
                     </div>
                   </div>
@@ -1916,9 +1956,9 @@ export default function AdminPage() {
             </div>
 
             {/* 1. Backdrop Images Carousel Studio */}
-            <div className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-5">
+            <div className="p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-4 sm:space-y-5">
               <div>
-                <h3 className="text-xl font-black text-slate-900 font-display">
+                <h3 className="text-lg sm:text-xl font-black text-slate-900 font-display">
                   Hero Backdrop Images Carousel
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
@@ -1927,7 +1967,7 @@ export default function AdminPage() {
               </div>
 
               {/* Upload New Backdrop Bar */}
-              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
                 <MediaUploadZone
                   value={newHeroImageUrl}
                   onChange={(val) => setNewHeroImageUrl(val)}
@@ -1939,7 +1979,7 @@ export default function AdminPage() {
                   <div className="flex justify-end pt-1">
                     <Button
                       onClick={handleAddHeroImage}
-                      className="bg-[#0f2c59] hover:bg-blue-900 text-white font-bold h-10 px-5 rounded-xl text-xs gap-2 shadow-sm"
+                      className="w-full sm:w-auto bg-[#0f2c59] hover:bg-blue-900 text-white font-bold h-10 px-5 rounded-xl text-xs gap-2 shadow-sm justify-center"
                     >
                       <Plus className="w-4 h-4" />
                       <span>Add to Hero Carousel</span>
@@ -1949,23 +1989,23 @@ export default function AdminPage() {
               </div>
 
               {/* Existing Images Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4">
                 {heroForm.images.map((img: string, idx: number) => (
                   <div
                     key={idx}
-                    className="relative rounded-2xl overflow-hidden border border-slate-200 group bg-slate-100 aspect-video flex flex-col justify-end shadow-2xs"
+                    className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-slate-200 group bg-slate-100 aspect-video flex flex-col justify-end shadow-2xs"
                   >
                     <img src={img} alt={`Slide ${idx + 1}`} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                       <button
                         onClick={() => handleDeleteHeroImage(idx)}
-                        className="p-2 rounded-full bg-red-600 text-white hover:bg-red-700 transition-colors shadow-lg"
+                        className="p-2 rounded-full bg-red-600 text-white hover:bg-red-700 transition-colors shadow-lg touch-manipulation"
                         title="Delete Hero Slide"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
-                    <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/60 text-white text-[10px] font-mono">
+                    <div className="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/60 text-white text-[9px] sm:text-[10px] font-mono">
                       #{idx + 1}
                     </div>
                   </div>
@@ -1974,9 +2014,9 @@ export default function AdminPage() {
             </div>
 
             {/* 2. Dynamic Rotating Keywords Studio */}
-            <div className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-4">
+            <div className="p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-4">
               <div>
-                <h3 className="text-xl font-black text-slate-900 font-display">
+                <h3 className="text-lg sm:text-xl font-black text-slate-900 font-display">
                   Dynamic Text Rotation Phrases
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
@@ -1984,7 +2024,7 @@ export default function AdminPage() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 p-3 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200">
                 <Input
                   value={newRotatingPhrase}
                   onChange={(e) => setNewRotatingPhrase(e.target.value)}
@@ -1999,23 +2039,23 @@ export default function AdminPage() {
                 />
                 <Button
                   onClick={handleAddRotatingPhrase}
-                  className="bg-[#ea580c] hover:bg-orange-700 text-white font-bold h-11 px-5 rounded-xl text-xs gap-2 shrink-0"
+                  className="w-full sm:w-auto bg-[#ea580c] hover:bg-orange-700 text-white font-bold h-11 px-5 rounded-xl text-xs gap-2 shrink-0 justify-center"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Add Phrase</span>
                 </Button>
               </div>
 
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-2">
                 {heroForm.rotatingTexts.map((phrase: string, idx: number) => (
                   <div
                     key={idx}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-300/80 text-xs font-bold text-slate-800 shadow-2xs"
+                    className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-slate-100 border border-slate-300/80 text-xs font-bold text-slate-800 shadow-2xs"
                   >
                     <span>{phrase}</span>
                     <button
                       onClick={() => handleDeleteRotatingPhrase(idx)}
-                      className="p-1 rounded-full hover:bg-slate-200 text-slate-500 hover:text-red-600 transition-colors"
+                      className="p-1 rounded-full hover:bg-slate-200 text-slate-500 hover:text-red-600 transition-colors touch-manipulation"
                       title="Remove phrase"
                     >
                       <X className="w-3.5 h-3.5" />
@@ -2026,9 +2066,9 @@ export default function AdminPage() {
             </div>
 
             {/* 3. Hero Badge & Tagline Configuration */}
-            <div className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-4">
+            <div className="p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-4">
               <div>
-                <h3 className="text-xl font-black text-slate-900 font-display">
+                <h3 className="text-lg sm:text-xl font-black text-slate-900 font-display">
                   Hero Top Badge & Narrative Tagline
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
@@ -2062,7 +2102,7 @@ export default function AdminPage() {
 
                 <Button
                   onClick={handleSaveHeroMeta}
-                  className="bg-[#0f2c59] hover:bg-blue-900 text-white font-bold h-11 px-6 rounded-xl text-xs gap-2 shadow-sm"
+                  className="w-full sm:w-auto bg-[#0f2c59] hover:bg-blue-900 text-white font-bold h-11 px-6 rounded-xl text-xs gap-2 shadow-sm justify-center"
                 >
                   <Save className="w-4 h-4" />
                   <span>Save Hero Settings</span>
@@ -2076,9 +2116,9 @@ export default function AdminPage() {
         {/* TAB 5: NEWS & EVENTS */}
         {/* ========================================================================= */}
         {activeTab === "events" && (
-          <div className="space-y-6 animate-in fade-in duration-300">
+          <div className="space-y-4 sm:space-y-6 animate-in fade-in duration-300">
             {/* Header Strip */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-xs">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs">
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-mono text-[10px] font-bold border border-emerald-200">
@@ -2088,7 +2128,7 @@ export default function AdminPage() {
                     Total: {eventsList.length} scheduled events
                   </span>
                 </div>
-                <h2 className="text-2xl font-black text-slate-900 font-display">
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 font-display">
                   Workshops, Hackathons & News Events
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1 font-normal">
@@ -2097,7 +2137,7 @@ export default function AdminPage() {
               </div>
               <Button
                 onClick={handleOpenAddEvent}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-11 px-5 rounded-xl text-xs gap-2 shrink-0 shadow-sm"
+                className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-10 sm:h-11 px-5 rounded-xl text-xs gap-2 shrink-0 shadow-sm touch-manipulation justify-center"
               >
                 <Plus className="w-4 h-4" />
                 <span>Schedule New Event</span>
@@ -2105,7 +2145,7 @@ export default function AdminPage() {
             </div>
 
             {/* Events Grid with Split-Date Tile */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {eventsList.map((ev: any) => {
                 // Parse date for split tile (e.g. "Dec 28, 2026")
                 const parts = (ev.date || "").split(" ");
@@ -2115,18 +2155,18 @@ export default function AdminPage() {
                 return (
                   <div
                     key={ev.id}
-                    className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col justify-between hover:border-emerald-400 hover:shadow-md transition-all group"
+                    className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col justify-between hover:border-emerald-400 hover:shadow-md transition-all group"
                   >
                     <div>
                       {/* Top Row with Split Date & Action Buttons */}
                       <div className="flex items-start justify-between mb-4 gap-3">
                         <div className="flex items-center gap-3">
                           {/* Executive Split Date Box */}
-                          <div className="w-13 h-13 rounded-2xl bg-emerald-50 border border-emerald-200/90 flex flex-col items-center justify-center shrink-0 shadow-2xs">
+                          <div className="w-12 h-12 sm:w-13 sm:h-13 rounded-xl sm:rounded-2xl bg-emerald-50 border border-emerald-200/90 flex flex-col items-center justify-center shrink-0 shadow-2xs">
                             <span className="text-[10px] font-black text-emerald-800 font-mono leading-none uppercase">
                               {monthStr}
                             </span>
-                            <span className="text-lg font-black text-slate-900 font-display leading-tight">
+                            <span className="text-base sm:text-lg font-black text-slate-900 font-display leading-tight">
                               {dayStr}
                             </span>
                           </div>
@@ -2143,14 +2183,14 @@ export default function AdminPage() {
                         <div className="flex items-center gap-1 shrink-0">
                           <button
                             onClick={() => handleOpenEditEvent(ev)}
-                            className="p-1.5 rounded-xl text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                            className="p-2 sm:p-1.5 rounded-xl text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-colors touch-manipulation"
                             title="Edit Event"
                           >
                             <Edit className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => handleDeleteEvent(ev.id)}
-                            className="p-1.5 rounded-xl text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors"
+                            className="p-2 sm:p-1.5 rounded-xl text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors touch-manipulation"
                             title="Delete Event"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -2158,7 +2198,7 @@ export default function AdminPage() {
                         </div>
                       </div>
 
-                      <h3 className="text-lg font-bold text-slate-900 font-display mb-2 line-clamp-1">
+                      <h3 className="text-base sm:text-lg font-bold text-slate-900 font-display mb-2 line-clamp-1">
                         {ev.title}
                       </h3>
                       <p className="text-xs text-slate-600 leading-relaxed mb-4 line-clamp-2">
@@ -2178,10 +2218,10 @@ export default function AdminPage() {
                     </div>
 
                     {/* 1-Tap Registration Toggle Button */}
-                    <div className="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pt-3 border-t border-slate-100 text-xs">
                       <button
                         onClick={() => handleToggleEventRegistration(ev.id)}
-                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                        className={`w-full sm:w-auto inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-2 sm:py-1.5 rounded-xl text-xs font-bold transition-all min-h-[38px] touch-manipulation ${
                           ev.registrationOpen
                             ? "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200"
                             : "bg-slate-100 text-slate-500 hover:bg-slate-200 border border-slate-200"
@@ -2195,7 +2235,7 @@ export default function AdminPage() {
                         />
                         <span>{ev.registrationOpen ? "Registrations Open" : "Registrations Closed"}</span>
                       </button>
-                      <span className="text-slate-400 font-mono text-[10px]">{ev.id}</span>
+                      <span className="text-slate-400 font-mono text-[10px] self-end sm:self-auto">{ev.id}</span>
                     </div>
                   </div>
                 );
@@ -2208,16 +2248,16 @@ export default function AdminPage() {
         {/* TAB 6: CONTACT & LEADERSHIP */}
         {/* ========================================================================= */}
         {activeTab === "contact" && (
-          <div className="space-y-6 animate-in fade-in duration-300">
+          <div className="space-y-4 sm:space-y-6 animate-in fade-in duration-300">
             {/* Header Strip */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-xs">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs">
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-mono text-[10px] font-bold border border-blue-200">
                     DESK OPERATIONS & ROSTER
                   </span>
                 </div>
-                <h2 className="text-2xl font-black text-slate-900 font-display">
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 font-display">
                   Campus Contact & Leadership Profiles
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1 font-normal">
@@ -2226,11 +2266,11 @@ export default function AdminPage() {
               </div>
             </div>
 
-            <form onSubmit={handleSaveContact} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <form onSubmit={handleSaveContact} className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               {/* Left Column: Campus Hotlines & Address */}
-              <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-6">
+              <div className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-5 sm:space-y-6">
                 <div>
-                  <h3 className="text-base font-bold text-slate-900 uppercase tracking-wider mb-1 font-display">
+                  <h3 className="text-sm sm:text-base font-bold text-slate-900 uppercase tracking-wider mb-1 font-display">
                     Campus Desk Operations
                   </h3>
                   <p className="text-xs text-slate-500">Official location & management hotlines</p>
@@ -2244,7 +2284,7 @@ export default function AdminPage() {
                   <Input
                     value={contactForm.address}
                     onChange={(e) => setContactForm({ ...contactForm, address: e.target.value })}
-                    className="h-11 text-xs sm:text-sm bg-slate-50"
+                    className="h-10 sm:h-11 text-xs sm:text-sm bg-slate-50"
                     required
                   />
                 </div>
@@ -2301,10 +2341,10 @@ export default function AdminPage() {
               </div>
 
               {/* Right Column: Social Channels & Public Preview */}
-              <div className="space-y-6">
-                <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-4">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs space-y-4">
                   <div>
-                    <h3 className="text-base font-bold text-slate-900 uppercase tracking-wider mb-1 font-display">
+                    <h3 className="text-sm sm:text-base font-bold text-slate-900 uppercase tracking-wider mb-1 font-display">
                       Official Channels & Social Links
                     </h3>
                     <p className="text-xs text-slate-500">Public links displayed across footer and headers</p>
@@ -2360,14 +2400,14 @@ export default function AdminPage() {
                 </div>
 
                 {/* Save Button Card */}
-                <div className="p-6 rounded-3xl bg-gradient-to-br from-slate-900 to-[#0f2c59] text-white flex items-center justify-between shadow-md">
+                <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-900 to-[#0f2c59] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
                   <div>
                     <div className="font-bold text-sm">Commit Changes to Production</div>
                     <div className="text-[11px] text-slate-300">Instantly syncs with public website footer</div>
                   </div>
                   <Button
                     type="submit"
-                    className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-11 px-6 rounded-xl text-xs gap-2 shadow-sm"
+                    className="w-full sm:w-auto justify-center bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-11 px-6 rounded-xl text-xs gap-2 shadow-sm touch-manipulation"
                   >
                     <Save className="w-4 h-4" />
                     <span>Save Contact Details</span>
@@ -2382,9 +2422,9 @@ export default function AdminPage() {
         {/* TAB 7: INTAKE APPLICATIONS REVIEW */}
         {/* ========================================================================= */}
         {activeTab === "applications" && (
-          <div className="space-y-6 animate-in fade-in duration-300">
+          <div className="space-y-4 sm:space-y-6 animate-in fade-in duration-300">
             {/* Header Strip */}
-            <div className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <span className="px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 font-mono text-[10px] font-bold border border-purple-200">
@@ -2394,7 +2434,7 @@ export default function AdminPage() {
                     Total: {applications.length} inbound applications
                   </span>
                 </div>
-                <h2 className="text-2xl font-black text-slate-900 font-display">
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 font-display">
                   Startup Incubation Intake Pipeline
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1 font-normal">
@@ -2405,7 +2445,7 @@ export default function AdminPage() {
                 onClick={fetchApps}
                 variant="outline"
                 size="sm"
-                className="text-xs border-slate-300 text-slate-700 hover:bg-slate-50 gap-2 h-10 px-4 shadow-2xs font-bold"
+                className="w-full sm:w-auto justify-center text-xs border-slate-300 text-slate-700 hover:bg-slate-50 gap-2 h-10 px-4 shadow-2xs font-bold touch-manipulation"
               >
                 <RefreshCw className={`w-3.5 h-3.5 ${appsLoading ? "animate-spin" : ""}`} />
                 <span>Refresh Queue</span>
@@ -2425,7 +2465,7 @@ export default function AdminPage() {
                 {appSearch && (
                   <button
                     onClick={() => setAppSearch("")}
-                    className="absolute right-3.5 top-3.5 text-slate-400 hover:text-slate-600 p-0.5 rounded-full hover:bg-slate-100"
+                    className="absolute right-3.5 top-3.5 text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-100 touch-manipulation"
                     title="Clear search"
                   >
                     <X className="w-4 h-4" />
@@ -2434,7 +2474,7 @@ export default function AdminPage() {
               </div>
 
               {/* 1-Tap Pipeline Stage Filter Pills */}
-              <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+              <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none touch-pan-x select-none">
                 {[
                   { id: "ALL", label: "All Inbound", count: applications.length },
                   {
@@ -2468,7 +2508,7 @@ export default function AdminPage() {
                     <button
                       key={stg.id}
                       onClick={() => setAppStatusFilter(stg.id)}
-                      className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                      className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap shrink-0 transition-all touch-manipulation ${
                         isActive
                           ? "bg-[#091b34] text-white shadow-sm font-black"
                           : "bg-white text-slate-700 border border-slate-200/90 hover:bg-slate-50"
@@ -2506,7 +2546,7 @@ export default function AdminPage() {
 
               if (filteredApps.length === 0) {
                 return (
-                  <div className="p-12 text-center rounded-3xl bg-white border border-slate-200 shadow-2xs space-y-3">
+                  <div className="p-8 sm:p-12 text-center rounded-2xl sm:rounded-3xl bg-white border border-slate-200 shadow-2xs space-y-3">
                     <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto">
                       <Layers className="w-6 h-6" />
                     </div>
@@ -2526,7 +2566,7 @@ export default function AdminPage() {
                         }}
                         variant="outline"
                         size="sm"
-                        className="text-xs border-slate-300"
+                        className="text-xs border-slate-300 touch-manipulation"
                       >
                         Reset All Filters
                       </Button>
@@ -2540,11 +2580,11 @@ export default function AdminPage() {
                   {filteredApps.map((app) => (
                     <div
                       key={app.id}
-                      className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-purple-300 hover:shadow-md transition-all"
+                      className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 hover:border-purple-300 hover:shadow-md transition-all"
                     >
                       <div className="space-y-2.5 flex-1 min-w-0">
                         <div className="flex items-center gap-2.5 flex-wrap">
-                          <h4 className="text-lg font-bold text-slate-900 font-display">
+                          <h4 className="text-base sm:text-lg font-bold text-slate-900 font-display">
                             {app.startupName}
                           </h4>
                           <span
@@ -2599,12 +2639,12 @@ export default function AdminPage() {
                       </div>
 
                       {/* Pipeline Stage Selector Control */}
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 shrink-0 bg-slate-50 p-2.5 rounded-2xl border border-slate-200">
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 shrink-0 bg-slate-50 p-2 sm:p-2.5 rounded-2xl border border-slate-200 w-full md:w-auto">
                         <span className="text-[11px] font-bold text-slate-600 px-1">Pipeline Stage:</span>
                         <select
                           value={app.status}
                           onChange={(e) => handleUpdateAppStatus(app.id, e.target.value)}
-                          className="h-9 px-3 text-xs font-bold rounded-xl border border-slate-300 bg-white text-slate-800 shadow-2xs focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                          className="h-10 sm:h-9 px-3 text-xs font-bold rounded-xl border border-slate-300 bg-white text-slate-800 shadow-2xs focus:ring-2 focus:ring-purple-500 focus:outline-none w-full sm:w-auto touch-manipulation"
                         >
                           <option value="SUBMITTED">SUBMITTED</option>
                           <option value="UNDER_REVIEW">UNDER_REVIEW</option>
