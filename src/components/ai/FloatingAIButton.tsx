@@ -1,11 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Bot, ArrowRight, Sparkles } from "lucide-react";
 import AIAssistantModal from "./AIAssistantModal";
 
 export default function FloatingAIButton() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+  // Do not show public floating assistant modal trigger on admin console
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <>

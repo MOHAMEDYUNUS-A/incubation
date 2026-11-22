@@ -2,12 +2,20 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FOUNDATION_INFO } from "@/lib/db/mockData";
 import { MapPin, CheckCircle2, Mail, Phone, ExternalLink, ShieldCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  // Admin portal has its own dedicated administrative layout and sidebar
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   const [newsEmail, setNewsEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 

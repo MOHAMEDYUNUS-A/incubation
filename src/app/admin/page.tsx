@@ -31,6 +31,12 @@ import {
   AlertCircle,
   Video,
   RotateCcw,
+  Menu,
+  ChevronRight,
+  Home,
+  Building2,
+  GraduationCap,
+  LayoutDashboard,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -44,6 +50,7 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<
     "dashboard" | "startups" | "gallery" | "hero" | "events" | "contact" | "applications"
   >("dashboard");
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   // Notification Toast state
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -475,101 +482,434 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="pt-28 pb-24 bg-slate-50 min-h-screen">
+    <div className="min-h-screen bg-slate-100 flex flex-col lg:flex-row text-slate-900 antialiased font-sans">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed top-24 right-6 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700 animate-in slide-in-from-top duration-300">
+        <div className="fixed top-6 right-6 z-[200] bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700 animate-in slide-in-from-top duration-300">
           <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
           <span className="text-sm font-semibold">{toastMessage}</span>
         </div>
       )}
 
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Top Header & Fast Navigation */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-8 border-b border-slate-200 gap-4">
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                ADMIN CONSOLE
+      {/* ========================================================================= */}
+      {/* DESKTOP ADMIN SIDEBAR */}
+      {/* ========================================================================= */}
+      <aside className="hidden lg:flex flex-col w-72 bg-[#091b34] text-slate-200 border-r border-slate-800 shrink-0 sticky top-0 h-screen select-none z-40">
+        {/* Brand Header */}
+        <div className="p-5 border-b border-slate-800/80 bg-[#07152a] flex items-center gap-3">
+          <div className="w-11 h-11 rounded-2xl bg-white p-1.5 flex items-center justify-center border border-white/20 shadow-md shrink-0">
+            <img
+              src="/logos/official-mif-logo.png"
+              alt="MIF Emblem"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div className="min-w-0">
+            <div className="flex items-center gap-1.5">
+              <span className="font-black text-base tracking-tight text-white font-display">
+                MAST<span className="text-[#ea580c]">e</span>R
               </span>
-              <span className="text-xs text-slate-500 font-medium">
-                MASTeR Incubation Foundation (MIF)
+              <span className="text-[10px] px-1.5 py-0.2 rounded font-mono bg-blue-500/20 text-blue-300 font-bold border border-blue-400/30">
+                ADMIN
               </span>
             </div>
-            <h1 className="text-2xl sm:text-4xl font-black text-slate-900 mt-1 font-display tracking-tight">
-              Platform Content & Operations Manager
-            </h1>
+            <p className="text-[11px] text-slate-400 font-semibold truncate">
+              Operations & Catalog Hub
+            </p>
+          </div>
+        </div>
+
+        {/* Live Status Indicator Pill */}
+        <div className="px-5 py-2.5 bg-blue-950/40 border-b border-slate-800/60 flex items-center justify-between text-[11px]">
+          <span className="text-slate-400 font-medium flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            Live Production Node
+          </span>
+          <span className="font-mono text-emerald-400 font-bold">MAMCET</span>
+        </div>
+
+        {/* Sidebar Nav Items Container */}
+        <div className="flex-1 overflow-y-auto px-3.5 py-4 space-y-6 scrollbar-thin">
+          {/* Group 1: Core Operations */}
+          <div>
+            <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
+              Core Operations
+            </div>
+            <div className="space-y-1">
+              {[
+                { id: "dashboard", label: "Dashboard Overview", icon: LayoutDashboard },
+                { id: "startups", label: "Startups Directory", icon: Rocket, count: startupsList.length },
+                { id: "gallery", label: "Gallery Photos", icon: ImageIcon, count: galleryList.length },
+                { id: "events", label: "News & Events", icon: Calendar, count: eventsList.length },
+                { id: "applications", label: "Intake Applications", icon: Layers, count: applications.length },
+              ].map((item) => {
+                const Icon = item.icon;
+                const isActive = activeTab === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id as any)}
+                    className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+                      isActive
+                        ? "bg-[#ea580c] text-white shadow-md shadow-orange-950/30 font-bold"
+                        : "text-slate-300 hover:text-white hover:bg-slate-800/60"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <Icon className={`w-4 h-4 ${isActive ? "text-white" : "text-slate-400"}`} />
+                      <span>{item.label}</span>
+                    </div>
+                    {item.count !== undefined && (
+                      <span
+                        className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
+                          isActive
+                            ? "bg-white/20 text-white"
+                            : "bg-slate-800/90 text-slate-300 border border-slate-700/60"
+                        }`}
+                      >
+                        {item.count}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="flex items-center gap-2.5">
-            <Link href="/" target="_blank">
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-slate-300 text-slate-700 hover:bg-white text-xs h-10 px-4 gap-2 shadow-xs"
+          {/* Group 2: Content & Identity */}
+          <div>
+            <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
+              Identity & Configuration
+            </div>
+            <div className="space-y-1">
+              {[
+                { id: "hero", label: "Hero Studio", icon: Sparkles },
+                { id: "contact", label: "Contact & Leadership", icon: Phone },
+              ].map((item) => {
+                const Icon = item.icon;
+                const isActive = activeTab === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id as any)}
+                    className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+                      isActive
+                        ? "bg-[#ea580c] text-white shadow-md shadow-orange-950/30 font-bold"
+                        : "text-slate-300 hover:text-white hover:bg-slate-800/60"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <Icon className={`w-4 h-4 ${isActive ? "text-white" : "text-slate-400"}`} />
+                      <span>{item.label}</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Group 3: Quick Portals & Extra Links */}
+          <div>
+            <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
+              Extra Links & Portals
+            </div>
+            <div className="space-y-1">
+              <Link
+                href="/"
+                target="_blank"
+                className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all group"
               >
-                <Eye className="w-4 h-4 text-slate-500" />
-                <span>Preview Site</span>
-              </Button>
-            </Link>
+                <div className="flex items-center gap-2.5">
+                  <Home className="w-3.5 h-3.5 text-blue-400 group-hover:scale-110 transition-transform" />
+                  <span>Public Website Home</span>
+                </div>
+                <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-slate-300" />
+              </Link>
+
+              <Link
+                href="/startups"
+                target="_blank"
+                className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <Rocket className="w-3.5 h-3.5 text-orange-400 group-hover:scale-110 transition-transform" />
+                  <span>Public Startups Page</span>
+                </div>
+                <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-slate-300" />
+              </Link>
+
+              <Link
+                href="/apply"
+                target="_blank"
+                className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <Layers className="w-3.5 h-3.5 text-purple-400 group-hover:scale-110 transition-transform" />
+                  <span>Incubation Pitch Form</span>
+                </div>
+                <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-slate-300" />
+              </Link>
+
+              <a
+                href="https://mamcet.edu.in"
+                target="_blank"
+                rel="noreferrer"
+                className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <Building2 className="w-3.5 h-3.5 text-emerald-400 group-hover:scale-110 transition-transform" />
+                  <span>MAMCET Campus Portal</span>
+                </div>
+                <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-slate-300" />
+              </a>
+
+              <a
+                href="https://startuptn.in"
+                target="_blank"
+                rel="noreferrer"
+                className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <Globe className="w-3.5 h-3.5 text-cyan-400 group-hover:scale-110 transition-transform" />
+                  <span>StartupTN State Hub</span>
+                </div>
+                <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-slate-300" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Sidebar Footer Controls */}
+        <div className="p-3.5 border-t border-slate-800/80 bg-[#07152a] space-y-2 shrink-0">
+          <div className="flex items-center gap-2">
             <Button
               onClick={refreshContent}
               variant="outline"
               size="sm"
-              className="border-slate-300 text-slate-700 hover:bg-white text-xs h-10 px-3 gap-1.5 shadow-xs"
+              className="flex-1 bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border-slate-700 text-[11px] h-8 gap-1.5"
               title="Reload live content"
             >
-              <RefreshCw className={`w-3.5 h-3.5 ${contentLoading ? "animate-spin" : ""}`} />
+              <RefreshCw className={`w-3 h-3 ${contentLoading ? "animate-spin" : ""}`} />
+              <span>Reload Live</span>
             </Button>
             <Button
               onClick={handleResetToDefaults}
               variant="outline"
               size="sm"
-              className="border-slate-300 text-slate-700 hover:bg-white text-xs h-10 px-3 gap-1.5 shadow-xs"
-              title="Reset catalog to official baseline"
+              className="bg-slate-800/80 hover:bg-rose-950/60 hover:text-rose-300 text-slate-300 border-slate-700 text-[11px] h-8 px-2.5"
+              title="Reset baseline"
             >
-              <RotateCcw className="w-3.5 h-3.5 text-slate-500" />
-              <span className="hidden sm:inline">Reset Baseline</span>
+              <RotateCcw className="w-3 h-3" />
             </Button>
           </div>
+          <div className="text-[10px] text-slate-400 text-center font-mono">
+            MASTeR Incubation Foundation · v2.4
+          </div>
         </div>
+      </aside>
 
-        {/* Tab Navigation Navigation Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 border-b border-slate-200 scrollbar-none">
-          {[
-            { id: "dashboard", label: "Dashboard Overview", icon: Sliders },
-            { id: "startups", label: "Startups Directory", icon: Rocket, count: startupsList.length },
-            { id: "gallery", label: "Gallery Photos", icon: ImageIcon, count: galleryList.length },
-            { id: "hero", label: "Hero Studio", icon: Sparkles },
-            { id: "events", label: "News & Events", icon: Calendar, count: eventsList.length },
-            { id: "contact", label: "Contact & Leadership", icon: Phone },
-            { id: "applications", label: "Intake Applications", icon: Layers, count: applications.length },
-          ].map((tab) => {
-            const Icon = tab.icon;
-            const isActive = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap ${isActive
-                    ? "bg-[#0f2c59] text-white shadow-md"
-                    : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200/80"
-                  }`}
-              >
-                <Icon className="w-4 h-4" />
-                <span>{tab.label}</span>
-                {tab.count !== undefined && (
-                  <span
-                    className={`text-[10px] px-2 py-0.2 rounded-full font-mono ${isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600"
-                      }`}
-                  >
-                    {tab.count}
+      {/* ========================================================================= */}
+      {/* MOBILE DRAWER SIDEBAR */}
+      {/* ========================================================================= */}
+      {mobileSidebarOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden flex">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm animate-in fade-in duration-200"
+            onClick={() => setMobileSidebarOpen(false)}
+          />
+
+          {/* Slideover Panel */}
+          <div className="relative w-72 max-w-[85vw] bg-[#091b34] text-slate-200 flex flex-col h-full shadow-2xl z-10 animate-in slide-in-from-left duration-300">
+            <div className="p-4 border-b border-slate-800 bg-[#07152a] flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-white p-1 flex items-center justify-center border border-white/20">
+                  <img src="/logos/official-mif-logo.png" alt="MIF" className="w-full h-full object-contain" />
+                </div>
+                <div>
+                  <span className="font-black text-sm text-white font-display">
+                    MAST<span className="text-[#ea580c]">e</span>R Admin
                   </span>
-                )}
+                  <p className="text-[10px] text-slate-400">Sidebar Menu</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setMobileSidebarOpen(false)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+              >
+                <X className="w-5 h-5" />
               </button>
-            );
-          })}
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-3 space-y-5">
+              <div>
+                <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">Operations</div>
+                <div className="space-y-1">
+                  {[
+                    { id: "dashboard", label: "Dashboard Overview", icon: LayoutDashboard },
+                    { id: "startups", label: "Startups Directory", icon: Rocket, count: startupsList.length },
+                    { id: "gallery", label: "Gallery Photos", icon: ImageIcon, count: galleryList.length },
+                    { id: "events", label: "News & Events", icon: Calendar, count: eventsList.length },
+                    { id: "applications", label: "Intake Applications", icon: Layers, count: applications.length },
+                    { id: "hero", label: "Hero Studio", icon: Sparkles },
+                    { id: "contact", label: "Contact & Leadership", icon: Phone },
+                  ].map((item) => {
+                    const Icon = item.icon;
+                    const isActive = activeTab === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => {
+                          setActiveTab(item.id as any);
+                          setMobileSidebarOpen(false);
+                        }}
+                        className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold ${
+                          isActive ? "bg-[#ea580c] text-white font-bold shadow-md" : "text-slate-300 hover:bg-slate-800"
+                        }`}
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <Icon className={`w-4 h-4 ${isActive ? "text-white" : "text-slate-400"}`} />
+                          <span>{item.label}</span>
+                        </div>
+                        {item.count !== undefined && (
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${isActive ? "bg-white/25 text-white" : "bg-slate-800 text-slate-400"}`}>
+                            {item.count}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div>
+                <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">Extra Links</div>
+                <div className="space-y-1">
+                  <Link href="/" target="_blank" className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
+                    <span className="flex items-center gap-2"><Home className="w-3.5 h-3.5 text-blue-400" /> Public Website</span>
+                    <ExternalLink className="w-3 h-3 text-slate-500" />
+                  </Link>
+                  <Link href="/startups" target="_blank" className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
+                    <span className="flex items-center gap-2"><Rocket className="w-3.5 h-3.5 text-orange-400" /> Startups Page</span>
+                    <ExternalLink className="w-3 h-3 text-slate-500" />
+                  </Link>
+                  <Link href="/apply" target="_blank" className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
+                    <span className="flex items-center gap-2"><Layers className="w-3.5 h-3.5 text-purple-400" /> Application Form</span>
+                    <ExternalLink className="w-3 h-3 text-slate-500" />
+                  </Link>
+                  <a href="https://mamcet.edu.in" target="_blank" rel="noreferrer" className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
+                    <span className="flex items-center gap-2"><Building2 className="w-3.5 h-3.5 text-emerald-400" /> MAMCET Portal</span>
+                    <ExternalLink className="w-3 h-3 text-slate-500" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* MAIN CONTENT AREA */}
+      {/* ========================================================================= */}
+      <div className="flex-1 flex flex-col min-w-0 min-h-screen bg-slate-100">
+        {/* Dedicated Admin Topbar */}
+        <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-4 sm:px-8 py-3.5 flex items-center justify-between shadow-xs">
+          <div className="flex items-center gap-3 min-w-0">
+            {/* Mobile Hamburger Button */}
+            <button
+              onClick={() => setMobileSidebarOpen(true)}
+              className="lg:hidden p-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 border border-slate-200"
+              aria-label="Toggle Sidebar Menu"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
+                  ADMIN CONSOLE
+                </span>
+                <span className="text-slate-400 text-xs hidden sm:inline">/</span>
+                <span className="text-xs font-bold text-slate-600 hidden sm:inline capitalize">
+                  {activeTab}
+                </span>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="hidden sm:inline">Production</span> Live
+                </span>
+              </div>
+              <h1 className="text-lg sm:text-xl font-black text-slate-900 font-display truncate">
+                {activeTab === "dashboard" && "Platform Operations & Metrics"}
+                {activeTab === "startups" && "Incubated Startups Directory"}
+                {activeTab === "gallery" && "Campus Media & Gallery Hub"}
+                {activeTab === "hero" && "Hero Studio & Visual Branding"}
+                {activeTab === "events" && "Foundation Calendar & Events"}
+                {activeTab === "contact" && "Campus Contact & Desk Settings"}
+                {activeTab === "applications" && "Intake Application Pipeline"}
+              </h1>
+            </div>
+          </div>
+
+          {/* Right Header Extra Action Buttons */}
+          <div className="flex items-center gap-2 shrink-0">
+            <Link href="/" target="_blank">
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-slate-300 text-slate-700 hover:bg-slate-50 text-xs h-9 px-3 gap-1.5 shadow-xs font-semibold"
+              >
+                <Eye className="w-3.5 h-3.5 text-orange-600" />
+                <span className="hidden md:inline">View Public Website</span>
+                <ExternalLink className="w-3 h-3 text-slate-400" />
+              </Button>
+            </Link>
+
+            <Button
+              onClick={refreshContent}
+              variant="outline"
+              size="sm"
+              className="border-slate-300 text-slate-700 hover:bg-slate-50 text-xs h-9 px-2.5 shadow-xs"
+              title="Reload live content"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 ${contentLoading ? "animate-spin" : ""}`} />
+            </Button>
+
+            {/* Contextual Action Button */}
+            {activeTab === "startups" && (
+              <Button
+                onClick={handleOpenAddStartup}
+                size="sm"
+                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-9 px-3.5 text-xs gap-1.5 shadow-sm"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Add Startup</span>
+              </Button>
+            )}
+            {activeTab === "gallery" && (
+              <Button
+                onClick={handleOpenAddPhoto}
+                size="sm"
+                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-9 px-3.5 text-xs gap-1.5 shadow-sm"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Add Image</span>
+              </Button>
+            )}
+            {activeTab === "events" && (
+              <Button
+                onClick={handleOpenAddEvent}
+                size="sm"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-9 px-3.5 text-xs gap-1.5 shadow-sm"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Schedule Event</span>
+              </Button>
+            )}
+          </div>
+        </header>
+
+        {/* Tab Viewport Main Content */}
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
 
         {/* ========================================================================= */}
         {/* TAB 1: DASHBOARD OVERVIEW */}
@@ -1488,6 +1828,7 @@ export default function AdminPage() {
             </div>
           </div>
         )}
+        </main>
       </div>
 
       {/* ========================================================================= */}
