@@ -95,43 +95,44 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 right-0 z-50">
         {/* Institutional Top Bar (as in reference site EDII-ABIRF) */}
         <div
-          className={`bg-slate-900 text-slate-300 text-[11px] transition-all duration-300 border-b border-slate-800 ${
+          className={`bg-slate-950 text-slate-300 text-[11px] transition-all duration-300 border-b border-slate-800/80 ${
             scrolled ? "hidden md:block py-1 opacity-90" : "py-1.5 opacity-100"
           }`}
         >
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-            <div className="flex items-center gap-4 sm:gap-6">
-              <span className="flex items-center gap-1.5">
-                <MapPin className="w-3 h-3 text-cyan-400" />
+            <div className="flex items-center gap-4 sm:gap-6 font-normal">
+              <span className="flex items-center gap-1.5 text-slate-400">
+                <MapPin className="w-3 h-3 text-cyan-400 shrink-0" />
                 <span className="hidden sm:inline">MAMCET Campus, Siruganur, Trichy</span>
                 <span className="sm:hidden">Trichy</span>
               </span>
               <a
                 href="tel:+919361697702"
-                className="flex items-center gap-1.5 hover:text-white transition-colors"
+                className="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors"
               >
-                <Phone className="w-3 h-3 text-cyan-400" />
+                <Phone className="w-3 h-3 text-cyan-400 shrink-0" />
                 <span>+91 9361697702</span>
               </a>
               <a
                 href="mailto:incubationmanager@mamcet.com"
-                className="hidden md:flex items-center gap-1.5 hover:text-white transition-colors"
+                className="hidden md:flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors"
               >
-                <Mail className="w-3 h-3 text-cyan-400" />
+                <Mail className="w-3 h-3 text-cyan-400 shrink-0" />
                 <span>incubationmanager@mamcet.com</span>
               </a>
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="text-[10px] font-semibold text-cyan-300 hidden md:inline">
+              <span className="text-[10px] font-semibold text-cyan-300 hidden md:inline tracking-wide">
                 StartupTN Recognised Pre-Incubation Centre
               </span>
-              <span className="h-3 w-px bg-slate-700 hidden md:inline" />
+              <span className="h-3 w-px bg-slate-800 hidden md:inline" />
               <Link
                 href="/admin"
-                className="hover:text-white font-medium transition-colors text-[10px] px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700"
+                className="inline-flex items-center gap-1.5 hover:text-white font-medium transition-all text-[10px] px-2.5 py-0.5 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60"
               >
-                Admin
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Admin</span>
               </Link>
             </div>
           </div>
@@ -141,14 +142,14 @@ export default function Navbar() {
         <div
           className={`transition-all duration-300 ${
             scrolled
-              ? "bg-white/95 backdrop-blur-md shadow-md py-2.5 border-b border-slate-200"
-              : "bg-white py-3 border-b border-slate-200/80 shadow-2xs"
+              ? "bg-white/95 backdrop-blur-md shadow-sm py-2 border-b border-slate-200/80"
+              : "bg-white py-2.5 sm:py-3 border-b border-slate-200/70 shadow-2xs"
           }`}
         >
-          <div className="container max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+          <div className="container max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-2 xl:gap-6">
             {/* Logo on Left */}
-            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-              <div className="relative w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+            <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group shrink-0">
+              <div className="relative w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
                 <img
                   src="/logos/official-mif-logo.png"
                   alt="MASTeR Incubation Foundation Logo"
@@ -157,76 +158,88 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col justify-center">
                 <div className="flex items-center">
-                  <span className="font-black text-xl sm:text-2xl md:text-[26px] tracking-tight text-[#0f2c59] font-display leading-none">
+                  <span className="font-black text-lg sm:text-xl md:text-[21px] tracking-tight text-[#0f2c59] font-display leading-none">
                     MAST<span className="text-[#ea580c]">e</span>R
                   </span>
                 </div>
-                <span className="text-[11px] sm:text-xs font-extrabold text-slate-800 tracking-tight leading-none mt-1">
+                <span className="text-[10px] sm:text-[11px] font-bold text-slate-700 tracking-tight leading-none mt-1">
                   Incubation Foundation
                 </span>
-                <span className="text-[10px] text-slate-500 font-semibold tracking-normal hidden xl:inline mt-0.5">
+                <span className="text-[9.5px] text-slate-400 font-medium tracking-normal hidden 2xl:inline mt-0.5">
                   MAMCET · StartupTN Pre-Incubation Centre
                 </span>
               </div>
             </Link>
 
             {/* Symmetrically Centered Navigation Links */}
-            <nav className="hidden lg:flex items-center justify-center gap-0.5 xl:gap-1.5 flex-1 mx-2">
-              {NAV_LINKS.map((link) => (
-                <div
-                  key={link.name}
-                  className="relative"
-                  onMouseEnter={() => link.submenu && setActiveDropdown(link.name)}
-                  onMouseLeave={() => link.submenu && setActiveDropdown(null)}
-                >
-                  <Link
-                    href={link.href}
-                    className={`px-3 py-2 text-sm font-bold transition-all flex items-center gap-1 rounded-xl whitespace-nowrap ${
-                      pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
-                        ? "text-[#ea580c] font-black bg-orange-50/60"
-                        : "text-slate-700 hover:text-[#ea580c] hover:bg-slate-50"
-                    }`}
-                  >
-                    <span>{link.name}</span>
-                    {link.submenu && (
-                      <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform" />
-                    )}
-                  </Link>
+            <nav className="hidden lg:flex items-center justify-center gap-0 xl:gap-1 flex-1">
+              {NAV_LINKS.map((link) => {
+                const isActive =
+                  pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
 
-                  {/* Submenu Dropdown */}
-                  {link.submenu && activeDropdown === link.name && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute top-full left-0 mt-1 w-56 rounded-2xl bg-white border border-slate-200/90 shadow-xl py-2 z-50 overflow-hidden"
+                return (
+                  <div
+                    key={link.name}
+                    className="relative group"
+                    onMouseEnter={() => link.submenu && setActiveDropdown(link.name)}
+                    onMouseLeave={() => link.submenu && setActiveDropdown(null)}
+                  >
+                    <Link
+                      href={link.href}
+                      className={`px-2 xl:px-3 py-1.5 text-[12.5px] xl:text-[13.5px] tracking-tight transition-all flex items-center gap-1 rounded-lg whitespace-nowrap ${
+                        isActive
+                          ? "text-[#ea580c] font-semibold bg-orange-50/80 shadow-2xs shadow-orange-500/10"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70 font-medium"
+                      }`}
                     >
-                      {link.submenu.map((sub) => (
-                        <Link
-                          key={sub.name}
-                          href={sub.href}
-                          className="block px-4 py-2.5 text-xs text-slate-700 hover:bg-orange-50 hover:text-[#ea580c] font-semibold transition-colors"
-                        >
-                          {sub.name}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </div>
-              ))}
+                      <span>{link.name}</span>
+                      {link.submenu && (
+                        <ChevronDown
+                          className={`w-3 h-3 text-slate-400 transition-transform duration-200 group-hover:rotate-180 ${
+                            isActive ? "text-[#ea580c]" : "group-hover:text-slate-600"
+                          }`}
+                        />
+                      )}
+                    </Link>
+
+                    {/* Submenu Dropdown */}
+                    {link.submenu && (
+                      <div
+                        className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 transition-all duration-150 ${
+                          activeDropdown === link.name
+                            ? "opacity-100 translate-y-0 pointer-events-auto visible"
+                            : "opacity-0 translate-y-1 pointer-events-none invisible"
+                        }`}
+                      >
+                        <div className="w-56 rounded-xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-xl shadow-slate-900/10 p-1.5 overflow-hidden">
+                          {link.submenu.map((sub) => (
+                            <Link
+                              key={sub.name}
+                              href={sub.href}
+                              className="flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-700 hover:bg-orange-50 hover:text-[#ea580c] transition-colors group/sub"
+                            >
+                              <span>{sub.name}</span>
+                              <span className="w-1.5 h-1.5 rounded-full bg-transparent group-hover/sub:bg-orange-500 transition-colors shrink-0" />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </nav>
 
             {/* Right Action: Prominent Orange CTA Button */}
             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-              <Link href="/apply">
+              <Link href="/apply" className="shrink-0">
                 <Button
                   size="sm"
-                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold shadow-md shadow-orange-500/25 rounded-xl text-xs gap-1.5 h-10 px-4 sm:px-5 group transition-all"
+                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-semibold shadow-sm shadow-orange-500/20 rounded-xl text-xs gap-1.5 h-9 px-3 xl:px-4.5 group transition-all shrink-0 whitespace-nowrap"
                 >
-                  <span className="hidden sm:inline">Apply For Pre Incubation</span>
-                  <span className="sm:hidden">Apply Now</span>
-                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
+                  <span className="hidden xl:inline">Apply for Incubation</span>
+                  <span className="xl:hidden">Apply Now</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </Button>
               </Link>
 
