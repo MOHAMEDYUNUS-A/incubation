@@ -47,6 +47,11 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
+
+  const toggleMobileDropdown = (name: string) => {
+    setOpenMobileDropdown((prev) => (prev === name ? null : name));
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,6 +64,7 @@ export default function Navbar() {
   useEffect(() => {
     setMobileMenuOpen(false);
     setActiveDropdown(null);
+    setOpenMobileDropdown(null);
   }, [pathname]);
 
   return (
@@ -214,43 +220,91 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu & Backdrop */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="fixed inset-x-0 top-[100px] z-40 bg-white border-b border-slate-200 shadow-2xl lg:hidden overflow-hidden"
-          >
-            <div className="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
-              <div className="space-y-1">
-                {NAV_LINKS.map((link) => (
-                  <div key={link.name}>
-                    <Link
-                      href={link.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block py-2.5 text-sm font-bold text-slate-800 hover:text-orange-600"
-                    >
-                      {link.name}
-                    </Link>
-                    {link.submenu && (
-                      <div className="ml-3 pl-3 border-l-2 border-orange-200/80 space-y-1 py-1 my-1">
-                        {link.submenu.map((sub) => (
-                          <Link
-                            key={sub.name}
-                            href={sub.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="flex items-center gap-2 py-2 px-2.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-orange-600 hover:bg-orange-50/70 transition-colors"
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 top-[75px] z-40 bg-slate-900/40 backdrop-blur-xs lg:hidden"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed inset-x-0 top-[75px] z-50 bg-white border-b border-slate-200 shadow-2xl lg:hidden overflow-hidden max-h-[calc(100vh-85px)] flex flex-col"
+            >
+              <div className="p-5 sm:p-6 space-y-4 overflow-y-auto">
+              <div className="space-y-1 divide-y divide-slate-100">
+                {NAV_LINKS.map((link) => {
+                  const hasSubmenu = Boolean(link.submenu && link.submenu.length > 0);
+                  const isOpen = openMobileDropdown === link.name;
+
+                  return (
+                    <div key={link.name} className="py-1 first:pt-0">
+                      {hasSubmenu ? (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() => toggleMobileDropdown(link.name)}
+                            className="flex items-center justify-between w-full py-2.5 text-sm font-bold text-slate-800 hover:text-orange-600 transition-colors text-left"
+                            aria-expanded={isOpen}
                           >
-                            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0" />
-                            <span>{sub.name}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
+                            <span>{link.name}</span>
+                            <ChevronDown
+                              className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
+                                isOpen ? "rotate-180 text-orange-600" : ""
+                              }`}
+                            />
+                          </button>
+
+                          <AnimatePresence initial={false}>
+                            {isOpen && (
+                              <motion.div
+                                key={`mobile-sub-${link.name}`}
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                className="overflow-hidden ml-2 pl-3 border-l-2 border-orange-400/80 space-y-1 py-1.5 my-1"
+                              >
+                                {link.submenu!.map((sub) => (
+                                  <Link
+                                    key={sub.name}
+                                    href={sub.href}
+                                    onClick={() => {
+                                      setMobileMenuOpen(false);
+                                      setOpenMobileDropdown(null);
+                                    }}
+                                    className="flex items-center gap-2.5 py-2 px-3 rounded-xl text-xs font-semibold text-slate-600 hover:text-orange-600 hover:bg-orange-50/80 transition-colors"
+                                  >
+                                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0" />
+                                    <span>{sub.name}</span>
+                                  </Link>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            setOpenMobileDropdown(null);
+                          }}
+                          className="block py-2.5 text-sm font-bold text-slate-800 hover:text-orange-600 transition-colors"
+                        >
+                          {link.name}
+                        </Link>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
 
               <div className="pt-4 border-t border-slate-200 space-y-2">
@@ -268,8 +322,9 @@ export default function Navbar() {
               </div>
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </>
+      )}
+    </AnimatePresence>
     </>
   );
 }

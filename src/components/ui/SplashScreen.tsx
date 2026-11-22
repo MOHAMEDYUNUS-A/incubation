@@ -187,36 +187,38 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
         </button>
       </div>
 
-      {/* Central Logo & Dramatic Zoom Target Container */}
-      <motion.div
-        animate={
-          isZooming
-            ? {
-                scale: prefersReducedMotion ? 1 : 24,
-                opacity: [1, 0.8, 0],
-                filter: prefersReducedMotion ? "none" : "blur(14px)",
-                transition: {
-                  duration: prefersReducedMotion ? 0.35 : 0.75,
-                  ease: [0.7, 0, 0.2, 1],
-                },
-              }
-            : {
-                scale: 1,
-                opacity: 1,
-                filter: "blur(0px)",
-              }
-        }
-        className="relative z-10 flex flex-col items-center text-center px-6 max-w-lg w-full origin-center"
-      >
-        {/* The Logo Emblem with Ambient Glow */}
+      {/* Central Brand Stage with Smooth Logo Transition */}
+      <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-lg w-full origin-center">
+        {/* The Official Emblem with Ambient Floating & Buttery Zoom-through */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 15 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mb-6"
+          animate={
+            isZooming
+              ? {
+                  scale: prefersReducedMotion ? 1 : 22,
+                  opacity: [1, 0.85, 0],
+                  filter: prefersReducedMotion ? "none" : ["blur(0px)", "blur(2px)", "blur(14px)"],
+                  transition: {
+                    duration: prefersReducedMotion ? 0.35 : 0.85,
+                    ease: [0.65, 0, 0.35, 1], // Smooth cinematic acceleration
+                  },
+                }
+              : {
+                  scale: 1,
+                  opacity: 1,
+                  filter: "blur(0px)",
+                  y: [0, -5, 0],
+                  transition: {
+                    y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                  },
+                }
+          }
+          style={{ willChange: "transform, opacity", transformOrigin: "center center" }}
+          className="relative mb-6 cursor-pointer"
+          onClick={handleSkip}
+          title="Click to enter"
         >
-          {/* Outer Glow Halo */}
-          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-orange-400/20 via-blue-500/20 to-orange-400/20 blur-xl opacity-75 animate-pulse" />
+          {/* Outer Ambient Glow Halo */}
+          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-orange-400/20 via-blue-500/20 to-orange-400/20 blur-xl opacity-80 animate-pulse pointer-events-none" />
 
           <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-white p-3.5 flex items-center justify-center border border-slate-200/90 shadow-2xl shadow-blue-900/10">
             <img
@@ -238,15 +240,19 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
           </motion.div>
         </motion.div>
 
-        {/* Institutional Brand Heading */}
+        {/* Institutional Brand Heading - Smooth Fade Out on Zoom */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{
             opacity: isZooming ? 0 : 1,
-            y: 0,
+            y: isZooming ? 12 : 0,
           }}
-          transition={{ duration: 0.45, delay: 0.15 }}
-          className="space-y-2"
+          transition={{
+            duration: isZooming ? 0.25 : 0.45,
+            ease: "easeOut",
+            delay: isZooming ? 0 : 0.15,
+          }}
+          className="space-y-2 pointer-events-none"
         >
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-orange-700 text-[11px] font-bold uppercase tracking-wider shadow-2xs">
             <span>StartupTN Recognised Pre-Incubation Centre</span>
@@ -265,14 +271,19 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
           </p>
         </motion.div>
 
-        {/* Sleek Progress Bar & Percentage Counter */}
+        {/* Sleek Progress Bar & Percentage Counter - Smooth Fade Out on Zoom */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{
             opacity: isZooming ? 0 : 1,
+            y: isZooming ? 10 : 0,
           }}
-          transition={{ duration: 0.3, delay: 0.25 }}
-          className="w-full max-w-xs mt-7"
+          transition={{
+            duration: isZooming ? 0.22 : 0.3,
+            ease: "easeOut",
+            delay: isZooming ? 0 : 0.25,
+          }}
+          className="w-full max-w-xs mt-7 pointer-events-none"
         >
           <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 mb-2">
             <span className="font-semibold text-slate-600 flex items-center gap-1">
@@ -288,7 +299,7 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
             />
           </div>
         </motion.div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }

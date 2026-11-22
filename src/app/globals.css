@@ -221,6 +221,71 @@
   will-change: transform;
 }
 
+/* Lightweight Hardware-Accelerated Page & Element Transition Keyframes (X & Y) */
+@keyframes page-enter-y {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes page-enter-x-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-18px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes page-enter-x-right {
+  from {
+    opacity: 0;
+    transform: translate3d(18px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes page-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-page-enter {
+  animation: page-enter-y 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-slide-x-left {
+  animation: page-enter-x-left 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-slide-x-right {
+  animation: page-enter-x-right 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-scale-in {
+  animation: page-scale-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
 /* Accessibility: Support prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -236,7 +301,11 @@
   .animate-float-reverse,
   .animate-roll-3d,
   .animate-marquee-ltr,
-  .animate-marquee-ltr-slow {
+  .animate-marquee-ltr-slow,
+  .animate-page-enter,
+  .animate-slide-x-left,
+  .animate-slide-x-right,
+  .animate-scale-in {
     animation: none !important;
     transform: none !important;
   }
