@@ -33,6 +33,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import MediaUploadZone from "@/components/ui/MediaUploadZone";
 import { useSiteContent, SiteContent } from "@/context/ContentContext";
 
 export default function AdminPage() {
@@ -986,21 +987,26 @@ export default function AdminPage() {
                 </div>
               </div>
 
-              {/* Add New Hero Image Bar */}
-              <div className="flex flex-col sm:flex-row gap-3 mb-6 p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                <Input
+              {/* Add New Hero Image / Video Bar with MediaUploadZone */}
+              <div className="mb-6 p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+                <MediaUploadZone
                   value={newHeroImageUrl}
-                  onChange={(e) => setNewHeroImageUrl(e.target.value)}
-                  placeholder="Enter image URL or local path (e.g. /images/incubation/image-3.jpeg)..."
-                  className="flex-1 h-11 text-xs sm:text-sm bg-white"
+                  onChange={(val) => setNewHeroImageUrl(val)}
+                  label="Upload New Backdrop Slide or Video"
+                  helperText="Upload campus photography, lab facilities, or background video clip"
+                  aspectRatio="aspect-video"
                 />
-                <Button
-                  onClick={handleAddHeroImage}
-                  className="bg-[#0f2c59] hover:bg-blue-900 text-white font-bold h-11 px-5 rounded-xl text-xs gap-2 shrink-0"
-                >
-                  <Plus className="w-4 h-4" />
-                  <span>Add Image</span>
-                </Button>
+                {newHeroImageUrl && (
+                  <div className="flex justify-end pt-1">
+                    <Button
+                      onClick={handleAddHeroImage}
+                      className="bg-[#0f2c59] hover:bg-blue-900 text-white font-bold h-10 px-5 rounded-xl text-xs gap-2 shadow-sm"
+                    >
+                      <Plus className="w-4 h-4" />
+                      <span>Add to Hero Carousel</span>
+                    </Button>
+                  </div>
+                )}
               </div>
 
               {/* Images Grid */}
@@ -1733,23 +1739,13 @@ export default function AdminPage() {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Image Path / URL *
-                </label>
-                <Input
-                  required
-                  value={photoForm.image}
-                  onChange={(e) => setPhotoForm({ ...photoForm, image: e.target.value })}
-                  placeholder="e.g. /images/incubation/img-54.jpeg"
-                  className="h-10 text-xs font-mono"
-                />
-                {photoForm.image && (
-                  <div className="mt-2 rounded-xl overflow-hidden aspect-[16/9] border border-slate-200 bg-slate-100">
-                    <img src={photoForm.image} alt="Preview" className="w-full h-full object-cover" />
-                  </div>
-                )}
-              </div>
+              <MediaUploadZone
+                value={photoForm.image}
+                onChange={(val) => setPhotoForm({ ...photoForm, image: val })}
+                label="Gallery Photograph or Video Asset"
+                helperText="Upload JPG, PNG, WebP image or MP4/WebM video from your device"
+                required
+              />
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
@@ -1914,6 +1910,14 @@ export default function AdminPage() {
                   className="w-full p-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
+
+              <MediaUploadZone
+                value={eventForm.flyerImage}
+                onChange={(val) => setEventForm({ ...eventForm, flyerImage: val })}
+                label="Event Poster / Video Teaser"
+                helperText="Upload event poster graphic (JPG, PNG) or promotional video clip"
+                aspectRatio="aspect-video"
+              />
 
               <div className="flex items-center justify-between pt-2">
                 <label className="flex items-center gap-2 cursor-pointer">
