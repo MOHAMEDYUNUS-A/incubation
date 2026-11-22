@@ -58,6 +58,7 @@ export async function GET(
         securityHash: passport.securityHash,
         status: passport.status,
         remarks: passport.remarks,
+        qrCodeData: passport.qrCodeData,
       },
       founders,
       journeySummary: {

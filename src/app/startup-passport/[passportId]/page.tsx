@@ -198,45 +198,81 @@ export default function StartupPassportViewPage({
           <div className="absolute -top-16 -right-16 w-80 h-80 rounded-full bg-blue-900/5 blur-2xl pointer-events-none" />
           <div className="absolute -bottom-16 -left-16 w-80 h-80 rounded-full bg-orange-500/5 blur-2xl pointer-events-none" />
 
-          {/* Header Banner */}
-          <div className="border-b border-slate-200/80 pb-6 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-950 to-blue-900 p-2.5 flex items-center justify-center shadow-md shadow-blue-950/20 text-white font-bold text-2xl tracking-tighter">
-                MIF
-              </div>
+          {/* 1. Institutional Accreditation Ribbon */}
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200/80 pb-4 mb-6">
+            <div className="flex items-center gap-2.5">
+              <img
+                src="/logos/official-mif-logo.png"
+                alt="MASTeR Incubation Foundation Crest"
+                className="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0 drop-shadow-xs"
+              />
               <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[11px] font-black tracking-widest uppercase px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-900 border border-blue-200">
-                    Official Digital Credential
+                <span className="text-[11px] sm:text-xs font-black text-[#0f2c59] tracking-tight uppercase">
+                  MASTeR Incubation Foundation
+                </span>
+                <span className="text-[10px] text-slate-400 font-medium hidden sm:inline ml-2">
+                  · MAMCET · StartupTN Pre-Incubation Centre
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] sm:text-[10.5px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-900 border border-blue-200">
+                Official Digital Credential
+              </span>
+              <span className={`text-[10px] sm:text-[10.5px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full border flex items-center gap-1.5 ${
+                isPassportActive 
+                  ? "bg-emerald-50 text-emerald-800 border-emerald-300"
+                  : "bg-amber-50 text-amber-800 border-amber-300"
+              }`}>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                {passport.status}
+              </span>
+            </div>
+          </div>
+
+          {/* 2. Startup Identity Hero (Front and Center) */}
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-slate-200/80 pb-6 mb-8">
+            <div className="flex items-start sm:items-center gap-4 sm:gap-5">
+              {/* Dynamic Venture Emblem */}
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#0f2c59] via-[#091b34] to-slate-900 p-1 flex items-center justify-center shadow-lg shadow-blue-950/20 text-white shrink-0 border-2 border-orange-500/40">
+                <div className="w-full h-full rounded-xl bg-gradient-to-br from-[#0f2c59] to-[#091b34] flex items-center justify-center font-black text-2xl sm:text-3xl tracking-tight text-white font-display">
+                  {passport.startupName.split(" ").map(w => w[0]).slice(0, 2).join("")}
+                </div>
+                <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center border-2 border-white shadow-xs" title="Formally Approved & Verified">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                  <span className="text-[10.5px] font-extrabold uppercase tracking-wider text-orange-700 bg-orange-100/80 px-2.5 py-0.5 rounded-md border border-orange-200">
+                    Incubated Venture
                   </span>
-                  <span className={`text-[11px] font-black tracking-widest uppercase px-2.5 py-0.5 rounded-full border ${
-                    isPassportActive 
-                      ? "bg-emerald-100 text-emerald-800 border-emerald-300"
-                      : "bg-amber-100 text-amber-800 border-amber-300"
-                  }`}>
-                    {passport.status}
+                  <span className="text-[11px] font-bold text-slate-500">
+                    Cohort 2026 · Pre-Seed
                   </span>
                 </div>
-                <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-1">
-                  MASTeR Incubation Foundation
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight font-display">
+                  {passport.startupName}
                 </h1>
-                <p className="text-xs text-slate-600 font-medium">
-                  M.A.M. College of Engineering & Technology (MAMCET) · Trichy, Tamil Nadu
+                <p className="text-xs sm:text-sm text-slate-600 font-medium mt-1.5 max-w-xl leading-relaxed">
+                  {passport.remarks}
                 </p>
               </div>
             </div>
 
-            {/* Passport ID Badge */}
-            <div className="bg-white/90 backdrop-blur border border-slate-200 rounded-2xl p-4 flex items-center gap-4 shadow-sm w-full md:w-auto">
-              <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center font-mono font-bold text-lg border border-orange-200/70">
+            {/* Official Passport ID Plaque */}
+            <div className="bg-white/95 backdrop-blur border border-slate-200 rounded-2xl p-4 sm:p-5 flex items-center gap-4 shadow-sm w-full md:w-auto shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center font-mono font-bold text-lg border border-orange-200/70 shrink-0">
                 <FileCheck className="w-6 h-6" />
               </div>
               <div>
                 <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Startup Passport ID</p>
-                <p className="text-lg sm:text-xl font-mono font-black text-blue-950 tracking-tight">
+                <p className="text-lg sm:text-xl font-mono font-black text-[#0f2c59] tracking-tight">
                   {passport.passportId}
                 </p>
-                <p className="text-[11px] text-slate-500 font-medium flex items-center gap-1">
+                <p className="text-[11px] text-slate-500 font-medium flex items-center gap-1.5 mt-0.5">
                   <Clock className="w-3 h-3 text-slate-400" />
                   Activated: {new Date(passport.activationDate).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" })}
                 </p>
@@ -244,32 +280,22 @@ export default function StartupPassportViewPage({
             </div>
           </div>
 
-          {/* Main Passport Content Grid */}
+          {/* 3. Main Passport Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Left 8 Cols: Startup Summary, Progress & Security Seals */}
+            {/* Left 8 Cols: Progress Summary & Institutional Badges */}
             <div className="lg:col-span-8 space-y-6">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-orange-600">Incubated Venture</span>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-0.5">
-                  {passport.startupName}
-                </h2>
-                <p className="text-sm text-slate-600 mt-2 leading-relaxed">
-                  {passport.remarks}
-                </p>
-              </div>
-
               {/* Progress Summary Card */}
-              <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-sm space-y-3">
+              <div className="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-sm space-y-3.5">
                 <div className="flex items-center justify-between">
                   <div>
                     <span className="text-[11px] uppercase font-bold tracking-wider text-slate-400">Incubation Milestone Completion</span>
-                    <p className="text-xl font-bold text-slate-900 mt-0.5">
+                    <p className="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">
                       {progress.percentage}% <span className="text-xs font-normal text-slate-500">weighted roadmap score</span>
                     </p>
                   </div>
                   <div className="text-right">
                     <span className="text-[11px] uppercase font-bold tracking-wider text-slate-400">Stages Passed</span>
-                    <p className="text-base font-semibold text-blue-950 mt-0.5">
+                    <p className="text-base sm:text-lg font-bold text-[#0f2c59] mt-0.5">
                       {progress.completedCount} / {progress.totalCount} Stages
                     </p>
                   </div>
@@ -291,25 +317,25 @@ export default function StartupPassportViewPage({
 
               {/* Institutional Accreditation Pill Badges */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div className="bg-white/80 border border-slate-200 rounded-xl p-3 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-800 flex items-center justify-center font-bold text-xs">TN</div>
+                <div className="bg-white/90 border border-slate-200 rounded-xl p-3.5 flex items-center gap-3 shadow-2xs">
+                  <div className="w-9 h-9 rounded-lg bg-blue-50 text-blue-800 flex items-center justify-center font-extrabold text-xs shrink-0">TN</div>
                   <div>
                     <p className="text-[10px] uppercase font-bold text-slate-400">Ecosystem Node</p>
                     <p className="text-xs font-bold text-slate-800">StartupTN Hub</p>
                   </div>
                 </div>
-                <div className="bg-white/80 border border-slate-200 rounded-xl p-3 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-orange-50 text-orange-800 flex items-center justify-center font-bold text-xs">HI</div>
+                <div className="bg-white/90 border border-slate-200 rounded-xl p-3.5 flex items-center gap-3 shadow-2xs">
+                  <div className="w-9 h-9 rounded-lg bg-orange-50 text-orange-800 flex items-center justify-center font-extrabold text-xs shrink-0">HI</div>
                   <div>
                     <p className="text-[10px] uppercase font-bold text-slate-400">Host Institute</p>
                     <p className="text-xs font-bold text-slate-800">MSME Recognized</p>
                   </div>
                 </div>
-                <div className="bg-white/80 border border-slate-200 rounded-xl p-3 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center font-bold text-xs">SEC</div>
+                <div className="bg-white/90 border border-slate-200 rounded-xl p-3.5 flex items-center gap-3 shadow-2xs">
+                  <div className="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center font-extrabold text-xs shrink-0">SEC</div>
                   <div>
                     <p className="text-[10px] uppercase font-bold text-slate-400">Verification</p>
-                    <p className="text-xs font-bold text-slate-800">{passport.verificationCount} Verifications</p>
+                    <p className="text-xs font-bold text-slate-800">{passport.verificationCount} Audited Checks</p>
                   </div>
                 </div>
               </div>

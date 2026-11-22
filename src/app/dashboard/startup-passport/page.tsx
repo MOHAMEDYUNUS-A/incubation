@@ -151,23 +151,40 @@ export default function FounderPassportDashboardPage() {
     <div className="min-h-screen bg-slate-50/70 pt-24 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Top Header & Venture Selector */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-white border border-slate-200/90 rounded-2xl p-6 shadow-sm">
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-950 border border-blue-200">
-                Founder Portal
-              </span>
-              <span className="text-xs text-slate-500">Startup Passport Operations</span>
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-sm">
+          <div className="flex items-center gap-4 sm:gap-5">
+            {/* Startup Emblem */}
+            <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#0f2c59] via-[#091b34] to-slate-900 p-1 flex items-center justify-center shadow-md shadow-blue-950/15 text-white shrink-0 border-2 border-orange-500/30">
+              <div className="w-full h-full rounded-xl bg-gradient-to-br from-[#0f2c59] to-[#091b34] flex items-center justify-center font-black text-xl sm:text-2xl tracking-tight text-white font-display">
+                {(passport?.startupName || "Venture").split(" ").map((w: string) => w[0]).slice(0, 2).join("")}
+              </div>
+              <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center border-2 border-white shadow-xs">
+                <CheckCircle2 className="w-3 h-3" />
+              </div>
             </div>
-            <h1 className="text-2xl font-black text-slate-900 tracking-tight mt-1">
-              {passport?.startupName || "Venture Dashboard"}
-            </h1>
-            <p className="text-xs text-slate-500 font-mono mt-0.5">
-              Passport ID: <strong className="text-blue-950">{passport?.passportId}</strong>
-            </p>
+
+            <div>
+              <div className="flex flex-wrap items-center gap-2 mb-1">
+                <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-blue-100 text-[#0f2c59] border border-blue-200">
+                  Founder Workspace
+                </span>
+                <span className="text-[10.5px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  {passport?.status || "ACTIVE"}
+                </span>
+                <span className="text-xs text-slate-400 font-medium">Cohort 2026</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight font-display">
+                {passport?.startupName || "Venture Dashboard"}
+              </h1>
+              <p className="text-xs text-slate-500 font-mono mt-0.5 flex items-center gap-2">
+                <span>Passport ID: <strong className="text-[#0f2c59]">{passport?.passportId}</strong></span>
+                <span className="text-slate-300">|</span>
+                <span>Registry: <strong className="text-slate-700">MIF · MAMCET</strong></span>
+              </p>
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2.5 self-stretch sm:self-auto">
             {passports.length > 1 && (
               <select
                 value={selectedPassportId}
@@ -184,18 +201,18 @@ export default function FounderPassportDashboardPage() {
 
             <Link
               href={`/startup-passport/${passport?.passportId}`}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition shadow-sm"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition shadow-2xs"
             >
               <Eye className="w-3.5 h-3.5" />
-              Public Card
+              Public Passport Card
             </Link>
 
             <Link
               href={`/startup-passport/verify/${passport?.passportId}`}
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-blue-950 text-white hover:bg-blue-900 transition shadow-sm"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-blue-950 text-white hover:bg-blue-900 transition shadow-2xs"
             >
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              Verify Credential
+              Verification Seal
             </Link>
           </div>
         </div>

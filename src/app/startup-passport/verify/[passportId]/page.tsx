@@ -38,6 +38,7 @@ interface VerificationResponse {
     securityHash: string;
     status: string;
     remarks?: string;
+    qrCodeData?: string;
   };
   founders: Array<{
     fullName: string;
@@ -197,54 +198,72 @@ export default function StartupPassportVerifyPage({
         <div className="certificate-container relative bg-white border-4 border-double border-blue-950/20 rounded-3xl p-6 sm:p-12 shadow-2xl shadow-blue-950/5 space-y-8 overflow-hidden">
           {/* Institutional Crest & Seal Header */}
           <div className="text-center space-y-2 border-b-2 border-slate-200 pb-8 relative">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-extrabold uppercase tracking-widest mb-2">
+            <div className="flex justify-center mb-3">
+              <img
+                src="/logos/official-mif-logo.png"
+                alt="MASTeR Incubation Foundation Crest"
+                className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-xs"
+              />
+            </div>
+
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-black uppercase tracking-widest mb-1">
               <CheckCircle2 className="w-4 h-4 text-emerald-600" />
               Officially Verified Credential
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight font-display">
               MASTeR Incubation Foundation
             </h1>
-            <p className="text-sm font-semibold text-blue-950">
+            <p className="text-sm font-bold text-[#0f2c59]">
               M.A.M. College of Engineering & Technology (MAMCET)
             </p>
-            <p className="text-xs text-slate-500 max-w-xl mx-auto">
-              StartupTN Pre-Incubation Centre · MSME Recognized Host Institute · Trichy, Tamil Nadu
+            <p className="text-xs text-slate-500 max-w-xl mx-auto font-medium">
+              StartupTN Pre-Incubation Centre · MSME Recognized Host Institute · Siruganur, Trichy, Tamil Nadu
             </p>
           </div>
 
           {/* Verification Statement */}
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Institutional Attestation</p>
-            <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-              This document officially certifies that the venture named below has been thoroughly vetted, admitted, and maintained as a verified incubated startup in good standing at MASTeR Incubation Foundation.
+            <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
+              This document officially certifies that the technology venture named below has been thoroughly vetted, admitted, and maintained as an accredited incubated startup in good standing under the MASTeR Incubation Foundation.
             </p>
           </div>
 
-          {/* Venture Title & Passport ID */}
-          <div className="bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 border-2 border-blue-900/10 rounded-2xl p-6 sm:p-8 text-center space-y-2">
-            <span className="text-xs font-extrabold uppercase tracking-wider text-orange-600">Incubated Venture Name</span>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          {/* Venture Title & Passport ID Plaque */}
+          <div className="bg-gradient-to-br from-slate-50 via-blue-50/40 to-slate-50 border-2 border-blue-900/15 rounded-2xl p-6 sm:p-8 text-center space-y-3 shadow-xs">
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-[11px] font-extrabold uppercase tracking-wider text-orange-700 bg-orange-100/90 px-3 py-0.5 rounded-full border border-orange-200">
+                Attested Incubated Venture
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight font-display">
               {passport.startupName}
             </h2>
 
-            <div className="inline-block mt-3 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm">
-              <span className="text-[10px] uppercase font-bold text-slate-400 block">Startup Passport Number</span>
-              <span className="text-xl sm:text-2xl font-mono font-black text-blue-950 tracking-wider">
-                {passport.passportId}
-              </span>
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+              <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-xs">
+                <span className="text-[10px] uppercase font-bold text-slate-400">Passport Number:</span>
+                <span className="text-lg sm:text-xl font-mono font-black text-[#0f2c59] tracking-wider">
+                  {passport.passportId}
+                </span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 bg-emerald-50 px-3.5 py-2 rounded-xl border border-emerald-200 text-emerald-800 text-xs font-bold">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <span>Status: {passport.status}</span>
+              </div>
             </div>
           </div>
 
           {/* Verification Details Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div className="bg-slate-50/80 p-4 rounded-xl border border-slate-200">
               <span className="text-[10px] uppercase font-bold text-slate-400 block">Passport Status</span>
-              <span className="text-sm font-extrabold text-emerald-700 flex items-center gap-1 mt-1">
+              <span className="text-sm font-extrabold text-emerald-700 flex items-center gap-1.5 mt-1">
                 <CheckCircle2 className="w-4 h-4" /> {passport.status}
               </span>
             </div>
-            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div className="bg-slate-50/80 p-4 rounded-xl border border-slate-200">
               <span className="text-[10px] uppercase font-bold text-slate-400 block">Activation Date</span>
               <span className="text-sm font-bold text-slate-800 mt-1 block">
                 {new Date(passport.activationDate).toLocaleDateString("en-IN", {
@@ -254,13 +273,13 @@ export default function StartupPassportVerifyPage({
                 })}
               </span>
             </div>
-            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div className="bg-slate-50/80 p-4 rounded-xl border border-slate-200">
               <span className="text-[10px] uppercase font-bold text-slate-400 block">Roadmap Score</span>
-              <span className="text-sm font-bold text-blue-950 mt-1 block">
+              <span className="text-sm font-bold text-[#0f2c59] mt-1 block">
                 {journeySummary.completionPercentage}% ({journeySummary.completedStages}/{journeySummary.totalStages} Stages)
               </span>
             </div>
-            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div className="bg-slate-50/80 p-4 rounded-xl border border-slate-200">
               <span className="text-[10px] uppercase font-bold text-slate-400 block">Audit Verifications</span>
               <span className="text-sm font-bold text-slate-800 mt-1 block">
                 {passport.totalVerifications} inspections
@@ -312,9 +331,10 @@ export default function StartupPassportVerifyPage({
             </div>
           </div>
 
-          {/* Cryptographic Seal & Signatures */}
+          {/* Cryptographic Seal, Live QR & Signatures */}
           <div className="border-t-2 border-slate-200 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-1 text-center md:text-left">
+            {/* Left: Tamper-proof hash */}
+            <div className="space-y-1 text-center md:text-left flex-1">
               <span className="text-[10px] uppercase font-bold text-slate-400 block">Cryptographic Fingerprint</span>
               <p className="font-mono text-xs text-slate-700 break-all bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200 inline-block">
                 {verificationSeal.tamperProofHash}
@@ -324,11 +344,26 @@ export default function StartupPassportVerifyPage({
               </p>
             </div>
 
-            <div className="text-center md:text-right space-y-1">
+            {/* Center: Real QR Code */}
+            {passport.qrCodeData && (
+              <div className="text-center shrink-0">
+                <div className="p-2 bg-white rounded-xl border border-slate-200 shadow-xs inline-block">
+                  <img
+                    src={passport.qrCodeData}
+                    alt="Certificate QR Verification"
+                    className="w-20 h-20 object-contain"
+                  />
+                </div>
+                <span className="text-[9px] uppercase font-bold text-slate-400 block mt-1">Scan to Verify</span>
+              </div>
+            )}
+
+            {/* Right: Institutional Signature */}
+            <div className="text-center md:text-right space-y-1 shrink-0">
               <div className="w-40 border-b border-slate-900 mx-auto md:ml-auto mb-1" />
-              <p className="text-xs font-bold text-slate-900">Dr. R. Rajavel</p>
-              <p className="text-[10px] text-slate-500">Director of Incubation & Innovation</p>
-              <p className="text-[10px] text-slate-400">MASTeR Incubation Foundation</p>
+              <p className="text-xs font-black text-slate-900">Dr. R. Rajavel</p>
+              <p className="text-[10.5px] font-medium text-slate-600">Director of Incubation & Innovation</p>
+              <p className="text-[10px] font-bold text-slate-400">MASTeR Incubation Foundation</p>
             </div>
           </div>
         </div>
