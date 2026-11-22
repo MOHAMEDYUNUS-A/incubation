@@ -140,7 +140,7 @@ export default function StartupPassportViewPage({
   const isPassportActive = passport.status === "ACTIVE";
 
   return (
-    <div className="min-h-screen bg-slate-50/60 pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50/60 pt-32 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8">
       {/* Print Styles */}
       <style jsx global>{`
         @media print {

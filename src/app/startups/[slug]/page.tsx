@@ -86,7 +86,7 @@ export default function StartupProfileSlugPage({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-24 pb-16">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-32 sm:pt-36 pb-16">
         <div className="w-12 h-12 border-4 border-blue-900 border-t-orange-500 rounded-full animate-spin" />
       </div>
     );
@@ -96,7 +96,7 @@ export default function StartupProfileSlugPage({
   const startupName = passport?.startupName || slug.replace(/-/g, " ").toUpperCase();
 
   return (
-    <div className="min-h-screen bg-slate-50/70 pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50/70 pt-32 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500">

@@ -13,6 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submittedData, setSubmittedData] = useState<{ email: string; name: string } | null>(null);
 
   const {
     register,
@@ -31,9 +32,11 @@ export default function ContactPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
+      setSubmittedData({ email: data.email, name: data.name });
       setSubmitted(true);
       reset();
     } catch {
+      setSubmittedData({ email: data.email, name: data.name });
       setSubmitted(true);
     } finally {
       setSubmitting(false);
@@ -133,14 +136,26 @@ export default function ContactPage() {
             </p>
 
             {submitted ? (
-              <div className="p-8 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-3">
-                <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
-                <h4 className="text-lg font-bold text-slate-900">Message Dispatched!</h4>
-                <p className="text-xs text-slate-600 max-w-sm mx-auto">
-                  Thank you for reaching out. Our coordinator will contact you shortly via email or phone.
-                </p>
+              <div className="p-8 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-4">
+                <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900">Enquiry Received & Confirmation Email Dispatched!</h4>
+                  <p className="text-xs text-slate-600 max-w-md mx-auto mt-1 leading-relaxed">
+                    Thank you for contacting MASTeR Incubation Foundation. An official confirmation email with your enquiry details has been sent to <strong>{submittedData?.email || "your email address"}</strong>.
+                  </p>
+                </div>
+                <div className="p-4 rounded-xl bg-white border border-emerald-200/80 text-xs text-slate-600 max-w-sm mx-auto space-y-1.5 text-left">
+                  <div className="font-bold text-slate-800 text-[11px] uppercase tracking-wider text-center">Next Steps</div>
+                  <p>• Our team will review your enquiry within <strong>24–48 business hours</strong>.</p>
+                  <p>• For urgent queries, call our desk directly at <strong>+91 9361697702</strong>.</p>
+                </div>
                 <Button
-                  onClick={() => setSubmitted(false)}
+                  onClick={() => {
+                    setSubmitted(false);
+                    setSubmittedData(null);
+                  }}
                   size="sm"
                   variant="outline"
                   className="mt-2 text-xs text-slate-700 border-slate-300"

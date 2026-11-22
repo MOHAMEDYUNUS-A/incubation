@@ -47,7 +47,7 @@ export default function SingleSuccessStoryPage({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-24 pb-16">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-32 sm:pt-36 pb-16">
         <div className="w-12 h-12 border-4 border-blue-900 border-t-orange-500 rounded-full animate-spin" />
       </div>
     );
@@ -55,7 +55,7 @@ export default function SingleSuccessStoryPage({
 
   if (!story) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-24 pb-16 px-4">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-32 sm:pt-36 pb-16 px-4">
         <div className="bg-white border border-slate-200 rounded-2xl p-8 max-w-md text-center shadow-lg space-y-4">
           <h2 className="text-xl font-bold text-slate-900">Story Not Found</h2>
           <p className="text-xs text-slate-600">The requested success story chronicle could not be located.</p>
@@ -71,7 +71,7 @@ export default function SingleSuccessStoryPage({
   }
 
   return (
-    <div className="min-h-screen bg-slate-50/70 pt-24 pb-24 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50/70 pt-32 sm:pt-36 pb-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-10">
         {/* Breadcrumb Navigation */}
         <div className="flex items-center justify-between">

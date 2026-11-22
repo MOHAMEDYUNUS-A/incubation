@@ -42,7 +42,7 @@ export default function SuccessStoriesIndexPage() {
   const regularStories = stories.filter((s) => s.id !== editorialPick?.id);
 
   return (
-    <div className="min-h-screen bg-slate-50/70 pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50/70 pt-32 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-12">
         {/* Editorial Masthead */}
         <div className="text-center max-w-3xl mx-auto space-y-3">

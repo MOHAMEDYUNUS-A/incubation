@@ -9,8 +9,8 @@
       "status": "ACTIVE",
       "issuedAt": "2026-01-15T09:30:00.000Z",
       "activationDate": "2026-01-18T10:00:00.000Z",
-      "lastVerifiedAt": "2026-11-22T13:59:52.569Z",
-      "verificationCount": 146,
+      "lastVerifiedAt": "2026-11-22T14:19:02.682Z",
+      "verificationCount": 151,
       "securityHash": "SHA256-MIF-2026-AERODRONE-99882201",
       "qrCodeData": "data:image/png;base64,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",
       "remarks": "Formally approved by MIF Governing Council. Recipient of TANSEED 4.0 Pre-Seed Grant."
@@ -734,6 +734,56 @@
     }
   ],
   "activity": [
+    {
+      "id": "act_1795357142682_y3pm9",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "action": "Public Verification: MASTER-SP-2026-0001",
+      "category": "PASSPORT",
+      "details": "Public verification request successfully validated for AeroDrone AI Labs.",
+      "performedBy": "Public Portal",
+      "timestamp": "2026-11-22T14:19:02.682Z"
+    },
+    {
+      "id": "act_1795356414250_qto99",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "action": "Public Verification: MASTER-SP-2026-0001",
+      "category": "PASSPORT",
+      "details": "Public verification request successfully validated for AeroDrone AI Labs.",
+      "performedBy": "Public Portal",
+      "timestamp": "2026-11-22T14:06:54.250Z"
+    },
+    {
+      "id": "act_1795356413595_h7v9n",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "action": "Public Verification: MASTER-SP-2026-0001",
+      "category": "PASSPORT",
+      "details": "Public verification request successfully validated for AeroDrone AI Labs.",
+      "performedBy": "Public Portal",
+      "timestamp": "2026-11-22T14:06:53.595Z"
+    },
+    {
+      "id": "act_1795356412308_pxdyy",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "action": "Public Verification: MASTER-SP-2026-0001",
+      "category": "PASSPORT",
+      "details": "Public verification request successfully validated for AeroDrone AI Labs.",
+      "performedBy": "Public Portal",
+      "timestamp": "2026-11-22T14:06:52.308Z"
+    },
+    {
+      "id": "act_1795356246360_3ttod",
+      "startupId": "s_1795332004112",
+      "startupName": "AeroDrone AI Labs",
+      "action": "Public Verification: MASTER-SP-2026-0001",
+      "category": "PASSPORT",
+      "details": "Public verification request successfully validated for AeroDrone AI Labs.",
+      "performedBy": "Public Portal",
+      "timestamp": "2026-11-22T14:04:06.360Z"
+    },
     {
       "id": "act_1795355992569_0tusu",
       "startupId": "s_1795332004112",

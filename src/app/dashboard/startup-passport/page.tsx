@@ -148,7 +148,7 @@ export default function FounderPassportDashboardPage() {
   const { passport, founders, milestones, progress, achievements, launches, mentoringSessions } = dossier || {};
 
   return (
-    <div className="min-h-screen bg-slate-50/70 pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50/70 pt-32 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Top Header & Venture Selector */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-sm">

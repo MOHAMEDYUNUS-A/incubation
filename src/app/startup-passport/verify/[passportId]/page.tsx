@@ -144,7 +144,7 @@ export default function StartupPassportVerifyPage({
   const { passport, founders, journeySummary, verifiedAchievements, verificationSeal } = data;
 
   return (
-    <div className="min-h-screen bg-slate-50/70 pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50/70 pt-32 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8">
       {/* Print stylesheet */}
       <style jsx global>{`
         @media print {
@@ -164,30 +164,31 @@ export default function StartupPassportVerifyPage({
 
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Navigation Breadcrumb & Print */}
-        <div className="flex items-center justify-between no-print">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6 no-print">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
             <Link href="/" className="hover:text-slate-900 transition">MIF Home</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
+            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
             <Link href={`/startup-passport/${passport.passportId}`} className="hover:text-slate-900 transition">
               Passport
             </Link>
-            <ChevronRight className="w-3.5 h-3.5" />
+            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
             <span className="text-emerald-700 font-bold">Public Verification</span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5 flex-wrap self-stretch sm:self-auto">
             <button
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold rounded-lg border border-slate-300 bg-white text-slate-800 hover:bg-slate-50 transition shadow-sm"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl border border-slate-300 bg-white text-slate-800 hover:bg-slate-50 transition shadow-xs"
             >
               <Printer className="w-3.5 h-3.5 text-slate-600" />
-              Print Verification Certificate
+              <span>Print Verification Certificate</span>
             </button>
             <Link
               href={`/startup-passport/${passport.passportId}`}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold rounded-lg bg-blue-950 text-white hover:bg-blue-900 transition shadow-sm"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl bg-[#0f2c59] text-white hover:bg-blue-900 transition shadow-xs"
             >
-              View Full Passport Card <ExternalLink className="w-3 h-3" />
+              <span>View Full Passport Card</span>
+              <ExternalLink className="w-3 h-3" />
             </Link>
           </div>
         </div>
