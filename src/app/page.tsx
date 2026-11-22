@@ -18,17 +18,15 @@ export default function HomePage() {
   const [isZooming, setIsZooming] = useState(false);
   const [splashFinished, setSplashFinished] = useState(false);
 
-  // Check if splash already viewed to avoid any initial scale shift
+  // Check optional ?skip_splash=true parameter
   useEffect(() => {
     try {
-      const viewed = sessionStorage.getItem("mif_splash_viewed");
       const urlParams = new URLSearchParams(window.location.search);
-      const forceSplash = urlParams.get("splash") === "true";
-      if (viewed && !forceSplash) {
+      if (urlParams.get("skip_splash") === "true") {
         setSplashFinished(true);
       }
     } catch {
-      setSplashFinished(true);
+      // Ignore if window undefined
     }
   }, []);
 

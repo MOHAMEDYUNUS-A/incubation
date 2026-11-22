@@ -10,12 +10,13 @@ interface SplashScreenProps {
 }
 
 export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenProps) {
-  const [phase, setPhase] = useState<"checking" | "loading" | "zooming" | "complete">("checking");
+  // Always start in loading state on every page load/reload
+  const [phase, setPhase] = useState<"loading" | "zooming" | "complete">("loading");
   const [progress, setProgress] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const zoomTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Check reduced motion preference and sessionStorage on mount
+  // Check reduced motion preference and lock body scroll on mount
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -27,24 +28,16 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
     };
     mediaQuery.addEventListener("change", handleMotionChange);
 
-    // Check if splash was already viewed in this browser session
+    // Optional query param ?skip_splash=true for automated CI test bypass
     const urlParams = new URLSearchParams(window.location.search);
-    const forceSplash = urlParams.get("splash") === "true";
-    let alreadyViewed = false;
-    try {
-      alreadyViewed = sessionStorage.getItem("mif_splash_viewed") === "true";
-    } catch {
-      // Ignore if storage blocked
-    }
-
-    if (alreadyViewed && !forceSplash) {
+    if (urlParams.get("skip_splash") === "true") {
       setPhase("complete");
+      if (onComplete) onComplete();
       return () => mediaQuery.removeEventListener("change", handleMotionChange);
     }
 
     // Lock body scroll while splash is active
     document.body.style.overflow = "hidden";
-    setPhase("loading");
 
     return () => {
       mediaQuery.removeEventListener("change", handleMotionChange);
@@ -53,7 +46,7 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
         clearTimeout(zoomTimerRef.current);
       }
     };
-  }, []);
+  }, [onComplete]);
 
   // Trigger zoom sequence
   const startZoom = useCallback(() => {
@@ -68,11 +61,6 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
     zoomTimerRef.current = setTimeout(() => {
       setPhase("complete");
       document.body.style.overflow = "";
-      try {
-        sessionStorage.setItem("mif_splash_viewed", "true");
-      } catch {
-        // Fallback if sessionStorage is blocked
-      }
       if (onComplete) {
         onComplete();
       }
@@ -116,7 +104,7 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [phase, startZoom]);
 
-  if (phase === "checking" || phase === "complete") {
+  if (phase === "complete") {
     return null;
   }
 
