@@ -30,6 +30,7 @@ import {
   Sliders,
   AlertCircle,
   Video,
+  RotateCcw,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -49,6 +50,16 @@ export default function AdminPage() {
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3500);
+  };
+
+  const handleResetToDefaults = async () => {
+    if (confirm("Reset dynamic catalog to official baseline? This clears custom edits made in this browser.")) {
+      try {
+        localStorage.removeItem("mif_site_content_v2");
+        localStorage.removeItem("mif_site_content_updated_at_v2");
+        window.location.reload();
+      } catch (e) {}
+    }
   };
 
   // Applications Pipeline State
@@ -509,6 +520,16 @@ export default function AdminPage() {
               title="Reload live content"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${contentLoading ? "animate-spin" : ""}`} />
+            </Button>
+            <Button
+              onClick={handleResetToDefaults}
+              variant="outline"
+              size="sm"
+              className="border-slate-300 text-slate-700 hover:bg-white text-xs h-10 px-3 gap-1.5 shadow-xs"
+              title="Reset catalog to official baseline"
+            >
+              <RotateCcw className="w-3.5 h-3.5 text-slate-500" />
+              <span className="hidden sm:inline">Reset Baseline</span>
             </Button>
           </div>
         </div>

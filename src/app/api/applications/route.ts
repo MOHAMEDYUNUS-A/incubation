@@ -99,3 +99,26 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+export async function PATCH(req: NextRequest) {
+  try {
+    const { id, status } = await req.json();
+    if (!id || !status) {
+      return NextResponse.json({ success: false, error: "Missing id or status" }, { status: 400 });
+    }
+    try {
+      const updated = await prisma.startupApplication.update({
+        where: { id },
+        data: { status },
+      });
+      return NextResponse.json({ success: true, data: updated });
+    } catch {
+      memoryApplications = memoryApplications.map((app) =>
+        app.id === id ? { ...app, status } : app
+      );
+      return NextResponse.json({ success: true, isFallback: true });
+    }
+  } catch (err: any) {
+    return NextResponse.json({ success: false, error: err.message }, { status: 400 });
+  }
+}

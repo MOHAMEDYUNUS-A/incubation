@@ -140,6 +140,28 @@
   ],
   "startups": [
     {
+      "name": "AeroDrone AI Labs",
+      "category": "ELECTRONICS_IOT_SMART",
+      "stage": "PROTOTYPE_MVP",
+      "oneLiner": "Autonomous precision agriculture drones with multi-spectral NIR payload for delta crop surveillance.",
+      "founders": "Karthik R. & MAMCET Aerospace Club",
+      "cohort": "Cohort 2026",
+      "logo": "",
+      "website": "https://",
+      "linkedin": "https://linkedin.com/company/",
+      "email": "",
+      "phone": "+91 ",
+      "funding": "TANSEED / MSME Applicant",
+      "impactMetric": "",
+      "tagsInput": "Hardware, IoT, DeepTech",
+      "tags": [
+        "Hardware",
+        "IoT",
+        "DeepTech"
+      ],
+      "id": "s_1795332004112"
+    },
+    {
       "website": "https://roboagri.example.com",
       "id": "s_test_1",
       "category": "ELECTRONICS_IOT_SMART",
