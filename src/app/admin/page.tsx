@@ -248,6 +248,7 @@ export default function AdminPage() {
     oneLiner: "",
     founders: "",
     cohort: "Cohort 2026",
+    logo: "",
     website: "",
     linkedin: "",
     email: "",
@@ -272,6 +273,7 @@ export default function AdminPage() {
       oneLiner: "",
       founders: "",
       cohort: "Cohort 2026",
+      logo: "",
       website: "https://",
       linkedin: "https://linkedin.com/company/",
       email: "",
@@ -287,6 +289,7 @@ export default function AdminPage() {
     setEditingStartup(st);
     setStartupForm({
       ...st,
+      logo: st.logo || "",
       tagsInput: st.tags ? st.tags.join(", ") : "",
     });
     setIsStartupModalOpen(true);
@@ -760,14 +763,27 @@ export default function AdminPage() {
                     className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col justify-between hover:border-blue-400 transition-colors"
                   >
                     <div>
-                      <div className="flex items-start justify-between mb-3">
-                        <div>
-                          <Badge variant="cyan" className="text-[10px] font-bold px-2 py-0.5 mb-2">
-                            {st.stage ? st.stage.replace(/_/g, " ") : "INCUBATED"}
-                          </Badge>
-                          <h3 className="text-xl font-bold text-slate-900 font-display">
-                            {st.name}
-                          </h3>
+                      <div className="flex items-start justify-between mb-3 gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/50 border border-slate-200 p-2 flex items-center justify-center shrink-0 shadow-2xs">
+                            {st.logo ? (
+                              <img
+                                src={st.logo}
+                                alt={st.name}
+                                className="max-h-full max-w-full object-contain"
+                              />
+                            ) : (
+                              <Rocket className="w-6 h-6 text-orange-600" />
+                            )}
+                          </div>
+                          <div>
+                            <Badge variant="cyan" className="text-[10px] font-bold px-2 py-0.2 mb-1">
+                              {st.stage ? st.stage.replace(/_/g, " ") : "INCUBATED"}
+                            </Badge>
+                            <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display leading-tight">
+                              {st.name}
+                            </h3>
+                          </div>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <button
@@ -1485,6 +1501,15 @@ export default function AdminPage() {
             {/* Scrollable Interior Form Body */}
             <form onSubmit={handleSaveStartup} className="flex flex-col flex-1 min-h-0 overflow-hidden">
               <div className="p-6 overflow-y-auto flex-1 space-y-4 text-xs sm:text-sm">
+                {/* Startup Brand Logo Upload Zone */}
+                <MediaUploadZone
+                  value={startupForm.logo}
+                  onChange={(val) => setStartupForm({ ...startupForm, logo: val })}
+                  label="Startup Brand Logo (PNG, SVG, JPG, WebP)"
+                  helperText="Upload official brand logo or emblem (transparent PNG or SVG recommended)"
+                  aspectRatio="aspect-square max-h-32 sm:max-h-36"
+                />
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-700 uppercase mb-1">

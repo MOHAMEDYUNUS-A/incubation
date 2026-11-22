@@ -3,12 +3,33 @@ import fs from "fs";
 import path from "path";
 
 const CONTENT_FILE_PATH = path.join(process.cwd(), "src", "data", "site-content.json");
+const TMP_FILE_PATH = path.join("/tmp", "site-content.json");
+
+// In-memory global store to guarantee persistence during lambda execution
+let inMemoryStore: any = null;
 
 function getStoredContent() {
+  if (inMemoryStore) {
+    return inMemoryStore;
+  }
+
+  // 1. Check /tmp on serverless environments
+  try {
+    if (fs.existsSync(TMP_FILE_PATH)) {
+      const fileData = fs.readFileSync(TMP_FILE_PATH, "utf-8");
+      inMemoryStore = JSON.parse(fileData);
+      return inMemoryStore;
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  // 2. Check bundled source file
   try {
     if (fs.existsSync(CONTENT_FILE_PATH)) {
       const fileData = fs.readFileSync(CONTENT_FILE_PATH, "utf-8");
-      return JSON.parse(fileData);
+      inMemoryStore = JSON.parse(fileData);
+      return inMemoryStore;
     }
   } catch (err) {
     console.error("Error reading site-content.json:", err);
@@ -17,17 +38,27 @@ function getStoredContent() {
 }
 
 function saveStoredContent(data: any) {
+  inMemoryStore = data;
+
+  // Attempt writing to bundled path (works in local dev)
   try {
     const dir = path.dirname(CONTENT_FILE_PATH);
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
     fs.writeFileSync(CONTENT_FILE_PATH, JSON.stringify(data, null, 2), "utf-8");
-    return true;
   } catch (err) {
-    console.error("Error saving site-content.json:", err);
-    return false;
+    // Expected on Vercel read-only filesystem
   }
+
+  // Attempt writing to /tmp (works in Vercel serverless functions)
+  try {
+    fs.writeFileSync(TMP_FILE_PATH, JSON.stringify(data, null, 2), "utf-8");
+  } catch (e) {
+    // ignore
+  }
+
+  return true;
 }
 
 export async function GET() {

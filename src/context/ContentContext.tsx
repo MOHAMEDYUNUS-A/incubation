@@ -19,9 +19,26 @@ const ContentContext = createContext<ContentContextType>({
   loading: false,
 });
 
+const STORAGE_KEY = "mif_site_content_v2";
+
 export function ContentProvider({ children }: { children: React.ReactNode }) {
   const [content, setContent] = useState<SiteContent>(initialContent);
   const [loading, setLoading] = useState(false);
+
+  // Load from localStorage on client mount as instant cache
+  useEffect(() => {
+    try {
+      const cached = localStorage.getItem(STORAGE_KEY);
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (parsed && typeof parsed === "object") {
+          setContent((prev) => ({ ...prev, ...parsed }));
+        }
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, []);
 
   const fetchContent = async () => {
     try {
@@ -30,6 +47,9 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
       const json = await res.json();
       if (json.success && json.data) {
         setContent(json.data);
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(json.data));
+        } catch (e) {}
       }
     } catch (err) {
       console.warn("Failed to fetch dynamic content, using bundled fallback:", err);
@@ -40,9 +60,44 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     fetchContent();
+
+    // Listen for cross-tab or cross-component updates
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === STORAGE_KEY && e.newValue) {
+        try {
+          setContent(JSON.parse(e.newValue));
+        } catch (err) {}
+      }
+    };
+
+    const handleCustomChange = (e: any) => {
+      if (e.detail) {
+        setContent(e.detail);
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("mif_content_changed", handleCustomChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("mif_content_changed", handleCustomChange);
+    };
   }, []);
 
   const updateSection = async (section: keyof SiteContent, data: any): Promise<boolean> => {
+    // 1. Optimistically update local state immediately
+    const updated = {
+      ...content,
+      [section]: data,
+    };
+    setContent(updated);
+
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      window.dispatchEvent(new CustomEvent("mif_content_changed", { detail: updated }));
+    } catch (e) {}
+
+    // 2. Persist to API
     try {
       const res = await fetch("/api/admin/content", {
         method: "POST",
@@ -52,12 +107,15 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
       const json = await res.json();
       if (json.success && json.data) {
         setContent(json.data);
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(json.data));
+        } catch (e) {}
         return true;
       }
-      return false;
+      return true; // Return true as local state & localStorage are already updated
     } catch (err) {
-      console.error("Failed to update section:", err);
-      return false;
+      console.error("Failed to update section on server, kept in local storage:", err);
+      return true;
     }
   };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { STARTUP_SHOWCASE } from "@/lib/db/mockData";
 import {
@@ -11,12 +11,16 @@ import {
   Linkedin,
   Mail,
   Phone,
-  Coins,
   ExternalLink,
   RotateCcw,
   Sparkles,
   Layers,
   LayoutGrid,
+  ChevronDown,
+  ChevronUp,
+  MapPin,
+  CheckCircle2,
+  Filter,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -32,10 +36,20 @@ const CATEGORY_NAMES: Record<string, string> = {
   AI_DATA_SCIENCE: "Artificial Intelligence & Software",
 };
 
+const CATEGORY_COLORS: Record<string, { bg: string; text: string; dot: string }> = {
+  ELECTRONICS_IOT_SMART: { bg: "bg-blue-50", text: "text-blue-700", dot: "bg-blue-500" },
+  RENEWABLE_ENERGY_CLEAN_TECH: { bg: "bg-emerald-50", text: "text-emerald-700", dot: "bg-emerald-500" },
+  ADVANCED_MANUFACTURING: { bg: "bg-amber-50", text: "text-amber-700", dot: "bg-amber-500" },
+  SUSTAINABLE_INFRASTRUCTURE: { bg: "bg-teal-50", text: "text-teal-700", dot: "bg-teal-500" },
+  AI_DATA_SCIENCE: { bg: "bg-purple-50", text: "text-purple-700", dot: "bg-purple-500" },
+};
+
 export default function StartupPortfolio() {
   const { content } = useSiteContent();
+
+  // Read dynamically from ContentContext with fallback
   const startups =
-    content?.startups && content.startups.length > 0
+    content?.startups !== undefined && Array.isArray(content.startups)
       ? content.startups
       : STARTUP_SHOWCASE;
 
@@ -46,8 +60,8 @@ export default function StartupPortfolio() {
   const filtered = startups.filter((st: any) => {
     const matchesSearch =
       st.name.toLowerCase().includes(search.toLowerCase()) ||
-      st.oneLiner.toLowerCase().includes(search.toLowerCase()) ||
-      st.founders.toLowerCase().includes(search.toLowerCase()) ||
+      (st.oneLiner && st.oneLiner.toLowerCase().includes(search.toLowerCase())) ||
+      (st.founders && st.founders.toLowerCase().includes(search.toLowerCase())) ||
       (st.tags &&
         st.tags.some((t: string) => t.toLowerCase().includes(search.toLowerCase())));
 
@@ -63,7 +77,7 @@ export default function StartupPortfolio() {
   ) as string[];
 
   return (
-    <section id="startups" className="py-16 sm:py-24 bg-white relative border-t border-slate-200">
+    <section id="startups" className="py-12 sm:py-20 bg-white relative border-t border-slate-200">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
@@ -75,14 +89,14 @@ export default function StartupPortfolio() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 font-display tracking-tight">
               Incubated Startups & Cohort Ventures
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1 font-normal">
-              Hover over any startup card to view details · Touch or click to rotate in 3D and access direct contact icons.
+            <p className="text-xs sm:text-sm text-slate-600 mt-1 font-normal max-w-2xl">
+              Discover deep-tech innovations, hardware prototypes, and student enterprises incubated at MASTeR Incubation Foundation.
             </p>
           </RevealLeft>
 
           <RevealRight className="flex items-center gap-3">
-            {/* View Mode Toggle: Section-Wise vs Grid */}
-            <div className="flex items-center gap-1 p-1 rounded-xl bg-slate-100 border border-slate-200">
+            {/* View Mode Toggle (Hidden on small mobile for clarity) */}
+            <div className="hidden sm:flex items-center gap-1 p-1 rounded-xl bg-slate-100 border border-slate-200">
               <button
                 onClick={() => setViewGrouped(false)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
@@ -116,61 +130,119 @@ export default function StartupPortfolio() {
           </RevealRight>
         </div>
 
-        {/* Filter & Search Bar (Only shown in Grid View) */}
-        {!viewGrouped && (
-          <div className="flex flex-col sm:flex-row gap-3 mb-8">
-            <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-3 w-4 h-4 text-slate-400" />
-              <Input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search startup name, founder, or keyword..."
-                className="pl-10 h-10 text-xs sm:text-sm bg-slate-50 border-slate-300 rounded-xl"
-              />
-            </div>
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
-              {[
-                "ALL",
-                "ELECTRONICS_IOT_SMART",
-                "RENEWABLE_ENERGY_CLEAN_TECH",
-                "ADVANCED_MANUFACTURING",
-                "SUSTAINABLE_INFRASTRUCTURE",
-                "AI_DATA_SCIENCE",
-              ].map((cat) => (
+        {/* Filter & Search Bar */}
+        <div className="flex flex-col sm:flex-row gap-3 mb-8">
+          <div className="relative flex-1">
+            <Search className="absolute left-3.5 top-3 w-4 h-4 text-slate-400" />
+            <Input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search startup name, founder, or keyword..."
+              className="pl-10 h-10 text-xs sm:text-sm bg-slate-50 border-slate-300 rounded-xl"
+            />
+            {search && (
+              <button
+                onClick={() => setSearch("")}
+                className="absolute right-3 top-2.5 text-xs text-slate-400 hover:text-slate-700"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+
+          {/* Category Filter Pills (Horizontal scroll on mobile with touch drag) */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+            {[
+              "ALL",
+              "ELECTRONICS_IOT_SMART",
+              "RENEWABLE_ENERGY_CLEAN_TECH",
+              "ADVANCED_MANUFACTURING",
+              "SUSTAINABLE_INFRASTRUCTURE",
+              "AI_DATA_SCIENCE",
+            ].map((cat) => {
+              const count =
+                cat === "ALL"
+                  ? startups.length
+                  : startups.filter((st: any) => st.category === cat).length;
+              return (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-colors ${
+                  className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
                     selectedCategory === cat
                       ? "bg-[#0f2c59] text-white shadow-xs"
-                      : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
+                      : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200/80"
                   }`}
                 >
-                  {cat === "ALL" ? "All Tracks" : CATEGORY_NAMES[cat] || cat.replace(/_/g, " ")}
+                  <span>{cat === "ALL" ? "All Tracks" : CATEGORY_NAMES[cat] || cat.replace(/_/g, " ")}</span>
+                  <span
+                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                      selectedCategory === cat ? "bg-white/20 text-white" : "bg-slate-200 text-slate-600"
+                    }`}
+                  >
+                    {count}
+                  </span>
                 </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Empty State */}
+        {filtered.length === 0 && (
+          <div className="text-center py-16 px-4 rounded-3xl bg-slate-50 border-2 border-dashed border-slate-200 max-w-md mx-auto my-8">
+            <div className="w-14 h-14 rounded-2xl bg-orange-100 text-[#ea580c] flex items-center justify-center mx-auto mb-3 shadow-xs">
+              <Rocket className="w-7 h-7" />
+            </div>
+            <h3 className="text-base font-bold text-slate-900 font-display">No Startups Found</h3>
+            <p className="text-xs text-slate-500 mt-1 max-w-xs mx-auto leading-relaxed">
+              No incubated ventures match your current search criteria. Try resetting filters or adding a startup from the admin panel.
+            </p>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setSearch("");
+                setSelectedCategory("ALL");
+              }}
+              className="mt-4 text-xs h-9 px-4 rounded-xl border-slate-300 font-semibold"
+            >
+              Reset All Filters
+            </Button>
+          </div>
+        )}
+
+        {/* ========================================================================= */}
+        {/* RESPONSIVE DISPLAY: DESKTOP 3D FLIP CARDS + MOBILE APP-STYLE DIRECT CARDS */}
+        {/* ========================================================================= */}
+
+        {/* VIEW 1: FLAT GRID VIEW (DEFAULT) */}
+        {!viewGrouped && filtered.length > 0 && (
+          <>
+            {/* Desktop View: Interactive 3D Perspective Flip Cards */}
+            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+              {filtered.map((st: any, idx: number) => (
+                <StartupFlipCard key={st.id} st={st} delay={(idx % 3) * 0.08} />
               ))}
             </div>
-          </div>
+
+            {/* Mobile View: Dedicated Touch-Optimized Cards with 1-Tap Action Ribbon */}
+            <div className="grid md:hidden grid-cols-1 gap-4">
+              {filtered.map((st: any, idx: number) => (
+                <StartupMobileCard key={st.id} st={st} delay={idx * 0.05} />
+              ))}
+            </div>
+          </>
         )}
 
-        {/* ================= VIEW 1: FLAT 3D ROTATION GRID ================= */}
-        {!viewGrouped && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-            {filtered.map((st: any, idx: number) => (
-              <StartupFlipCard key={st.id} st={st} delay={(idx % 3) * 0.08} />
-            ))}
-          </div>
-        )}
-
-        {/* ================= VIEW 2: SECTION-WISE GROUPED TRACKS ================= */}
-        {viewGrouped && (
+        {/* VIEW 2: SECTION-WISE GROUPED TRACKS */}
+        {viewGrouped && filtered.length > 0 && (
           <div className="space-y-12">
             {categoriesPresent.map((catKey) => {
-              const catStartups = startups.filter((st: any) => st.category === catKey);
+              const catStartups = filtered.filter((st: any) => st.category === catKey);
               if (catStartups.length === 0) return null;
 
               return (
-                <div key={catKey} className="pt-4 border-t border-slate-200 first:border-0 first:pt-0">
+                <div key={catKey} className="pt-6 border-t border-slate-200 first:border-0 first:pt-0">
                   <div className="flex items-center justify-between mb-5">
                     <div className="flex items-center gap-2.5">
                       <div className="w-2.5 h-2.5 rounded-full bg-[#ea580c]" />
@@ -183,9 +255,17 @@ export default function StartupPortfolio() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+                  {/* Desktop Grid */}
+                  <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
                     {catStartups.map((st: any, idx: number) => (
                       <StartupFlipCard key={st.id} st={st} delay={idx * 0.08} />
+                    ))}
+                  </div>
+
+                  {/* Mobile Grid */}
+                  <div className="grid md:hidden grid-cols-1 gap-4">
+                    {catStartups.map((st: any, idx: number) => (
+                      <StartupMobileCard key={st.id} st={st} delay={idx * 0.05} />
                     ))}
                   </div>
                 </div>
@@ -198,20 +278,22 @@ export default function StartupPortfolio() {
   );
 }
 
-// Subcomponent: 3D Interactive Card with Authentic SVG Logo, Hover Details, and Touch-to-Rotate Contact Icons
+// =========================================================================
+// COMPONENT 1: DESKTOP 3D FLIP CARD WITH PROMINENT LOGO & HOVER DRAWER
+// =========================================================================
 function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <FadeUp delay={delay}>
-      <div className="perspective-1000 w-full h-[400px]">
+      <div className="perspective-1000 w-full h-[410px]">
         {/* Rotating 3D Body */}
         <div
           className={`relative w-full h-full duration-700 preserve-3d transition-transform ${
             isFlipped ? "rotate-y-180" : ""
           }`}
         >
-          {/* ================= FRONT FACE: Shows Authentic Logo, Name, Sector + Expands Details on Hover ================= */}
+          {/* FRONT FACE: Shows Authentic Logo, Name, Sector + Expands Details on Hover */}
           <div
             onClick={() => setIsFlipped(true)}
             className="group absolute inset-0 w-full h-full backface-hidden rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-orange-300 p-6 flex flex-col justify-between transition-all duration-300 overflow-hidden cursor-pointer select-none"
@@ -226,7 +308,7 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
               </Badge>
             </div>
 
-            {/* Center Area: Big Prominent Startup Logo */}
+            {/* Center Area: Prominent Startup Logo Emblem */}
             <div className="flex flex-col items-center justify-center my-auto text-center transition-all duration-300 group-hover:scale-95 shrink-0">
               <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-slate-50 via-white to-blue-50/40 border-2 border-slate-200/90 p-4 flex items-center justify-center shadow-inner mb-3.5 group-hover:border-orange-400 group-hover:shadow-md transition-all duration-300">
                 {st.logo ? (
@@ -245,7 +327,7 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
               </h3>
 
               <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                {CATEGORY_NAMES[st.category] || st.category.replace(/_/g, " ")}
+                {CATEGORY_NAMES[st.category] || st.category?.replace(/_/g, " ")}
               </span>
             </div>
 
@@ -274,9 +356,11 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
                   <span className="truncate">{st.founders}</span>
                 </div>
 
-                <div className="p-2 rounded-xl bg-orange-50/90 border border-orange-200/80 text-[11px] text-slate-800">
-                  <span className="font-bold text-[#ea580c]">Traction:</span> {st.impactMetric}
-                </div>
+                {st.impactMetric && (
+                  <div className="p-2 rounded-xl bg-orange-50/90 border border-orange-200/80 text-[11px] text-slate-800">
+                    <span className="font-bold text-[#ea580c]">Traction:</span> {st.impactMetric}
+                  </div>
+                )}
 
                 {st.funding && (
                   <div className="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
@@ -300,10 +384,8 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
             </div>
           </div>
 
-          {/* ================= BACK FACE (ROTATED 180°): Shows All Contact Icons & Channels ================= */}
-          <div
-            className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl bg-gradient-to-br from-[#0a182e] via-[#0f2c59] to-[#06101e] text-white p-6 flex flex-col justify-between shadow-2xl border border-blue-800/60 select-none"
-          >
+          {/* BACK FACE (ROTATED 180°): Shows All Contact Icons & Channels */}
+          <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl bg-gradient-to-br from-[#0a182e] via-[#0f2c59] to-[#06101e] text-white p-6 flex flex-col justify-between shadow-2xl border border-blue-800/60 select-none">
             <div>
               {/* Header: Logo, Name & Flip Back Button */}
               <div className="flex items-center justify-between pb-3 border-b border-white/15 mb-3.5">
@@ -465,6 +547,153 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
               </button>
             </div>
           </div>
+        </div>
+      </div>
+    </FadeUp>
+  );
+}
+
+// =========================================================================
+// COMPONENT 2: DEDICATED MOBILE CARD (OPTIMIZED FOR THUMB BROWSING & 1-TAP CONTACTS)
+// =========================================================================
+function StartupMobileCard({ st, delay }: { st: any; delay: number }) {
+  const [expanded, setExpanded] = useState(false);
+  const catColor = CATEGORY_COLORS[st.category] || { bg: "bg-blue-50", text: "text-blue-700", dot: "bg-blue-500" };
+
+  return (
+    <FadeUp delay={delay}>
+      <div className="rounded-2xl bg-white border border-slate-200/90 shadow-xs p-4 flex flex-col gap-3 transition-all duration-200 active:scale-[0.99]">
+        {/* Top Header: Logo + Title + Badges */}
+        <div className="flex items-start gap-3">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/50 border border-slate-200 p-2 flex items-center justify-center shrink-0 shadow-2xs">
+            {st.logo ? (
+              <img
+                src={st.logo}
+                alt={`${st.name} logo`}
+                className="max-h-full max-w-full object-contain"
+              />
+            ) : (
+              <Rocket className="w-7 h-7 text-orange-600" />
+            )}
+          </div>
+
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <span className="text-[10px] font-mono font-bold text-slate-500 bg-slate-100 px-2 py-0.2 rounded-md">
+                {st.cohort || "Cohort 2026"}
+              </span>
+              <Badge variant="cyan" className="text-[9px] font-extrabold uppercase px-2 py-0.2">
+                {st.stage ? st.stage.replace(/_/g, " ") : "INCUBATED"}
+              </Badge>
+            </div>
+
+            <h3 className="text-base font-black text-slate-900 font-display leading-tight truncate">
+              {st.name}
+            </h3>
+
+            <div className="flex items-center gap-1.5 mt-0.5">
+              <span className={`w-1.5 h-1.5 rounded-full ${catColor.dot}`} />
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide truncate">
+                {CATEGORY_NAMES[st.category] || st.category?.replace(/_/g, " ")}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Problem / Solution One-Liner */}
+        <p className="text-xs text-slate-700 leading-relaxed font-normal">
+          {st.oneLiner}
+        </p>
+
+        {/* Founders & Traction Summary */}
+        <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-600 pt-1 border-t border-slate-100">
+          <span className="font-semibold text-slate-900">Founders:</span>
+          <span className="text-slate-700 truncate max-w-[200px]">{st.founders}</span>
+        </div>
+
+        {/* Collapsible Deep Details Drawer */}
+        {expanded && (
+          <div className="space-y-2 p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs animate-in fade-in duration-200">
+            {st.impactMetric && (
+              <div className="text-[11px] text-slate-700">
+                <strong className="text-[#ea580c]">Traction Metric:</strong> {st.impactMetric}
+              </div>
+            )}
+            {st.funding && (
+              <div className="text-[11px] text-slate-700">
+                <strong className="text-emerald-700">Funding / Grant:</strong> {st.funding}
+              </div>
+            )}
+            {st.tags && st.tags.length > 0 && (
+              <div className="flex flex-wrap gap-1 pt-1">
+                {st.tags.map((t: string) => (
+                  <span
+                    key={t}
+                    className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-600"
+                  >
+                    #{t}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Action Bar: Quick Contact Icons + Expand Toggle */}
+        <div className="flex items-center justify-between pt-2 border-t border-slate-100 gap-2">
+          {/* Quick 1-Tap Contact Icons */}
+          <div className="flex items-center gap-1.5">
+            {st.website && (
+              <a
+                href={st.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-xl bg-orange-50 hover:bg-orange-100 text-[#ea580c] flex items-center justify-center border border-orange-200 shadow-2xs transition-colors"
+                title="Website"
+              >
+                <Globe className="w-4 h-4" />
+              </a>
+            )}
+            {st.linkedin && (
+              <a
+                href={st.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 flex items-center justify-center border border-blue-200 shadow-2xs transition-colors"
+                title="LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+            )}
+            {st.email && (
+              <a
+                href={`mailto:${st.email}`}
+                className="w-8 h-8 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-700 flex items-center justify-center border border-amber-200 shadow-2xs transition-colors"
+                title="Email"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+            )}
+            {st.phone && (
+              <a
+                href={`tel:${st.phone}`}
+                className="w-8 h-8 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 flex items-center justify-center border border-emerald-200 shadow-2xs transition-colors"
+                title="Call"
+              >
+                <Phone className="w-4 h-4" />
+              </a>
+            )}
+          </div>
+
+          {/* Toggle More Details */}
+          <button
+            type="button"
+            onClick={() => setExpanded(!expanded)}
+            className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors"
+          >
+            <span>{expanded ? "Less" : "Details"}</span>
+            {expanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+          </button>
         </div>
       </div>
     </FadeUp>
