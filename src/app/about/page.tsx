@@ -188,7 +188,7 @@ export default function AboutPage() {
               Leadership & Advisory Committee
             </h3>
             <p className="text-sm text-slate-600 mt-1 max-w-xl">
-              Meet our Incubation Manager, Technical Coordinator, domain faculty mentors, and institutional board members advancing regional innovation.
+              Meet Dr. X. Susan Christina, Dr. B. Muruganantham, Dr. S. Rajasekaran, and our incubation operations team advancing regional deep-tech innovation.
             </p>
           </div>
           <Link href="/leadership">

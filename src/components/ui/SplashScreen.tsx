@@ -79,34 +79,26 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
     }, zoomDuration);
   }, [phase, prefersReducedMotion, onZoomStart, onComplete]);
 
-  // Smooth progress counter during loading phase
+  // 3-Second Hold with smooth linear/organic progress, then trigger zoom
   useEffect(() => {
     if (phase !== "loading") return;
 
+    const HOLD_DURATION = 3000; // Exact 3-second hold requested by user
+    const startTime = Date.now();
+
     const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        // Organic progress steps
-        const step = Math.floor(Math.random() * 16) + 12;
-        return Math.min(prev + step, 100);
-      });
-    }, 110);
+      const elapsed = Date.now() - startTime;
+      const pct = Math.min(Math.round((elapsed / HOLD_DURATION) * 100), 100);
+      setProgress(pct);
+
+      if (elapsed >= HOLD_DURATION) {
+        clearInterval(interval);
+        startZoom();
+      }
+    }, 25);
 
     return () => clearInterval(interval);
-  }, [phase]);
-
-  // When progress reaches 100%, trigger the zoom transition
-  useEffect(() => {
-    if (progress >= 100 && phase === "loading") {
-      const zoomDelay = setTimeout(() => {
-        startZoom();
-      }, 200);
-      return () => clearTimeout(zoomDelay);
-    }
-  }, [progress, phase, startZoom]);
+  }, [phase, startZoom]);
 
   // Handle immediate user skip
   const handleSkip = () => {

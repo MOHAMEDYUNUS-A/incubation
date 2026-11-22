@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import {
   Building2,
@@ -9,8 +9,6 @@ import {
   Lightbulb,
   FlaskConical,
   Handshake,
-  Play,
-  Pause,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RevealLeft, RevealRight, FadeUp } from "@/components/animations/LightAnimations";
@@ -44,8 +42,6 @@ const ACCREDITED_LOGOS = [
 ];
 
 export default function WelcomeSection() {
-  const [mobileMarqueeActive, setMobileMarqueeActive] = useState(true);
-
   return (
     <section className="py-20 sm:py-28 bg-white relative border-b border-slate-200 overflow-hidden">
       {/* Subtle Ambient Background Gradients */}
@@ -62,34 +58,11 @@ export default function WelcomeSection() {
               <span className="text-[11px] sm:text-xs font-black text-[#0f2c59] uppercase tracking-wider whitespace-nowrap">
                 Accredited Institutional Ecosystem:
               </span>
-
-              {/* Mobile Marquee Toggle Button */}
-              <button
-                onClick={() => setMobileMarqueeActive(!mobileMarqueeActive)}
-                className="sm:hidden text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 hover:bg-orange-50 hover:text-orange-600 flex items-center gap-1 border border-slate-200"
-                title="Toggle running marquee"
-              >
-                {mobileMarqueeActive ? (
-                  <>
-                    <Pause className="w-2.5 h-2.5 text-orange-600" />
-                    <span>Pause</span>
-                  </>
-                ) : (
-                  <>
-                    <Play className="w-2.5 h-2.5 text-emerald-600" />
-                    <span>Run</span>
-                  </>
-                )}
-              </button>
             </div>
 
             {/* Mobile Running Marquee View (sm:hidden) */}
             <div className="sm:hidden w-full overflow-hidden relative py-1">
-              <div
-                className={`flex items-center gap-6 w-max ${
-                  mobileMarqueeActive ? "animate-marquee-ltr" : "overflow-x-auto"
-                }`}
-              >
+              <div className="flex items-center gap-6 w-max animate-marquee-ltr">
                 {[...ACCREDITED_LOGOS, ...ACCREDITED_LOGOS, ...ACCREDITED_LOGOS].map((logo, idx) => (
                   <div
                     key={idx}
