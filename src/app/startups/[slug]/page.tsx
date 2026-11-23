@@ -87,7 +87,7 @@ export default function StartupProfileSlugPage({
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-32 sm:pt-36 pb-16">
-        <div className="w-12 h-12 border-4 border-blue-900 border-t-orange-500 rounded-full animate-spin" />
+        <div className="w-12 h-12 border-4 border-blue-900 border-t-red-600 rounded-full animate-spin" />
       </div>
     );
   }
@@ -189,8 +189,8 @@ export default function StartupProfileSlugPage({
               {story && (
                 <div className="bg-gradient-to-br from-blue-950 to-blue-900 text-white p-6 sm:p-8 rounded-3xl space-y-4 shadow-md">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-orange-400" />
-                    <span className="text-xs uppercase font-extrabold tracking-widest text-orange-400">Featured Case Study</span>
+                    <Sparkles className="w-4 h-4 text-red-500" />
+                    <span className="text-xs uppercase font-extrabold tracking-widest text-red-500">Featured Case Study</span>
                   </div>
                   <h3 className="text-xl sm:text-2xl font-black">{story.title}</h3>
                   <p className="text-xs sm:text-sm text-blue-100 leading-relaxed max-w-3xl">
@@ -198,7 +198,7 @@ export default function StartupProfileSlugPage({
                   </p>
                   <Link
                     href={`/success-stories/${story.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded-xl transition shadow-sm"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-red-600 hover:bg-red-700 px-4 py-2 rounded-xl transition shadow-sm"
                   >
                     Read Full Editorial Chronicle <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
@@ -267,7 +267,7 @@ export default function StartupProfileSlugPage({
                     <img src={f.avatarUrl} alt={f.fullName} className="w-12 h-12 rounded-full object-cover border border-slate-200" />
                     <div>
                       <h4 className="text-sm font-bold text-slate-900">{f.fullName}</h4>
-                      <p className="text-xs font-semibold text-orange-600">{f.role}</p>
+                      <p className="text-xs font-semibold text-red-600">{f.role}</p>
                     </div>
                   </div>
                   <p className="text-xs text-slate-600">{f.bio}</p>
@@ -276,7 +276,7 @@ export default function StartupProfileSlugPage({
                       href={f.linkedInUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-bold text-blue-950 inline-flex items-center gap-1 hover:text-orange-600"
+                      className="text-xs font-bold text-blue-950 inline-flex items-center gap-1 hover:text-red-600"
                     >
                       LinkedIn Profile <ExternalLink className="w-3 h-3" />
                     </a>
@@ -307,7 +307,7 @@ export default function StartupProfileSlugPage({
                 <div key={l.id} className="border border-slate-200 rounded-xl p-4 bg-slate-50/50 space-y-2">
                   <div className="flex justify-between items-center">
                     <h4 className="text-base font-bold text-slate-900">{l.productName}</h4>
-                    <span className="text-xs text-orange-600 font-mono font-bold">{l.version}</span>
+                    <span className="text-xs text-red-600 font-mono font-bold">{l.version}</span>
                   </div>
                   <p className="text-xs text-slate-600">{l.description}</p>
                   {l.demoUrl && (

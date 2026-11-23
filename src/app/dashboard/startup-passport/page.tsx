@@ -140,7 +140,7 @@ export default function FounderPassportDashboardPage() {
   if (loading && !dossier) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-24 pb-16">
-        <div className="w-12 h-12 border-4 border-blue-900 border-t-orange-500 rounded-full animate-spin" />
+        <div className="w-12 h-12 border-4 border-blue-900 border-t-red-600 rounded-full animate-spin" />
       </div>
     );
   }
@@ -154,7 +154,7 @@ export default function FounderPassportDashboardPage() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-sm">
           <div className="flex items-center gap-4 sm:gap-5">
             {/* Startup Emblem */}
-            <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#0f2c59] via-[#091b34] to-slate-900 p-1 flex items-center justify-center shadow-md shadow-blue-950/15 text-white shrink-0 border-2 border-orange-500/30">
+            <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#0f2c59] via-[#091b34] to-slate-900 p-1 flex items-center justify-center shadow-md shadow-blue-950/15 text-white shrink-0 border-2 border-red-500/30">
               <div className="w-full h-full rounded-xl bg-gradient-to-br from-[#0f2c59] to-[#091b34] flex items-center justify-center font-black text-xl sm:text-2xl tracking-tight text-white font-display">
                 {(passport?.startupName || "Venture").split(" ").map((w: string) => w[0]).slice(0, 2).join("")}
               </div>
@@ -229,7 +229,7 @@ export default function FounderPassportDashboardPage() {
             </div>
             <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-blue-900 to-orange-500 rounded-full"
+                className="h-full bg-gradient-to-r from-blue-900 to-red-600 rounded-full"
                 style={{ width: `${progress?.percentage}%` }}
               />
             </div>
@@ -329,7 +329,7 @@ export default function FounderPassportDashboardPage() {
                         <img src={f.avatarUrl} alt={f.fullName} className="w-10 h-10 rounded-full object-cover border border-slate-200" />
                         <div>
                           <p className="text-xs font-bold text-slate-900">{f.fullName}</p>
-                          <p className="text-[11px] text-orange-600 font-semibold">{f.role}</p>
+                          <p className="text-[11px] text-red-600 font-semibold">{f.role}</p>
                         </div>
                       </div>
                     ))}
@@ -381,7 +381,7 @@ export default function FounderPassportDashboardPage() {
                           {!isCompleted && (
                             <button
                               onClick={() => handleOpenEvidenceModal(m)}
-                              className="px-3 py-1.5 text-xs font-bold rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition inline-flex items-center gap-1 shadow-sm"
+                              className="px-3 py-1.5 text-xs font-bold rounded-lg bg-red-600 text-white hover:bg-red-700 transition inline-flex items-center gap-1 shadow-sm"
                             >
                               <Upload className="w-3.5 h-3.5" />
                               Submit Evidence
@@ -456,8 +456,8 @@ export default function FounderPassportDashboardPage() {
                     )}
 
                     {sess.actionItems && (
-                      <div className="bg-orange-50/50 p-3 rounded-xl border border-orange-100 text-xs text-slate-800">
-                        <strong className="text-orange-900 block mb-0.5">Next Action Items:</strong>
+                      <div className="bg-red-50/50 p-3 rounded-xl border border-red-100 text-xs text-slate-800">
+                        <strong className="text-red-900 block mb-0.5">Next Action Items:</strong>
                         {sess.actionItems}
                       </div>
                     )}
@@ -554,7 +554,7 @@ export default function FounderPassportDashboardPage() {
           <div className="bg-white border border-slate-200 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-6">
             <div className="flex items-start justify-between">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-orange-600">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-red-600">
                   Stage {selectedMilestone.stageOrder} Evidence
                 </span>
                 <h3 className="text-xl font-bold text-slate-900 mt-0.5">{selectedMilestone.title}</h3>

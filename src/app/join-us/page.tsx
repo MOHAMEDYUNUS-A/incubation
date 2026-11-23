@@ -16,8 +16,8 @@ export default function JoinUsPage() {
       {/* Page Hero */}
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-8">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-800 text-xs font-mono font-bold uppercase tracking-wider mb-4 border border-orange-200">
-            <Sparkles className="w-4 h-4 text-orange-600" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-800 text-xs font-bold uppercase tracking-wider mb-4 border border-red-200">
+            <Sparkles className="w-4 h-4 text-red-600" />
             <span>STAKEHOLDER ENGAGEMENT PORTAL</span>
           </div>
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight font-display text-slate-900">

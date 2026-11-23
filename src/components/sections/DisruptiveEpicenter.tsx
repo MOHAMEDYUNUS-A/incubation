@@ -94,21 +94,21 @@ export default function DisruptiveEpicenter() {
       {/* Ambient Background Radial Glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 right-10 w-[450px] h-[450px] bg-blue-100/40 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-orange-100/35 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-red-100/35 rounded-full blur-3xl -z-10" />
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Heading & Purpose */}
           <RevealLeft className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-orange-700 text-xs font-bold uppercase tracking-wider mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-orange-600" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wider mb-2">
+              <Sparkles className="w-3.5 h-3.5 text-red-600" />
               <span>Multi-Stakeholder Innovation Engine</span>
             </div>
 
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.08] font-display text-slate-900">
               The Epicenter of <br />
-              <span className="text-[#ea580c] italic font-serif">
+              <span className="text-[#dc2626] italic font-serif">
                 Disruptive Breakthroughs
               </span>
             </h2>
@@ -151,8 +151,8 @@ export default function DisruptiveEpicenter() {
               {/* 3D Animated Rolling Glass Box */}
               <div className="animate-roll-3d hover:[animation-play-state:paused] p-7 sm:p-9 rounded-3xl bg-white/75 backdrop-blur-2xl border border-white/80 shadow-[0_30px_70px_rgba(15,44,89,0.18)] ring-1 ring-white/60 relative transition-all duration-300 preserve-3d overflow-hidden">
                 {/* Internal Ambient Glass Light Flare */}
-                <div className="absolute -top-10 -right-10 w-36 h-36 bg-gradient-to-br from-blue-400/20 via-orange-300/20 to-transparent rounded-full blur-2xl pointer-events-none" />
-                <div className="absolute -bottom-10 -left-10 w-36 h-36 bg-gradient-to-tr from-orange-400/15 via-blue-300/15 to-transparent rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute -top-10 -right-10 w-36 h-36 bg-gradient-to-br from-blue-400/20 via-red-400/20 to-transparent rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute -bottom-10 -left-10 w-36 h-36 bg-gradient-to-tr from-red-500/15 via-blue-300/15 to-transparent rounded-full blur-2xl pointer-events-none" />
 
                 {/* Header */}
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mb-1 relative z-10">
@@ -161,7 +161,7 @@ export default function DisruptiveEpicenter() {
 
                 {/* "I AM A..." Pill Accent */}
                 <div className="mt-3 mb-4 relative z-10">
-                  <span className="px-3 py-1 rounded-full bg-orange-50/90 text-[#ea580c] text-xs font-mono font-bold tracking-wider uppercase inline-block border border-orange-200/80 shadow-2xs backdrop-blur-xs">
+                  <span className="px-3 py-1 rounded-full bg-red-50/90 text-[#dc2626] text-xs font-mono font-bold tracking-wider uppercase inline-block border border-red-200/80 shadow-2xs backdrop-blur-xs">
                     I AM A...
                   </span>
                 </div>
@@ -178,7 +178,7 @@ export default function DisruptiveEpicenter() {
                         onClick={() => setSelectedPersona(p)}
                         className={`p-3 rounded-2xl border text-xs font-bold flex flex-col items-center justify-center gap-2 transition-all duration-200 ${
                           isSelected
-                            ? "bg-[#ea580c] border-[#ea580c] text-white shadow-md shadow-orange-500/25 scale-105"
+                            ? "bg-[#dc2626] border-[#dc2626] text-white shadow-md shadow-red-600/25 scale-105"
                             : "bg-white/60 backdrop-blur-md border-white/80 text-slate-700 hover:bg-white hover:border-slate-300 hover:shadow-2xs"
                         }`}
                       >
@@ -195,14 +195,14 @@ export default function DisruptiveEpicenter() {
                     I&apos;M LOOKING FOR...
                   </div>
                   <div className="text-xs sm:text-sm text-slate-800 font-medium leading-relaxed flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#ea580c] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#dc2626] shrink-0 mt-0.5" />
                     <span>{selectedPersona.tagline}</span>
                   </div>
                 </div>
 
                 {/* Dynamic Explore CTA Button */}
                 <Link href={selectedPersona.href} className="block w-full relative z-10">
-                  <Button className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-xs sm:text-sm h-12 rounded-xl shadow-lg shadow-orange-600/30 gap-2 uppercase tracking-wide group transition-all">
+                  <Button className="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white font-extrabold text-xs sm:text-sm h-12 rounded-xl shadow-lg shadow-red-600/30 gap-2 uppercase tracking-wide group transition-all">
                     <span>{selectedPersona.ctaText}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Button>

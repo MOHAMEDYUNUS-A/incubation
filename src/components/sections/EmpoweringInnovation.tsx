@@ -79,7 +79,7 @@ export default function EmpoweringInnovation() {
                       </span>
                       <Link
                         href="/programs"
-                        className="text-sm font-bold text-blue-600 hover:text-orange-600 flex items-center gap-1 group-hover:translate-x-1 transition-all"
+                        className="text-sm font-bold text-blue-600 hover:text-red-600 flex items-center gap-1 group-hover:translate-x-1 transition-all"
                       >
                         <span>Learn More</span>
                         <ArrowRight className="w-4 h-4" />

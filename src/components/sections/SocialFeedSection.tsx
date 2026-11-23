@@ -176,7 +176,7 @@ export default function SocialFeedSection() {
         </div>
 
         {/* Live Social Banner Callout at Bottom */}
-        <FadeUp className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-blue-50 via-indigo-50/50 to-orange-50/40 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <FadeUp className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-blue-50 via-indigo-50/50 to-red-50/40 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center p-1 shadow-2xs shrink-0">
               <img
@@ -201,7 +201,7 @@ export default function SocialFeedSection() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button size="sm" className="bg-[#ea580c] hover:bg-[#c2410c] text-white text-xs font-bold h-9">
+              <Button size="sm" className="bg-[#dc2626] hover:bg-[#b91c1c] text-white text-xs font-bold h-9">
                 Follow on Instagram
               </Button>
             </a>

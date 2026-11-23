@@ -85,8 +85,8 @@ export default function StartupPortfolio() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <RevealLeft>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100/70 border border-orange-200 text-orange-700 text-xs font-bold uppercase tracking-wider mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-orange-600" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100/70 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wider mb-2">
+              <Sparkles className="w-3.5 h-3.5 text-red-600" />
               <span>Incubated Startups Showcase</span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 font-display tracking-tight">
@@ -99,35 +99,35 @@ export default function StartupPortfolio() {
 
           <RevealRight className="flex items-center gap-3">
             {/* View Mode Toggle (Sleek Segmented Control with Crisp Typography & Anti-Aliased Rendering) */}
-            <div className="hidden sm:inline-flex items-center p-1 rounded-xl bg-slate-100/90 border border-slate-200/90 shadow-2xs antialiased">
+            <div className="hidden sm:inline-flex items-center p-1 rounded-xl bg-slate-100 border border-slate-200 shadow-2xs antialiased">
               <button
                 type="button"
                 onClick={() => setViewGrouped(false)}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs transition-all duration-200 select-none ${
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs transition-all duration-150 select-none font-sans ${
                   !viewGrouped
-                    ? "bg-[#0f2c59] text-white shadow-xs font-bold"
-                    : "text-slate-600 hover:text-slate-900 font-medium hover:bg-white/60"
+                    ? "bg-[#0f2c59] text-white shadow-xs font-semibold"
+                    : "text-slate-600 hover:text-slate-900 font-medium hover:bg-white/70"
                 }`}
               >
                 <LayoutGrid className="w-3.5 h-3.5 shrink-0" />
-                <span className="leading-none">Card Grid</span>
+                <span className="leading-tight">Card Grid</span>
               </button>
               <button
                 type="button"
                 onClick={() => setViewGrouped(true)}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs transition-all duration-200 select-none ${
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs transition-all duration-150 select-none font-sans ${
                   viewGrouped
-                    ? "bg-[#0f2c59] text-white shadow-xs font-bold"
-                    : "text-slate-600 hover:text-slate-900 font-medium hover:bg-white/60"
+                    ? "bg-[#0f2c59] text-white shadow-xs font-semibold"
+                    : "text-slate-600 hover:text-slate-900 font-medium hover:bg-white/70"
                 }`}
               >
                 <Layers className="w-3.5 h-3.5 shrink-0" />
-                <span className="leading-none">Section-Wise</span>
+                <span className="leading-tight">Section-Wise</span>
               </button>
             </div>
 
             <Link href="/apply">
-              <Button className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold text-xs h-9 px-4 rounded-xl shadow-xs gap-1.5">
+              <Button className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-xs h-9 px-4 rounded-xl shadow-xs gap-1.5">
                 <span>Join Cohort</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </Button>
@@ -196,7 +196,7 @@ export default function StartupPortfolio() {
         {/* Empty State */}
         {filtered.length === 0 && (
           <div className="text-center py-16 px-4 rounded-3xl bg-slate-50 border-2 border-dashed border-slate-200 max-w-md mx-auto my-8">
-            <div className="w-14 h-14 rounded-2xl bg-orange-100 text-[#ea580c] flex items-center justify-center mx-auto mb-3 shadow-xs">
+            <div className="w-14 h-14 rounded-2xl bg-red-100 text-[#dc2626] flex items-center justify-center mx-auto mb-3 shadow-xs">
               <Rocket className="w-7 h-7" />
             </div>
             <h3 className="text-base font-bold text-slate-900 font-display">No Startups Found</h3>
@@ -250,7 +250,7 @@ export default function StartupPortfolio() {
                 <div key={catKey} className="pt-6 border-t border-slate-200 first:border-0 first:pt-0">
                   <div className="flex items-center justify-between mb-5">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#ea580c]" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#dc2626]" />
                       <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display">
                         {CATEGORY_NAMES[catKey] || catKey.replace(/_/g, " ")}
                       </h3>
@@ -301,7 +301,7 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
           {/* FRONT FACE: Shows Authentic Logo, Name, Sector + Expands Details on Hover */}
           <div
             onClick={() => setIsFlipped(true)}
-            className="group absolute inset-0 w-full h-full backface-hidden rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-orange-300 p-6 flex flex-col justify-between transition-all duration-300 overflow-hidden cursor-pointer select-none"
+            className="group absolute inset-0 w-full h-full backface-hidden rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-red-400 p-6 flex flex-col justify-between transition-all duration-300 overflow-hidden cursor-pointer select-none"
           >
             {/* Top Cohort & Stage Strip */}
             <div className="w-full flex items-center justify-between text-xs z-10 shrink-0">
@@ -315,7 +315,7 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
 
             {/* Center Area: Prominent Startup Logo Emblem */}
             <div className="flex flex-col items-center justify-center my-auto text-center transition-all duration-300 group-hover:scale-95 shrink-0">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-slate-50 via-white to-blue-50/40 border-2 border-slate-200/90 p-4 flex items-center justify-center shadow-inner mb-3.5 group-hover:border-orange-400 group-hover:shadow-md transition-all duration-300">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-slate-50 via-white to-blue-50/40 border-2 border-slate-200/90 p-4 flex items-center justify-center shadow-inner mb-3.5 group-hover:border-red-500 group-hover:shadow-md transition-all duration-300">
                 {st.logo ? (
                   <img
                     src={st.logo}
@@ -323,7 +323,7 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
                     className="max-h-full max-w-full object-contain"
                   />
                 ) : (
-                  <Rocket className="w-12 h-12 text-orange-600" />
+                  <Rocket className="w-12 h-12 text-red-600" />
                 )}
               </div>
 
@@ -340,13 +340,13 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
             <div className="absolute inset-x-0 bottom-0 bg-white/95 backdrop-blur-md p-5 sm:p-6 border-t border-slate-200/90 rounded-b-3xl transition-all duration-300 translate-y-[calc(100%-54px)] group-hover:translate-y-0 shadow-lg z-20">
               {/* Peek Header */}
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[11px] font-bold text-[#ea580c] flex items-center gap-1.5 uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5 text-orange-600" />
+                <span className="text-[11px] font-bold text-[#dc2626] flex items-center gap-1.5 uppercase tracking-wider">
+                  <Sparkles className="w-3.5 h-3.5 text-red-600" />
                   <span>Startup Overview</span>
                 </span>
                 <span className="text-[10px] text-slate-500 font-semibold group-hover:hidden flex items-center gap-1">
                   <span>Hover for details</span>
-                  <span className="text-orange-500 font-bold">↑</span>
+                  <span className="text-red-600 font-bold">↑</span>
                 </span>
               </div>
 
@@ -362,8 +362,8 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
                 </div>
 
                 {st.impactMetric && (
-                  <div className="p-2 rounded-xl bg-orange-50/90 border border-orange-200/80 text-[11px] text-slate-800">
-                    <span className="font-bold text-[#ea580c]">Traction:</span> {st.impactMetric}
+                  <div className="p-2 rounded-xl bg-red-50/90 border border-red-200/80 text-[11px] text-slate-800">
+                    <span className="font-bold text-[#dc2626]">Traction:</span> {st.impactMetric}
                   </div>
                 )}
 
@@ -379,7 +379,7 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
                 <Link
                   href={`/startups/${st.slug || st.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
                   onClick={(e) => e.stopPropagation()}
-                  className="w-full py-1.5 px-3 rounded-xl bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition-colors"
+                  className="w-full py-1.5 px-3 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition-colors"
                 >
                   <ShieldCheck className="w-3.5 h-3.5" />
                   <span>View Profile & Passport</span>
@@ -391,7 +391,7 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
                     e.stopPropagation();
                     setIsFlipped(true);
                   }}
-                  className="w-full py-1.5 px-3 rounded-xl bg-[#0f2c59] hover:bg-[#ea580c] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition-colors"
+                  className="w-full py-1.5 px-3 rounded-xl bg-[#0f2c59] hover:bg-[#dc2626] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition-colors"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Flip for Direct Contacts</span>
@@ -414,7 +414,7 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
                         className="max-h-full max-w-full object-contain"
                       />
                     ) : (
-                      <Rocket className="w-5 h-5 text-orange-400" />
+                      <Rocket className="w-5 h-5 text-red-500" />
                     )}
                   </div>
                   <div>
@@ -454,7 +454,7 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
 
               {/* 4 Dedicated Contact Channel Icons */}
               <div className="space-y-2 mb-3">
-                <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest block">
+                <span className="text-[10px] font-bold text-red-500 uppercase tracking-widest block">
                   Direct Contact Icons
                 </span>
 
@@ -466,10 +466,10 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl bg-white/10 hover:bg-[#ea580c] text-white flex flex-col items-center justify-center gap-1 transition-all border border-white/10 hover:border-orange-500 shadow-xs group/icon"
+                      className="p-2.5 rounded-xl bg-white/10 hover:bg-[#dc2626] text-white flex flex-col items-center justify-center gap-1 transition-all border border-white/10 hover:border-red-600 shadow-xs group/icon"
                       title={`Visit ${st.name} Website`}
                     >
-                      <Globe className="w-5 h-5 text-orange-300 group-hover/icon:text-white" />
+                      <Globe className="w-5 h-5 text-red-400 group-hover/icon:text-white" />
                       <span className="text-[10px] font-bold">Web</span>
                     </a>
                   ) : (
@@ -546,7 +546,7 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="w-full py-2 px-3 rounded-xl bg-[#ea580c] hover:bg-[#c2410c] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md transition-all group/btn"
+                  className="w-full py-2 px-3 rounded-xl bg-[#dc2626] hover:bg-[#b91c1c] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md transition-all group/btn"
                 >
                   <span>Launch Official Website</span>
                   <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
@@ -589,7 +589,7 @@ function StartupMobileCard({ st, delay }: { st: any; delay: number }) {
                 className="max-h-full max-w-full object-contain"
               />
             ) : (
-              <Rocket className="w-7 h-7 text-orange-600" />
+              <Rocket className="w-7 h-7 text-red-600" />
             )}
           </div>
 
@@ -632,7 +632,7 @@ function StartupMobileCard({ st, delay }: { st: any; delay: number }) {
           <div className="space-y-2 p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs animate-in fade-in duration-200">
             {st.impactMetric && (
               <div className="text-[11px] text-slate-700">
-                <strong className="text-[#ea580c]">Traction Metric:</strong> {st.impactMetric}
+                <strong className="text-[#dc2626]">Traction Metric:</strong> {st.impactMetric}
               </div>
             )}
             {st.funding && (
@@ -656,7 +656,7 @@ function StartupMobileCard({ st, delay }: { st: any; delay: number }) {
             <div className="pt-2">
               <Link
                 href={`/startups/${st.slug || st.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-                className="w-full py-1.5 px-3 rounded-xl bg-orange-600 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-2xs"
+                className="w-full py-1.5 px-3 rounded-xl bg-red-600 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-2xs"
               >
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>View Profile & Verified Passport</span>
@@ -674,7 +674,7 @@ function StartupMobileCard({ st, delay }: { st: any; delay: number }) {
                 href={st.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-xl bg-orange-50 hover:bg-orange-100 text-[#ea580c] flex items-center justify-center border border-orange-200 shadow-2xs transition-colors"
+                className="w-8 h-8 rounded-xl bg-red-50 hover:bg-red-100 text-[#dc2626] flex items-center justify-center border border-red-200 shadow-2xs transition-colors"
                 title="Website"
               >
                 <Globe className="w-4 h-4" />

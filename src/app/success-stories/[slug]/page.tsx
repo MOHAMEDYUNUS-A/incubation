@@ -48,7 +48,7 @@ export default function SingleSuccessStoryPage({
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-32 sm:pt-36 pb-16">
-        <div className="w-12 h-12 border-4 border-blue-900 border-t-orange-500 rounded-full animate-spin" />
+        <div className="w-12 h-12 border-4 border-blue-900 border-t-red-600 rounded-full animate-spin" />
       </div>
     );
   }
@@ -136,7 +136,7 @@ export default function SingleSuccessStoryPage({
           {/* 2. The Technological Breakthrough */}
           <div className="space-y-3">
             <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-orange-100 text-orange-700 font-black text-xs flex items-center justify-center">02</span>
+              <span className="w-7 h-7 rounded-lg bg-red-100 text-red-700 font-black text-xs flex items-center justify-center">02</span>
               The Breakthrough Solution
             </h2>
             <p className="text-sm text-slate-700 leading-relaxed">
@@ -158,11 +158,11 @@ export default function SingleSuccessStoryPage({
           {/* Pull Quote */}
           {story.founderQuote && (
             <div className="bg-gradient-to-br from-blue-950 to-blue-900 text-white p-6 sm:p-8 rounded-2xl space-y-3 shadow-md">
-              <Quote className="w-8 h-8 text-orange-400" />
+              <Quote className="w-8 h-8 text-red-500" />
               <p className="text-sm sm:text-base italic leading-relaxed text-blue-50">
                 &ldquo;{story.founderQuote}&rdquo;
               </p>
-              <p className="text-xs font-bold text-orange-300">
+              <p className="text-xs font-bold text-red-400">
                 — {story.quoteAuthor}
               </p>
             </div>
@@ -175,7 +175,7 @@ export default function SingleSuccessStoryPage({
         {story.interview && (
           <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-red-100 text-red-700 flex items-center justify-center">
                 <Video className="w-5 h-5" />
               </div>
               <div>
@@ -247,13 +247,13 @@ export default function SingleSuccessStoryPage({
         {/* Footer Link to Passport */}
         <div className="bg-gradient-to-r from-blue-950 to-blue-900 text-white p-6 sm:p-8 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
           <div>
-            <span className="text-xs text-orange-400 font-bold uppercase tracking-wider block">Official Credential</span>
+            <span className="text-xs text-red-500 font-bold uppercase tracking-wider block">Official Credential</span>
             <h4 className="text-xl font-bold mt-0.5">Explore {story.startupName}&apos;s Startup Passport</h4>
             <p className="text-xs text-blue-200 mt-1">Review verified milestones, mentor evaluations, and institutional achievements.</p>
           </div>
           <Link
             href={`/startup-passport/MASTER-SP-2026-0001`}
-            className="px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs transition shadow-sm whitespace-nowrap"
+            className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition shadow-sm whitespace-nowrap"
           >
             View Official Passport
           </Link>

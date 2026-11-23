@@ -114,7 +114,7 @@ export default function MediaUploadZone({
                 : "text-slate-500 hover:text-slate-900"
             }`}
           >
-            <UploadCloud className="w-3 h-3 text-[#ea580c]" />
+            <UploadCloud className="w-3 h-3 text-[#dc2626]" />
             <span>Upload File</span>
           </button>
           <button
@@ -167,7 +167,7 @@ export default function MediaUploadZone({
               {/* Media Info Overlay */}
               <div className="absolute top-2.5 left-2.5 flex items-center gap-2">
                 <span className="px-2.5 py-1 rounded-full bg-slate-900/85 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 shadow-md">
-                  {isVideo ? <Video className="w-3 h-3 text-cyan-400" /> : <ImageIcon className="w-3 h-3 text-orange-400" />}
+                  {isVideo ? <Video className="w-3 h-3 text-cyan-400" /> : <ImageIcon className="w-3 h-3 text-red-500" />}
                   <span>{isVideo ? "Video File" : "Image File"}</span>
                 </span>
                 {fileSize && (
@@ -212,21 +212,21 @@ export default function MediaUploadZone({
               onClick={() => fileInputRef.current?.click()}
               className={`border-2 border-dashed rounded-2xl p-4 sm:p-5 text-center cursor-pointer transition-all duration-200 flex flex-col items-center justify-center gap-2.5 ${
                 isDragging
-                  ? "border-[#ea580c] bg-orange-50/80 scale-[0.99] ring-4 ring-orange-500/10"
+                  ? "border-[#dc2626] bg-red-50/80 scale-[0.99] ring-4 ring-red-500/10"
                   : "border-slate-300 hover:border-blue-500 hover:bg-blue-50/40 bg-slate-50/70"
               }`}
             >
               <div
                 className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-transform ${
-                  isDragging ? "bg-orange-600 text-white scale-110" : "bg-white text-slate-600 border border-slate-200 shadow-xs"
+                  isDragging ? "bg-red-600 text-white scale-110" : "bg-white text-slate-600 border border-slate-200 shadow-xs"
                 }`}
               >
-                <UploadCloud className="w-5 h-5 text-[#ea580c]" />
+                <UploadCloud className="w-5 h-5 text-[#dc2626]" />
               </div>
 
               <div>
                 <p className="text-xs sm:text-sm font-bold text-slate-800">
-                  <span className="text-[#ea580c] hover:underline">Click to upload</span> or drag & drop
+                  <span className="text-[#dc2626] hover:underline">Click to upload</span> or drag & drop
                 </p>
                 <p className="text-[11px] text-slate-500 mt-0.5 font-normal">
                   {helperText}
@@ -235,7 +235,7 @@ export default function MediaUploadZone({
 
               <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400">
                 <span className="flex items-center gap-1">
-                  <ImageIcon className="w-3 h-3 text-orange-500" /> Images (JPG, PNG, WebP)
+                  <ImageIcon className="w-3 h-3 text-red-600" /> Images (JPG, PNG, WebP)
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1">

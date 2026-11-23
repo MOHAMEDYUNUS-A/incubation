@@ -43,7 +43,7 @@ export default function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="font-black text-xl sm:text-2xl tracking-tight text-white font-display">
-                  MAST<span className="text-[#ea580c]">e</span>R
+                  MAST<span className="text-[#dc2626]">e</span>R
                 </span>
                 <span className="text-xs text-slate-200 font-bold">
                   Incubation Foundation (MIF)
@@ -55,11 +55,11 @@ export default function Footer() {
             </Link>
 
             <p className="text-xs text-slate-300 leading-relaxed pr-2">
-              An institutional technology incubator incorporated as a <strong className="text-white">Section 8 Not-For-Profit Company</strong> at <strong className="text-white">M.A.M. College of Engineering & Technology (MAMCET)</strong>, Siruganur, Trichy. Approved as an official <strong className="text-orange-400">StartupTN Pre-Incubation Centre</strong> and <strong className="text-cyan-400">MSME Host Institution</strong>.
+              An institutional technology incubator incorporated as a <strong className="text-white">Section 8 Not-For-Profit Company</strong> at <strong className="text-white">M.A.M. College of Engineering & Technology (MAMCET)</strong>, Siruganur, Trichy. Approved as an official <strong className="text-red-400">StartupTN Pre-Incubation Centre</strong> and <strong className="text-cyan-400">MSME Host Institution</strong>.
             </p>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-orange-400 text-xs font-semibold">
-              <ShieldCheck className="w-3.5 h-3.5 text-orange-400" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-red-400 text-xs font-semibold">
+              <ShieldCheck className="w-3.5 h-3.5 text-red-400" />
               <span>Launchpad for your Entrepreneurial Success</span>
             </div>
 
@@ -113,72 +113,72 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/" className="hover:text-orange-400 transition-colors">
+                <Link href="/" className="hover:text-red-400 transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-orange-400 transition-colors">
+                <Link href="/about" className="hover:text-red-400 transition-colors">
                   About Foundation
                 </Link>
               </li>
               <li>
-                <Link href="/impact" className="hover:text-orange-400 transition-colors">
+                <Link href="/impact" className="hover:text-red-400 transition-colors">
                   Ecosystem Impact
                 </Link>
               </li>
               <li>
-                <Link href="/focus-areas" className="hover:text-orange-400 transition-colors">
+                <Link href="/focus-areas" className="hover:text-red-400 transition-colors">
                   7 Focus Areas
                 </Link>
               </li>
               <li>
-                <Link href="/programs" className="hover:text-orange-400 transition-colors">
+                <Link href="/programs" className="hover:text-red-400 transition-colors">
                   4-Stage Pathway
                 </Link>
               </li>
               <li>
-                <Link href="/facilities" className="hover:text-orange-400 transition-colors">
+                <Link href="/facilities" className="hover:text-red-400 transition-colors">
                   6,000+ Sq. Ft. Labs
                 </Link>
               </li>
               <li>
-                <Link href="/startups" className="hover:text-orange-400 transition-colors">
+                <Link href="/startups" className="hover:text-red-400 transition-colors">
                   Startup Directory
                 </Link>
               </li>
               <li>
-                <Link href="/startup-passport/MASTER-SP-2026-0001" className="hover:text-orange-400 transition-colors">
+                <Link href="/startup-passport/MASTER-SP-2026-0001" className="hover:text-red-400 transition-colors">
                   Startup Passport
                 </Link>
               </li>
               <li>
-                <Link href="/startup-passport/verify/MASTER-SP-2026-0001" className="hover:text-orange-400 transition-colors">
+                <Link href="/startup-passport/verify/MASTER-SP-2026-0001" className="hover:text-red-400 transition-colors">
                   Verify Credentials
                 </Link>
               </li>
               <li>
-                <Link href="/success-stories" className="hover:text-orange-400 transition-colors">
+                <Link href="/success-stories" className="hover:text-red-400 transition-colors">
                   Success Stories
                 </Link>
               </li>
               <li>
-                <Link href="/alumni" className="hover:text-orange-400 transition-colors">
+                <Link href="/alumni" className="hover:text-red-400 transition-colors">
                   Alumni Guild
                 </Link>
               </li>
               <li>
-                <Link href="/apply/status" className="hover:text-orange-400 transition-colors">
+                <Link href="/apply/status" className="hover:text-red-400 transition-colors">
                   Track Application
                 </Link>
               </li>
               <li>
-                <Link href="/events" className="hover:text-orange-400 transition-colors">
+                <Link href="/events" className="hover:text-red-400 transition-colors">
                   Events & Bootcamps
                 </Link>
               </li>
               <li>
-                <Link href="/join-us" className="hover:text-orange-400 transition-colors">
+                <Link href="/join-us" className="hover:text-red-400 transition-colors">
                   Join Us (Stakeholders)
                 </Link>
               </li>
@@ -193,7 +193,7 @@ export default function Footer() {
             <div className="space-y-3 text-xs">
               <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/50 transition-colors">
                 <div className="font-bold text-white text-sm">{FOUNDATION_INFO.manager.name}</div>
-                <div className="text-[11px] text-orange-400 font-semibold">{FOUNDATION_INFO.manager.role}</div>
+                <div className="text-[11px] text-red-400 font-semibold">{FOUNDATION_INFO.manager.role}</div>
                 <a
                   href={`tel:${FOUNDATION_INFO.manager.phone}`}
                   className="text-[11px] text-slate-300 hover:text-white mt-1.5 flex items-center gap-1.5 transition-colors"
@@ -243,10 +243,10 @@ export default function Footer() {
               className="flex items-start gap-2.5 text-xs text-slate-300 hover:text-white transition-colors group p-3 rounded-2xl bg-white/5 border border-white/10"
               title="Open Location on Google Maps"
             >
-              <MapPin className="w-4 h-4 text-orange-400 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+              <MapPin className="w-4 h-4 text-red-400 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
               <div>
                 <span>{FOUNDATION_INFO.address}</span>
-                <span className="text-orange-400 font-bold block mt-1 flex items-center gap-1">
+                <span className="text-red-400 font-bold block mt-1 flex items-center gap-1">
                   View on Google Maps <ExternalLink className="w-3 h-3" />
                 </span>
               </div>
@@ -269,7 +269,7 @@ export default function Footer() {
                   <Button
                     type="submit"
                     size="sm"
-                    className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white text-xs h-10 font-bold rounded-xl shadow-md gap-1.5"
+                    className="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white text-xs h-10 font-bold rounded-xl shadow-md gap-1.5"
                   >
                     <span>Subscribe for TANSEED Alerts</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -291,7 +291,7 @@ export default function Footer() {
             © {new Date().getFullYear()} {FOUNDATION_INFO.name} ({FOUNDATION_INFO.acronym}). Incorporated under the Companies Act, 2013.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/admin" className="hover:text-orange-400 transition-colors font-medium">
+            <Link href="/admin" className="hover:text-red-400 transition-colors font-medium">
               Admin Portal
             </Link>
             <span className="text-white/20">|</span>
@@ -299,7 +299,7 @@ export default function Footer() {
               href={FOUNDATION_INFO.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-orange-400 transition-colors font-medium"
+              className="hover:text-red-400 transition-colors font-medium"
             >
               MAMCET Official Campus Portal ↗
             </a>

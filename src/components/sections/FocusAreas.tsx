@@ -132,7 +132,7 @@ export default function FocusAreas() {
                       {/* Floating Icon Pill */}
                       <div className="absolute top-2.5 left-2.5">
                         <div className="w-8 h-8 rounded-lg bg-white/95 backdrop-blur-md text-[#0f2c59] flex items-center justify-center shadow-md">
-                          <Icon className="w-4 h-4 text-orange-600" />
+                          <Icon className="w-4 h-4 text-red-600" />
                         </div>
                       </div>
 
@@ -167,7 +167,7 @@ export default function FocusAreas() {
           <FadeUp delay={0.35}>
             <div className="h-full rounded-2xl bg-gradient-to-br from-[#0f2c59] to-[#071324] text-white p-5 flex flex-col justify-between shadow-md border border-blue-900/60 group">
               <div>
-                <span className="text-[10px] uppercase font-mono tracking-widest text-orange-400 font-bold block mb-2">
+                <span className="text-[10px] uppercase font-mono tracking-widest text-red-500 font-bold block mb-2">
                   Track 08 · Open Call
                 </span>
                 <h3 className="text-base sm:text-lg font-bold font-display text-white mb-2">
@@ -180,7 +180,7 @@ export default function FocusAreas() {
 
               <div className="pt-4 border-t border-white/10 mt-4">
                 <Link href="/apply">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-400 hover:text-orange-300 transition-colors">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-red-500 hover:text-red-400 transition-colors">
                     <span>Submit Innovation Pitch</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>

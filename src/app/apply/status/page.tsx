@@ -93,7 +93,7 @@ function StatusTrackerContent() {
         <div className="mb-6">
           <Link
             href="/apply"
-            className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-orange-600 transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-red-600 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Incubation Application Portal</span>
@@ -102,7 +102,7 @@ function StatusTrackerContent() {
 
         {/* Title Header */}
         <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
-          <span className="px-3 py-1 rounded-full bg-orange-50 text-orange-700 text-[11px] font-mono font-bold border border-orange-200 uppercase tracking-widest inline-block mb-2">
+          <span className="px-3 py-1 rounded-full bg-red-50 text-red-700 text-[11px] font-mono font-bold border border-red-200 uppercase tracking-widest inline-block mb-2">
             MIF Founder Tracker
           </span>
           <h1 className="text-2xl sm:text-4xl font-black text-slate-900 font-display">
@@ -135,7 +135,7 @@ function StatusTrackerContent() {
             <Button
               type="submit"
               disabled={loading}
-              className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-11 px-6 rounded-xl text-xs gap-2 shrink-0 shadow-sm"
+              className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-11 px-6 rounded-xl text-xs gap-2 shrink-0 shadow-sm"
             >
               {loading ? (
                 <span>Checking...</span>
@@ -316,7 +316,7 @@ function StatusTrackerContent() {
                   href="mailto:contact@masterincubation.org"
                   className="text-xs font-bold text-blue-700 hover:underline flex items-center gap-1"
                 >
-                  <Mail className="w-3.5 h-3.5 text-orange-600" />
+                  <Mail className="w-3.5 h-3.5 text-red-600" />
                   <span>Email Desk</span>
                 </a>
               </div>

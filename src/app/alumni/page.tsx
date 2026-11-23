@@ -154,7 +154,7 @@ export default function AlumniDirectoryPage() {
         {/* Alumni Grid */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="w-12 h-12 border-4 border-blue-900 border-t-orange-500 rounded-full animate-spin" />
+            <div className="w-12 h-12 border-4 border-blue-900 border-t-red-600 rounded-full animate-spin" />
           </div>
         ) : filteredAlumni.length === 0 ? (
           <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center text-slate-400 text-sm">
@@ -222,7 +222,7 @@ export default function AlumniDirectoryPage() {
                   {alum.tags && alum.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 pt-2">
                       {alum.tags.map((tag, i) => (
-                        <span key={i} className="text-[10px] font-bold px-2 py-0.5 rounded bg-orange-50 text-orange-800 border border-orange-200">
+                        <span key={i} className="text-[10px] font-bold px-2 py-0.5 rounded bg-red-50 text-red-800 border border-red-200">
                           {tag}
                         </span>
                       ))}
@@ -262,7 +262,7 @@ export default function AlumniDirectoryPage() {
           <div className="bg-white border border-slate-200 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-6">
             <div className="flex items-start justify-between">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-orange-600">Alumni Guild Network</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-red-600">Alumni Guild Network</span>
                 <h3 className="text-xl font-bold text-slate-900 mt-0.5">
                   Connect with {selectedAlumni.startupName}
                 </h3>

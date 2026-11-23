@@ -84,8 +84,8 @@ export default function InauguralMomentsGallery() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[#ea580c] text-xs font-mono font-bold uppercase tracking-wider mb-2">
-            <Award className="w-3.5 h-3.5 text-orange-600" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-[#dc2626] text-xs font-mono font-bold uppercase tracking-wider mb-2">
+            <Award className="w-3.5 h-3.5 text-red-600" />
             <span>HISTORIC LAUNCH ARCHIVE</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black text-slate-900 font-display tracking-tight">
@@ -103,7 +103,7 @@ export default function InauguralMomentsGallery() {
           <div
             key={photo.id}
             onClick={() => setSelectedPhoto(photo)}
-            className="group cursor-pointer rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-orange-400 transition-all duration-300 overflow-hidden flex flex-col justify-between"
+            className="group cursor-pointer rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-red-500 transition-all duration-300 overflow-hidden flex flex-col justify-between"
           >
             <div>
               {/* Image Container */}
@@ -130,7 +130,7 @@ export default function InauguralMomentsGallery() {
 
                 {/* Overlaid Title */}
                 <div className="absolute bottom-3 left-4 right-4 z-10 text-white">
-                  <h3 className="font-bold text-sm sm:text-base font-display line-clamp-1 !text-white text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] group-hover:text-orange-300 transition-colors">
+                  <h3 className="font-bold text-sm sm:text-base font-display line-clamp-1 !text-white text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] group-hover:text-red-400 transition-colors">
                     {photo.title}
                   </h3>
                 </div>
@@ -143,7 +143,7 @@ export default function InauguralMomentsGallery() {
                 </p>
 
                 <div className="flex items-center justify-between text-[11px] text-slate-500 font-medium pt-3 border-t border-slate-100">
-                  <span className="flex items-center gap-1 text-[#ea580c] font-semibold">
+                  <span className="flex items-center gap-1 text-[#dc2626] font-semibold">
                     <Calendar className="w-3.5 h-3.5" />
                     {photo.date}
                   </span>
@@ -186,11 +186,11 @@ export default function InauguralMomentsGallery() {
 
             <div className="p-6 sm:p-8 bg-white border-t border-slate-200">
               <div className="flex items-center gap-2 mb-2">
-                <span className="px-3 py-1 rounded-full bg-orange-50 text-[#ea580c] border border-orange-200 text-xs font-bold uppercase tracking-wider">
+                <span className="px-3 py-1 rounded-full bg-red-50 text-[#dc2626] border border-red-200 text-xs font-bold uppercase tracking-wider">
                   {selectedPhoto.tag}
                 </span>
                 <span className="text-xs text-slate-500 font-semibold flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5 text-orange-600" />
+                  <Calendar className="w-3.5 h-3.5 text-red-600" />
                   {selectedPhoto.date}
                 </span>
                 <span className="text-xs text-slate-500 font-semibold flex items-center gap-1 ml-2">

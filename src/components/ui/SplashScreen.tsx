@@ -159,7 +159,7 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
               ? { duration: 0.5 }
               : { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
           }}
-          className="w-[500px] h-[500px] sm:w-[620px] sm:h-[620px] rounded-full border border-orange-200/40"
+          className="w-[500px] h-[500px] sm:w-[620px] sm:h-[620px] rounded-full border border-red-200/40"
         />
       </div>
 
@@ -206,7 +206,7 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
           title="Click to enter"
         >
           {/* Outer Ambient Glow Halo */}
-          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-orange-400/20 via-blue-500/20 to-orange-400/20 blur-xl opacity-80 animate-pulse pointer-events-none" />
+          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-red-500/20 via-blue-600/20 to-red-500/20 blur-xl opacity-80 animate-pulse pointer-events-none" />
 
           <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-white p-3.5 flex items-center justify-center border border-slate-200/90 shadow-2xl shadow-blue-900/10">
             <img
@@ -223,7 +223,7 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
             transition={{ delay: 0.25, duration: 0.35, type: "spring" }}
             className="absolute -bottom-2 -right-2 px-2.5 py-0.5 rounded-full bg-[#0f2c59] text-[10px] font-bold text-white shadow-md border border-white flex items-center gap-1"
           >
-            <Sparkles className="w-2.5 h-2.5 text-orange-400" />
+            <Sparkles className="w-2.5 h-2.5 text-red-400" />
             <span>MIF</span>
           </motion.div>
         </motion.div>
@@ -242,12 +242,12 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
           }}
           className="space-y-2 pointer-events-none"
         >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-orange-700 text-[11px] font-bold uppercase tracking-wider shadow-2xs">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-red-700 text-[11px] font-bold uppercase tracking-wider shadow-2xs">
             <span>StartupTN Recognised Pre-Incubation Centre</span>
           </div>
 
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#0f2c59] tracking-tight font-display leading-tight">
-            MAST<span className="text-[#ea580c]">e</span>R{" "}
+            MAST<span className="text-[#dc2626]">e</span>R{" "}
             <span className="font-extrabold text-slate-800">Incubation Foundation</span>
           </h1>
 
@@ -275,14 +275,14 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
         >
           <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 mb-2">
             <span className="font-semibold text-slate-600 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-ping inline-block" />
-              ENTERING INCUBATOR
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping inline-block" />
+              INITIALIZING MASTeR ECOSYSTEM
             </span>
             <span className="font-bold text-[#0f2c59]">{progress}%</span>
           </div>
           <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200/70 p-0.5 shadow-inner">
             <motion.div
-              className="h-full bg-gradient-to-r from-[#ea580c] via-blue-600 to-[#0f2c59] rounded-full transition-all duration-100"
+              className="h-full bg-gradient-to-r from-[#dc2626] via-blue-600 to-[#0f2c59] rounded-full transition-all duration-100"
               style={{ width: `${progress}%` }}
             />
           </div>

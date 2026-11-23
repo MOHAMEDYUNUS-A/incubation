@@ -129,13 +129,13 @@ export default function LeadershipPage() {
       <section className="bg-white border-b border-slate-200 py-16 sm:py-20 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-10 right-10 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -z-10" />
-          <div className="absolute bottom-10 left-10 w-96 h-96 bg-orange-100/25 rounded-full blur-3xl -z-10" />
+          <div className="absolute bottom-10 left-10 w-96 h-96 bg-red-100/25 rounded-full blur-3xl -z-10" />
         </div>
 
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 text-[#ea580c] border border-orange-200/80 text-xs font-mono font-bold uppercase tracking-wider mb-4 shadow-2xs">
-              <ShieldCheck className="w-4 h-4 text-orange-600" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 text-[#dc2626] border border-red-200/80 text-xs font-mono font-bold uppercase tracking-wider mb-4 shadow-2xs">
+              <ShieldCheck className="w-4 h-4 text-red-600" />
               <span>FOUNDATION GOVERNANCE & TEAM</span>
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight leading-tight">
@@ -167,7 +167,7 @@ export default function LeadershipPage() {
           {EXECUTIVE_DIRECTORS.map((leader, idx) => (
             <div
               key={idx}
-              className="rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-orange-400 transition-all duration-300 overflow-hidden flex flex-col justify-between group"
+              className="rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-red-500 transition-all duration-300 overflow-hidden flex flex-col justify-between group"
             >
               <div>
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
@@ -178,7 +178,7 @@ export default function LeadershipPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
                   <div className="absolute bottom-4 left-5 right-5 text-white z-10">
-                    <span className="px-2.5 py-1 rounded-full bg-[#ea580c] text-white text-[10px] font-bold uppercase tracking-wider shadow-xs inline-block mb-1.5">
+                    <span className="px-2.5 py-1 rounded-full bg-[#dc2626] text-white text-[10px] font-bold uppercase tracking-wider shadow-xs inline-block mb-1.5">
                       {leader.role.split(",")[0]}
                     </span>
                     <h3 className="text-xl sm:text-2xl font-bold font-display !text-white text-white drop-shadow-md">
@@ -225,7 +225,7 @@ export default function LeadershipPage() {
       <section className="py-16 sm:py-20 bg-slate-100/60 border-t border-slate-200">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6">
           <div className="mb-12">
-            <span className="text-xs font-mono font-bold text-orange-600 uppercase tracking-widest block mb-2">
+            <span className="text-xs font-mono font-bold text-red-600 uppercase tracking-widest block mb-2">
               OPERATIONS & PROGRAM DIRECTORS
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-slate-900 font-display">
@@ -287,16 +287,16 @@ export default function LeadershipPage() {
                   {exec.phone && (
                     <a
                       href={`tel:${exec.phone}`}
-                      className="flex items-center gap-1.5 hover:text-orange-600 transition-colors"
+                      className="flex items-center gap-1.5 hover:text-red-600 transition-colors"
                     >
-                      <Phone className="w-3.5 h-3.5 text-orange-500" />
+                      <Phone className="w-3.5 h-3.5 text-red-600" />
                       <span>{exec.phone}</span>
                     </a>
                   )}
                   {exec.email && (
                     <a
                       href={`mailto:${exec.email}`}
-                      className="flex items-center gap-1.5 hover:text-orange-600 transition-colors"
+                      className="flex items-center gap-1.5 hover:text-red-600 transition-colors"
                     >
                       <Mail className="w-3.5 h-3.5 text-blue-600" />
                       <span className="truncate">{exec.email}</span>
@@ -313,7 +313,7 @@ export default function LeadershipPage() {
       <section className="py-16 bg-white border-t border-slate-200">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6">
           <div className="max-w-3xl mb-12">
-            <span className="text-xs font-mono font-bold text-orange-600 uppercase tracking-widest block mb-2">
+            <span className="text-xs font-mono font-bold text-red-600 uppercase tracking-widest block mb-2">
               ECOSYSTEM GOVERNANCE
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-slate-900 font-display">
@@ -328,7 +328,7 @@ export default function LeadershipPage() {
             {ADVISORY_COMMITTEE.map((cat, idx) => (
               <div key={idx}>
                 <h3 className="text-lg sm:text-xl font-bold text-[#0f2c59] font-display mb-4 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-[#ea580c]" />
+                  <Sparkles className="w-4 h-4 text-[#dc2626]" />
                   <span>{cat.category}</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -341,7 +341,7 @@ export default function LeadershipPage() {
                         <h4 className="text-base sm:text-lg font-bold text-slate-900 font-display">
                           {m.name}
                         </h4>
-                        <span className="text-[11px] font-bold text-[#ea580c] px-2.5 py-0.5 rounded-full bg-orange-50 border border-orange-200">
+                        <span className="text-[11px] font-bold text-[#dc2626] px-2.5 py-0.5 rounded-full bg-red-50 border border-red-200">
                           {m.institution}
                         </span>
                       </div>
@@ -361,7 +361,7 @@ export default function LeadershipPage() {
           {/* Connect Action Callout */}
           <div className="mt-16 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#0f2c59] to-[#163e7a] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
             <div>
-              <span className="text-[10px] font-mono text-orange-400 font-bold uppercase tracking-wider block mb-2">
+              <span className="text-[10px] font-mono text-red-500 font-bold uppercase tracking-wider block mb-2">
                 JOIN OUR MENTOR NETWORK
               </span>
               <h3 className="text-2xl sm:text-3xl font-black font-display !text-white text-white">
@@ -372,7 +372,7 @@ export default function LeadershipPage() {
               </p>
             </div>
             <Link href="/contact?subject=mentor" className="shrink-0">
-              <Button className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-xs sm:text-sm h-12 px-7 rounded-xl shadow-md gap-2">
+              <Button className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-extrabold text-xs sm:text-sm h-12 px-7 rounded-xl shadow-md gap-2">
                 <span>Connect with Leadership</span>
                 <ArrowRight className="w-4 h-4" />
               </Button>

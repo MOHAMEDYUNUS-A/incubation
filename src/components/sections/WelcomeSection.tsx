@@ -47,7 +47,7 @@ export default function WelcomeSection() {
       {/* Subtle Ambient Background Gradients */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-100/30 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-100/30 rounded-full blur-3xl -z-10" />
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
@@ -108,7 +108,7 @@ export default function WelcomeSection() {
               <span className="text-[#0f2c59]">MASTeR INCUBATION FOUNDATION</span>
             </h2>
 
-            <p className="text-xl sm:text-2xl font-bold text-[#ea580c] font-display mt-2">
+            <p className="text-xl sm:text-2xl font-bold text-[#dc2626] font-display mt-2">
               &ldquo;Launchpad for your Entrepreneurial Success&rdquo;
             </p>
           </RevealLeft>
@@ -136,10 +136,10 @@ export default function WelcomeSection() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Card 1: Incubate Technological Ideas */}
             <FadeUp delay={0.1}>
-              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 shadow-xs hover:shadow-md hover:border-orange-300 transition-all flex flex-col justify-between">
+              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 shadow-xs hover:shadow-md hover:border-red-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2.5 mb-3 text-[#0f2c59]">
-                    <Lightbulb className="w-5 h-5 text-orange-600 shrink-0" />
+                    <Lightbulb className="w-5 h-5 text-red-600 shrink-0" />
                     <h4 className="text-lg font-bold font-display">Incubate Technological Ideas</h4>
                   </div>
                   <p className="text-sm text-slate-700 leading-relaxed font-normal">
@@ -183,7 +183,7 @@ export default function WelcomeSection() {
           {/* Clean Action CTAs */}
           <div className="pt-10 flex flex-wrap items-center justify-center gap-4">
             <Link href="/about">
-              <Button className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-sm h-12 px-8 rounded-xl shadow-md gap-2">
+              <Button className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-extrabold text-sm h-12 px-8 rounded-xl shadow-md gap-2">
                 <span>About Our Foundation</span>
                 <ArrowRight className="w-4 h-4" />
               </Button>

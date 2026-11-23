@@ -168,7 +168,7 @@ export default function CampusPhotoGallery() {
               <div
                 key={`r1-${idx}`}
                 onClick={() => setSelectedPhoto(photo)}
-                className="cursor-pointer group relative w-72 sm:w-80 md:w-96 aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-orange-400 transition-all duration-300 shrink-0 bg-slate-100"
+                className="cursor-pointer group relative w-72 sm:w-80 md:w-96 aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-red-500 transition-all duration-300 shrink-0 bg-slate-100"
               >
                 <img
                   src={photo.image}
@@ -185,14 +185,14 @@ export default function CampusPhotoGallery() {
                 </div>
 
                 <div className="absolute bottom-3 left-4 right-4 z-10 text-white">
-                  <h4 className="font-extrabold text-sm sm:text-base font-display line-clamp-1 !text-white text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] group-hover:text-orange-300 transition-colors">
+                  <h4 className="font-extrabold text-sm sm:text-base font-display line-clamp-1 !text-white text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] group-hover:text-red-400 transition-colors">
                     {photo.title}
                   </h4>
                   <p className="text-[11px] text-slate-200 line-clamp-1 font-medium mt-0.5 drop-shadow-sm">
                     {photo.caption}
                   </p>
-                  <div className="flex items-center gap-1 text-[10px] text-orange-300 mt-1 font-bold drop-shadow-sm">
-                    <MapPin className="w-3 h-3 text-orange-400" />
+                  <div className="flex items-center gap-1 text-[10px] text-red-400 mt-1 font-bold drop-shadow-sm">
+                    <MapPin className="w-3 h-3 text-red-500" />
                     <span>{photo.location}</span>
                   </div>
                 </div>
@@ -206,7 +206,7 @@ export default function CampusPhotoGallery() {
               <div
                 key={`r2-${idx}`}
                 onClick={() => setSelectedPhoto(photo)}
-                className="cursor-pointer group relative w-72 sm:w-80 md:w-96 aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-orange-400 transition-all duration-300 shrink-0 bg-slate-100"
+                className="cursor-pointer group relative w-72 sm:w-80 md:w-96 aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-red-500 transition-all duration-300 shrink-0 bg-slate-100"
               >
                 <img
                   src={photo.image}
@@ -223,14 +223,14 @@ export default function CampusPhotoGallery() {
                 </div>
 
                 <div className="absolute bottom-3 left-4 right-4 z-10 text-white">
-                  <h4 className="font-extrabold text-sm sm:text-base font-display line-clamp-1 !text-white text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] group-hover:text-orange-300 transition-colors">
+                  <h4 className="font-extrabold text-sm sm:text-base font-display line-clamp-1 !text-white text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] group-hover:text-red-400 transition-colors">
                     {photo.title}
                   </h4>
                   <p className="text-[11px] text-slate-200 line-clamp-1 font-medium mt-0.5 drop-shadow-sm">
                     {photo.caption}
                   </p>
-                  <div className="flex items-center gap-1 text-[10px] text-orange-300 mt-1 font-bold drop-shadow-sm">
-                    <MapPin className="w-3 h-3 text-orange-400" />
+                  <div className="flex items-center gap-1 text-[10px] text-red-400 mt-1 font-bold drop-shadow-sm">
+                    <MapPin className="w-3 h-3 text-red-500" />
                     <span>{photo.location}</span>
                   </div>
                 </div>
@@ -267,11 +267,11 @@ export default function CampusPhotoGallery() {
 
             <div className="p-6 sm:p-8 bg-white border-t border-slate-200">
               <div className="flex items-center gap-2 mb-2">
-                <span className="px-3 py-1 rounded-full bg-orange-50 text-orange-700 border border-orange-200 text-xs font-bold uppercase tracking-wider">
+                <span className="px-3 py-1 rounded-full bg-red-50 text-red-700 border border-red-200 text-xs font-bold uppercase tracking-wider">
                   {selectedPhoto.categoryLabel}
                 </span>
                 <span className="text-xs text-slate-500 font-semibold flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5 text-orange-600" />
+                  <MapPin className="w-3.5 h-3.5 text-red-600" />
                   {selectedPhoto.location}
                 </span>
               </div>

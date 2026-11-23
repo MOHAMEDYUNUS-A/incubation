@@ -98,7 +98,7 @@ export default function StartupPassportViewPage({
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center pt-24 pb-16 px-4">
         <div className="text-center max-w-md">
-          <div className="w-16 h-16 border-4 border-blue-900 border-t-orange-500 rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-16 h-16 border-4 border-blue-900 border-t-red-600 rounded-full animate-spin mx-auto mb-4" />
           <h2 className="text-xl font-bold text-slate-800">Verifying Digital Credentials...</h2>
           <p className="text-sm text-slate-500 mt-1">Retrieving official Startup Passport records from MASTeR Incubation Foundation registry.</p>
         </div>
@@ -140,7 +140,7 @@ export default function StartupPassportViewPage({
   const isPassportActive = passport.status === "ACTIVE";
 
   return (
-    <div className="min-h-screen bg-slate-50/60 pt-32 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50/60 pt-36 sm:pt-40 md:pt-44 pb-20 px-4 sm:px-6 lg:px-8">
       {/* Print Styles */}
       <style jsx global>{`
         @media print {
@@ -196,7 +196,7 @@ export default function StartupPassportViewPage({
         <div className="print-card relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-blue-50/40 border-2 border-blue-900/15 rounded-3xl p-6 sm:p-10 shadow-xl shadow-blue-950/5">
           {/* Subtle Security Guilloche Watermark */}
           <div className="absolute -top-16 -right-16 w-80 h-80 rounded-full bg-blue-900/5 blur-2xl pointer-events-none" />
-          <div className="absolute -bottom-16 -left-16 w-80 h-80 rounded-full bg-orange-500/5 blur-2xl pointer-events-none" />
+          <div className="absolute -bottom-16 -left-16 w-80 h-80 rounded-full bg-red-600/5 blur-2xl pointer-events-none" />
 
           {/* 1. Institutional Accreditation Ribbon */}
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200/80 pb-4 mb-6">
@@ -234,7 +234,7 @@ export default function StartupPassportViewPage({
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-slate-200/80 pb-6 mb-8">
             <div className="flex items-start sm:items-center gap-4 sm:gap-5">
               {/* Dynamic Venture Emblem */}
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#0f2c59] via-[#091b34] to-slate-900 p-1 flex items-center justify-center shadow-lg shadow-blue-950/20 text-white shrink-0 border-2 border-orange-500/40">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#0f2c59] via-[#091b34] to-slate-900 p-1 flex items-center justify-center shadow-lg shadow-blue-950/20 text-white shrink-0 border-2 border-red-600/40">
                 <div className="w-full h-full rounded-xl bg-gradient-to-br from-[#0f2c59] to-[#091b34] flex items-center justify-center font-black text-2xl sm:text-3xl tracking-tight text-white font-display">
                   {passport.startupName.split(" ").map(w => w[0]).slice(0, 2).join("")}
                 </div>
@@ -245,7 +245,7 @@ export default function StartupPassportViewPage({
 
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                  <span className="text-[10.5px] font-extrabold uppercase tracking-wider text-orange-700 bg-orange-100/80 px-2.5 py-0.5 rounded-md border border-orange-200">
+                  <span className="text-[10.5px] font-extrabold uppercase tracking-wider text-red-700 bg-red-100/80 px-2.5 py-0.5 rounded-md border border-red-200">
                     Incubated Venture
                   </span>
                   <span className="text-[11px] font-bold text-slate-500">
@@ -263,7 +263,7 @@ export default function StartupPassportViewPage({
 
             {/* Official Passport ID Plaque */}
             <div className="bg-white/95 backdrop-blur border border-slate-200 rounded-2xl p-4 sm:p-5 flex items-center gap-4 shadow-sm w-full md:w-auto shrink-0">
-              <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center font-mono font-bold text-lg border border-orange-200/70 shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center font-mono font-bold text-lg border border-red-200/70 shrink-0">
                 <FileCheck className="w-6 h-6" />
               </div>
               <div>
@@ -303,7 +303,7 @@ export default function StartupPassportViewPage({
                 {/* Weighted Progress Bar */}
                 <div className="w-full h-3 rounded-full bg-slate-100 overflow-hidden relative">
                   <div
-                    className="h-full bg-gradient-to-r from-blue-900 via-blue-700 to-orange-500 transition-all duration-700 rounded-full"
+                    className="h-full bg-gradient-to-r from-blue-900 via-blue-700 to-red-600 transition-all duration-700 rounded-full"
                     style={{ width: `${progress.percentage}%` }}
                   />
                 </div>
@@ -324,7 +324,7 @@ export default function StartupPassportViewPage({
                   </div>
                 </div>
                 <div className="bg-white/90 border border-slate-200 rounded-xl p-3.5 flex items-center gap-3 shadow-2xs">
-                  <div className="w-9 h-9 rounded-lg bg-orange-50 text-orange-800 flex items-center justify-center font-extrabold text-xs shrink-0">HI</div>
+                  <div className="w-9 h-9 rounded-lg bg-red-50 text-red-800 flex items-center justify-center font-extrabold text-xs shrink-0">HI</div>
                   <div>
                     <p className="text-[10px] uppercase font-bold text-slate-400">Host Institute</p>
                     <p className="text-xs font-bold text-slate-800">MSME Recognized</p>
@@ -418,7 +418,7 @@ export default function StartupPassportViewPage({
               {launches.length > 0 && (
                 <div>
                   <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                    <Rocket className="w-5 h-5 text-orange-600" />
+                    <Rocket className="w-5 h-5 text-red-600" />
                     Product Launches & Active Showcases
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
@@ -429,7 +429,7 @@ export default function StartupPassportViewPage({
                       >
                         <div className="flex items-start justify-between">
                           <div>
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2 py-0.5 rounded border border-orange-200">
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-200">
                               {launch.version}
                             </span>
                             <h4 className="text-lg font-bold text-slate-900 mt-1">{launch.productName}</h4>
@@ -444,7 +444,7 @@ export default function StartupPassportViewPage({
                             href={launch.demoUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs font-bold text-blue-950 hover:text-orange-600 transition"
+                            className="inline-flex items-center gap-1 text-xs font-bold text-blue-950 hover:text-red-600 transition"
                           >
                             Live Product Demo <ExternalLink className="w-3 h-3" />
                           </a>
@@ -608,7 +608,7 @@ export default function StartupPassportViewPage({
                       </div>
                       <div>
                         <h4 className="text-lg font-bold text-slate-900">{founder.fullName}</h4>
-                        <p className="text-xs font-semibold text-orange-600">{founder.role}</p>
+                        <p className="text-xs font-semibold text-red-600">{founder.role}</p>
                         {founder.education && (
                           <p className="text-[11px] text-slate-500 mt-0.5">{founder.education}</p>
                         )}
@@ -636,7 +636,7 @@ export default function StartupPassportViewPage({
                           href={founder.linkedInUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-xs font-bold text-blue-950 hover:text-orange-600 transition inline-flex items-center gap-1"
+                          className="text-xs font-bold text-blue-950 hover:text-red-600 transition inline-flex items-center gap-1"
                         >
                           LinkedIn Profile <ExternalLink className="w-3 h-3" />
                         </a>
@@ -671,7 +671,7 @@ export default function StartupPassportViewPage({
                       className="border border-slate-200 rounded-2xl p-5 bg-white space-y-3 hover:border-slate-300 transition"
                     >
                       <div className="flex items-start justify-between">
-                        <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
                           <Award className="w-5 h-5" />
                         </div>
                         <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">

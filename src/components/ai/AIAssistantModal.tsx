@@ -62,7 +62,7 @@ function FormattedContent({ content, isUser }: { content: string; isUser: boolea
         if (isBullet) {
           return (
             <div key={lIdx} className="flex items-start gap-2 pl-0.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0 mt-1.5" />
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0 mt-1.5" />
               <span>{renderedLine}</span>
             </div>
           );
@@ -169,7 +169,7 @@ export default function AIAssistantModal({
           <div className="p-4 px-5 bg-white/75 backdrop-blur-xl border-b border-slate-200/70 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-2xl bg-[#0f2c59] flex items-center justify-center text-white shadow-md border border-white/40">
-                <Sparkles className="w-5 h-5 text-orange-400" />
+                <Sparkles className="w-5 h-5 text-red-500" />
               </div>
               <div>
                 <h3 className="text-base font-black text-slate-900 font-display">
@@ -263,9 +263,9 @@ export default function AIAssistantModal({
                   <Bot className="w-4 h-4" />
                 </div>
                 <div className="p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-white/80 text-slate-500 flex items-center gap-1.5 shadow-2xs">
-                  <span className="w-2 h-2 rounded-full bg-[#ea580c] animate-pulse" />
-                  <span className="w-2 h-2 rounded-full bg-[#ea580c] animate-pulse [animation-delay:0.2s]" />
-                  <span className="w-2 h-2 rounded-full bg-[#ea580c] animate-pulse [animation-delay:0.4s]" />
+                  <span className="w-2 h-2 rounded-full bg-[#dc2626] animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-[#dc2626] animate-pulse [animation-delay:0.2s]" />
+                  <span className="w-2 h-2 rounded-full bg-[#dc2626] animate-pulse [animation-delay:0.4s]" />
                 </div>
               </div>
             )}
@@ -278,7 +278,7 @@ export default function AIAssistantModal({
               <button
                 key={idx}
                 onClick={() => handleSend(chip)}
-                className="text-[11px] px-3 py-1.5 rounded-full bg-white/80 hover:bg-white text-slate-700 hover:text-orange-700 hover:border-orange-300 whitespace-nowrap transition-all border border-slate-200/80 shadow-2xs font-semibold backdrop-blur-sm"
+                className="text-[11px] px-3 py-1.5 rounded-full bg-white/80 hover:bg-white text-slate-700 hover:text-red-700 hover:border-red-400 whitespace-nowrap transition-all border border-slate-200/80 shadow-2xs font-semibold backdrop-blur-sm"
               >
                 {chip}
               </button>
@@ -291,7 +291,7 @@ export default function AIAssistantModal({
             <Link
               href="/apply"
               onClick={onClose}
-              className="text-[#ea580c] hover:underline font-bold flex items-center gap-1"
+              className="text-[#dc2626] hover:underline font-bold flex items-center gap-1"
             >
               <span>Apply for Incubation</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -310,13 +310,13 @@ export default function AIAssistantModal({
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about incubation, grants, labs, mentoring..."
-              className="h-11 text-xs sm:text-sm bg-white/90 backdrop-blur-md border-slate-300/80 rounded-xl px-3.5 focus-visible:ring-orange-500 shadow-2xs"
+              className="h-11 text-xs sm:text-sm bg-white/90 backdrop-blur-md border-slate-300/80 rounded-xl px-3.5 focus-visible:ring-red-600 shadow-2xs"
             />
             <Button
               type="submit"
               disabled={loading || !input.trim()}
               size="sm"
-              className="bg-[#ea580c] hover:bg-[#c2410c] text-white shrink-0 h-11 px-4 rounded-xl shadow-md shadow-orange-600/25 transition-all"
+              className="bg-[#dc2626] hover:bg-[#b91c1c] text-white shrink-0 h-11 px-4 rounded-xl shadow-md shadow-red-600/25 transition-all"
             >
               <Send className="w-4 h-4" />
             </Button>

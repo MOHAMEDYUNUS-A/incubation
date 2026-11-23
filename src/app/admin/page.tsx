@@ -659,13 +659,13 @@ export default function AdminPage() {
           <div className="min-w-0">
             <div className="flex items-center gap-1.5">
               <span className="font-black text-base tracking-tight text-white font-display">
-                MAST<span className="text-[#ea580c]">e</span>R
+                MAST<span className="text-[#dc2626]">e</span>R
               </span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded font-mono bg-blue-500/20 text-blue-300 font-bold border border-blue-400/30">
+              <span className="text-[10px] px-2 py-0.5 rounded font-bold bg-red-600/20 text-red-300 border border-red-500/30 uppercase tracking-wider">
                 ADMIN
               </span>
             </div>
-            <p className="text-[11px] text-slate-400 font-semibold truncate">
+            <p className="text-[11px] text-slate-400 font-medium truncate">
               Operations & Catalog Hub
             </p>
           </div>
@@ -677,14 +677,14 @@ export default function AdminPage() {
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             Live Production Node
           </span>
-          <span className="font-mono text-emerald-400 font-bold">MAMCET</span>
+          <span className="font-bold text-emerald-400">MAMCET</span>
         </div>
 
         {/* Sidebar Nav Items Container */}
         <div className="flex-1 overflow-y-auto px-3.5 py-4 space-y-6 scrollbar-thin">
           {/* Group 1: Core Operations */}
           <div>
-            <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
+            <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
               Core Operations
             </div>
             <div className="space-y-1">
@@ -703,7 +703,7 @@ export default function AdminPage() {
                     onClick={() => setActiveTab(item.id as any)}
                     className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                       isActive
-                        ? "bg-[#ea580c] text-white shadow-md shadow-orange-950/30 font-bold"
+                        ? "bg-[#dc2626] text-white shadow-md shadow-red-950/30 font-bold"
                         : "text-slate-300 hover:text-white hover:bg-slate-800/60"
                     }`}
                   >
@@ -713,7 +713,7 @@ export default function AdminPage() {
                     </div>
                     {item.count !== undefined && (
                       <span
-                        className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
+                        className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
                           isActive
                             ? "bg-white/20 text-white"
                             : "bg-slate-800/90 text-slate-300 border border-slate-700/60"
@@ -730,7 +730,7 @@ export default function AdminPage() {
 
           {/* Group 2: Startup Passport & Ecosystem */}
           <div>
-            <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
+            <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
               Passport & Ecosystem
             </div>
             <div className="space-y-1">
@@ -749,7 +749,7 @@ export default function AdminPage() {
                     onClick={() => setActiveTab(item.id as any)}
                     className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                       isActive
-                        ? "bg-[#ea580c] text-white shadow-md shadow-orange-950/30 font-bold"
+                        ? "bg-[#dc2626] text-white shadow-md shadow-red-950/30 font-bold"
                         : "text-slate-300 hover:text-white hover:bg-slate-800/60"
                     }`}
                   >
@@ -765,7 +765,7 @@ export default function AdminPage() {
 
           {/* Group 3: Content & Identity */}
           <div>
-            <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
+            <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
               Identity & Configuration
             </div>
             <div className="space-y-1">
@@ -781,7 +781,7 @@ export default function AdminPage() {
                     onClick={() => setActiveTab(item.id as any)}
                     className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                       isActive
-                        ? "bg-[#ea580c] text-white shadow-md shadow-orange-950/30 font-bold"
+                        ? "bg-[#dc2626] text-white shadow-md shadow-red-950/30 font-bold"
                         : "text-slate-300 hover:text-white hover:bg-slate-800/60"
                     }`}
                   >
@@ -797,7 +797,7 @@ export default function AdminPage() {
 
           {/* Group 3: Quick Portals & Extra Links */}
           <div>
-            <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
+            <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
               Extra Links & Portals
             </div>
             <div className="space-y-1">
@@ -819,7 +819,7 @@ export default function AdminPage() {
                 className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all group"
               >
                 <div className="flex items-center gap-2.5">
-                  <Rocket className="w-3.5 h-3.5 text-orange-400 group-hover:scale-110 transition-transform" />
+                  <Rocket className="w-3.5 h-3.5 text-red-500 group-hover:scale-110 transition-transform" />
                   <span>Public Startups Page</span>
                 </div>
                 <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-slate-300" />
@@ -915,7 +915,7 @@ export default function AdminPage() {
                 </div>
                 <div>
                   <span className="font-black text-sm text-white font-display">
-                    MAST<span className="text-[#ea580c]">e</span>R Admin
+                    MAST<span className="text-[#dc2626]">e</span>R Admin
                   </span>
                   <p className="text-[10px] text-slate-400">Sidebar Menu</p>
                 </div>
@@ -930,7 +930,7 @@ export default function AdminPage() {
 
             <div className="flex-1 overflow-y-auto p-3 space-y-5">
               <div>
-                <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">Operations</div>
+                <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Operations</div>
                 <div className="space-y-1">
                   {[
                     { id: "dashboard", label: "Dashboard Overview", icon: LayoutDashboard },
@@ -956,7 +956,7 @@ export default function AdminPage() {
                           setMobileSidebarOpen(false);
                         }}
                         className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold ${
-                          isActive ? "bg-[#ea580c] text-white font-bold shadow-md" : "text-slate-300 hover:bg-slate-800"
+                          isActive ? "bg-[#dc2626] text-white font-bold shadow-md shadow-red-950/40" : "text-slate-300 hover:bg-slate-800"
                         }`}
                       >
                         <div className="flex items-center gap-2.5">
@@ -964,7 +964,7 @@ export default function AdminPage() {
                           <span>{item.label}</span>
                         </div>
                         {item.count !== undefined && (
-                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${isActive ? "bg-white/25 text-white" : "bg-slate-800 text-slate-400"}`}>
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${isActive ? "bg-white/25 text-white" : "bg-slate-800 text-slate-400"}`}>
                             {item.count}
                           </span>
                         )}
@@ -975,14 +975,14 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">Extra Links</div>
+                <div className="px-3 pb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Extra Links</div>
                 <div className="space-y-1">
                   <Link href="/" target="_blank" onClick={() => setMobileSidebarOpen(false)} className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
                     <span className="flex items-center gap-2"><Home className="w-3.5 h-3.5 text-blue-400" /> Public Website</span>
                     <ExternalLink className="w-3 h-3 text-slate-500" />
                   </Link>
                   <Link href="/startups" target="_blank" onClick={() => setMobileSidebarOpen(false)} className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
-                    <span className="flex items-center gap-2"><Rocket className="w-3.5 h-3.5 text-orange-400" /> Startups Page</span>
+                    <span className="flex items-center gap-2"><Rocket className="w-3.5 h-3.5 text-red-500" /> Startups Page</span>
                     <ExternalLink className="w-3 h-3 text-slate-500" />
                   </Link>
                   <Link href="/apply" target="_blank" onClick={() => setMobileSidebarOpen(false)} className="flex items-center justify-between px-3 py-2 rounded-xl text-xs text-slate-300 hover:bg-slate-800">
@@ -1022,7 +1022,7 @@ export default function AdminPage() {
 
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium mb-0.5">
-                <span className="font-semibold text-slate-700 text-[11px] uppercase tracking-wider font-mono">
+                <span className="font-bold text-slate-700 text-[11px] uppercase tracking-wider">
                   MIF Operations
                 </span>
                 <span className="text-slate-300">/</span>
@@ -1116,7 +1116,7 @@ export default function AdminPage() {
                 className="border-slate-300 text-slate-700 hover:bg-slate-50 text-xs h-8 sm:h-9 px-2 sm:px-3 gap-1.5 shadow-xs font-semibold"
                 title="View Public Website"
               >
-                <Eye className="w-3.5 h-3.5 text-orange-600" />
+                <Eye className="w-3.5 h-3.5 text-red-600" />
                 <span className="hidden md:inline">View Public Website</span>
                 <ExternalLink className="w-3 h-3 text-slate-400" />
               </Button>
@@ -1137,7 +1137,7 @@ export default function AdminPage() {
               <Button
                 onClick={handleOpenAddStartup}
                 size="sm"
-                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-8 sm:h-9 px-2.5 sm:px-3.5 text-xs gap-1 sm:gap-1.5 shadow-sm"
+                className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-8 sm:h-9 px-2.5 sm:px-3.5 text-xs gap-1 sm:gap-1.5 shadow-sm"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Add Startup</span>
@@ -1147,7 +1147,7 @@ export default function AdminPage() {
               <Button
                 onClick={handleOpenAddPhoto}
                 size="sm"
-                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-8 sm:h-9 px-2.5 sm:px-3.5 text-xs gap-1 sm:gap-1.5 shadow-sm"
+                className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-8 sm:h-9 px-2.5 sm:px-3.5 text-xs gap-1 sm:gap-1.5 shadow-sm"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Add Image</span>
@@ -1179,13 +1179,13 @@ export default function AdminPage() {
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6">
                 <div className="space-y-1.5 sm:space-y-2 max-w-2xl">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 text-[10px] font-bold font-mono uppercase tracking-wider border border-blue-200">
+                    <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 text-[10px] font-bold uppercase tracking-wider border border-blue-200">
                       StartupTN Pre-Incubation Centre
                     </span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[10px] font-bold font-mono uppercase tracking-wider border border-slate-200">
+                    <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[10px] font-bold uppercase tracking-wider border border-slate-200">
                       MSME Recognized HI
                     </span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold font-mono uppercase tracking-wider border border-emerald-200 flex items-center gap-1">
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold uppercase tracking-wider border border-emerald-200 flex items-center gap-1">
                       <Mail className="w-3 h-3 text-emerald-600" />
                       <span>Automated No-Reply: Active</span>
                     </span>
@@ -1201,7 +1201,7 @@ export default function AdminPage() {
                 <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 shrink-0">
                   <Button
                     onClick={handleOpenAddStartup}
-                    className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 sm:h-11 px-5 rounded-xl text-xs gap-2 shadow-sm touch-manipulation flex-1 sm:flex-none justify-center"
+                    className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-10 sm:h-11 px-5 rounded-xl text-xs gap-2 shadow-sm touch-manipulation flex-1 sm:flex-none justify-center"
                   >
                     <Plus className="w-4 h-4" />
                     <span>Add Startup</span>
@@ -1246,14 +1246,14 @@ export default function AdminPage() {
 
               <div
                 onClick={() => setActiveTab("gallery")}
-                className="cursor-pointer p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-orange-400 transition-all group relative overflow-hidden"
+                className="cursor-pointer p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-red-500 transition-all group relative overflow-hidden"
               >
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-amber-600" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 to-amber-600" />
                 <div className="flex items-center justify-between mb-2 sm:mb-3">
                   <span className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider truncate">
                     Gallery
                   </span>
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-red-50 text-red-600 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
                     <ImageIcon className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                 </div>
@@ -1262,7 +1262,7 @@ export default function AdminPage() {
                 </div>
                 <div className="text-[11px] sm:text-xs text-slate-500 mt-1.5 sm:mt-2 flex items-center justify-between">
                   <span className="hidden sm:inline">Photos & Videos</span>
-                  <span className="text-orange-600 font-bold flex items-center gap-0.5 sm:gap-1 group-hover:translate-x-0.5 transition-transform text-[11px] sm:text-xs">
+                  <span className="text-red-600 font-bold flex items-center gap-0.5 sm:gap-1 group-hover:translate-x-0.5 transition-transform text-[11px] sm:text-xs">
                     Curate <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </span>
                 </div>
@@ -1336,7 +1336,7 @@ export default function AdminPage() {
                     setActiveTab("startups");
                     handleOpenAddStartup();
                   }}
-                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-11 rounded-xl text-xs gap-1.5 shadow-sm"
+                  className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-11 rounded-xl text-xs gap-1.5 shadow-sm"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Add Startup</span>
@@ -1369,7 +1369,7 @@ export default function AdminPage() {
                   variant="outline"
                   className="border-slate-300 text-slate-800 hover:bg-slate-50 font-bold h-11 rounded-xl text-xs gap-1.5"
                 >
-                  <Sparkles className="w-4 h-4 text-orange-600" />
+                  <Sparkles className="w-4 h-4 text-red-600" />
                   <span>Hero Studio</span>
                 </Button>
 
@@ -1443,7 +1443,7 @@ export default function AdminPage() {
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
                         <Phone className="w-4 h-4" />
                       </div>
                       <h4 className="font-bold text-slate-900 text-sm">
@@ -1452,7 +1452,7 @@ export default function AdminPage() {
                     </div>
                     <button
                       onClick={() => setActiveTab("contact")}
-                      className="text-xs text-orange-600 font-bold hover:underline"
+                      className="text-xs text-red-600 font-bold hover:underline"
                     >
                       Edit Contacts →
                     </button>
@@ -1512,7 +1512,7 @@ export default function AdminPage() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 font-mono text-[9px] sm:text-[10px] font-bold border border-orange-200">
+                  <span className="px-2 py-0.5 rounded-full bg-red-50 text-red-700 font-mono text-[9px] sm:text-[10px] font-bold border border-red-200">
                     PORTFOLIO MANAGEMENT
                   </span>
                   <span className="text-[11px] sm:text-xs text-slate-400 font-mono">
@@ -1537,7 +1537,7 @@ export default function AdminPage() {
                 </Button>
                 <Button
                   onClick={handleOpenAddStartup}
-                  className="w-full sm:w-auto bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 sm:h-11 px-4 sm:px-5 rounded-xl text-xs gap-2 shadow-sm justify-center touch-manipulation"
+                  className="w-full sm:w-auto bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-10 sm:h-11 px-4 sm:px-5 rounded-xl text-xs gap-2 shadow-sm justify-center touch-manipulation"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Add New Startup</span>
@@ -1667,7 +1667,7 @@ export default function AdminPage() {
                   {filteredStartups.map((st: any) => (
                     <div
                       key={st.id}
-                      className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col justify-between hover:border-orange-400 hover:shadow-md transition-all group"
+                      className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col justify-between hover:border-red-500 hover:shadow-md transition-all group"
                     >
                       <div>
                         {/* Top Card Row */}
@@ -1681,7 +1681,7 @@ export default function AdminPage() {
                                   className="max-h-full max-w-full object-contain"
                                 />
                               ) : (
-                                <Rocket className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600" />
+                                <Rocket className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
                               )}
                             </div>
                             <div className="min-w-0">
@@ -1792,9 +1792,9 @@ export default function AdminPage() {
                               {st.email && (
                                 <a
                                   href={`mailto:${st.email}`}
-                                  className="flex items-center gap-1 hover:text-orange-600 transition-colors truncate"
+                                  className="flex items-center gap-1 hover:text-red-600 transition-colors truncate"
                                 >
-                                  <Mail className="w-3 h-3 text-orange-600 shrink-0" />
+                                  <Mail className="w-3 h-3 text-red-600 shrink-0" />
                                   <span className="truncate">{st.email}</span>
                                 </a>
                               )}
@@ -1840,7 +1840,7 @@ export default function AdminPage() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 font-mono text-[9px] sm:text-[10px] font-bold border border-orange-200">
+                  <span className="px-2 py-0.5 rounded-full bg-red-50 text-red-700 font-mono text-[9px] sm:text-[10px] font-bold border border-red-200">
                     CAMPUS MEDIA & LABS
                   </span>
                   <span className="text-[11px] sm:text-xs text-slate-400 font-mono">
@@ -1856,7 +1856,7 @@ export default function AdminPage() {
               </div>
               <Button
                 onClick={handleOpenAddPhoto}
-                className="w-full sm:w-auto bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 sm:h-11 px-4 sm:px-5 rounded-xl text-xs gap-2 shrink-0 shadow-sm justify-center"
+                className="w-full sm:w-auto bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-10 sm:h-11 px-4 sm:px-5 rounded-xl text-xs gap-2 shrink-0 shadow-sm justify-center"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add Gallery Photo</span>
@@ -1986,7 +1986,7 @@ export default function AdminPage() {
                     return (
                       <div
                         key={p.id}
-                        className="rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs overflow-hidden flex flex-col justify-between group hover:border-orange-400 hover:shadow-md transition-all"
+                        className="rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-xs overflow-hidden flex flex-col justify-between group hover:border-red-500 hover:shadow-md transition-all"
                       >
                         <div>
                           <div className="relative aspect-[16/10] bg-slate-900 overflow-hidden">
@@ -2025,7 +2025,7 @@ export default function AdminPage() {
                               {p.caption}
                             </p>
                             <div className="text-[11px] text-slate-500 flex items-center gap-1 font-medium">
-                              <MapPin className="w-3.5 h-3.5 text-orange-600 shrink-0" />
+                              <MapPin className="w-3.5 h-3.5 text-red-600 shrink-0" />
                               <span className="truncate">{p.location}</span>
                             </div>
                           </div>
@@ -2112,15 +2112,15 @@ export default function AdminPage() {
 
                 <div className="relative z-10 max-w-3xl space-y-3 sm:space-y-4">
                   {/* Top Badge */}
-                  <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] sm:text-[11px] font-semibold text-orange-300">
-                    <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-orange-400" />
+                  <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] sm:text-[11px] font-semibold text-red-400">
+                    <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-red-500" />
                     <span className="truncate max-w-[260px] sm:max-w-none">{heroForm.badge}</span>
                   </div>
 
                   {/* Dynamic Headline */}
                   <h1 className="text-xl sm:text-3xl lg:text-5xl font-black text-white font-display tracking-tight leading-tight">
                     Accelerating Innovators into{" "}
-                    <span className="text-[#ea580c] underline decoration-orange-500/60 underline-offset-4 animate-in fade-in duration-300">
+                    <span className="text-[#dc2626] underline decoration-red-600/60 underline-offset-4 animate-in fade-in duration-300">
                       {heroForm.rotatingTexts[previewPhraseIndex] || "DeepTech Ventures"}
                     </span>
                   </h1>
@@ -2133,7 +2133,7 @@ export default function AdminPage() {
 
                   {/* Sample Mock CTA Buttons */}
                   <div className="flex items-center justify-center gap-2 sm:gap-3 pt-1 sm:pt-2">
-                    <div className="px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-[#ea580c] text-white text-[11px] sm:text-xs font-bold shadow-md cursor-default">
+                    <div className="px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-[#dc2626] text-white text-[11px] sm:text-xs font-bold shadow-md cursor-default">
                       Apply for Incubation →
                     </div>
                     <div className="px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-bold cursor-default">
@@ -2228,7 +2228,7 @@ export default function AdminPage() {
                 />
                 <Button
                   onClick={handleAddRotatingPhrase}
-                  className="w-full sm:w-auto bg-[#ea580c] hover:bg-orange-700 text-white font-bold h-11 px-5 rounded-xl text-xs gap-2 shrink-0 justify-center"
+                  className="w-full sm:w-auto bg-[#dc2626] hover:bg-red-700 text-white font-bold h-11 px-5 rounded-xl text-xs gap-2 shrink-0 justify-center"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Add Phrase</span>
@@ -2596,7 +2596,7 @@ export default function AdminPage() {
                   </div>
                   <Button
                     type="submit"
-                    className="w-full sm:w-auto justify-center bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-11 px-6 rounded-xl text-xs gap-2 shadow-sm touch-manipulation"
+                    className="w-full sm:w-auto justify-center bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-11 px-6 rounded-xl text-xs gap-2 shadow-sm touch-manipulation"
                   >
                     <Save className="w-4 h-4" />
                     <span>Save Contact Details</span>
@@ -2818,7 +2818,7 @@ export default function AdminPage() {
                               href={`mailto:${app.founderEmail}`}
                               className="text-blue-600 hover:underline flex items-center gap-1"
                             >
-                              <Mail className="w-3 h-3 text-orange-600" />
+                              <Mail className="w-3 h-3 text-red-600" />
                               <span>{app.founderEmail}</span>
                             </a>
                           )}
@@ -3124,7 +3124,7 @@ export default function AdminPage() {
                 </Button>
                 <Button
                   type="submit"
-                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 px-6 text-xs shadow-sm hover:shadow"
+                  className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-10 px-6 text-xs shadow-sm hover:shadow"
                 >
                   {editingStartup ? "Update Startup" : "Add Startup"}
                 </Button>
@@ -3143,7 +3143,7 @@ export default function AdminPage() {
             {/* Pinned Sticky Header */}
             <div className="px-6 py-4 border-b border-slate-200 bg-white flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center border border-orange-100 shrink-0">
+                <div className="w-10 h-10 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center border border-red-100 shrink-0">
                   <ImageIcon className="w-5 h-5" />
                 </div>
                 <div>
@@ -3271,7 +3271,7 @@ export default function AdminPage() {
                 </Button>
                 <Button
                   type="submit"
-                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 px-6 text-xs shadow-sm hover:shadow"
+                  className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-10 px-6 text-xs shadow-sm hover:shadow"
                 >
                   {editingPhoto ? "Save Changes" : "Add Image"}
                 </Button>
@@ -3430,7 +3430,7 @@ export default function AdminPage() {
                       onChange={(e) =>
                         setEventForm({ ...eventForm, registrationOpen: e.target.checked })
                       }
-                      className="w-4 h-4 rounded text-orange-600 focus:ring-orange-500"
+                      className="w-4 h-4 rounded text-red-600 focus:ring-red-600"
                     />
                     <span className="text-xs font-bold text-slate-800">
                       Registration Open
@@ -3451,7 +3451,7 @@ export default function AdminPage() {
                 </Button>
                 <Button
                   type="submit"
-                  className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-10 px-6 text-xs shadow-sm hover:shadow"
+                  className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-10 px-6 text-xs shadow-sm hover:shadow"
                 >
                   {editingEvent ? "Save Event" : "Schedule Event"}
                 </Button>

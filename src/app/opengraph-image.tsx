@@ -93,7 +93,7 @@ export default async function Image() {
               alignItems: "center",
             }}
           >
-            MAST<span style={{ color: "#ea580c" }}>e</span>R Incubation Foundation
+            MAST<span style={{ color: "#dc2626" }}>e</span>R Incubation Foundation
           </div>
           <div
             style={{
@@ -141,7 +141,7 @@ export default async function Image() {
               fontSize: "20px",
               fontWeight: 700,
               color: "#ffffff",
-              backgroundColor: "#ea580c",
+              backgroundColor: "#dc2626",
               padding: "14px 28px",
               borderRadius: "16px",
             }}

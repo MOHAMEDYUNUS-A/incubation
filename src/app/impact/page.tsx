@@ -56,8 +56,8 @@ export default function ImpactPage() {
       {/* Page Hero */}
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-14">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 text-orange-700 text-xs font-bold uppercase tracking-wider mb-4 border border-orange-200">
-            <Award className="w-4 h-4 text-orange-600" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 text-red-700 text-xs font-bold uppercase tracking-wider mb-4 border border-red-200">
+            <Award className="w-4 h-4 text-red-600" />
             <span>MEASURABLE TRANSLATION FOOTPRINT</span>
           </div>
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight font-display text-slate-900 leading-tight">
@@ -119,7 +119,7 @@ export default function ImpactPage() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/apply">
-              <Button className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-xs sm:text-sm h-12 px-8 rounded-xl shadow-md gap-2">
+              <Button className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-extrabold text-xs sm:text-sm h-12 px-8 rounded-xl shadow-md gap-2">
                 <span>Apply For Pre-Incubation</span>
                 <ArrowRight className="w-4 h-4" />
               </Button>

@@ -46,8 +46,8 @@ export default function SuccessStoriesIndexPage() {
       <div className="max-w-6xl mx-auto space-y-12">
         {/* Editorial Masthead */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-950 text-xs font-black uppercase tracking-widest border border-orange-200">
-            <Sparkles className="w-3.5 h-3.5 text-orange-600" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-950 text-xs font-black uppercase tracking-widest border border-red-200">
+            <Sparkles className="w-3.5 h-3.5 text-red-600" />
             Editorial Showcase · MIF Chronicles
           </div>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
@@ -60,7 +60,7 @@ export default function SuccessStoriesIndexPage() {
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="w-12 h-12 border-4 border-blue-900 border-t-orange-500 rounded-full animate-spin" />
+            <div className="w-12 h-12 border-4 border-blue-900 border-t-red-600 rounded-full animate-spin" />
           </div>
         ) : (
           <>
@@ -76,7 +76,7 @@ export default function SuccessStoriesIndexPage() {
                         <span className="text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-950 border border-blue-200">
                           Editorial Highlight
                         </span>
-                        <span className="text-xs font-bold text-orange-600">
+                        <span className="text-xs font-bold text-red-600">
                           {editorialPick.startupName}
                         </span>
                       </div>
@@ -122,7 +122,7 @@ export default function SuccessStoriesIndexPage() {
 
                       {editorialPick.interview && (
                         <span className="text-xs font-bold text-slate-500 flex items-center gap-1">
-                          <PlayCircle className="w-4 h-4 text-orange-600" /> Video Interview Included
+                          <PlayCircle className="w-4 h-4 text-red-600" /> Video Interview Included
                         </span>
                       )}
                     </div>
@@ -192,7 +192,7 @@ export default function SuccessStoriesIndexPage() {
                         <div className="pt-3 flex items-center justify-between border-t border-slate-100">
                           <Link
                             href={`/success-stories/${story.slug}`}
-                            className="text-xs font-bold text-blue-950 hover:text-orange-600 transition inline-flex items-center gap-1"
+                            className="text-xs font-bold text-blue-950 hover:text-red-600 transition inline-flex items-center gap-1"
                           >
                             Explore Impact Story <ArrowRight className="w-3.5 h-3.5" />
                           </Link>

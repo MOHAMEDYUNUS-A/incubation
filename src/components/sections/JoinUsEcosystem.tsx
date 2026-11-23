@@ -67,7 +67,7 @@ export default function JoinUsEcosystem() {
       {/* Subtle background glow accents */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-10 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-orange-100/25 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-red-100/25 rounded-full blur-3xl -z-10" />
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
@@ -92,13 +92,13 @@ export default function JoinUsEcosystem() {
             return (
               <Wrapper key={st.role} delay={(idx % 4) * 0.08}>
                 <XYZCard depth={8}>
-                  <div className="h-full p-6 sm:p-7 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-orange-400 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                  <div className="h-full p-6 sm:p-7 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-red-500 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-xl sm:text-2xl font-bold text-[#0f2c59] font-display group-hover:text-[#ea580c] transition-colors">
+                        <h3 className="text-xl sm:text-2xl font-bold text-[#0f2c59] font-display group-hover:text-[#dc2626] transition-colors">
                           {st.role}
                         </h3>
-                        <div className="w-11 h-11 rounded-2xl bg-orange-50 border border-orange-200/80 flex items-center justify-center text-[#ea580c] group-hover:scale-110 group-hover:bg-[#ea580c] group-hover:text-white transition-all duration-300 shadow-2xs">
+                        <div className="w-11 h-11 rounded-2xl bg-red-50 border border-red-200/80 flex items-center justify-center text-[#dc2626] group-hover:scale-110 group-hover:bg-[#dc2626] group-hover:text-white transition-all duration-300 shadow-2xs">
                           <Icon className="w-5 h-5" />
                         </div>
                       </div>
@@ -110,7 +110,7 @@ export default function JoinUsEcosystem() {
 
                     <div className="pt-2">
                       <Link href={`/apply?${st.applyQuery}`} className="block w-full">
-                        <Button className="w-full bg-[#0f2c59] hover:bg-[#ea580c] text-white font-extrabold text-xs sm:text-sm h-11 rounded-xl shadow-xs gap-1.5 transition-all duration-200 group-hover:shadow-md">
+                        <Button className="w-full bg-[#0f2c59] hover:bg-[#dc2626] text-white font-extrabold text-xs sm:text-sm h-11 rounded-xl shadow-xs gap-1.5 transition-all duration-200 group-hover:shadow-md">
                           <span>Register</span>
                           <ArrowRight className="w-4 h-4" />
                         </Button>
@@ -125,14 +125,14 @@ export default function JoinUsEcosystem() {
           {/* 8th Callout Card: "COLLABORATE, INNOVATE AND SCALE!" */}
           <ZoomIn delay={0.32}>
             <XYZCard depth={8}>
-              <div className="h-full p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#0f2c59] via-[#14376b] to-[#07132b] text-white shadow-xl flex flex-col justify-between border-2 border-orange-500/30 group hover:border-orange-500/60 hover:-translate-y-1 transition-all duration-300">
+              <div className="h-full p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#0f2c59] via-[#14376b] to-[#07132b] text-white shadow-xl flex flex-col justify-between border-2 border-red-500/30 group hover:border-red-600/60 hover:-translate-y-1 transition-all duration-300">
                 <div>
-                  <span className="text-[10px] font-mono font-bold text-orange-400 uppercase tracking-widest block mb-4">
+                  <span className="text-[10px] font-mono font-bold text-red-500 uppercase tracking-widest block mb-4">
                     ACCELERATE IMPACT
                   </span>
                   <h3 className="text-2xl sm:text-3xl font-black text-white font-display leading-tight mb-3">
                     COLLABORATE, <br />
-                    <span className="text-[#ea580c]">INNOVATE</span> <br />
+                    <span className="text-[#dc2626]">INNOVATE</span> <br />
                     AND SCALE!
                   </h3>
                   <p className="text-xs text-slate-300 leading-relaxed font-normal">
@@ -143,7 +143,7 @@ export default function JoinUsEcosystem() {
                 <div className="pt-4 mt-4 border-t border-slate-700/60">
                   <Link href="/contact" className="block w-full">
                     <Button
-                      className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white font-extrabold text-xs h-11 rounded-xl gap-2 shadow-md shadow-orange-600/30 transition-all"
+                      className="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white font-extrabold text-xs h-11 rounded-xl gap-2 shadow-md shadow-red-600/30 transition-all"
                     >
                       <span>Connect with Team</span>
                       <ArrowRight className="w-3.5 h-3.5" />

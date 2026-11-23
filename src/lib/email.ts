@@ -112,8 +112,8 @@ export function getApplicationReceiptEmail(data: {
   <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
     
     <!-- Header -->
-    <div style="background-color: #091b34; padding: 28px 32px; text-align: left; border-bottom: 3px solid #ea580c;">
-      <div style="color: #ea580c; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px;">
+    <div style="background-color: #091b34; padding: 28px 32px; text-align: left; border-bottom: 3px solid #dc2626;">
+      <div style="color: #dc2626; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px;">
         StartupTN Pre-Incubation Centre · MAMCET
       </div>
       <h1 style="color: #ffffff; font-size: 20px; font-weight: 800; margin: 0; line-height: 1.3;">
@@ -189,7 +189,7 @@ export function getApplicationReceiptEmail(data: {
 
       <p style="font-size: 13px; line-height: 1.6; color: #64748b; margin-bottom: 20px;">
         You can check your live review status anytime on our website using your Application Identifier: <br />
-        <a href="https://master-incubation.vercel.app/apply/status?id=${encodeURIComponent(refId)}" style="color: #ea580c; font-weight: 700; text-decoration: underline;">
+        <a href="https://master-incubation.vercel.app/apply/status?id=${encodeURIComponent(refId)}" style="color: #dc2626; font-weight: 700; text-decoration: underline;">
           Track Application Live Status ↗
         </a>
       </p>
@@ -240,8 +240,8 @@ export function getContactEnquiryReceiptEmail(data: {
   <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
     
     <!-- Header -->
-    <div style="background-color: #091b34; padding: 28px 32px; text-align: left; border-bottom: 3px solid #ea580c;">
-      <div style="color: #ea580c; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px;">
+    <div style="background-color: #091b34; padding: 28px 32px; text-align: left; border-bottom: 3px solid #dc2626;">
+      <div style="color: #dc2626; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px;">
         StartupTN Pre-Incubation Centre · MAMCET
       </div>
       <h1 style="color: #ffffff; font-size: 20px; font-weight: 800; margin: 0; line-height: 1.3;">
@@ -266,7 +266,7 @@ export function getContactEnquiryReceiptEmail(data: {
         Thank you for contacting the MASTeR Incubation Foundation (MIF) at MAMCET Siruganur. We have successfully received your enquiry regarding:
       </p>
 
-      <div style="background-color: #f8fafc; border-left: 4px solid #ea580c; border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 20px;">
+      <div style="background-color: #f8fafc; border-left: 4px solid #dc2626; border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 20px;">
         <div style="font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">
           ${data.subject}
         </div>

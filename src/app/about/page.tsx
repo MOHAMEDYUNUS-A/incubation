@@ -149,7 +149,7 @@ export default function AboutPage() {
                 <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Recognised Centre</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs">
-                <span className="text-xl sm:text-2xl font-black text-[#ea580c] block">₹15 Lakhs</span>
+                <span className="text-xl sm:text-2xl font-black text-[#dc2626] block">₹15 Lakhs</span>
                 <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Seed Grant Access</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs col-span-2 sm:col-span-1">
@@ -163,13 +163,13 @@ export default function AboutPage() {
           <div className="lg:col-span-5">
             <div className="relative rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-900 group">
               <img
-                src="/images/mamcet-campus.png"
-                alt="M.A.M. College of Engineering and Technology (MAMCET) Campus, Siruganur, Trichy"
+                src="/images/incubation/about-page-main.jpeg"
+                alt="MASTeR Incubation Foundation Innovation Facility at MAMCET Campus, Siruganur, Trichy"
                 className="w-full h-[360px] sm:h-[420px] object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
-                <div className="flex items-center gap-2 text-xs font-bold text-orange-400">
+                <div className="flex items-center gap-2 text-xs font-bold text-red-400">
                   <MapPin className="w-3.5 h-3.5" />
                   <span>Siruganur, Tiruchirappalli (NH 45)</span>
                 </div>
@@ -188,8 +188,8 @@ export default function AboutPage() {
         <div className="rounded-3xl bg-gradient-to-br from-[#0f2c59] via-[#091b34] to-slate-900 text-white shadow-xl overflow-hidden border border-blue-900/60">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-10 lg:p-12">
             <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/20 text-orange-300 text-xs font-bold uppercase tracking-wider border border-orange-500/30">
-                <Award className="w-4 h-4 text-orange-400" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/20 text-red-300 text-xs font-bold uppercase tracking-wider border border-red-500/30">
+                <Award className="w-4 h-4 text-red-400" />
                 <span>Historic Milestone · Grand Inauguration Ceremony</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-black font-display tracking-tight text-white leading-tight">
@@ -197,10 +197,10 @@ export default function AboutPage() {
               </h2>
               <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
                 The MASTeR Incubation Foundation was formally dedicated to the nation by{" "}
-                <strong className="text-orange-300 font-bold">Thiru S. Regupathy</strong>, Hon&apos;ble Minister for Law, Courts,
+                <strong className="text-red-300 font-bold">Thiru S. Regupathy</strong>, Hon&apos;ble Minister for Law, Courts,
                 Prisons and Prevention of Corruption, Government of Tamil Nadu.
               </p>
-              <blockquote className="p-4 rounded-2xl bg-white/5 border-l-4 border-orange-500 text-xs sm:text-sm text-slate-200 italic leading-relaxed">
+              <blockquote className="p-4 rounded-2xl bg-white/5 border-l-4 border-red-500 text-xs sm:text-sm text-slate-200 italic leading-relaxed">
                 &ldquo;This centre serves as a sacred cradle of innovation, engineered to transform ambitious engineering students
                 from passive job seekers into impactful job creators who power Tamil Nadu&apos;s trillion-dollar economy.&rdquo;
               </blockquote>
@@ -229,9 +229,9 @@ export default function AboutPage() {
             <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
               <div className="relative rounded-2xl overflow-hidden border border-white/20 shadow-lg group">
                 <img
-                  src="/images/incubation/image-3.jpeg"
-                  alt="Minister Thiru S. Regupathy addressing the gathering at MAMCET Main Auditorium"
-                  className="w-full h-48 sm:h-52 object-cover group-hover:scale-105 transition-transform duration-500"
+                  src="/images/incubation/ragupathy.jpeg"
+                  alt="Hon'ble Minister Thiru S. Regupathy dedicating MASTeR Incubation Foundation at MAMCET Main Auditorium"
+                  className="w-full h-48 sm:h-52 object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3">
                   <span className="text-[11px] font-semibold text-white">Ministerial Keynote Address</span>
@@ -295,7 +295,7 @@ export default function AboutPage() {
                     </div>
                   </div>
                   <div className="p-5 space-y-2">
-                    <div className="text-[10px] font-bold text-orange-600 uppercase tracking-wider">
+                    <div className="text-[10px] font-bold text-red-600 uppercase tracking-wider">
                       {fac.subtitle}
                     </div>
                     <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-900 transition-colors">
@@ -338,7 +338,7 @@ export default function AboutPage() {
 
           <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between relative overflow-hidden">
             <div className="relative z-10">
-              <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200 flex items-center justify-center text-orange-600 mb-6 shadow-2xs">
+              <div className="w-12 h-12 rounded-2xl bg-red-50 border border-red-200 flex items-center justify-center text-red-600 mb-6 shadow-2xs">
                 <Target className="w-6 h-6" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-3 font-display">Institutional Mandate</h3>
@@ -440,7 +440,7 @@ export default function AboutPage() {
                     <h3 className="text-sm font-bold text-slate-900 group-hover:text-blue-900 transition-colors">
                       {leader.name}
                     </h3>
-                    <div className="text-[11px] font-semibold text-orange-600 line-clamp-1">{leader.role}</div>
+                    <div className="text-[11px] font-semibold text-red-600 line-clamp-1">{leader.role}</div>
                     <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed font-normal pt-1">
                       {leader.specialty}
                     </p>
@@ -476,7 +476,7 @@ export default function AboutPage() {
            ========================================================================= */}
         <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1 max-w-xl text-center md:text-left">
-            <span className="text-[11px] font-bold text-orange-600 uppercase tracking-wider block">
+            <span className="text-[11px] font-bold text-red-600 uppercase tracking-wider block">
               ENGAGE WITH THE ECOSYSTEM
             </span>
             <h3 className="text-xl sm:text-2xl font-bold text-slate-900 font-display">
@@ -493,7 +493,7 @@ export default function AboutPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold text-xs gap-1.5 h-10 px-5 shadow-xs">
+              <Button className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-xs gap-1.5 h-10 px-5 shadow-xs">
                 <span>Instagram Feed</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </Button>

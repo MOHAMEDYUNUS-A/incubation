@@ -413,7 +413,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
             </button>
             <button
               onClick={() => setIssueModalOpen(true)}
-              className="px-4 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs flex items-center gap-1.5 transition shadow-sm"
+              className="px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs flex items-center gap-1.5 transition shadow-sm"
             >
               <Plus className="w-4 h-4" />
               Issue Startup Passport
@@ -520,7 +520,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
             <div className="bg-white border border-slate-200 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-5">
               <div className="flex items-start justify-between">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-orange-600">Official Certification</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-red-600">Official Certification</span>
                   <h3 className="text-xl font-bold text-slate-900 mt-0.5">Issue New Startup Passport</h3>
                 </div>
                 <button onClick={() => setIssueModalOpen(false)} className="text-slate-400 hover:text-slate-700 font-bold">✕</button>
@@ -576,7 +576,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
                   <button
                     type="submit"
                     disabled={issuing}
-                    className="px-5 py-2 rounded-xl bg-orange-600 text-white font-bold hover:bg-orange-700 transition"
+                    className="px-5 py-2 rounded-xl bg-red-600 text-white font-bold hover:bg-red-700 transition"
                   >
                     {issuing ? "Generating..." : "Generate & Activate Passport"}
                   </button>
@@ -695,7 +695,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
             <div className="bg-white border border-slate-200 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-5">
               <div className="flex items-start justify-between">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-orange-600">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-red-600">
                     Stage {selectedMilestone.stageOrder} Evaluation
                   </span>
                   <h3 className="text-xl font-bold text-slate-900 mt-0.5">{selectedMilestone.title}</h3>
@@ -822,7 +822,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
             <div className="bg-white border border-slate-200 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-4">
               <div className="flex items-start justify-between">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-orange-600">Session Documentation</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-red-600">Session Documentation</span>
                   <h3 className="text-xl font-bold text-slate-900 mt-0.5">Record Mentoring Session</h3>
                 </div>
                 <button onClick={() => setSessionModalOpen(false)} className="text-slate-400 hover:text-slate-700 font-bold">✕</button>
@@ -911,7 +911,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-orange-100 text-orange-950 border border-orange-200">
+              <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-red-100 text-red-950 border border-red-200">
                 Editorial Showcase
               </span>
               <span className="text-xs text-slate-500 font-medium">Stories & Founder Interviews</span>
@@ -925,7 +925,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setAiModalOpen(true)}
-              className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-bold text-xs flex items-center gap-1.5 transition shadow-sm"
+              className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-700 hover:to-amber-700 text-white font-bold text-xs flex items-center gap-1.5 transition shadow-sm"
             >
               <Sparkles className="w-4 h-4" />
               AI Story Assistant
@@ -958,7 +958,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
                 <Link
                   href={`/success-stories/${s.slug}`}
                   target="_blank"
-                  className="text-xs font-bold text-orange-600 hover:text-orange-700 inline-flex items-center gap-1"
+                  className="text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-1"
                 >
                   View Live Story <ExternalLink className="w-3 h-3" />
                 </Link>
@@ -974,7 +974,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
             <div className="bg-white border border-slate-200 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-5">
               <div className="flex items-start justify-between">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-orange-600 flex items-center gap-1">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-red-600 flex items-center gap-1">
                     <Sparkles className="w-3.5 h-3.5" /> Non-Hallucinatory Synthesis
                   </span>
                   <h3 className="text-xl font-bold text-slate-900 mt-0.5">AI Success Story Assistant</h3>
@@ -1023,7 +1023,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
                     type="button"
                     onClick={handleGenerateAiStory}
                     disabled={generatingAiStory}
-                    className="px-5 py-2 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 text-white font-bold hover:from-orange-700 hover:to-amber-700 transition flex items-center gap-1.5"
+                    className="px-5 py-2 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 text-white font-bold hover:from-red-700 hover:to-amber-700 transition flex items-center gap-1.5"
                   >
                     {generatingAiStory ? "Drafting with AI..." : "Generate & Save to Drafts"}
                   </button>
@@ -1039,7 +1039,7 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
             <div className="bg-white border border-slate-200 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
               <div className="flex items-start justify-between">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-orange-600">Editorial Publishing</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-red-600">Editorial Publishing</span>
                   <h3 className="text-xl font-bold text-slate-900 mt-0.5">Author Success Story</h3>
                 </div>
                 <button onClick={() => setStoryModalOpen(false)} className="text-slate-400 hover:text-slate-700 font-bold">✕</button>

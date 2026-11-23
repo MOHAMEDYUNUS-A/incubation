@@ -58,7 +58,7 @@ export default function EventsNews() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <RevealLeft>
-            <span className="text-xs font-mono font-bold text-orange-600 uppercase tracking-widest block mb-2">
+            <span className="text-xs font-mono font-bold text-red-600 uppercase tracking-widest block mb-2">
               FOUNDER BOOTCAMPS & CALENDAR
             </span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight">
@@ -75,14 +75,14 @@ export default function EventsNews() {
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={handleScrollLeft}
-                  className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#ea580c] hover:border-orange-300 flex items-center justify-center transition-colors shadow-2xs active:scale-95"
+                  className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#dc2626] hover:border-red-400 flex items-center justify-center transition-colors shadow-2xs active:scale-95"
                   aria-label="Scroll left"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
                   onClick={handleScrollRight}
-                  className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#ea580c] hover:border-orange-300 flex items-center justify-center transition-colors shadow-2xs active:scale-95"
+                  className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#dc2626] hover:border-red-400 flex items-center justify-center transition-colors shadow-2xs active:scale-95"
                   aria-label="Scroll right"
                 >
                   <ChevronRight className="w-5 h-5" />
@@ -110,7 +110,7 @@ export default function EventsNews() {
               className="w-[300px] sm:w-[350px] md:w-[380px] shrink-0 snap-start flex flex-col"
             >
               <XYZCard depth={6}>
-                <div className="h-full rounded-3xl border border-slate-200/90 bg-white p-7 flex flex-col justify-between shadow-xs hover:shadow-xl hover:border-orange-400 hover:-translate-y-1 transition-all duration-300">
+                <div className="h-full rounded-3xl border border-slate-200/90 bg-white p-7 flex flex-col justify-between shadow-xs hover:shadow-xl hover:border-red-500 hover:-translate-y-1 transition-all duration-300">
                   <div>
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
@@ -149,7 +149,7 @@ export default function EventsNews() {
                       setSelectedEvent(event);
                       setRegisterSuccess(false);
                     }}
-                    className="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white text-xs sm:text-sm font-bold h-11 rounded-xl shadow-xs transition-colors"
+                    className="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white text-xs sm:text-sm font-bold h-11 rounded-xl shadow-xs transition-colors"
                   >
                     Register Free Seat
                   </Button>

@@ -50,7 +50,7 @@ export default function Facilities() {
                           </span>
                         </div>
                         <div className="absolute bottom-4 left-5 right-5 text-white">
-                          <span className="text-xs text-orange-300 font-semibold uppercase tracking-wider block">Capacity: {fac.capacity}</span>
+                          <span className="text-xs text-red-400 font-semibold uppercase tracking-wider block">Capacity: {fac.capacity}</span>
                           <h3 className="text-2xl sm:text-3xl font-bold font-display mt-0.5">{fac.name}</h3>
                         </div>
                       </div>

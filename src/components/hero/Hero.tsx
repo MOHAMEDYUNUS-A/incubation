@@ -13,34 +13,40 @@ interface HeroSlide {
 
 const DEFAULT_SLIDES: HeroSlide[] = [
   {
-    image: "/images/incubation/hero-1.jpeg",
-    rotatingFocus: "Deep-Tech & IoT Hardware",
+    image: "/images/incubation/main-hero-section.jpeg",
+    rotatingFocus: "Deep-Tech & IoT Prototyping Hub",
     narrative:
-      "Empowering student creators and engineering researchers with 6,000+ sq. ft. of dedicated prototyping bays, digital storage oscilloscopes, RF telemetry benches, and additive 3D printing.",
+      "Empowering student creators and engineering researchers with 10,000+ sq. ft. of dedicated prototyping bays, digital storage oscilloscopes, RF telemetry benches, and additive 3D printing.",
   },
   {
-    image: "/images/incubation/hero-2.jpeg",
-    rotatingFocus: "Scalable Regional Startups",
+    image: "/images/incubation/hero-section-main.jpeg",
+    rotatingFocus: "Incubation Cohort & Makerspace",
     narrative:
-      "Accelerating student and faculty ventures from laboratory bench to commercial market deployment with one-on-one founder mentorship and regional industry pilots.",
+      "Nurturing early-stage founders with plug-and-play ergonomic co-working suites, high-speed gigabit fiber connectivity, and 24/7 dedicated incubation access at MAMCET campus.",
   },
   {
-    image: "/images/incubation/hero-3.jpeg",
-    rotatingFocus: "TANSEED Seed Grants",
+    image: "/images/incubation/main-student-hero-section.jpeg",
+    rotatingFocus: "Student Innovators & Future Founders",
     narrative:
-      "Unlocking direct pathways to non-dilutive seed grant funding through StartupTN TANSEED (up to ₹10L) and Ministry of MSME Idea Hackathons (up to ₹15L).",
+      "Transforming ambitious engineering students from passive job seekers into impactful job creators through experiential venture development and expert mentorship.",
   },
   {
-    image: "/images/incubation/incubation-centre.jpeg",
-    rotatingFocus: "Patented Innovations",
+    image: "/images/incubation/startup-main.jpeg",
+    rotatingFocus: "Hardware Labs & Rapid Fabrication",
     narrative:
-      "Providing institutional backing, prior-art patent search, provisional patent drafting, and corporate registration under Startup India for campus innovators.",
+      "Equipped with multi-axis CNC machines, laser cutters, embedded electronics test benches, and precision calibration tools for production-grade physical prototypes.",
   },
   {
-    image: "/images/incubation/incubation-workspace.jpeg",
-    rotatingFocus: "Student & Faculty Ventures",
+    image: "/images/incubation/startup-1.jpeg",
+    rotatingFocus: "TANSEED & MSME Seed Grants",
     narrative:
-      "Nurturing early-stage founders with plug-and-play ergonomic co-working desks, high-speed gigabit fiber connectivity, and 24/7 dedicated incubation access at MAMCET campus.",
+      "Unlocking direct pathways to non-dilutive seed funding through StartupTN TANSEED (up to ₹10–15L) and Ministry of MSME Idea Hackathons (up to ₹15L).",
+  },
+  {
+    image: "/images/incubation/ragupathy.jpeg",
+    rotatingFocus: "Ministerial Dedication & State Support",
+    narrative:
+      "Formally inaugurated by Hon'ble Minister Thiru S. Regupathy, Government of Tamil Nadu, as a flagship institutional incubator driving regional entrepreneurial growth.",
   },
 ];
 
@@ -108,7 +114,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -22, opacity: 0 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="inline-block text-[#ea580c] font-black drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
+                  className="inline-block text-[#dc2626] font-black drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
                 >
                   {activeSlide.rotatingFocus}
                 </motion.span>
@@ -144,7 +150,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           >
             <Link href="/about">
               <button
-                className="bg-[#ea580c] hover:bg-[#c2410c] text-white font-black text-xs sm:text-sm px-6 h-11 rounded-xl shadow-xl shadow-orange-600/35 hover:shadow-orange-600/50 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 border border-orange-400/40"
+                className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-black text-xs sm:text-sm px-6 h-11 rounded-xl shadow-xl shadow-red-600/35 hover:shadow-red-600/50 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 border border-red-400/40"
               >
                 Explore MIF Ecosystem
               </button>
@@ -152,7 +158,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
 
             <Link href="/apply">
               <button
-                className="bg-white hover:bg-slate-100 text-[#0f2c59] hover:text-[#ea580c] font-black text-xs sm:text-sm px-6 h-11 rounded-xl shadow-xl hover:shadow-2xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 border-2 border-white"
+                className="bg-white hover:bg-slate-100 text-[#0f2c59] hover:text-[#dc2626] font-black text-xs sm:text-sm px-6 h-11 rounded-xl shadow-xl hover:shadow-2xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 border-2 border-white"
               >
                 Apply For Incubation
               </button>

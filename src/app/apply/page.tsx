@@ -108,7 +108,7 @@ export default function ApplyPage() {
             <span className="text-slate-300">·</span>
             <Link
               href="/apply/status"
-              className="text-xs font-bold text-orange-600 hover:text-orange-700 hover:underline flex items-center gap-1"
+              className="text-xs font-bold text-red-600 hover:text-red-700 hover:underline flex items-center gap-1"
             >
               <Search className="w-3 h-3" />
               <span>Track Existing Application Status →</span>
@@ -170,7 +170,7 @@ export default function ApplyPage() {
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 href={`/apply/status?id=${encodeURIComponent(submittedData.id)}`}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold h-11 px-6 rounded-xl text-xs shadow-sm"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-11 px-6 rounded-xl text-xs shadow-sm"
               >
                 <Search className="w-4 h-4" />
                 <span>Track Application Live Status</span>

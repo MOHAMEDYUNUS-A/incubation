@@ -144,7 +144,7 @@ export default function StartupPassportVerifyPage({
   const { passport, founders, journeySummary, verifiedAchievements, verificationSeal } = data;
 
   return (
-    <div className="min-h-screen bg-slate-50/70 pt-32 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50/70 pt-36 sm:pt-40 md:pt-44 pb-20 px-4 sm:px-6 lg:px-8">
       {/* Print stylesheet */}
       <style jsx global>{`
         @media print {
@@ -234,7 +234,7 @@ export default function StartupPassportVerifyPage({
           {/* Venture Title & Passport ID Plaque */}
           <div className="bg-gradient-to-br from-slate-50 via-blue-50/40 to-slate-50 border-2 border-blue-900/15 rounded-2xl p-6 sm:p-8 text-center space-y-3 shadow-xs">
             <div className="flex items-center justify-center gap-2">
-              <span className="text-[11px] font-extrabold uppercase tracking-wider text-orange-700 bg-orange-100/90 px-3 py-0.5 rounded-full border border-orange-200">
+              <span className="text-[11px] font-extrabold uppercase tracking-wider text-red-700 bg-red-100/90 px-3 py-0.5 rounded-full border border-red-200">
                 Attested Incubated Venture
               </span>
             </div>
@@ -297,7 +297,7 @@ export default function StartupPassportVerifyPage({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {verifiedAchievements.map((ach, i) => (
                   <div key={i} className="border border-slate-200 rounded-xl p-3.5 bg-white flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 rounded-lg bg-red-100 text-red-700 flex items-center justify-center shrink-0">
                       <Award className="w-5 h-5" />
                     </div>
                     <div>
@@ -325,7 +325,7 @@ export default function StartupPassportVerifyPage({
                   </div>
                   <div>
                     <p className="text-xs font-bold text-slate-900">{f.fullName}</p>
-                    <p className="text-[11px] font-semibold text-orange-600">{f.role}</p>
+                    <p className="text-[11px] font-semibold text-red-600">{f.role}</p>
                   </div>
                 </div>
               ))}

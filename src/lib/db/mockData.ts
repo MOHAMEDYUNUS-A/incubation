@@ -116,7 +116,7 @@ export const FOCUS_AREAS: FocusAreaItem[] = [
     description: "Leveraging MAMCET's mechanical laboratories and prototyping machinery to help hardware startups build production-ready physical components.",
     iconName: "Cpu",
     subtracks: ["Additive Prototyping (3D)", "CNC Tooling & Fabrication", "Robotic Pick-and-Place", "Materials Testing"],
-    gradient: "from-amber-600/20 via-orange-500/10 to-transparent",
+    gradient: "from-amber-600/20 via-red-500/10 to-transparent",
   },
   {
     id: "iot-smart",
