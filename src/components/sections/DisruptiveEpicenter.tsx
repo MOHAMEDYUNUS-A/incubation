@@ -101,14 +101,9 @@ export default function DisruptiveEpicenter() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Heading & Purpose */}
           <RevealLeft className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wider mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-red-600" />
-              <span>Multi-Stakeholder Innovation Engine</span>
-            </div>
-
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.08] font-display text-slate-900">
               The Epicenter of <br />
-              <span className="text-[#dc2626] italic font-serif">
+              <span className="text-[#772b38] italic font-serif">
                 Disruptive Breakthroughs
               </span>
             </h2>

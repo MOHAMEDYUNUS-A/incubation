@@ -115,18 +115,6 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
       {/* Main Foreground Content: Synchronously Transitions with the Active Slide */}
       <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 my-auto">
         <div className="max-w-xl lg:max-w-2xl text-white">
-          {/* Institutional Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#772b38]/40 border border-[#772b38]/70 text-rose-200 text-xs font-bold uppercase tracking-wider mb-3 backdrop-blur-md shadow-xs"
-          >
-            <span className="w-2 h-2 rounded-full bg-[#772b38] animate-ping inline-block" />
-            <Sparkles className="w-3 h-3 text-[#ff7b90]" />
-            <span>MAMCET · StartupTN Pre-Incubation Centre</span>
-          </motion.div>
-
           {/* Visionary Headline: Synchronized Rotating Focus with Smooth Zero-Shift Transformation */}
           <motion.h1
             initial={{ opacity: 0, y: 14 }}
