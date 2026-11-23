@@ -115,7 +115,7 @@ export default function EcosystemImpact() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <FadeUp className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-red-200 text-[#dc2626] text-xs font-bold tracking-wider uppercase mb-3 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#772b38]/20 text-[#772b38] text-xs font-bold tracking-wider uppercase mb-3 shadow-xs">
             <span>MEASURABLE TRANSLATION FOOTPRINT</span>
           </div>
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight drop-shadow-sm">
@@ -134,10 +134,10 @@ export default function EcosystemImpact() {
             return (
               <Wrapper key={m.label} delay={(idx % 4) * 0.08}>
                 <XYZCard depth={8}>
-                  <div className="p-7 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-md hover:shadow-2xl hover:border-red-500 hover:bg-white hover:-translate-y-1.5 transition-all duration-300 relative group flex flex-col justify-between h-full">
-                    {/* Top Corner Orange Accent Notch */}
+                  <div className="p-7 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-md hover:shadow-2xl hover:border-[#772b38] hover:bg-white hover:-translate-y-1.5 transition-all duration-300 relative group flex flex-col justify-between h-full">
+                    {/* Top Corner Secondary Accent Notch */}
                     <div className="absolute top-0 right-0 w-8 h-8 overflow-hidden rounded-tr-3xl pointer-events-none">
-                      <div className="absolute transform rotate-45 bg-[#dc2626] w-12 h-2.5 -top-1 -right-4" />
+                      <div className="absolute transform rotate-45 bg-[#772b38] w-12 h-2.5 -top-1 -right-4" />
                     </div>
 
                     <div>

@@ -161,7 +161,7 @@ export default function DisruptiveEpicenter() {
 
                 {/* "I AM A..." Pill Accent */}
                 <div className="mt-3 mb-4 relative z-10">
-                  <span className="px-3 py-1 rounded-full bg-red-50/90 text-[#dc2626] text-xs font-mono font-bold tracking-wider uppercase inline-block border border-red-200/80 shadow-2xs backdrop-blur-xs">
+                  <span className="px-3 py-1 rounded-full bg-[#772b38]/10 text-[#772b38] text-xs font-mono font-bold tracking-wider uppercase inline-block border border-[#772b38]/20 shadow-2xs backdrop-blur-xs">
                     I AM A...
                   </span>
                 </div>
@@ -178,7 +178,7 @@ export default function DisruptiveEpicenter() {
                         onClick={() => setSelectedPersona(p)}
                         className={`p-3 rounded-2xl border text-xs font-bold flex flex-col items-center justify-center gap-2 transition-all duration-200 ${
                           isSelected
-                            ? "bg-[#dc2626] border-[#dc2626] text-white shadow-md shadow-red-600/25 scale-105"
+                            ? "bg-[#772b38] border-[#772b38] text-white shadow-md shadow-[#772b38]/30 scale-105"
                             : "bg-white/60 backdrop-blur-md border-white/80 text-slate-700 hover:bg-white hover:border-slate-300 hover:shadow-2xs"
                         }`}
                       >
@@ -195,14 +195,14 @@ export default function DisruptiveEpicenter() {
                     I&apos;M LOOKING FOR...
                   </div>
                   <div className="text-xs sm:text-sm text-slate-800 font-medium leading-relaxed flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#dc2626] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#772b38] shrink-0 mt-0.5" />
                     <span>{selectedPersona.tagline}</span>
                   </div>
                 </div>
 
                 {/* Dynamic Explore CTA Button */}
                 <Link href={selectedPersona.href} className="block w-full relative z-10">
-                  <Button className="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white font-extrabold text-xs sm:text-sm h-12 rounded-xl shadow-lg shadow-red-600/30 gap-2 uppercase tracking-wide group transition-all">
+                  <Button className="w-full bg-[#772b38] hover:bg-[#5e212b] text-white font-extrabold text-xs sm:text-sm h-12 rounded-xl shadow-lg shadow-[#772b38]/30 gap-2 uppercase tracking-wide group transition-all">
                     <span>{selectedPersona.ctaText}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Button>

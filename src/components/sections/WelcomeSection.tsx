@@ -183,7 +183,7 @@ export default function WelcomeSection() {
           {/* Clean Action CTAs */}
           <div className="pt-10 flex flex-wrap items-center justify-center gap-4">
             <Link href="/about">
-              <Button className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-extrabold text-sm h-12 px-8 rounded-xl shadow-md gap-2">
+              <Button className="bg-[#772b38] hover:bg-[#5e212b] text-white font-extrabold text-sm h-12 px-8 rounded-xl shadow-md gap-2">
                 <span>About Our Foundation</span>
                 <ArrowRight className="w-4 h-4" />
               </Button>

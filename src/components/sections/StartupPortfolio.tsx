@@ -127,7 +127,7 @@ export default function StartupPortfolio() {
             </div>
 
             <Link href="/apply">
-              <Button className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-xs h-9 px-4 rounded-xl shadow-xs gap-1.5">
+              <Button className="bg-[#772b38] hover:bg-[#5e212b] text-white font-bold text-xs h-9 px-4 rounded-xl shadow-xs gap-1.5">
                 <span>Join Cohort</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </Button>
@@ -196,7 +196,7 @@ export default function StartupPortfolio() {
         {/* Empty State */}
         {filtered.length === 0 && (
           <div className="text-center py-16 px-4 rounded-3xl bg-slate-50 border-2 border-dashed border-slate-200 max-w-md mx-auto my-8">
-            <div className="w-14 h-14 rounded-2xl bg-red-100 text-[#dc2626] flex items-center justify-center mx-auto mb-3 shadow-xs">
+            <div className="w-14 h-14 rounded-2xl bg-[#772b38]/10 text-[#772b38] flex items-center justify-center mx-auto mb-3 shadow-xs">
               <Rocket className="w-7 h-7" />
             </div>
             <h3 className="text-base font-bold text-slate-900 font-display">No Startups Found</h3>
@@ -250,7 +250,7 @@ export default function StartupPortfolio() {
                 <div key={catKey} className="pt-6 border-t border-slate-200 first:border-0 first:pt-0">
                   <div className="flex items-center justify-between mb-5">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#dc2626]" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#772b38]" />
                       <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display">
                         {CATEGORY_NAMES[catKey] || catKey.replace(/_/g, " ")}
                       </h3>
@@ -391,7 +391,7 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
                     e.stopPropagation();
                     setIsFlipped(true);
                   }}
-                  className="w-full py-1.5 px-3 rounded-xl bg-[#0f2c59] hover:bg-[#dc2626] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition-colors"
+                  className="w-full py-1.5 px-3 rounded-xl bg-[#0f2c59] hover:bg-[#772b38] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition-colors"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Flip for Direct Contacts</span>
@@ -466,10 +466,10 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl bg-white/10 hover:bg-[#dc2626] text-white flex flex-col items-center justify-center gap-1 transition-all border border-white/10 hover:border-red-600 shadow-xs group/icon"
+                      className="p-2.5 rounded-xl bg-white/10 hover:bg-[#772b38] text-white flex flex-col items-center justify-center gap-1 transition-all border border-white/10 hover:border-[#772b38] shadow-xs group/icon"
                       title={`Visit ${st.name} Website`}
                     >
-                      <Globe className="w-5 h-5 text-red-400 group-hover/icon:text-white" />
+                      <Globe className="w-5 h-5 text-rose-300 group-hover/icon:text-white" />
                       <span className="text-[10px] font-bold">Web</span>
                     </a>
                   ) : (
@@ -546,7 +546,7 @@ function StartupFlipCard({ st, delay }: { st: any; delay: number }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="w-full py-2 px-3 rounded-xl bg-[#dc2626] hover:bg-[#b91c1c] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md transition-all group/btn"
+                  className="w-full py-2 px-3 rounded-xl bg-[#772b38] hover:bg-[#5e212b] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md transition-all group/btn"
                 >
                   <span>Launch Official Website</span>
                   <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />

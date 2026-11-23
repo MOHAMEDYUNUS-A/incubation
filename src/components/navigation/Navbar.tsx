@@ -159,7 +159,7 @@ export default function Navbar() {
               <div className="flex flex-col justify-center min-w-0">
                 <div className="flex items-center">
                   <span className="font-black text-lg sm:text-xl md:text-[21px] tracking-tight text-[#0f2c59] font-display leading-none whitespace-nowrap">
-                    MAST<span className="text-[#dc2626]">e</span>R
+                    MAST<span className="text-[#772b38]">e</span>R
                   </span>
                 </div>
                 <span className="text-[10px] sm:text-[11px] font-bold text-slate-700 tracking-tight leading-none mt-1 whitespace-nowrap">
@@ -188,7 +188,7 @@ export default function Navbar() {
                       href={link.href}
                       className={`px-1.5 xl:px-3 py-1.5 text-[12px] xl:text-[13.5px] tracking-tight transition-all flex items-center gap-1 rounded-lg whitespace-nowrap ${
                         isActive
-                          ? "text-[#dc2626] font-semibold bg-red-50/80 shadow-2xs shadow-red-500/10"
+                          ? "text-[#772b38] font-semibold bg-[#772b38]/10 shadow-2xs shadow-[#772b38]/10"
                           : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70 font-medium"
                       }`}
                     >
@@ -196,7 +196,7 @@ export default function Navbar() {
                       {link.submenu && (
                         <ChevronDown
                           className={`w-3 h-3 text-slate-400 transition-transform duration-200 group-hover:rotate-180 ${
-                            isActive ? "text-[#dc2626]" : "group-hover:text-slate-600"
+                            isActive ? "text-[#772b38]" : "group-hover:text-slate-600"
                           }`}
                         />
                       )}
@@ -216,10 +216,10 @@ export default function Navbar() {
                             <Link
                               key={sub.name}
                               href={sub.href}
-                              className="flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-700 hover:bg-red-50 hover:text-[#dc2626] transition-colors group/sub"
+                              className="flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-700 hover:bg-[#772b38]/10 hover:text-[#772b38] transition-colors group/sub"
                             >
                               <span>{sub.name}</span>
-                              <span className="w-1.5 h-1.5 rounded-full bg-transparent group-hover/sub:bg-red-600 transition-colors shrink-0" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-transparent group-hover/sub:bg-[#772b38] transition-colors shrink-0" />
                             </Link>
                           ))}
                         </div>
@@ -230,12 +230,12 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* Right Action: Prominent Red CTA Button */}
+            {/* Right Action: Prominent Secondary #772b38 CTA Button */}
             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               <Link href="/apply" className="shrink-0">
                 <Button
                   size="sm"
-                  className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-semibold shadow-sm shadow-red-500/20 rounded-xl text-xs gap-1.5 h-9 px-3 xl:px-4.5 group transition-all shrink-0 whitespace-nowrap"
+                  className="bg-[#772b38] hover:bg-[#5e212b] text-white font-semibold shadow-sm shadow-[#772b38]/25 rounded-xl text-xs gap-1.5 h-9 px-3 xl:px-4.5 group transition-all shrink-0 whitespace-nowrap border border-[#772b38]"
                 >
                   <span className="hidden xl:inline">Apply for Incubation</span>
                   <span className="xl:hidden">Apply Now</span>
@@ -287,13 +287,13 @@ export default function Navbar() {
                           <button
                             type="button"
                             onClick={() => toggleMobileDropdown(link.name)}
-                            className="flex items-center justify-between w-full py-2.5 text-sm font-bold text-slate-800 hover:text-red-600 transition-colors text-left"
+                            className="flex items-center justify-between w-full py-2.5 text-sm font-bold text-slate-800 hover:text-[#772b38] transition-colors text-left"
                             aria-expanded={isOpen}
                           >
                             <span>{link.name}</span>
                             <ChevronDown
                               className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
-                                isOpen ? "rotate-180 text-red-600" : ""
+                                isOpen ? "rotate-180 text-[#772b38]" : ""
                               }`}
                             />
                           </button>
@@ -306,7 +306,7 @@ export default function Navbar() {
                                 animate={{ opacity: 1, height: "auto" }}
                                 exit={{ opacity: 0, height: 0 }}
                                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                                className="overflow-hidden ml-2 pl-3 border-l-2 border-red-500/80 space-y-1 py-1.5 my-1"
+                                className="overflow-hidden ml-2 pl-3 border-l-2 border-[#772b38] space-y-1 py-1.5 my-1"
                               >
                                 {link.submenu!.map((sub) => (
                                   <Link
@@ -316,9 +316,9 @@ export default function Navbar() {
                                       setMobileMenuOpen(false);
                                       setOpenMobileDropdown(null);
                                     }}
-                                    className="flex items-center gap-2.5 py-2 px-3 rounded-xl text-xs font-semibold text-slate-600 hover:text-red-600 hover:bg-red-50/80 transition-colors"
+                                    className="flex items-center gap-2.5 py-2 px-3 rounded-xl text-xs font-semibold text-slate-600 hover:text-[#772b38] hover:bg-[#772b38]/10 transition-colors"
                                   >
-                                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[#772b38] shrink-0" />
                                     <span>{sub.name}</span>
                                   </Link>
                                 ))}
@@ -333,7 +333,7 @@ export default function Navbar() {
                             setMobileMenuOpen(false);
                             setOpenMobileDropdown(null);
                           }}
-                          className="block py-2.5 text-sm font-bold text-slate-800 hover:text-red-600 transition-colors"
+                          className="block py-2.5 text-sm font-bold text-slate-800 hover:text-[#772b38] transition-colors"
                         >
                           {link.name}
                         </Link>
@@ -345,7 +345,7 @@ export default function Navbar() {
 
               <div className="pt-4 border-t border-slate-200 space-y-2">
                 <Link href="/apply" onClick={() => setMobileMenuOpen(false)} className="block">
-                  <Button className="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold h-11 text-xs gap-2">
+                  <Button className="w-full bg-[#772b38] hover:bg-[#5e212b] text-white font-bold h-11 text-xs gap-2">
                     <span>Apply For Pre Incubation</span>
                     <ArrowRight className="w-4 h-4" />
                   </Button>

@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button";
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center px-4 text-center">
-      <div className="w-16 h-16 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center mx-auto mb-6 shadow-xs">
+      <div className="w-16 h-16 rounded-2xl bg-[#772b38]/10 text-[#772b38] flex items-center justify-center mx-auto mb-6 shadow-xs">
         <Sparkles className="w-8 h-8" />
       </div>
-      <span className="text-xs font-mono font-bold text-[#dc2626] uppercase tracking-widest block mb-2">
+      <span className="text-xs font-mono font-bold text-[#772b38] uppercase tracking-widest block mb-2">
         404 · PAGE NOT FOUND
       </span>
       <h1 className="text-3xl sm:text-5xl font-black text-slate-900 font-display mb-4">

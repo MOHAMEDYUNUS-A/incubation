@@ -30,6 +30,15 @@ const config: Config = {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+        brandSecondary: {
+          DEFAULT: "#772b38",
+          hover: "#5e212b",
+          dark: "#4a1821",
+          light: "#933949",
+          muted: "rgba(119, 43, 56, 0.08)",
+          subtle: "#fdf6f7",
+          border: "rgba(119, 43, 56, 0.22)",
+        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",

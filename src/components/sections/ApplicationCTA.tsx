@@ -11,7 +11,7 @@ export default function ApplicationCTA() {
       <div className="container max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
         <div className="p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/80 shadow-xl shadow-slate-200/50 relative overflow-hidden text-center">
           {/* Subtle Accent Glows */}
-          <div className="absolute -top-24 -right-24 w-80 h-80 bg-red-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-24 -right-24 w-80 h-80 bg-[#772b38]/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-3xl mx-auto">
@@ -28,9 +28,9 @@ export default function ApplicationCTA() {
               <Link href="/apply">
                 <Button
                   size="lg"
-                  className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-8 h-12 rounded-xl shadow-lg shadow-red-600/25 gap-2 text-base transition-all hover:scale-[1.02]"
+                  className="bg-[#772b38] hover:bg-[#5e212b] text-white font-bold px-8 h-12 rounded-xl shadow-lg shadow-[#772b38]/25 gap-2 text-base transition-all hover:scale-[1.02]"
                 >
-                  <Sparkles className="w-4 h-4 text-red-200" />
+                  <Sparkles className="w-4 h-4 text-rose-200" />
                   <span>Apply for Incubation</span>
                   <ArrowRight className="w-4 h-4" />
                 </Button>

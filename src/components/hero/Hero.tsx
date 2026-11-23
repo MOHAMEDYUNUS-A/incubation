@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSiteContent } from "@/context/ContentContext";
+import { Sparkles, ArrowRight } from "lucide-react";
 
 interface HeroSlide {
   image: string;
@@ -55,21 +56,27 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
   const slides: HeroSlide[] = DEFAULT_SLIDES;
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   // Synchronized Slide Transition: Image and Content Change Together every 6 seconds
   useEffect(() => {
+    if (isPaused) return;
     const slideInterval = setInterval(() => {
       setCurrentSlideIndex((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(slideInterval);
-  }, [slides.length]);
+  }, [slides.length, isPaused]);
 
   const activeSlide = slides[currentSlideIndex];
 
   return (
-    <section className="relative w-full overflow-hidden pt-32 sm:pt-40 pb-20 sm:pb-28 bg-slate-950 flex flex-col justify-center min-h-[620px] sm:min-h-[700px]">
-      {/* ================= Campus Photo Slider with Continuous Free Ken Burns Zoom Transitions (Never Flashes Black) ================= */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+    <section
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      className="relative w-full overflow-hidden mt-[74px] sm:mt-[82px] pt-8 sm:pt-12 pb-12 sm:pb-16 bg-slate-950 flex flex-col justify-center min-h-[540px] sm:min-h-[600px] lg:min-h-[640px]"
+    >
+      {/* ================= Campus Photo Slider with Optimized Hardware-Accelerated Top-Framing (Start from Beginning) ================= */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {slides.map((slide, idx) => {
           const isActive = currentSlideIndex === idx;
           return (
@@ -78,31 +85,48 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
               initial={false}
               animate={{
                 opacity: isActive ? 1 : 0,
-                scale: isActive ? (idx % 2 === 0 ? 1.08 : 1.0) : 1.04,
+                scale: isActive ? 1.02 : 1.0,
               }}
               transition={{
-                opacity: { duration: 1.6, ease: "easeInOut" },
-                scale: { duration: 7, ease: "linear" },
+                opacity: { duration: 0.9, ease: "easeInOut" },
+                scale: { duration: 6, ease: "easeOut" },
               }}
-              className="absolute inset-0 bg-cover bg-center will-change-transform brightness-95 contrast-[1.02]"
-              style={{ backgroundImage: `url(${slide.image})` }}
+              className="absolute inset-0 bg-cover bg-no-repeat will-change-transform brightness-[0.93] contrast-[1.03]"
+              style={{
+                backgroundImage: `url(${slide.image})`,
+                backgroundPosition: "center top",
+                transformOrigin: "center top",
+              }}
             />
           );
         })}
 
-        {/* Directional gradient from left so text is 100% crisp while keeping photo bright and vivid */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/45 to-transparent pointer-events-none" />
+        {/* Directional gradient: deep contrast shield on left text while keeping dignitaries and faces bright & clear */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/70 via-45% to-slate-950/10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
       </div>
 
       {/* Main Foreground Content: Synchronously Transitions with the Active Slide */}
       <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 my-auto">
-        <div className="max-w-xl sm:max-w-2xl text-white">
+        <div className="max-w-xl lg:max-w-2xl text-white">
+          {/* Institutional Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#772b38]/40 border border-[#772b38]/70 text-rose-200 text-xs font-bold uppercase tracking-wider mb-3 backdrop-blur-md shadow-xs"
+          >
+            <span className="w-2 h-2 rounded-full bg-[#772b38] animate-ping inline-block" />
+            <Sparkles className="w-3 h-3 text-[#ff7b90]" />
+            <span>MAMCET · StartupTN Pre-Incubation Centre</span>
+          </motion.div>
+
           {/* Visionary Headline: Synchronized Rotating Focus with Slide */}
           <motion.h1
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight font-display leading-[1.12] mb-5 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]"
+            transition={{ duration: 0.45, delay: 0.08, ease: "easeOut" }}
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-[46px] font-black text-white tracking-tight font-display leading-[1.14] mb-3.5 drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]"
           >
             TRANSFORMING <br />
             BOLD IDEAS INTO{" "}
@@ -110,11 +134,11 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentSlideIndex}
-                  initial={{ y: 22, opacity: 0 }}
+                  initial={{ y: 18, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -22, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="inline-block text-[#dc2626] font-black drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
+                  exit={{ y: -18, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="inline-block text-[#ff7b90] font-black drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
                 >
                   {activeSlide.rotatingFocus}
                 </motion.span>
@@ -125,15 +149,15 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           </motion.h1>
 
           {/* Editorial Narrative: Synchronously Transitions with the Active Slide */}
-          <div className="min-h-[72px] sm:min-h-[80px] mb-8">
+          <div className="min-h-[56px] sm:min-h-[64px] mb-6">
             <AnimatePresence mode="wait">
               <motion.p
                 key={currentSlideIndex}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="text-xs sm:text-sm md:text-base text-slate-100 leading-relaxed font-medium max-w-xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)]"
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="text-xs sm:text-sm text-slate-100 leading-relaxed font-medium max-w-xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)]"
               >
                 <strong className="text-white font-bold">MASTeR Incubation Foundation (MIF):</strong>{" "}
                 {activeSlide.narrative}
@@ -141,24 +165,25 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
             </AnimatePresence>
           </div>
 
-          {/* Action CTAs (High Contrast, Enhanced Hover UI, Zero SVGs) */}
+          {/* Action CTAs (#772b38 Secondary Color, High Contrast, Enhanced Hover UI) */}
           <motion.div
-            initial={{ opacity: 0, y: 22 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.3, ease: "easeOut" }}
-            className="flex flex-wrap items-center gap-3.5"
+            transition={{ duration: 0.45, delay: 0.15, ease: "easeOut" }}
+            className="flex flex-wrap items-center gap-3"
           >
             <Link href="/about">
               <button
-                className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-black text-xs sm:text-sm px-6 h-11 rounded-xl shadow-xl shadow-red-600/35 hover:shadow-red-600/50 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 border border-red-400/40"
+                className="bg-[#772b38] hover:bg-[#5e212b] text-white font-black text-xs sm:text-sm px-5.5 h-10.5 rounded-xl shadow-lg shadow-[#772b38]/35 hover:shadow-[#772b38]/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 border border-rose-300/30 flex items-center gap-1.5"
               >
-                Explore MIF Ecosystem
+                <span>Explore MIF Ecosystem</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </Link>
 
             <Link href="/apply">
               <button
-                className="bg-white hover:bg-slate-100 text-[#0f2c59] hover:text-[#dc2626] font-black text-xs sm:text-sm px-6 h-11 rounded-xl shadow-xl hover:shadow-2xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 border-2 border-white"
+                className="bg-white hover:bg-slate-100 text-[#0f2c59] hover:text-[#772b38] font-black text-xs sm:text-sm px-5.5 h-10.5 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 border-2 border-white"
               >
                 Apply For Incubation
               </button>
@@ -166,7 +191,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
 
             <Link href="/programs">
               <button
-                className="bg-slate-900/80 hover:bg-slate-900 text-white hover:text-white font-black text-xs sm:text-sm px-5 h-11 rounded-xl border-2 border-white/80 hover:border-white backdrop-blur-md shadow-lg hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
+                className="bg-slate-900/80 hover:bg-slate-900 text-white hover:text-white font-black text-xs sm:text-sm px-4.5 h-10.5 rounded-xl border-2 border-white/80 hover:border-white backdrop-blur-md shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
                 Incubation Pathways
               </button>
@@ -175,12 +200,31 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
             {onOpenAI && (
               <button
                 onClick={onOpenAI}
-                className="bg-slate-900/80 hover:bg-slate-900 text-cyan-300 hover:text-cyan-200 font-bold text-xs px-4 h-11 rounded-xl border border-cyan-400/50 backdrop-blur-md shadow-md hidden sm:flex items-center transition-all duration-200 hover:scale-[1.03]"
+                className="bg-slate-900/80 hover:bg-slate-900 text-cyan-300 hover:text-cyan-200 font-bold text-xs px-3.5 h-10.5 rounded-xl border border-cyan-400/50 backdrop-blur-md shadow-md hidden sm:flex items-center transition-all duration-200 hover:scale-[1.02]"
               >
                 AI Diagnostic
               </button>
             )}
           </motion.div>
+
+          {/* Slide Indicator Navigation Dots */}
+          <div className="flex items-center gap-2 mt-6 z-10">
+            {slides.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentSlideIndex(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentSlideIndex === idx
+                    ? "w-8 bg-[#772b38] shadow-md shadow-[#772b38]/50"
+                    : "w-2 bg-white/40 hover:bg-white/75"
+                }`}
+              />
+            ))}
+            <span className="text-[11px] font-mono text-slate-300 ml-2">
+              0{currentSlideIndex + 1} / 0{slides.length}
+            </span>
+          </div>
         </div>
       </div>
     </section>

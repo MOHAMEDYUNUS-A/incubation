@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, ShieldCheck } from "lucide-react";
 
 interface SplashScreenProps {
   onZoomStart?: () => void;
@@ -15,6 +15,15 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
   const [progress, setProgress] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const zoomTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Dynamic milestone message based on progress percentage
+  const getMilestoneMessage = (pct: number) => {
+    if (pct < 25) return "INITIALIZING MASTeR ECOSYSTEM...";
+    if (pct < 50) return "LOADING 4,000 SQ. FT. PROTOTYPING BAYS...";
+    if (pct < 75) return "CONNECTING STARTUPTN & MSME RECOGNITION...";
+    if (pct < 95) return "SYNCHRONIZING DIGITAL STARTUP PASSPORTS...";
+    return "MASTeR INCUBATION PORTAL READY";
+  };
 
   // Check reduced motion preference and lock body scroll on mount
   useEffect(() => {
@@ -57,7 +66,7 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
       onZoomStart();
     }
 
-    const zoomDuration = prefersReducedMotion ? 350 : 800;
+    const zoomDuration = prefersReducedMotion ? 350 : 750;
     zoomTimerRef.current = setTimeout(() => {
       setPhase("complete");
       document.body.style.overflow = "";
@@ -117,19 +126,20 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
       animate={{
         opacity: isZooming ? 0 : 1,
         transition: {
-          duration: prefersReducedMotion ? 0.3 : 0.75,
-          delay: prefersReducedMotion ? 0 : 0.1,
+          duration: prefersReducedMotion ? 0.3 : 0.7,
+          delay: prefersReducedMotion ? 0 : 0.08,
           ease: [0.4, 0, 0.2, 1],
         },
       }}
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white overflow-hidden select-none pointer-events-auto"
       role="dialog"
       aria-label="MASTeR Incubation Foundation Loading Screen"
+      onClick={handleSkip}
     >
       {/* Subtle Ambient Radial Backdrops */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(234,88,12,0.06)_0%,rgba(15,44,89,0.05)_45%,#ffffff_85%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(119,43,56,0.06)_0%,rgba(15,44,89,0.05)_45%,#ffffff_85%)] pointer-events-none" />
 
-      {/* Decorative Animated Concentric Rings */}
+      {/* Decorative Animated Concentric Rings (#772b38 and Deep Navy) */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <motion.div
           animate={{
@@ -149,7 +159,7 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
         <motion.div
           animate={{
             scale: isZooming ? (prefersReducedMotion ? 1 : 20) : [1, 1.15, 1],
-            opacity: isZooming ? 0 : [0.2, 0.4, 0.2],
+            opacity: isZooming ? 0 : [0.2, 0.45, 0.2],
           }}
           transition={{
             scale: isZooming
@@ -159,18 +169,18 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
               ? { duration: 0.5 }
               : { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
           }}
-          className="w-[500px] h-[500px] sm:w-[620px] sm:h-[620px] rounded-full border border-red-200/40"
+          className="w-[500px] h-[500px] sm:w-[620px] sm:h-[620px] rounded-full border border-[#772b38]/25"
         />
       </div>
 
       {/* Top Skip Button */}
-      <div className="absolute top-6 right-6 z-20">
+      <div className="absolute top-6 right-6 z-20" onClick={(e) => e.stopPropagation()}>
         <button
           onClick={handleSkip}
-          className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100/80 hover:bg-slate-200/80 border border-slate-200 text-xs font-semibold text-slate-600 hover:text-slate-900 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+          className="group flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100/90 hover:bg-slate-200 border border-slate-200 text-xs font-semibold text-slate-700 hover:text-slate-900 transition-all focus:outline-none focus:ring-2 focus:ring-[#772b38]/40 shadow-2xs"
           aria-label="Skip splash screen"
         >
-          <span>Skip</span>
+          <span>Enter Portal</span>
           <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:translate-x-0.5 group-hover:text-slate-700 transition-transform" />
         </button>
       </div>
@@ -186,8 +196,8 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
                   opacity: [1, 0.85, 0],
                   filter: prefersReducedMotion ? "none" : ["blur(0px)", "blur(2px)", "blur(14px)"],
                   transition: {
-                    duration: prefersReducedMotion ? 0.35 : 0.85,
-                    ease: [0.65, 0, 0.35, 1], // Smooth cinematic acceleration
+                    duration: prefersReducedMotion ? 0.35 : 0.8,
+                    ease: [0.65, 0, 0.35, 1],
                   },
                 }
               : {
@@ -202,11 +212,10 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
           }
           style={{ willChange: "transform, opacity", transformOrigin: "center center" }}
           className="relative mb-6 cursor-pointer"
-          onClick={handleSkip}
           title="Click to enter"
         >
-          {/* Outer Ambient Glow Halo */}
-          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-red-500/20 via-blue-600/20 to-red-500/20 blur-xl opacity-80 animate-pulse pointer-events-none" />
+          {/* Outer Ambient Glow Halo in #772b38 and Royal Navy */}
+          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-[#772b38]/25 via-blue-600/15 to-[#772b38]/25 blur-xl opacity-80 animate-pulse pointer-events-none" />
 
           <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-white p-3.5 flex items-center justify-center border border-slate-200/90 shadow-2xl shadow-blue-900/10">
             <img
@@ -220,11 +229,11 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ delay: 0.25, duration: 0.35, type: "spring" }}
+            transition={{ delay: 0.2, duration: 0.35, type: "spring" }}
             className="absolute -bottom-2 -right-2 px-2.5 py-0.5 rounded-full bg-[#0f2c59] text-[10px] font-bold text-white shadow-md border border-white flex items-center gap-1"
           >
-            <Sparkles className="w-2.5 h-2.5 text-red-400" />
-            <span>MIF</span>
+            <Sparkles className="w-2.5 h-2.5 text-[#ff7b90]" />
+            <span>MIF · StartupTN</span>
           </motion.div>
         </motion.div>
 
@@ -242,24 +251,25 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
           }}
           className="space-y-2 pointer-events-none"
         >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-red-700 text-[11px] font-bold uppercase tracking-wider shadow-2xs">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#772b38]/10 border border-[#772b38]/25 text-[#772b38] text-[11px] font-bold uppercase tracking-wider shadow-2xs">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#772b38]" />
             <span>StartupTN Recognised Pre-Incubation Centre</span>
           </div>
 
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#0f2c59] tracking-tight font-display leading-tight">
-            MAST<span className="text-[#dc2626]">e</span>R{" "}
+            MAST<span className="text-[#772b38]">e</span>R{" "}
             <span className="font-extrabold text-slate-800">Incubation Foundation</span>
           </h1>
 
-          <p className="text-xs sm:text-sm text-slate-600 font-medium">
+          <p className="text-xs sm:text-sm text-slate-600 font-semibold">
             M.A.M. College of Engineering & Technology · Trichy
           </p>
-          <p className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">
-            Launchpad for your Entrepreneurial Success
+          <p className="text-[11px] text-slate-400 font-medium tracking-wide">
+            Section 8 Non-Profit Company · MSME Host Institution
           </p>
         </motion.div>
 
-        {/* Sleek Progress Bar & Percentage Counter - Smooth Fade Out on Zoom */}
+        {/* Sleek Progress Bar & Dynamic Milestone Counter */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{
@@ -274,18 +284,21 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
           className="w-full max-w-xs mt-7 pointer-events-none"
         >
           <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 mb-2">
-            <span className="font-semibold text-slate-600 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping inline-block" />
-              INITIALIZING MASTeR ECOSYSTEM
+            <span className="font-semibold text-slate-700 flex items-center gap-1.5 text-[10.5px]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#772b38] animate-ping inline-block" />
+              {getMilestoneMessage(progress)}
             </span>
-            <span className="font-bold text-[#0f2c59]">{progress}%</span>
+            <span className="font-bold text-[#0f2c59] text-xs">{progress}%</span>
           </div>
           <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200/70 p-0.5 shadow-inner">
             <motion.div
-              className="h-full bg-gradient-to-r from-[#dc2626] via-blue-600 to-[#0f2c59] rounded-full transition-all duration-100"
+              className="h-full bg-gradient-to-r from-[#772b38] via-blue-700 to-[#0f2c59] rounded-full transition-all duration-100"
               style={{ width: `${progress}%` }}
             />
           </div>
+          <p className="text-[10px] text-slate-400 font-medium mt-2 text-center">
+            Press ESC or click anywhere to enter immediately
+          </p>
         </motion.div>
       </div>
     </motion.div>

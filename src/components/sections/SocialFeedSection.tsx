@@ -201,7 +201,7 @@ export default function SocialFeedSection() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button size="sm" className="bg-[#dc2626] hover:bg-[#b91c1c] text-white text-xs font-bold h-9">
+              <Button size="sm" className="bg-[#772b38] hover:bg-[#5e212b] text-white text-xs font-bold h-9">
                 Follow on Instagram
               </Button>
             </a>

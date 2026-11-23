@@ -43,7 +43,7 @@ export default function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="font-black text-xl sm:text-2xl tracking-tight text-white font-display">
-                  MAST<span className="text-[#dc2626]">e</span>R
+                  MAST<span className="text-[#772b38]">e</span>R
                 </span>
                 <span className="text-xs text-slate-200 font-bold">
                   Incubation Foundation (MIF)
@@ -269,7 +269,7 @@ export default function Footer() {
                   <Button
                     type="submit"
                     size="sm"
-                    className="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white text-xs h-10 font-bold rounded-xl shadow-md gap-1.5"
+                    className="w-full bg-[#772b38] hover:bg-[#5e212b] text-white text-xs h-10 font-bold rounded-xl shadow-md gap-1.5"
                   >
                     <span>Subscribe for TANSEED Alerts</span>
                     <ArrowRight className="w-3.5 h-3.5" />
