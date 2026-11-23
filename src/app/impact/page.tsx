@@ -25,28 +25,28 @@ export const metadata = {
 
 const ADDITIONAL_STATS = [
   {
-    count: 581,
+    count: 25,
     suffix: "+",
-    label: "Event & Community Engagements",
-    desc: "Workshops, hackathons, investor days, and design thinking bootcamps.",
+    label: "Research Innovations",
+    desc: "Translational engineering & patent-backed research prototypes.",
   },
   {
-    count: 90,
+    count: 10,
     suffix: "+",
-    label: "Ecosystem MoUs Signed",
-    desc: "Active cross-sectoral partnerships across Tamil Nadu technology clusters.",
+    label: "Bilateral MoUs Executed",
+    desc: "Active partnerships with industrial leaders & IITMIC mentors.",
   },
   {
-    count: 30,
+    count: 10,
     suffix: "+",
     label: "Commercial Product Launches",
     desc: "Hardware prototypes and software products successfully deployed in market.",
   },
   {
-    count: 20,
+    count: 15,
     suffix: "+",
-    label: "International & National Alliances",
-    desc: "Cross-border mentorship and knowledge exchange tie-ups.",
+    label: "StartupTN & Grant Linkages",
+    desc: "Direct access to TANSEED 4.0/5.0 and MSME Idea Hackathon seed grants.",
   },
 ];
 
@@ -64,7 +64,7 @@ export default function ImpactPage() {
             Ecosystem Impact & Translation Reach
           </h1>
           <p className="text-base sm:text-xl text-slate-700 mt-4 leading-relaxed font-normal">
-            From ministerial recognition and 25 inaugural startups to deep-tech alliances with IITMIC and MSME Host Institution credentials, MIF is accelerating the regional deep-tech innovation ecosystem.
+            From ministerial recognition and 8+ incubated startups to deep-tech alliances with IITMIC and MSME Host Institution credentials, MIF is accelerating the regional deep-tech innovation ecosystem.
           </p>
         </div>
       </div>

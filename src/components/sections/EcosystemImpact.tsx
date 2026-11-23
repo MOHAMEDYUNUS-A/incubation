@@ -29,68 +29,68 @@ interface ImpactItem {
 
 const RUNNING_IMPACT_METRICS: ImpactItem[] = [
   {
-    count: 14055,
+    count: 10,
     suffix: "+",
     label: "Entrepreneurs Benefited",
-    sub: "Aspiring founders trained through bootcamps & ideathons",
+    sub: "Aspiring student & regional founders nurtured through incubation cohorts",
     icon: Users2,
     color: "text-red-600 bg-red-50 border-red-200",
   },
   {
-    count: 6971,
+    count: 25,
     suffix: "+",
-    label: "Researchers Onboarded",
-    sub: "Interdisciplinary faculty & postgraduate researchers",
+    label: "Research Innovations",
+    sub: "Translational engineering & deep-tech applied research projects",
     icon: GraduationCap,
     color: "text-blue-600 bg-blue-50 border-blue-200",
   },
   {
-    count: 3771,
+    count: 8,
     suffix: "+",
-    label: "Startups Supported / Mentored",
-    sub: "Technical review, TRL assessment, and business modeling",
+    label: "Startups Incubated",
+    sub: "Formal pre-incubation cohorts and resident technology ventures",
     icon: Rocket,
-    color: "text-indigo-600 bg-indigo-50 border-indigo-200",
+    color: "text-emerald-600 bg-emerald-50 border-emerald-200",
   },
   {
-    count: 337,
+    count: 10,
     suffix: "+",
-    label: "Prototypes Showcased",
-    sub: "Hardware, electronics, and software benchtop PoCs",
+    label: "Prototypes Fabricated",
+    sub: "Functional hardware benchtop PoCs, IoT devices & embedded systems",
     icon: Cpu,
     color: "text-cyan-600 bg-cyan-50 border-cyan-200",
   },
   {
-    count: 310,
+    count: 10,
     suffix: "+",
-    label: "Startups Incubated & Accelerated",
-    sub: "Formal pre-incubation and startup cohorts",
-    icon: TrendingUp,
-    color: "text-emerald-600 bg-emerald-50 border-emerald-200",
-  },
-  {
-    count: 210,
-    suffix: "+",
-    label: "College & Academic MoUs",
-    sub: "Institutional innovation network partnerships",
+    label: "Bilateral MoUs Signed",
+    sub: "Strategic partnerships with industry leaders & ecosystem partners",
     icon: Handshake,
     color: "text-amber-600 bg-amber-50 border-amber-200",
   },
   {
-    count: 118,
+    count: 15,
     suffix: "+",
-    label: "IPs & Patents Created",
-    sub: "Provisional and complete patent disclosures filed",
-    icon: Award,
+    label: "StartupTN Initiatives",
+    sub: "Active linkages with StartupTN hubs, TANSEED & EDII-TN grants",
+    icon: TrendingUp,
     color: "text-purple-600 bg-purple-50 border-purple-200",
   },
   {
-    count: 94,
+    count: 5,
     suffix: "+",
     label: "Investors & Angels on Network",
-    sub: "Active VCs, angel networks & seed syndicates",
+    sub: "Active angel syndicates, venture funds & seed mentors",
     icon: Sparkles,
     color: "text-rose-600 bg-rose-50 border-rose-200",
+  },
+  {
+    count: 10,
+    suffix: "+",
+    label: "Commercial Products Launched",
+    sub: "Market-ready hardware & software solutions deployed commercially",
+    icon: Globe2,
+    color: "text-indigo-600 bg-indigo-50 border-indigo-200",
   },
 ];
 
@@ -115,7 +115,7 @@ export default function EcosystemImpact() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <FadeUp className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-red-200 text-[#dc2626] text-xs font-mono font-bold tracking-wider uppercase mb-3 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-red-200 text-[#dc2626] text-xs font-bold tracking-wider uppercase mb-3 shadow-xs">
             <span>MEASURABLE TRANSLATION FOOTPRINT</span>
           </div>
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight drop-shadow-sm">
