@@ -139,7 +139,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/facilities" className="hover:text-red-400 transition-colors">
-                  6,000+ Sq. Ft. Labs
+                  4,000 Sq. Ft. Facility
                 </Link>
               </li>
               <li>

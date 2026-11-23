@@ -16,13 +16,13 @@ const DEFAULT_SLIDES: HeroSlide[] = [
     image: "/images/incubation/main-hero-section.jpeg",
     rotatingFocus: "Deep-Tech & IoT Prototyping Hub",
     narrative:
-      "Empowering student creators and engineering researchers with 10,000+ sq. ft. of dedicated prototyping bays, digital storage oscilloscopes, RF telemetry benches, and additive 3D printing.",
+      "Empowering student creators and engineering researchers with 4,000 sq. ft. of dedicated prototyping bays, 15+ resident desks, a 15-seater boardroom, and additive 3D printing.",
   },
   {
     image: "/images/incubation/hero-section-main.jpeg",
     rotatingFocus: "Incubation Cohort & Makerspace",
     narrative:
-      "Nurturing early-stage founders with plug-and-play ergonomic co-working suites, high-speed gigabit fiber connectivity, and 24/7 dedicated incubation access at MAMCET campus.",
+      "Nurturing early-stage founders with 15+ plug-and-play ergonomic innovator desks, high-speed gigabit fiber connectivity, and 24/7 dedicated incubation access at MAMCET campus.",
   },
   {
     image: "/images/incubation/main-student-hero-section.jpeg",
@@ -40,7 +40,7 @@ const DEFAULT_SLIDES: HeroSlide[] = [
     image: "/images/incubation/startup-1.jpeg",
     rotatingFocus: "TANSEED & MSME Seed Grants",
     narrative:
-      "Unlocking direct pathways to non-dilutive seed funding through StartupTN TANSEED (up to ₹10–15L) and Ministry of MSME Idea Hackathons (up to ₹15L).",
+      "Unlocking direct pathways to non-dilutive seed funding through StartupTN TANSEED and Ministry of MSME Idea Hackathons.",
   },
   {
     image: "/images/incubation/ragupathy.jpeg",

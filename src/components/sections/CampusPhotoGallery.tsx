@@ -48,7 +48,7 @@ const DEFAULT_GALLERY_PHOTOS: GalleryPhoto[] = [
     category: "events",
     categoryLabel: "Seminar Auditorium",
     image: "/images/incubation/image-3.jpeg",
-    caption: "Allotted 6,000+ sq. ft. facility hosting startup pitch cohorts, investor roundtables, and masterclasses.",
+    caption: "Allotted 4,000 sq. ft. facility with 15+ resident desks and 15-seater boardroom hosting startup cohorts and investor roundtables.",
     location: "Host Institution Incubation Wing",
   },
   {

@@ -79,12 +79,12 @@ const LEADERSHIP_TEAM = [
 const FACILITY_HIGHLIGHTS = [
   {
     title: "Dedicated Incubation Wing",
-    subtitle: "Co-Working & Resident Startup Cabins",
+    subtitle: "Co-Working & 15-Seater Boardroom",
     description:
-      "Modern plug-and-play resident founder desks, high-speed fiber backbone, and private client meeting boardrooms.",
+      "Modern plug-and-play resident founder desks with 15+ dedicated innovator spaces, high-speed fiber backbone, and a 15-seater executive boardroom.",
     image: "/images/incubation/incubation-workspace.jpeg",
-    stat: "10,000+ Sq.Ft.",
-    statLabel: "Makerspace Area",
+    stat: "4,000 Sq.Ft.",
+    statLabel: "Incubation Floor Area",
   },
   {
     title: "Hardware Prototyping & Testing Labs",
@@ -149,12 +149,12 @@ export default function AboutPage() {
                 <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Recognised Centre</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs">
-                <span className="text-xl sm:text-2xl font-black text-[#dc2626] block">₹15 Lakhs</span>
-                <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Seed Grant Access</span>
+                <span className="text-xl sm:text-2xl font-black text-[#dc2626] block">15+ Desks</span>
+                <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Resident Workstations</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs col-span-2 sm:col-span-1">
-                <span className="text-xl sm:text-2xl font-black text-emerald-700 block">10,000+</span>
-                <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Sq.Ft. Makerspace</span>
+                <span className="text-xl sm:text-2xl font-black text-emerald-700 block">4,000</span>
+                <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Sq.Ft. Space</span>
               </div>
             </div>
           </div>
@@ -219,8 +219,8 @@ export default function AboutPage() {
                   <span className="text-slate-300 font-medium">Incubation Partner</span>
                 </div>
                 <div>
-                  <span className="text-cyan-300 font-black block text-xl sm:text-2xl">₹15L</span>
-                  <span className="text-slate-300 font-medium">MSME Seed Cap</span>
+                  <span className="text-cyan-300 font-black block text-xl sm:text-2xl">MSME</span>
+                  <span className="text-slate-300 font-medium">Recognised HI</span>
                 </div>
               </div>
             </div>

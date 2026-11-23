@@ -121,16 +121,16 @@ export default async function Image() {
         >
           <div style={{ display: "flex", gap: "50px" }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <span style={{ fontSize: "36px", fontWeight: 800, color: "#38bdf8" }}>₹15L+</span>
-              <span style={{ fontSize: "16px", color: "#94a3b8", fontWeight: 600 }}>TANSEED Pathways</span>
+              <span style={{ fontSize: "36px", fontWeight: 800, color: "#38bdf8" }}>15+</span>
+              <span style={{ fontSize: "16px", color: "#94a3b8", fontWeight: 600 }}>Innovator Desks</span>
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <span style={{ fontSize: "36px", fontWeight: 800, color: "#4ade80" }}>100%</span>
               <span style={{ fontSize: "16px", color: "#94a3b8", fontWeight: 600 }}>Verified Passports</span>
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <span style={{ fontSize: "36px", fontWeight: 800, color: "#fb923c" }}>10,000+</span>
-              <span style={{ fontSize: "16px", color: "#94a3b8", fontWeight: 600 }}>Sq.Ft. Makerspace</span>
+              <span style={{ fontSize: "36px", fontWeight: 800, color: "#fb923c" }}>4,000</span>
+              <span style={{ fontSize: "16px", color: "#94a3b8", fontWeight: 600 }}>Sq.Ft. Facility</span>
             </div>
           </div>
 

@@ -60,7 +60,7 @@ const INAUGURAL_PHOTOS: InauguralPhoto[] = [
     tag: "Facility Dedication",
     image: "/images/incubation/incubation-centre.jpeg",
     caption:
-      "Unveiling of the dedicated 6,000+ sq. ft. physical pre-incubation facility recognised under StartupTN and MSME frameworks.",
+      "Unveiling of the dedicated 4,000 sq. ft. physical pre-incubation facility with 15+ resident desks and 15-seater boardroom recognised under StartupTN and MSME frameworks.",
     date: "March 3, 2026",
     location: "Incubation Centre Wing",
   },

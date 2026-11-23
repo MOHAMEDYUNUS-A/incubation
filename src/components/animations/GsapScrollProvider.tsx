@@ -18,80 +18,80 @@ export default function GsapScrollProvider({ children }: { children: React.React
     });
 
     const ctx = gsap.context(() => {
-      // 1. Fade Up Animations
+      // 1. Lightweight Fade Up Animations
       const fadeUpElements = document.querySelectorAll('[data-gsap="fade-up"]');
       fadeUpElements.forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, y: 35 },
+          { opacity: 0, y: 18 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            duration: 0.45,
             ease: "power2.out",
             scrollTrigger: {
               trigger: el,
-              start: "top 88%",
+              start: "top 92%",
               once: true,
             },
           }
         );
       });
 
-      // 2. Reveal Left Animations
+      // 2. Lightweight Reveal Left Animations
       const revealLeftElements = document.querySelectorAll('[data-gsap="reveal-left"]');
       revealLeftElements.forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, x: -45 },
+          { opacity: 0, x: -20 },
           {
             opacity: 1,
             x: 0,
-            duration: 0.85,
+            duration: 0.45,
             ease: "power2.out",
             scrollTrigger: {
               trigger: el,
-              start: "top 88%",
+              start: "top 92%",
               once: true,
             },
           }
         );
       });
 
-      // 3. Reveal Right Animations
+      // 3. Lightweight Reveal Right Animations
       const revealRightElements = document.querySelectorAll('[data-gsap="reveal-right"]');
       revealRightElements.forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, x: 45 },
+          { opacity: 0, x: 20 },
           {
             opacity: 1,
             x: 0,
-            duration: 0.85,
+            duration: 0.45,
             ease: "power2.out",
             scrollTrigger: {
               trigger: el,
-              start: "top 88%",
+              start: "top 92%",
               once: true,
             },
           }
         );
       });
 
-      // 4. Zoom In Animations
+      // 4. Lightweight Zoom In Animations
       const zoomElements = document.querySelectorAll('[data-gsap="zoom-in"]');
       zoomElements.forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, scale: 0.92 },
+          { opacity: 0, scale: 0.96 },
           {
             opacity: 1,
             scale: 1,
-            duration: 0.75,
+            duration: 0.4,
             ease: "power2.out",
             scrollTrigger: {
               trigger: el,
-              start: "top 90%",
+              start: "top 92%",
               once: true,
             },
           }

@@ -9,14 +9,15 @@ interface AnimationProps {
   delay?: number;
 }
 
-// 1. Left-to-Right Reveal Animation (Horizontal X-axis entrance)
+// 1. Left-to-Right Reveal Animation (Lightweight Horizontal X-axis entrance)
 export function RevealLeft({ children, className = "", delay = 0 }: AnimationProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -50 }}
+      initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.4, delay, ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: "transform, opacity" }}
       className={className}
     >
       {children}
@@ -24,14 +25,15 @@ export function RevealLeft({ children, className = "", delay = 0 }: AnimationPro
   );
 }
 
-// 2. Right-to-Left Reveal Animation (Horizontal X-axis entrance)
+// 2. Right-to-Left Reveal Animation (Lightweight Horizontal X-axis entrance)
 export function RevealRight({ children, className = "", delay = 0 }: AnimationProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 50 }}
+      initial={{ opacity: 0, x: 20 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.4, delay, ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: "transform, opacity" }}
       className={className}
     >
       {children}
@@ -39,14 +41,15 @@ export function RevealRight({ children, className = "", delay = 0 }: AnimationPr
   );
 }
 
-// 3. Zoom-In Lightweight Animation (Scale up from 0.88 to 1 with Fade)
+// 3. Zoom-In Lightweight Animation (Subtle scale up from 0.96 to 1 with Fade)
 export function ZoomIn({ children, className = "", delay = 0 }: AnimationProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.88 }}
+      initial={{ opacity: 0, scale: 0.96 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.35, delay, ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: "transform, opacity" }}
       className={className}
     >
       {children}
@@ -54,14 +57,15 @@ export function ZoomIn({ children, className = "", delay = 0 }: AnimationProps) 
   );
 }
 
-// 4. Zoom-Out Lightweight Animation (Scale down from 1.08 to 1 with Fade)
+// 4. Zoom-Out Lightweight Animation (Subtle scale down from 1.03 to 1 with Fade)
 export function ZoomOut({ children, className = "", delay = 0 }: AnimationProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 1.08 }}
+      initial={{ opacity: 0, scale: 1.03 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.35, delay, ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: "transform, opacity" }}
       className={className}
     >
       {children}
@@ -75,8 +79,9 @@ export function FadeIn({ children, className = "", delay = 0 }: AnimationProps) 
     <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-30px" }}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.35, delay, ease: "easeOut" }}
+      style={{ willChange: "opacity" }}
       className={className}
     >
       {children}
@@ -84,14 +89,15 @@ export function FadeIn({ children, className = "", delay = 0 }: AnimationProps) 
   );
 }
 
-// 6. Fade-Up Animation (Subtle Vertical Y-axis with Opacity)
+// 6. Fade-Up Animation (Lightweight Vertical Y-axis with Opacity)
 export function FadeUp({ children, className = "", delay = 0 }: AnimationProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.4, delay, ease: [0.16, 1, 0.3, 1] }}
+      style={{ willChange: "transform, opacity" }}
       className={className}
     >
       {children}
@@ -102,71 +108,29 @@ export function FadeUp({ children, className = "", delay = 0 }: AnimationProps) 
 // 7. Reveal-Up Animation (Alias for FadeUp with clean vertical motion)
 export const RevealUp = FadeUp;
 
-// 7. Interactive X-Y-Z 3D Hover Transition Card (Pitch, Yaw, Lift & Z-depth)
+// 8. Interactive Lightweight Hover Transition Card
 export function XYZCard({
   children,
   className = "",
-  depth = 15,
+  depth = 8,
 }: {
   children: React.ReactNode;
   className?: string;
   depth?: number;
 }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [hovered, setHovered] = useState(false);
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  // Smooth springs for high responsiveness without lag
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 25 });
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 25 });
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], [`${depth * 0.4}deg`, `-${depth * 0.4}deg`]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], [`-${depth * 0.4}deg`, `${depth * 0.4}deg`]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseEnter = () => setHovered(true);
-  const handleMouseLeave = () => {
-    setHovered(false);
-    x.set(0);
-    y.set(0);
-  };
-
   return (
-    <div style={{ perspective: 1000 }} className="w-full">
+    <div className="w-full">
       <motion.div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: "preserve-3d",
-        }}
         whileHover={{
-          scale: 1.02,
-          z: 20,
-          boxShadow: "0 20px 35px -10px rgba(15, 23, 42, 0.12)",
+          y: -4,
+          boxShadow: "0 14px 28px -8px rgba(15, 23, 42, 0.10)",
         }}
-        whileTap={{ scale: 0.98 }}
-        transition={{ type: "spring", stiffness: 350, damping: 25 }}
-        className={`transition-shadow duration-300 ${className}`}
+        whileTap={{ scale: 0.99 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        style={{ willChange: "transform" }}
+        className={`transition-all duration-200 ${className}`}
       >
-        <div style={{ transform: "translateZ(10px)" }}>{children}</div>
+        <div>{children}</div>
       </motion.div>
     </div>
   );

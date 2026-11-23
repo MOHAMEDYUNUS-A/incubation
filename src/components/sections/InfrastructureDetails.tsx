@@ -57,12 +57,12 @@ export default function InfrastructureDetails() {
               The host institution <strong className="text-slate-900 font-bold">M.A.M. College of Engineering & Technology (MAMCET)</strong>, Siruganur, Trichy has allotted an expansive dedicated area with comprehensive state-of-the-art facilities for the operation of <strong className="text-blue-800 font-bold">MASTeR Incubation Foundation</strong>, specialized laboratories for new product research & development, and collaborative co-working spaces for resident startup companies.
             </p>
 
-            {/* Checklist with Orange Checks (Matching Image 2 from earlier prompt) */}
+            {/* Checklist with Brand Red Checks */}
             <div className="space-y-3.5 pt-2">
               {[
-                "MASTeR–MIF Dedicated Physical Space & Prototyping Bays.",
-                "Plug-&-Play Incubation Seats with Ergonomic Workstations.",
-                "Fully Furnished Office Suites & Meeting Rooms with AV Setup.",
+                "MASTeR–MIF Dedicated 4,000 Sq. Ft. Facility & Prototyping Bays.",
+                "15+ Plug-&-Play Ergonomic Desks for Resident Founders.",
+                "15-Seater Executive Conference Suite & Boardroom with Hybrid AV Setup.",
                 "Precision Hardware Testing Equipment (Oscilloscopes & Logic Analyzers).",
                 "Additive 3D Printing & Rapid Prototyping Maker Lab.",
                 "High-Speed Gigabit Fiber Internet & 24/7 Power Redundancy.",
