@@ -33,6 +33,7 @@ import {
   ProductLaunch,
   MentoringSession,
 } from "@/lib/ecosystem/types";
+import { useSiteContent } from "@/context/ContentContext";
 
 interface PassportDossier {
   passport: StartupPassport;
@@ -57,6 +58,7 @@ export default function StartupPassportViewPage({
   params: { passportId: string };
 }) {
   const { passportId } = params;
+  const { content } = useSiteContent();
   const [dossier, setDossier] = useState<PassportDossier | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -93,6 +95,36 @@ export default function StartupPassportViewPage({
   const handlePrint = () => {
     window.print();
   };
+
+  if (content?.featureFlags && content.featureFlags.enableDigitalPassport === false) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 pt-28">
+        <div className="bg-white border border-slate-200 rounded-3xl p-8 max-w-lg text-center shadow-xl space-y-4">
+          <div className="w-16 h-16 bg-blue-50 text-blue-700 rounded-2xl flex items-center justify-center mx-auto border border-blue-100">
+            <Lock className="w-8 h-8" />
+          </div>
+          <h2 className="text-2xl font-black text-slate-900 font-display">Digital Passport Under Upgrade</h2>
+          <p className="text-sm text-slate-500 leading-relaxed">
+            Public access to individual Digital Startup Passports is temporarily disabled by MIF Administrators. You can enable this module anytime from the Admin Portal.
+          </p>
+          <div className="pt-3 flex flex-col sm:flex-row gap-2 justify-center">
+            <Link
+              href="/startups"
+              className="px-5 py-2.5 rounded-xl bg-[#0f2c59] text-white font-bold hover:bg-slate-800 text-xs transition"
+            >
+              Browse Startup Directory
+            </Link>
+            <Link
+              href="/admin"
+              className="px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-semibold hover:bg-slate-200 text-xs transition"
+            >
+              Admin Portal
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (loading) {
     return (

@@ -1,11 +1,7 @@
 {
   "hero": {
     "images": [
-      "/images/incubation/incubation-centre.jpeg",
-      "/images/incubation/incubation-workspace.jpeg",
-      "/images/incubation/img-54.jpeg",
-      "/images/incubation/team-of-incubation.jpeg",
-      "/images/incubation/image-3.jpeg"
+      "/images/incubation/incubation-centre.jpeg"
     ],
     "rotatingTexts": [
       "Deep-Tech Startups",
@@ -15,8 +11,6 @@
       "Engineering Ventures"
     ],
     "badge": "StartupTN Pre-Incubation Centre · MAMCET Siruganur",
-    "headlinePrefix": "Catalyzing",
-    "headlineSuffix": "Into Scalable Reality.",
     "narrative": "MASTeR Incubation Foundation (MIF) empowers student creators, engineering researchers, and regional founders with 6,000+ sq. ft. of prototyping bays, patent filing mentorship, and direct access to TANSEED and MSME seed grants."
   },
   "gallery": [

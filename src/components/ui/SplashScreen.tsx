@@ -37,13 +37,22 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
     };
     mediaQuery.addEventListener("change", handleMotionChange);
 
-    // Optional query param ?skip_splash=true for automated CI test bypass
+    // Optional query param ?skip_splash=true for automated CI test bypass or session bypass
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("skip_splash") === "true") {
       setPhase("complete");
       if (onComplete) onComplete();
       return () => mediaQuery.removeEventListener("change", handleMotionChange);
     }
+
+    // Low-network & Session Storage Check: never get stuck on repeat loads
+    try {
+      if (sessionStorage.getItem("mif_splash_viewed") === "1") {
+        setPhase("complete");
+        if (onComplete) onComplete();
+        return () => mediaQuery.removeEventListener("change", handleMotionChange);
+      }
+    } catch (e) {}
 
     // Lock body scroll while splash is active
     document.body.style.overflow = "hidden";
@@ -61,12 +70,16 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
   const startZoom = useCallback(() => {
     if (phase !== "loading") return;
 
+    try {
+      sessionStorage.setItem("mif_splash_viewed", "1");
+    } catch (e) {}
+
     setPhase("zooming");
     if (onZoomStart) {
       onZoomStart();
     }
 
-    const zoomDuration = prefersReducedMotion ? 350 : 750;
+    const zoomDuration = prefersReducedMotion ? 300 : 650;
     zoomTimerRef.current = setTimeout(() => {
       setPhase("complete");
       document.body.style.overflow = "";
@@ -76,12 +89,24 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
     }, zoomDuration);
   }, [phase, prefersReducedMotion, onZoomStart, onComplete]);
 
-  // 3-Second Hold with smooth linear/organic progress, then trigger zoom
+  // Dynamic Hold with Low-Network Acceleration & Safety Timeout (Never Gets Stuck)
   useEffect(() => {
     if (phase !== "loading") return;
 
-    const HOLD_DURATION = 3000; // Exact 3-second hold requested by user
+    const nav = typeof navigator !== "undefined" ? (navigator as any) : null;
+    const isSlow =
+      nav?.connection?.saveData ||
+      nav?.connection?.effectiveType === "2g" ||
+      nav?.connection?.effectiveType === "slow-2g";
+
+    // Adaptive duration: 1.2s on slow connections, 2.5s standard
+    const HOLD_DURATION = isSlow ? 1200 : 2500;
     const startTime = Date.now();
+
+    // Absolute fallback hard timeout: guarantee completion under any network condition
+    const safetyTimer = setTimeout(() => {
+      startZoom();
+    }, isSlow ? 1800 : 3000);
 
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime;
@@ -90,11 +115,15 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
 
       if (elapsed >= HOLD_DURATION) {
         clearInterval(interval);
+        clearTimeout(safetyTimer);
         startZoom();
       }
-    }, 25);
+    }, 20);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(safetyTimer);
+    };
   }, [phase, startZoom]);
 
   // Handle immediate user skip

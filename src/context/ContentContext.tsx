@@ -3,7 +3,16 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import initialContent from "@/data/site-content.json";
 
-export type SiteContent = typeof initialContent;
+export interface FeatureFlags {
+  enableEcosystem?: boolean;
+  enableDigitalPassport?: boolean;
+  enableFounderDashboard?: boolean;
+  enablePassportVerification?: boolean;
+}
+
+export type SiteContent = typeof initialContent & {
+  featureFlags?: FeatureFlags;
+};
 
 interface ContentContextType {
   content: SiteContent;

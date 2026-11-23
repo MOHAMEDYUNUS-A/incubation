@@ -6,61 +6,87 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, Phone, Mail, MapPin, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const NAV_LINKS = [
-  { name: "Home", href: "/" },
-  {
-    name: "About Us",
-    href: "/about",
-    submenu: [
-      { name: "About Foundation", href: "/about" },
-      { name: "Leadership & Committee", href: "/leadership" },
-      { name: "Governance & Trust", href: "/about#governance" },
-      { name: "Mission M1-M5", href: "/about#governance" },
-    ],
-  },
-  { name: "Focus Area", href: "/focus-areas" },
-  {
-    name: "Programs",
-    href: "/programs",
-    submenu: [
-      { name: "4-Stage Pathway", href: "/programs" },
-      { name: "Incubation Services", href: "/programs#services" },
-      { name: "MSME & TANSEED Grants", href: "/programs#services" },
-    ],
-  },
-  {
-    name: "Startups",
-    href: "/startups",
-    submenu: [
-      { name: "Startup Directory", href: "/startups" },
-      { name: "Digital Startup Passport", href: "/startup-passport/MASTER-SP-2026-0001" },
-      { name: "Passport Verification", href: "/startup-passport/verify/MASTER-SP-2026-0001" },
-      { name: "Founder Dashboard", href: "/dashboard/startup-passport" },
-    ],
-  },
-  {
-    name: "Ecosystem",
-    href: "/success-stories",
-    submenu: [
-      { name: "Success Stories", href: "/success-stories" },
-      { name: "Alumni Guild", href: "/alumni" },
-      { name: "Track Application", href: "/apply/status" },
-    ],
-  },
-  {
-    name: "Facilities",
-    href: "/facilities",
-    submenu: [
-      { name: "All Labs & Workbenches", href: "/facilities" },
-      { name: "Campus Photo Gallery", href: "/#gallery" },
-    ],
-  },
-  { name: "Contact", href: "/contact" },
-];
+import { useSiteContent } from "@/context/ContentContext";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { content } = useSiteContent();
+
+  const flags = content?.featureFlags || {
+    enableEcosystem: false,
+    enableDigitalPassport: false,
+    enableFounderDashboard: false,
+    enablePassportVerification: false,
+  };
+
+  const navLinks = React.useMemo(() => {
+    const startupsSubmenu: { name: string; href: string }[] = [
+      { name: "Startup Directory", href: "/startups" },
+    ];
+    if (flags.enableDigitalPassport) {
+      startupsSubmenu.push({ name: "Digital Startup Passport", href: "/startup-passport/MASTER-SP-2026-0001" });
+    }
+    if (flags.enablePassportVerification) {
+      startupsSubmenu.push({ name: "Passport Verification", href: "/startup-passport/verify/MASTER-SP-2026-0001" });
+    }
+    if (flags.enableFounderDashboard) {
+      startupsSubmenu.push({ name: "Founder Dashboard", href: "/dashboard/startup-passport" });
+    }
+
+    const links = [
+      { name: "Home", href: "/" },
+      {
+        name: "About Us",
+        href: "/about",
+        submenu: [
+          { name: "About Foundation", href: "/about" },
+          { name: "Leadership & Committee", href: "/leadership" },
+          { name: "Governance & Trust", href: "/about#governance" },
+          { name: "Mission M1-M5", href: "/about#governance" },
+        ],
+      },
+      { name: "Focus Area", href: "/focus-areas" },
+      {
+        name: "Programs",
+        href: "/programs",
+        submenu: [
+          { name: "4-Stage Pathway", href: "/programs" },
+          { name: "Incubation Services", href: "/programs#services" },
+          { name: "MSME & TANSEED Grants", href: "/programs#services" },
+        ],
+      },
+      {
+        name: "Startups",
+        href: "/startups",
+        submenu: startupsSubmenu.length > 1 ? startupsSubmenu : undefined,
+      },
+    ];
+
+    if (flags.enableEcosystem) {
+      links.push({
+        name: "Ecosystem",
+        href: "/success-stories",
+        submenu: [
+          { name: "Success Stories", href: "/success-stories" },
+          { name: "Alumni Guild", href: "/alumni" },
+          { name: "Track Application", href: "/apply/status" },
+        ],
+      });
+    }
+
+    links.push({
+      name: "Facilities",
+      href: "/facilities",
+      submenu: [
+        { name: "All Labs & Workbenches", href: "/facilities" },
+        { name: "Campus Photo Gallery", href: "/#gallery" },
+      ],
+    });
+
+    links.push({ name: "Contact", href: "/contact" });
+
+    return links;
+  }, [flags]);
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -173,7 +199,7 @@ export default function Navbar() {
 
             {/* Symmetrically Centered Navigation Links */}
             <nav className="hidden lg:flex items-center justify-center gap-0 xl:gap-1 flex-1 min-w-0">
-              {NAV_LINKS.map((link) => {
+              {navLinks.map((link) => {
                 const isActive =
                   pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
 
@@ -276,7 +302,7 @@ export default function Navbar() {
             >
               <div className="p-5 sm:p-6 space-y-4 overflow-y-auto">
               <div className="space-y-1 divide-y divide-slate-100">
-                {NAV_LINKS.map((link) => {
+                {navLinks.map((link) => {
                   const hasSubmenu = Boolean(link.submenu && link.submenu.length > 0);
                   const isOpen = openMobileDropdown === link.name;
 
@@ -346,7 +372,7 @@ export default function Navbar() {
               <div className="pt-4 border-t border-slate-200 space-y-2">
                 <Link href="/apply" onClick={() => setMobileMenuOpen(false)} className="block">
                   <Button className="w-full bg-[#772b38] hover:bg-[#5e212b] text-white font-bold h-11 text-xs gap-2">
-                    <span>Apply For Pre Incubation</span>
+                    <span>Apply for Incubation</span>
                     <ArrowRight className="w-4 h-4" />
                   </Button>
                 </Link>

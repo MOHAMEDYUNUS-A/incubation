@@ -30,8 +30,10 @@ import {
   ProductLaunch,
   MentoringSession,
 } from "@/lib/ecosystem/types";
+import { useSiteContent } from "@/context/ContentContext";
 
 export default function FounderPassportDashboardPage() {
+  const { content } = useSiteContent();
   const [passports, setPassports] = useState<StartupPassport[]>([]);
   const [selectedPassportId, setSelectedPassportId] = useState<string>("MASTER-SP-2026-0001");
   const [dossier, setDossier] = useState<any>(null);
@@ -146,6 +148,30 @@ export default function FounderPassportDashboardPage() {
   }
 
   const { passport, founders, milestones, progress, achievements, launches, mentoringSessions } = dossier || {};
+
+  if (content?.featureFlags && content.featureFlags.enableFounderDashboard === false) {
+    return (
+      <div className="pt-32 pb-24 min-h-screen bg-slate-50 flex items-center justify-center px-4">
+        <div className="max-w-md w-full bg-white p-8 rounded-3xl border border-slate-200 shadow-xl text-center space-y-4">
+          <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mx-auto border border-amber-100">
+            <Lock className="w-7 h-7" />
+          </div>
+          <h2 className="text-xl font-bold text-slate-900 font-display">Founder Dashboard in Transition</h2>
+          <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+            The Digital Founder Passport Dashboard is temporarily disabled by MIF Administrators for maintenance. It can be re-enabled anytime from the Admin Portal.
+          </p>
+          <div className="pt-2 flex flex-col gap-2">
+            <Link href="/" className="w-full py-2.5 rounded-xl bg-[#0f2c59] text-white text-xs font-bold hover:bg-slate-800 transition-colors">
+              Return to MIF Home
+            </Link>
+            <Link href="/admin" className="w-full py-2 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-colors">
+              Admin Portal (Manage Toggles)
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50/70 pt-32 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8">

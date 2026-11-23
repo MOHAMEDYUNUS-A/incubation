@@ -19,6 +19,8 @@ import {
   Lock,
 } from "lucide-react";
 
+import { useSiteContent } from "@/context/ContentContext";
+
 interface VerificationResponse {
   success: boolean;
   verified: boolean;
@@ -72,6 +74,7 @@ export default function StartupPassportVerifyPage({
   params: { passportId: string };
 }) {
   const { passportId } = params;
+  const { content } = useSiteContent();
   const [data, setData] = useState<VerificationResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -106,6 +109,36 @@ export default function StartupPassportVerifyPage({
           <div className="w-16 h-16 border-4 border-emerald-600 border-t-blue-950 rounded-full animate-spin mx-auto mb-4" />
           <h2 className="text-xl font-bold text-slate-800">Verifying Cryptographic Credentials...</h2>
           <p className="text-sm text-slate-500 mt-1">Executing public verification check with MASTeR Incubation Foundation repository.</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (content?.featureFlags && content.featureFlags.enablePassportVerification === false) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 pt-28">
+        <div className="bg-white border border-slate-200 rounded-3xl p-8 max-w-lg text-center shadow-xl space-y-4">
+          <div className="w-16 h-16 bg-amber-50 text-amber-700 rounded-2xl flex items-center justify-center mx-auto border border-amber-100">
+            <Lock className="w-8 h-8" />
+          </div>
+          <h2 className="text-2xl font-black text-slate-900 font-display">Verification Tool in Transition</h2>
+          <p className="text-sm text-slate-500 leading-relaxed">
+            The Public Digital Certificate Verification utility is temporarily disabled by MIF Administrators for security key rotation. It can be re-enabled anytime from the Admin Portal.
+          </p>
+          <div className="pt-3 flex flex-col sm:flex-row gap-2 justify-center">
+            <Link
+              href="/"
+              className="px-5 py-2.5 rounded-xl bg-[#0f2c59] text-white font-bold hover:bg-slate-800 text-xs transition"
+            >
+              Return to MIF Home
+            </Link>
+            <Link
+              href="/admin"
+              className="px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-semibold hover:bg-slate-200 text-xs transition"
+            >
+              Admin Portal
+            </Link>
+          </div>
         </div>
       </div>
     );

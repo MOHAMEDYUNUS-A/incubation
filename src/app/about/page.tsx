@@ -27,6 +27,36 @@ export const metadata = {
   title: "About Us | MASTeR Incubation Foundation (MIF)",
   description:
     "Learn about the Section 8 not-for-profit company, StartupTN Pre-Incubation Centre accreditation, infrastructure facilities, and governance at MAMCET Siruganur, Trichy.",
+  openGraph: {
+    title: "About Us | MASTeR Incubation Foundation (MIF)",
+    description:
+      "Premier Technology Business Incubator & StartupTN Pre-Incubation Centre at MAMCET Campus, Siruganur, Trichy.",
+    url: "https://master-incubation.vercel.app/about",
+    siteName: "MASTeR Incubation Foundation",
+    images: [
+      {
+        url: "/images/incubation/incubation-centre.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "MASTeR Incubation Foundation Campus Facility at MAMCET",
+      },
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "MASTeR Incubation Foundation Official Digital Crest",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us | MASTeR Incubation Foundation (MIF)",
+    description:
+      "Premier Technology Business Incubator & StartupTN Pre-Incubation Centre at MAMCET Campus, Siruganur, Trichy.",
+    images: ["/images/incubation/incubation-centre.jpeg"],
+  },
 };
 
 const LEADERSHIP_TEAM = [
@@ -149,7 +179,7 @@ export default function AboutPage() {
                 <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Recognised Centre</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs">
-                <span className="text-xl sm:text-2xl font-black text-[#dc2626] block">15+ Desks</span>
+                <span className="text-xl sm:text-2xl font-black text-[#772b38] block">15+ Desks</span>
                 <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Resident Workstations</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs col-span-2 sm:col-span-1">
@@ -163,7 +193,7 @@ export default function AboutPage() {
           <div className="lg:col-span-5">
             <div className="relative rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-900 group">
               <img
-                src="/images/incubation/about-page-main.jpeg"
+                src="/images/incubation/incubation-centre.jpeg"
                 alt="MASTeR Incubation Foundation Innovation Facility at MAMCET Campus, Siruganur, Trichy"
                 className="w-full h-[360px] sm:h-[420px] object-cover group-hover:scale-105 transition-transform duration-700"
               />

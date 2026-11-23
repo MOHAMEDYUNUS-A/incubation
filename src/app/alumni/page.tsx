@@ -17,8 +17,10 @@ import {
   Search,
 } from "lucide-react";
 import { AlumniProfile } from "@/lib/ecosystem/types";
+import { useSiteContent } from "@/context/ContentContext";
 
 export default function AlumniDirectoryPage() {
+  const { content } = useSiteContent();
   const [alumni, setAlumni] = useState<AlumniProfile[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -103,6 +105,36 @@ export default function AlumniDirectoryPage() {
       selectedStatus === "ALL" || item.growthStatus === selectedStatus;
     return matchesSearch && matchesStatus;
   });
+
+  if (content?.featureFlags && content.featureFlags.enableEcosystem === false) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 pt-28">
+        <div className="bg-white border border-slate-200 rounded-3xl p-8 max-w-lg text-center shadow-xl space-y-4">
+          <div className="w-16 h-16 bg-blue-50 text-blue-700 rounded-2xl flex items-center justify-center mx-auto border border-blue-100">
+            <GraduationCap className="w-8 h-8" />
+          </div>
+          <h2 className="text-2xl font-black text-slate-900 font-display">Alumni Guild Under Upgrade</h2>
+          <p className="text-sm text-slate-500 leading-relaxed">
+            The Alumni Guild network is temporarily disabled for public visitors by MIF Administrators. You can enable it anytime from the Admin Portal.
+          </p>
+          <div className="pt-3 flex flex-col sm:flex-row gap-2 justify-center">
+            <Link
+              href="/"
+              className="px-5 py-2.5 rounded-xl bg-[#0f2c59] text-white font-bold hover:bg-slate-800 text-xs transition"
+            >
+              Return to MIF Home
+            </Link>
+            <Link
+              href="/admin"
+              className="px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-semibold hover:bg-slate-200 text-xs transition"
+            >
+              Admin Portal
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50/70 pt-32 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8">

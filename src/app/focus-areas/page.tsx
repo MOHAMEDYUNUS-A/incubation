@@ -24,9 +24,44 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Sparkles,
 };
 
+const TRACK_IMAGES: Record<string, string> = {
+  "ai-ds": "/images/focus-areas/ai-edge-compute.jpg",
+  "clean-energy": "/images/focus-areas/renewable-energy.jpg",
+  "digital-tech": "/images/focus-areas/cloud-saas-cybersecurity.jpg",
+  "adv-mfg": "/images/focus-areas/robotics-drones.jpg",
+  "iot-smart": "/images/focus-areas/iot-telemetry.jpg",
+  "sustainable-infra": "/images/focus-areas/agritech-biomaterial.jpg",
+  "other-eng": "/images/focus-areas/healthcare-medcare.jpg",
+};
+
 export const metadata = {
   title: "Focus Areas | MASTeR Incubation Foundation (MIF)",
-  description: "Explore the 7 engineering technology tracks supported by MASTeR Incubation Foundation at MAMCET.",
+  description:
+    "Explore the 7 engineering technology tracks supported by MASTeR Incubation Foundation at MAMCET.",
+  openGraph: {
+    title: "7 Core Engineering Focus Areas | MASTeR Incubation Foundation (MIF)",
+    description:
+      "Explore the 7 engineering technology tracks supported by MASTeR Incubation Foundation at MAMCET Campus, Siruganur, Trichy.",
+    url: "https://master-incubation.vercel.app/focus-areas",
+    siteName: "MASTeR Incubation Foundation",
+    images: [
+      {
+        url: "/images/focus-areas/ai-edge-compute.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MASTeR Incubation Foundation Engineering Focus Areas",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Focus Areas | MASTeR Incubation Foundation (MIF)",
+    description:
+      "Explore the 7 engineering technology tracks supported by MASTeR Incubation Foundation at MAMCET.",
+    images: ["/images/focus-areas/ai-edge-compute.jpg"],
+  },
 };
 
 export default function FocusAreasPage() {
@@ -34,7 +69,7 @@ export default function FocusAreasPage() {
     <div className="pt-32 pb-24 bg-slate-50 min-h-screen">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mb-16">
-          <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
+          <span className="text-xs font-semibold text-[#772b38] uppercase tracking-widest">
             Domain Architecture
           </span>
           <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 mt-2 font-display">
@@ -48,6 +83,7 @@ export default function FocusAreasPage() {
         <div className="space-y-8">
           {FOCUS_AREAS.map((area, idx) => {
             const Icon = ICON_MAP[area.iconName] || Sparkles;
+            const trackImage = TRACK_IMAGES[area.id] || "/images/incubation/incubation-workspace.jpeg";
             return (
               <div
                 key={area.id}
@@ -56,11 +92,11 @@ export default function FocusAreasPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                   <div className="lg:col-span-8 space-y-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600">
+                      <div className="w-12 h-12 rounded-2xl bg-[#772b38]/10 border border-[#772b38]/20 flex items-center justify-center text-[#772b38]">
                         <Icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <span className="text-xs font-mono text-blue-600 font-bold">
+                        <span className="text-xs font-mono text-[#772b38] font-bold">
                           TRACK 0{idx + 1}
                         </span>
                         <h2 className="text-2xl font-bold text-slate-900">{area.title}</h2>
@@ -72,9 +108,9 @@ export default function FocusAreasPage() {
                     </p>
 
                     <div className="pt-2">
-                      <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-                        Specialized Subtracks & Engineering Scopes:
-                      </h4>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
+                        Specialized Sub-Tracks & Focus Domains
+                      </span>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {area.subtracks.map((sub, i) => (
                           <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
@@ -86,8 +122,15 @@ export default function FocusAreasPage() {
                     </div>
                   </div>
 
-                  <div className="lg:col-span-4 flex flex-col justify-between p-6 rounded-2xl bg-slate-50 border border-slate-200 h-full">
+                  <div className="lg:col-span-4 flex flex-col justify-between p-5 rounded-2xl bg-slate-50 border border-slate-200 h-full">
                     <div>
+                      <div className="rounded-xl overflow-hidden mb-4 border border-slate-200 aspect-video bg-slate-100">
+                        <img
+                          src={trackImage}
+                          alt={area.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                       <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
                         Incubation Track
                       </span>
@@ -100,7 +143,7 @@ export default function FocusAreasPage() {
                     </div>
 
                     <Link href={`/apply?track=${area.categoryKey}`}>
-                      <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs h-10 gap-1.5 shadow-sm">
+                      <Button className="w-full bg-[#772b38] hover:bg-[#5e212b] text-white font-semibold text-xs h-10 gap-1.5 shadow-sm">
                         <span>Apply in this Track</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </Button>

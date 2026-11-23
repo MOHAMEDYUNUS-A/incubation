@@ -15,37 +15,37 @@ interface HeroSlide {
 const DEFAULT_SLIDES: HeroSlide[] = [
   {
     image: "/images/incubation/main-hero-section.jpeg",
-    rotatingFocus: "Deep-Tech & IoT Prototyping Hub",
+    rotatingFocus: "Deep-Tech Prototyping",
     narrative:
       "Empowering student creators and engineering researchers with 4,000 sq. ft. of dedicated prototyping bays, 15+ resident desks, a 15-seater boardroom, and additive 3D printing.",
   },
   {
     image: "/images/incubation/hero-section-main.jpeg",
-    rotatingFocus: "Incubation Cohort & Makerspace",
+    rotatingFocus: "Incubation Cohorts",
     narrative:
       "Nurturing early-stage founders with 15+ plug-and-play ergonomic innovator desks, high-speed gigabit fiber connectivity, and 24/7 dedicated incubation access at MAMCET campus.",
   },
   {
     image: "/images/incubation/main-student-hero-section.jpeg",
-    rotatingFocus: "Student Innovators & Future Founders",
+    rotatingFocus: "Student Innovators",
     narrative:
       "Transforming ambitious engineering students from passive job seekers into impactful job creators through experiential venture development and expert mentorship.",
   },
   {
     image: "/images/incubation/startup-main.jpeg",
-    rotatingFocus: "Hardware Labs & Rapid Fabrication",
+    rotatingFocus: "Hardware Fabrication",
     narrative:
       "Equipped with multi-axis CNC machines, laser cutters, embedded electronics test benches, and precision calibration tools for production-grade physical prototypes.",
   },
   {
     image: "/images/incubation/startup-1.jpeg",
-    rotatingFocus: "TANSEED & MSME Seed Grants",
+    rotatingFocus: "Seed Grants & TANSEED",
     narrative:
       "Unlocking direct pathways to non-dilutive seed funding through StartupTN TANSEED and Ministry of MSME Idea Hackathons.",
   },
   {
     image: "/images/incubation/ragupathy.jpeg",
-    rotatingFocus: "Ministerial Dedication & State Support",
+    rotatingFocus: "Regional Enterprises",
     narrative:
       "Formally inaugurated by Hon'ble Minister Thiru S. Regupathy, Government of Tamil Nadu, as a flagship institutional incubator driving regional entrepreneurial growth.",
   },
@@ -53,6 +53,12 @@ const DEFAULT_SLIDES: HeroSlide[] = [
 
 export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
   const { content } = useSiteContent();
+  const flags = content?.featureFlags || {
+    enableEcosystem: false,
+    enableDigitalPassport: false,
+    enableFounderDashboard: false,
+    enablePassportVerification: false,
+  };
   const slides: HeroSlide[] = DEFAULT_SLIDES;
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
@@ -121,7 +127,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
             <span>MAMCET · StartupTN Pre-Incubation Centre</span>
           </motion.div>
 
-          {/* Visionary Headline: Synchronized Rotating Focus with Slide */}
+          {/* Visionary Headline: Synchronized Rotating Focus with Smooth Zero-Shift Transformation */}
           <motion.h1
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -130,15 +136,15 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           >
             TRANSFORMING <br />
             BOLD IDEAS INTO{" "}
-            <span className="inline-block relative overflow-hidden align-baseline">
+            <span className="inline-block relative overflow-hidden align-baseline h-[1.2em] min-w-[200px] sm:min-w-[280px]">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentSlideIndex}
-                  initial={{ y: 18, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -18, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="inline-block text-[#ff7b90] font-black drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
+                  initial={{ y: 16, opacity: 0, filter: "blur(4px)" }}
+                  animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                  exit={{ y: -16, opacity: 0, filter: "blur(4px)" }}
+                  transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-block text-[#ff8097] font-black drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] whitespace-nowrap"
                 >
                   {activeSlide.rotatingFocus}
                 </motion.span>
@@ -165,66 +171,51 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
             </AnimatePresence>
           </div>
 
-          {/* Action CTAs (#772b38 Secondary Color, High Contrast, Enhanced Hover UI) */}
+          {/* Action CTAs (#772b38 Secondary Color, High Contrast, Enhanced Button Layout & Sizing) */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.15, ease: "easeOut" }}
-            className="flex flex-wrap items-center gap-3"
+            className="flex flex-wrap items-center gap-3.5 sm:gap-4 pt-2"
           >
-            <Link href="/about">
+            <Link href="/apply" className="group">
               <button
-                className="bg-[#772b38] hover:bg-[#5e212b] text-white font-black text-xs sm:text-sm px-5.5 h-10.5 rounded-xl shadow-lg shadow-[#772b38]/35 hover:shadow-[#772b38]/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 border border-rose-300/30 flex items-center gap-1.5"
+                className="bg-[#772b38] hover:bg-[#5e212b] text-white font-extrabold text-sm sm:text-base px-7 sm:px-8 h-12 sm:h-13 rounded-2xl shadow-xl shadow-[#772b38]/40 hover:shadow-[#772b38]/60 ring-2 ring-white/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2.5"
               >
-                <span>Explore MIF Ecosystem</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </Link>
-
-            <Link href="/apply">
-              <button
-                className="bg-white hover:bg-slate-100 text-[#0f2c59] hover:text-[#772b38] font-black text-xs sm:text-sm px-5.5 h-10.5 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 border-2 border-white"
-              >
-                Apply For Incubation
+                <span>Apply for Incubation</span>
+                <ArrowRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 group-hover:translate-x-1 transition-transform" />
               </button>
             </Link>
 
             <Link href="/programs">
               <button
-                className="bg-slate-900/80 hover:bg-slate-900 text-white hover:text-white font-black text-xs sm:text-sm px-4.5 h-10.5 rounded-xl border-2 border-white/80 hover:border-white backdrop-blur-md shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                className="bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base px-6 sm:px-7 h-12 sm:h-13 rounded-2xl border-2 border-white/50 hover:border-white backdrop-blur-md shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2"
               >
                 Incubation Pathways
               </button>
             </Link>
 
+            {flags.enableEcosystem && (
+              <Link href="/success-stories">
+                <button
+                  className="bg-slate-900/80 hover:bg-slate-900 text-slate-100 font-bold text-sm sm:text-base px-6 sm:px-7 h-12 sm:h-13 rounded-2xl border border-white/30 hover:border-white/60 backdrop-blur-md shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2"
+                >
+                  <span>Explore Ecosystem</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </Link>
+            )}
+
             {onOpenAI && (
               <button
                 onClick={onOpenAI}
-                className="bg-slate-900/80 hover:bg-slate-900 text-cyan-300 hover:text-cyan-200 font-bold text-xs px-3.5 h-10.5 rounded-xl border border-cyan-400/50 backdrop-blur-md shadow-md hidden sm:flex items-center transition-all duration-200 hover:scale-[1.02]"
+                className="bg-slate-900/80 hover:bg-slate-900 text-cyan-300 hover:text-cyan-200 font-bold text-xs sm:text-sm px-4.5 h-12 sm:h-13 rounded-2xl border border-cyan-400/40 hover:border-cyan-400 backdrop-blur-md shadow-md hidden sm:inline-flex items-center gap-2 transition-all duration-200 hover:scale-[1.02]"
               >
-                AI Diagnostic
+                <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                <span>AI Diagnostic</span>
               </button>
             )}
           </motion.div>
-
-          {/* Slide Indicator Navigation Dots */}
-          <div className="flex items-center gap-2 mt-6 z-10">
-            {slides.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlideIndex(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  currentSlideIndex === idx
-                    ? "w-8 bg-[#772b38] shadow-md shadow-[#772b38]/50"
-                    : "w-2 bg-white/40 hover:bg-white/75"
-                }`}
-              />
-            ))}
-            <span className="text-[11px] font-mono text-slate-300 ml-2">
-              0{currentSlideIndex + 1} / 0{slides.length}
-            </span>
-          </div>
         </div>
       </div>
     </section>
