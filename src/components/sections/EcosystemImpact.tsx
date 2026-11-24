@@ -96,7 +96,7 @@ const RUNNING_IMPACT_METRICS: ImpactItem[] = [
 
 export default function EcosystemImpact() {
   return (
-    <section className="py-20 sm:py-28 bg-slate-900/10 relative border-b border-slate-200 overflow-hidden">
+    <section className="py-20 sm:py-28 bg-slate-900/10 relative overflow-hidden">
       {/* Background Video with Clear Cinematic Visibility */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video

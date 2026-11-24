@@ -27,7 +27,7 @@ export default function Footer() {
   }
 
   return (
-    <footer id="contact" className="bg-[#071426] text-slate-300 border-t border-slate-800 pt-16 sm:pt-20 pb-12">
+    <footer id="contact" className="bg-[#071426] text-slate-300 pt-16 sm:pt-20 pb-12">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         {/* Main 4-Column Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-14 border-b border-slate-800">

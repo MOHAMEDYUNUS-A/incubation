@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export default function ApplicationCTA() {
   return (
-    <section className="py-20 sm:py-24 bg-slate-50 relative overflow-hidden border-t border-slate-200">
+    <section className="py-20 sm:py-24 bg-slate-50 relative overflow-hidden">
       <div className="container max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
         <div className="p-8 sm:p-14 rounded-3xl bg-white border border-slate-200/80 shadow-xl shadow-slate-200/50 relative overflow-hidden text-center">
           {/* Subtle Accent Glows */}

@@ -70,7 +70,7 @@ export default function JoinUsEcosystem() {
   }, []);
 
   return (
-    <section id="join-us" className="py-20 sm:py-28 bg-slate-950 relative border-b border-slate-800 overflow-hidden">
+    <section id="join-us" className="py-20 sm:py-28 bg-slate-950 relative overflow-hidden">
       {/* Background Video with Clean, Vivid Visibility & Subtle Edge Vignette */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video

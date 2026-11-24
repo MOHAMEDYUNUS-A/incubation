@@ -16,8 +16,13 @@ import {
   Phone,
   Mail,
   CheckCircle2,
-  Cpu,
-  Layers,
+  Quote,
+  Rocket,
+  Lightbulb,
+  Microscope,
+  Handshake,
+  TrendingUp,
+  Globe2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CampusPhotoGallery from "@/components/sections/CampusPhotoGallery";
@@ -103,45 +108,6 @@ const LEADERSHIP_TEAM = [
     phone: "+91 6381945574",
     email: "hemalathabalakrishnan.ece@mamcet.com",
     specialty: "Student Venture Screening & Ideation Bootcamps",
-  },
-];
-
-const FACILITY_HIGHLIGHTS = [
-  {
-    title: "Dedicated Incubation Wing",
-    subtitle: "Co-Working & 15-Seater Boardroom",
-    description:
-      "Modern plug-and-play resident founder desks with 15+ dedicated innovator spaces, high-speed fiber backbone, and a 15-seater executive boardroom.",
-    image: "/images/incubation/incubation-workspace.jpeg",
-    stat: "4,000 Sq.Ft.",
-    statLabel: "Incubation Floor Area",
-  },
-  {
-    title: "Hardware Prototyping & Testing Labs",
-    subtitle: "Rapid Prototyping & IoT Spectrum Analyzers",
-    description:
-      "Equipped with multi-layer PCB prototyping workbenches, CNC precision machining, 3D printing, and thermal sensors.",
-    image: "/images/infrastructure.jpeg",
-    stat: "5 Workbenches",
-    statLabel: "Specialized Labs",
-  },
-  {
-    title: "Mentorship & Investor Boardrooms",
-    subtitle: "One-on-One Advisory & Pitch Arena",
-    description:
-      "Interactive strategy rooms where resident founders receive guidance from industry mentors, IITMIC fellows, and angel syndicates.",
-    image: "/images/mentoring-session.png",
-    stat: "24+ Mentors",
-    statLabel: "Active Industry Network",
-  },
-  {
-    title: "Executive Steering & Operations Team",
-    subtitle: "MIF Operational Council & Faculty Guides",
-    description:
-      "Dedicated multi-disciplinary team offering end-to-end support from company incorporation to TANSEED grant disbursement.",
-    image: "/images/incubation/team-of-incubation.jpeg",
-    stat: "100%",
-    statLabel: "Founder Support",
   },
 ];
 
@@ -283,140 +249,272 @@ export default function AboutPage() {
         </div>
 
         {/* =========================================================================
-            SECTION 3: WORLD-CLASS INFRASTRUCTURE & FACILITIES (PHOTO CARDS)
+            SECTION 3: STRATEGIC VISION & INSTITUTIONAL MANDATE
+           ========================================================================= */}
+        <div className="space-y-10">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#772b38]/10 text-[#772b38] border border-[#772b38]/20 text-xs font-bold uppercase tracking-wider">
+              <Compass className="w-3.5 h-3.5" />
+              <span>FOUNDATIONAL PURPOSE & HORIZONS</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight">
+              Vision, Mandate & Strategic Roadmap
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+              Guiding transformative engineering research, pre-incubation cohorts, and venture acceleration across Central Tamil Nadu.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            {/* Our Vision Card - 6 Columns */}
+            <div className="lg:col-span-6 rounded-3xl bg-gradient-to-br from-white via-white to-rose-50/40 border border-slate-200/90 p-8 sm:p-10 shadow-sm hover:shadow-md transition-all flex flex-col justify-between relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-[#772b38]/5 rounded-bl-full pointer-events-none transition-transform group-hover:scale-110 duration-500" />
+              <div className="relative z-10 space-y-6">
+                <div className="flex items-center justify-between">
+                  <div className="w-14 h-14 rounded-2xl bg-[#772b38]/10 border border-[#772b38]/25 flex items-center justify-center text-[#772b38] shadow-xs">
+                    <Compass className="w-7 h-7" />
+                  </div>
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#772b38] px-3 py-1 rounded-full bg-[#772b38]/10 border border-[#772b38]/20">
+                    Flagship Vision
+                  </span>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">
+                    Our Vision
+                  </h3>
+                  <div className="relative pl-6 border-l-4 border-[#772b38] py-1">
+                    <Quote className="w-8 h-8 text-[#772b38]/20 absolute -top-3 -left-2 -z-10" />
+                    <p className="text-base sm:text-lg text-slate-800 leading-relaxed font-serif italic font-medium">
+                      &ldquo;{FOUNDATION_INFO.vision}&rdquo;
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-5 border-t border-slate-100 flex flex-wrap items-center gap-3 text-xs text-slate-600">
+                <div className="flex items-center gap-1.5 font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200/70">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>NISP Aligned Policy</span>
+                </div>
+                <div className="flex items-center gap-1.5 font-semibold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-200/70">
+                  <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                  <span>Higher Education Innovation</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Institutional Mandate Card - 6 Columns */}
+            <div className="lg:col-span-6 rounded-3xl bg-gradient-to-br from-[#0a182e] via-[#0f2c59] to-[#06101e] text-white p-8 sm:p-10 shadow-xl shadow-blue-950/20 flex flex-col justify-between relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-radial from-rose-500/10 via-transparent to-transparent pointer-events-none" />
+              <div className="relative z-10 space-y-6">
+                <div className="flex items-center justify-between">
+                  <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-rose-300 shadow-xs backdrop-blur-xs">
+                    <Target className="w-7 h-7 text-[#ff8097]" />
+                  </div>
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-rose-200 px-3 py-1 rounded-full bg-white/10 border border-white/15">
+                    Section 8 Non-Profit
+                  </span>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-display">
+                    Institutional Mandate
+                  </h3>
+                  <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
+                    MIF functions as a single-window technology launchpad connecting student innovators, faculty researchers, and regional founders with prototyping makerspaces, intellectual property advisory, corporate mentors, and venture capital syndicates.
+                  </p>
+                </div>
+
+                {/* 4 Pillars of the Mandate */}
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+                    <div className="text-[#ff8097] text-xs font-bold uppercase tracking-wider mb-0.5">4,000 Sq. Ft.</div>
+                    <div className="text-[11px] text-slate-300 font-medium">Prototyping & Testing Bays</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+                    <div className="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-0.5">StartupTN & MSME</div>
+                    <div className="text-[11px] text-slate-300 font-medium">Pre-Incubation & HI Approved</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+                    <div className="text-emerald-400 text-xs font-bold uppercase tracking-wider mb-0.5">Up to ₹15 Lakhs</div>
+                    <div className="text-[11px] text-slate-300 font-medium">MSME & TANSEED Grant Support</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+                    <div className="text-amber-400 text-xs font-bold uppercase tracking-wider mb-0.5">1-on-1 Mentorship</div>
+                    <div className="text-[11px] text-slate-300 font-medium">IITMIC & Industry Leaders</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-5 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
+                <span className="flex items-center gap-1.5 text-rose-200 font-medium">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#ff8097]" />
+                  <span>Ministry of MSME & StartupTN Endorsed</span>
+                </span>
+                <Link href="/facilities" className="hover:text-white transition-colors underline font-medium flex items-center gap-1">
+                  <span>View Facilities</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            SECTION 4: 5 STRATEGIC MISSION OBJECTIVES (M1 TO M5)
            ========================================================================= */}
         <div className="space-y-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#772b38] uppercase tracking-widest mb-1.5">
-                <Cpu className="w-3.5 h-3.5" />
-                <span>PHYSICAL INFRASTRUCTURE</span>
+                <Rocket className="w-3.5 h-3.5" />
+                <span>OPERATIONAL EXCELLENCE ROADMAP</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-display tracking-tight">
-                State-of-the-Art Prototyping & Co-Working Labs
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 font-display tracking-tight">
+                Strategic Mission Objectives (M1 to M5)
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl font-normal">
-                Take a closer look at the specialized workspaces, hardware testing workbenches, and mentoring suites engineered for deep-tech acceleration.
+                Structured operational objectives guiding every venture cohort from napkin sketch ideation to prototype validation and market scale.
               </p>
             </div>
-            <Link href="/facilities">
-              <Button variant="outline" className="border-slate-300 text-xs font-bold gap-1.5 self-start md:self-auto">
-                <span>Explore All Facilities</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Button>
-            </Link>
+            <div className="flex items-center gap-2">
+              <span className="px-3 py-1 rounded-full bg-slate-200/80 text-slate-700 text-xs font-bold font-mono">
+                5 Strategic Pillars
+              </span>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {FACILITY_HIGHLIGHTS.map((fac, idx) => (
-              <div
-                key={idx}
-                className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all group flex flex-col justify-between"
-              >
-                <div>
-                  <div className="relative h-44 overflow-hidden bg-slate-100">
-                    <img
-                      src={fac.image}
-                      alt={fac.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-slate-950/75 backdrop-blur-xs text-[10px] font-bold text-white border border-white/20">
-                      {fac.stat}
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* M1 Card */}
+            <div className="p-7 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-[#772b38]/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-rose-50 border border-rose-200/80 flex items-center justify-center text-[#772b38] group-hover:scale-110 group-hover:bg-[#772b38] group-hover:text-white transition-all duration-300">
+                    <Lightbulb className="w-6 h-6" />
                   </div>
-                  <div className="p-5 space-y-2">
-                    <div className="text-[10px] font-bold text-red-600 uppercase tracking-wider">
-                      {fac.subtitle}
-                    </div>
-                    <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-900 transition-colors">
-                      {fac.title}
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                      {fac.description}
-                    </p>
-                  </div>
-                </div>
-                <div className="p-4 pt-0 border-t border-slate-100 mt-2">
-                  <span className="text-[10px] text-slate-500 font-medium">
-                    Metric: <strong className="text-slate-800 font-semibold">{fac.statLabel}</strong>
+                  <span className="text-xs font-mono font-black px-3 py-1 rounded-full bg-[#772b38]/10 text-[#772b38] border border-[#772b38]/20">
+                    M1
                   </span>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* =========================================================================
-            SECTION 4: STRATEGIC VISION & MANDATE
-           ========================================================================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between relative overflow-hidden">
-            <div className="relative z-10">
-              <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-700 mb-6 shadow-2xs">
-                <Compass className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3 font-display">Our Vision</h3>
-              <p className="text-slate-700 text-sm sm:text-base leading-relaxed italic bg-slate-50 p-4 rounded-xl border border-slate-200">
-                &ldquo;{FOUNDATION_INFO.vision}&rdquo;
-              </p>
-            </div>
-            <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-500">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-              <span>Aligned with National Innovation & Startup Policy (NISP)</span>
-            </div>
-          </div>
-
-          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between relative overflow-hidden">
-            <div className="relative z-10">
-              <div className="w-12 h-12 rounded-2xl bg-red-50 border border-red-200 flex items-center justify-center text-red-600 mb-6 shadow-2xs">
-                <Target className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3 font-display">Institutional Mandate</h3>
-              <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-                MIF functions as a single-window technology launchpad connecting student innovators, faculty researchers, and regional founders with prototyping makerspaces, intellectual property advisory, corporate mentors, and venture capital syndicates.
-              </p>
-            </div>
-            <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-500">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-              <span>Recognised by StartupTN and Ministry of MSME frameworks</span>
-            </div>
-          </div>
-        </div>
-
-        {/* =========================================================================
-            SECTION 5: 5 MISSION OBJECTIVES (M1 TO M5)
-           ========================================================================= */}
-        <div className="space-y-6">
-          <div className="max-w-2xl">
-            <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-widest block mb-1">
-              STRATEGIC ROADMAP
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-display tracking-tight">
-              Strategic Mission Objectives (M1 to M5)
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1 font-normal">
-              Structured operational objectives guiding every venture cohort from napkin sketch to market traction.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {FOUNDATION_INFO.mission.map((m) => (
-              <div
-                key={m.code}
-                className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:border-blue-400 transition-all flex flex-col justify-between"
-              >
                 <div>
-                  <span className="text-xs font-mono font-black px-2.5 py-1 rounded-md bg-blue-50 text-blue-800 border border-blue-200">
-                    {m.code}
-                  </span>
-                  <h4 className="text-base font-bold text-slate-900 mt-4 mb-2">{m.title}</h4>
-                  <p className="text-xs text-slate-600 leading-relaxed font-normal">{m.text}</p>
-                </div>
-                <div className="mt-4 pt-3 border-t border-slate-100 text-[10px] text-slate-400 font-mono">
-                  MIF Core Framework
+                  <h4 className="text-lg font-bold text-slate-900 group-hover:text-[#772b38] transition-colors">
+                    Cultivate Mindset
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mt-2">
+                    To cultivate an entrepreneurial mindset among students and faculty through design thinking, creative problem-solving and interdisciplinary engagement.
+                  </p>
                 </div>
               </div>
-            ))}
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-medium text-slate-500">
+                <span>Design Thinking & Ideation</span>
+                <span className="text-[#772b38] font-bold">MIF Core Pillar</span>
+              </div>
+            </div>
+
+            {/* M2 Card */}
+            <div className="p-7 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200/80 flex items-center justify-center text-blue-700 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                    <Microscope className="w-6 h-6" />
+                  </div>
+                  <span className="text-xs font-mono font-black px-3 py-1 rounded-full bg-blue-100/70 text-blue-800 border border-blue-200">
+                    M2
+                  </span>
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 group-hover:text-blue-700 transition-colors">
+                    Research Translation
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mt-2">
+                    To facilitate the transformation of engineering knowledge, innovative ideas and research outcomes into practical solutions, products and viable startups.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-medium text-slate-500">
+                <span>Lab to Market Commercialization</span>
+                <span className="text-blue-700 font-bold">MIF Core Pillar</span>
+              </div>
+            </div>
+
+            {/* M3 Card */}
+            <div className="p-7 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-amber-400 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-amber-700 group-hover:scale-110 group-hover:bg-amber-600 group-hover:text-white transition-all duration-300">
+                    <Handshake className="w-6 h-6" />
+                  </div>
+                  <span className="text-xs font-mono font-black px-3 py-1 rounded-full bg-amber-100/70 text-amber-800 border border-amber-200">
+                    M3
+                  </span>
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
+                    Industry Collaboration
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mt-2">
+                    To collaborate with industries, startups, and research institutions to provide practical exposure and support technology development, market access and commercialisation.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-medium text-slate-500">
+                <span>8+ Strategic Bilateral MoUs</span>
+                <span className="text-amber-700 font-bold">MIF Core Pillar</span>
+              </div>
+            </div>
+
+            {/* M4 Card */}
+            <div className="p-7 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-emerald-700 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
+                    <TrendingUp className="w-6 h-6" />
+                  </div>
+                  <span className="text-xs font-mono font-black px-3 py-1 rounded-full bg-emerald-100/70 text-emerald-800 border border-emerald-200">
+                    M4
+                  </span>
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                    Mentoring & Funding
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mt-2">
+                    To equip aspiring entrepreneurs with business skills, mentoring, incubation support and access to relevant funding opportunities.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-medium text-slate-500">
+                <span>TANSEED & MSME Seed Grants</span>
+                <span className="text-emerald-700 font-bold">MIF Core Pillar</span>
+              </div>
+            </div>
+
+            {/* M5 Card - Spans 2 cols on desktop */}
+            <div className="p-7 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-purple-400 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group md:col-span-2 lg:col-span-2">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-200/80 flex items-center justify-center text-purple-700 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
+                    <Globe2 className="w-6 h-6" />
+                  </div>
+                  <span className="text-xs font-mono font-black px-3 py-1 rounded-full bg-purple-100/70 text-purple-800 border border-purple-200">
+                    M5
+                  </span>
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-slate-900 group-hover:text-purple-700 transition-colors">
+                    Sustainable Impact
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mt-2">
+                    To promote ethical, sustainable and socially responsible entrepreneurship that contributes to industrial growth and societal well-being, in alignment with the Sustainable Development Goals (SDGs).
+                  </p>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-medium text-slate-500">
+                <span>UN SDGs & Ethical Tech Ventures</span>
+                <span className="text-purple-700 font-bold">MIF Core Pillar</span>
+              </div>
+            </div>
           </div>
         </div>
 

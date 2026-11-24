@@ -145,7 +145,7 @@ export default function CampusPhotoGallery() {
   const row2 = photos.slice(Math.ceil(photos.length / 2));
 
   return (
-    <section id="gallery" className="py-20 sm:py-28 bg-white relative overflow-hidden border-t border-slate-200">
+    <section id="gallery" className="py-20 sm:py-28 bg-white relative overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 mb-10 text-center">
         {/* Header - Moments That Matter (Matching Image 1 Styling) */}
         <h2 className="text-3xl sm:text-5xl md:text-6xl font-serif font-normal text-slate-900 tracking-tight">

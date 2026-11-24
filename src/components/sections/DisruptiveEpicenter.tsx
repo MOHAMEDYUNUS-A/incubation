@@ -90,7 +90,7 @@ export default function DisruptiveEpicenter() {
   const [selectedPersona, setSelectedPersona] = useState(PERSONAS[0]);
 
   return (
-    <section className="py-20 sm:py-28 bg-white relative overflow-hidden border-b border-slate-200">
+    <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
       {/* Ambient Background Radial Glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 right-10 w-[450px] h-[450px] bg-blue-100/40 rounded-full blur-3xl -z-10" />

@@ -8,7 +8,7 @@ import { RevealLeft, RevealRight } from "@/components/animations/LightAnimations
 
 export default function InfrastructureDetails() {
   return (
-    <section className="py-20 sm:py-28 bg-white relative border-b border-slate-200 overflow-hidden">
+    <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute top-1/2 left-0 w-80 h-80 bg-red-100/30 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
 

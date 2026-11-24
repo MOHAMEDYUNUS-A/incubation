@@ -38,7 +38,7 @@ const ACCREDITED_LOGOS = [
 
 export default function WelcomeSection() {
   return (
-    <section className="py-20 sm:py-28 bg-white relative border-b border-slate-200 overflow-hidden">
+    <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
       {/* Subtle Ambient Background Gradients */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl -z-10" />
@@ -121,7 +121,7 @@ export default function WelcomeSection() {
         </div>
 
         {/* ================= Empowering Innovation and Entrepreneurship (3-Card Section) ================= */}
-        <div className="max-w-6xl mx-auto pt-8 border-t border-slate-200">
+        <div className="max-w-6xl mx-auto pt-8">
           <div className="text-center mb-10">
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0f2c59] font-display tracking-tight">
               &ldquo;Empowering Innovation and Entrepreneurship&rdquo;
