@@ -15,6 +15,7 @@ import {
   GraduationCap,
   MapPin,
   CheckCircle2,
+  Compass,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeUp, RevealLeft, RevealRight, XYZCard } from "@/components/animations/LightAnimations";
@@ -82,84 +83,123 @@ const OPERATIONS_TEAM: LeaderProfile[] = [
   },
 ];
 
-// 3. Multi-Disciplinary Advisory Board & Technical Steering Council
-const ADVISORY_COMMITTEE = [
+// 3. Institutional Trustees & Founding Patrons
+const TRUSTEE_PATRONS = [
   {
-    category: "Academic & Institutional Governance",
-    members: [
-      {
-        name: "Dr. M.A. Maluk Mohamed",
-        role: "Chairman & Managing Trustee, MASTeR Group",
-        institution: "MAMCET / MIF Board",
-        focus: "Institutional governance, higher education policy, and state-wide innovation infrastructure.",
-      },
-      {
-        name: "Mrs. Fathima Bathool Maluk",
-        role: "Secretary & CEO, MASTeR Group",
-        institution: "MAMCET / MIF Board",
-        focus: "Operational excellence, faculty empowerment, and corporate social entrepreneurship.",
-      },
-    ],
+    name: "Dr. M.A. Maluk Mohamed",
+    role: "Chairman & Managing Trustee",
+    affiliation: "MASTeR Group of Educational Institutions",
+    badge: "Founding Trustee",
   },
   {
-    category: "Technical Advisory & Research Commercialization",
-    members: [
-      {
-        name: "Dr. P. Lilly Florence",
-        role: "Professor & Head, Dept of CSE",
-        institution: "MAMCET Campus",
-        focus: "Artificial intelligence, distributed cloud computing, and algorithmic patent validation.",
-      },
-      {
-        name: "Dr. S. Ravimaran",
-        role: "Professor, Dept of Mechanical Engineering",
-        institution: "MAMCET Campus",
-        focus: "Additive manufacturing, CNC rapid prototyping, and CAD/CAM mechanical tooling.",
-      },
-    ],
-  },
-  {
-    category: "Industry Linkages & Seed Grant Evaluation",
-    members: [
-      {
-        name: "Er. K. Vigneshwaran",
-        role: "Senior Consultant, Deep-Tech Ventures",
-        institution: "Ecosystem Partner",
-        focus: "Hardware product design, MSME scheme screening, and seed investment syndication.",
-      },
-      {
-        name: "Adv. R. Senthil Kumar",
-        role: "Senior IP Attorney & Patent Agent",
-        institution: "Legal Advisory Cell",
-        focus: "Prior-art search, patent drafting, provisional filings, and trademark portfolio management.",
-      },
-    ],
+    name: "Mrs. Fathima Bathool Maluk",
+    role: "Secretary & CEO",
+    affiliation: "MASTeR Group of Educational Institutions",
+    badge: "Managing Secretary",
   },
 ];
 
 export default function LeadershipPage() {
   return (
-    <div className="pt-28 sm:pt-32 bg-slate-50 min-h-screen">
-      {/* Header Banner */}
-      <section className="bg-white py-16 sm:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-10 right-10 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -z-10" />
-          <div className="absolute bottom-10 left-10 w-96 h-96 bg-rose-100/20 rounded-full blur-3xl -z-10" />
+    <div className="pt-20 sm:pt-24 bg-slate-50 min-h-screen">
+      {/* =========================================================================
+          HERO SECTION: VISIONARY & ATTRACTIVE CINEMATIC ARCHITECTURE
+         ========================================================================= */}
+      <section className="relative bg-gradient-to-br from-[#061224] via-[#0f2c59] to-[#040c18] text-white py-16 sm:py-24 overflow-hidden border-b border-blue-900/40">
+        {/* Subtle Ambient Radial Lighting */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#772b38]/20 rounded-full blur-[100px] -z-10" />
+          <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-blue-500/15 rounded-full blur-[100px] -z-10" />
+          <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:28px_28px] opacity-40 pointer-events-none" />
         </div>
 
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <FadeUp className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight leading-tight">
-              Incubation Leadership & Advisory Committee
-            </h1>
-            <p className="text-base sm:text-lg text-slate-700 mt-4 leading-relaxed font-normal">
-              Meet the executive leaders, technical directors, and faculty mentors dedicated to converting student research and regional innovation into high-growth, venture-backed enterprises at <strong className="text-slate-900 font-bold">MAMCET campus</strong>.
-            </p>
-          </FadeUp>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            {/* Left Column: Visionary Headline & Value Pillars */}
+            <FadeUp className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-mono font-bold text-rose-200 shadow-xs">
+                <span>Foundation Governance & Stewardship</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white font-display tracking-tight leading-[1.12] drop-shadow-md">
+                Steering Innovation into{" "}
+                <span className="text-[#ff8097]">High-Growth</span> Deep-Tech Ventures
+              </h1>
+
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl">
+                Anchored by distinguished academic visionaries, research directors, and startup ecosystem leaders, the{" "}
+                <strong className="text-white font-bold">MASTeR Incubation Foundation (MIF)</strong> governance council drives regional deep-tech innovation, university IP commercialization, and founder empowerment at the <strong className="text-cyan-300 font-bold">MAMCET campus</strong>.
+              </p>
+
+              {/* Verified Institutional Quick Badges */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-xs">
+                  <span className="text-cyan-300 font-mono font-bold text-xs uppercase tracking-wider block">Section 8</span>
+                  <span className="text-sm font-bold text-white">Not-For-Profit</span>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-xs">
+                  <span className="text-[#ff8097] font-mono font-bold text-xs uppercase tracking-wider block">StartupTN</span>
+                  <span className="text-sm font-bold text-white">Recognised Hub</span>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-xs col-span-2 sm:col-span-1">
+                  <span className="text-emerald-400 font-mono font-bold text-xs uppercase tracking-wider block">MSME Approved</span>
+                  <span className="text-sm font-bold text-white">Host Institution</span>
+                </div>
+              </div>
+            </FadeUp>
+
+            {/* Right Column: High-Impact Institutional Campus Visual Showcase */}
+            <FadeUp delay={0.15} className="lg:col-span-5">
+              <div className="relative rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl bg-slate-900 group">
+                <div className="relative aspect-[16/11] w-full overflow-hidden bg-slate-800">
+                  <img
+                    src="/images/incubation/mamcet-main-campus.jpg"
+                    alt="MAMCET Main Institutional Campus, Siruganur, Trichy - Home of MASTeR Incubation Foundation"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#061224] via-slate-950/40 to-transparent" />
+                  
+                  {/* Floating Top Badge */}
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-[11px] font-bold text-white">
+                    <MapPin className="w-3 h-3 text-[#ff8097]" />
+                    <span>MAMCET Campus, Siruganur (NH 45)</span>
+                  </div>
+
+                  {/* Bottom Caption */}
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <h3 className="text-base sm:text-lg font-bold font-display">
+                      Institutional Technology Launchpad
+                    </h3>
+                    <p className="text-xs text-slate-300 mt-0.5 line-clamp-2">
+                      4,000 sq. ft. dedicated prototyping makerspaces, 15+ resident desks, and interdisciplinary research laboratories.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bottom Matrix Strip */}
+                <div className="grid grid-cols-3 divide-x divide-white/10 bg-slate-950/90 backdrop-blur-md text-center p-3 text-xs">
+                  <div>
+                    <div className="text-cyan-300 font-black text-sm sm:text-base">3-Tier</div>
+                    <div className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Governance</div>
+                  </div>
+                  <div>
+                    <div className="text-white font-black text-sm sm:text-base">4,000 Sq.Ft</div>
+                    <div className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Makerspace</div>
+                  </div>
+                  <div>
+                    <div className="text-emerald-400 font-black text-sm sm:text-base">100%</div>
+                    <div className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Non-Dilutive</div>
+                  </div>
+                </div>
+              </div>
+            </FadeUp>
+          </div>
         </div>
       </section>
 
-      {/* 01. MEET OUR LEADERSHIP TEAM (Official Banner Board & Executive Directors) */}
+      {/* =========================================================================
+          01. EXECUTIVE DIRECTORS & GOVERNING LEADERSHIP
+         ========================================================================= */}
       <section className="py-16 sm:py-20 container max-w-7xl mx-auto px-4 sm:px-6">
         <FadeUp className="mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0f2c59] font-display tracking-tight">
@@ -229,7 +269,9 @@ export default function LeadershipPage() {
         </div>
       </section>
 
-      {/* 02. Incubation Operations & Program Coordination */}
+      {/* =========================================================================
+          02. INCUBATION OPERATIONS & PROGRAM COORDINATION
+         ========================================================================= */}
       <section className="py-16 sm:py-20 bg-slate-100/60">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6">
           <FadeUp className="mb-12">
@@ -315,66 +357,65 @@ export default function LeadershipPage() {
         </div>
       </section>
 
-      {/* 03. Advisory & Governance Matrix */}
-      <section className="py-16 bg-white">
+      {/* =========================================================================
+          03. INSTITUTIONAL PATRONS & TRUSTEE GOVERNANCE (Image 3 Speculative Content Removed)
+         ========================================================================= */}
+      <section className="py-16 sm:py-20 bg-white">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6">
           <FadeUp className="max-w-3xl mb-12">
             <h2 className="text-2xl sm:text-4xl font-black text-slate-900 font-display">
-              Advisory Board & Technical Steering Council
+              Trustee Governance & Institutional Patrons
             </h2>
             <p className="text-sm sm:text-base text-slate-600 mt-2 font-normal">
-              Structured multi-tier mentorship ensuring institutional accountability, grant compliance, and high technology readiness levels (TRL 4–9).
+              Visionary stewardship providing foundational endowment, physical campus infrastructure, and state-wide innovation policy alignment.
             </p>
           </FadeUp>
 
-          <div className="space-y-10">
-            {ADVISORY_COMMITTEE.map((cat, idx) => (
-              <FadeUp key={idx} delay={0.06 * idx}>
-                <h3 className="text-lg sm:text-xl font-bold text-[#0f2c59] font-display mb-4 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-[#772b38]" />
-                  <span>{cat.category}</span>
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {cat.members.map((m, i) => (
-                    <div
-                      key={i}
-                      className="p-6 rounded-2xl bg-slate-50 border border-slate-200/90 hover:border-blue-300 hover:shadow-md transition-all"
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="text-base sm:text-lg font-bold text-slate-900 font-display">
-                          {m.name}
-                        </h4>
-                        <span className="text-[11px] font-bold text-[#772b38] px-2.5 py-0.5 rounded-full bg-rose-50 border border-rose-200/60">
-                          {m.institution}
-                        </span>
-                      </div>
-                      <p className="text-xs font-semibold text-blue-800 mb-2">
-                        {m.role}
-                      </p>
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                        {m.focus}
-                      </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {TRUSTEE_PATRONS.map((patron, idx) => (
+              <FadeUp key={idx} delay={0.08 * idx}>
+                <div className="p-7 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200/90 hover:border-[#772b38]/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono font-bold text-[#772b38] uppercase tracking-wider px-3 py-1 rounded-full bg-rose-50 border border-rose-200/60">
+                        {patron.badge}
+                      </span>
+                      <Building2 className="w-5 h-5 text-slate-400 group-hover:text-[#772b38] transition-colors" />
                     </div>
-                  ))}
+
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 font-display group-hover:text-[#0f2c59] transition-colors">
+                      {patron.name}
+                    </h3>
+
+                    <div className="text-sm font-semibold text-blue-900">
+                      {patron.role}
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-slate-600 font-medium">
+                      {patron.affiliation}
+                    </p>
+                  </div>
                 </div>
               </FadeUp>
             ))}
           </div>
 
-          {/* Connect Action Callout */}
+          {/* =========================================================================
+              04. CONNECT WITH LEADERSHIP ACTION CALLOUT
+             ========================================================================= */}
           <FadeUp>
-            <div className="mt-16 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#0a182e] via-[#0f2c59] to-[#06101e] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-radial from-rose-500/15 via-transparent to-transparent pointer-events-none" />
-              <div className="relative z-10">
+            <div className="mt-16 p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-[#061224] via-[#0f2c59] to-[#040c18] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden border border-blue-900/40">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-radial from-rose-500/20 via-transparent to-transparent pointer-events-none" />
+              <div className="relative z-10 max-w-xl">
                 <h3 className="text-2xl sm:text-3xl font-black font-display !text-white text-white">
-                  Interested in Mentoring or Advisory?
+                  Interested in Partnering with MIF Leadership?
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-200 mt-1 max-w-xl font-normal">
-                  Guide high-potential innovators, evaluate student seed cohorts, and join our expert advisory board at MAMCET campus.
+                <p className="text-xs sm:text-sm text-slate-200 mt-2 font-normal leading-relaxed">
+                  Connect directly with the incubation directorate for corporate MoUs, angel syndication, research commercialization, or student cohort admissions at MAMCET campus.
                 </p>
               </div>
-              <Link href="/contact?subject=mentor" className="shrink-0 relative z-10">
-                <Button className="bg-[#772b38] hover:bg-[#5e212b] text-white font-extrabold text-xs sm:text-sm h-12 px-7 rounded-xl shadow-md gap-2 ring-1 ring-white/20">
+              <Link href="/contact" className="shrink-0 relative z-10">
+                <Button className="bg-[#772b38] hover:bg-[#5e212b] text-white font-extrabold text-xs sm:text-sm h-12 px-7 rounded-xl shadow-md gap-2 ring-1 ring-white/20 transition-all hover:scale-[1.02]">
                   <span>Connect with Leadership</span>
                   <ArrowRight className="w-4 h-4" />
                 </Button>

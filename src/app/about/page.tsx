@@ -107,8 +107,8 @@ export default function AboutPage() {
           <div className="lg:col-span-5">
             <div className="relative rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl bg-slate-900 group">
               <img
-                src="/images/incubation/incubation-centre.jpeg"
-                alt="MASTeR Incubation Foundation Innovation Facility at MAMCET Campus, Siruganur, Trichy"
+                src="/images/incubation/mamcet-main-campus.jpg"
+                alt="M.A.M. College of Engineering and Technology (MAMCET) Institutional Campus, Siruganur, Trichy - Home of MASTeR Incubation Foundation"
                 className="w-full h-[360px] sm:h-[420px] object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
