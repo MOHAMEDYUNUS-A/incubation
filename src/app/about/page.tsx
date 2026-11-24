@@ -159,7 +159,7 @@ export default function AboutPage() {
               <span>Section 8 Not-For-Profit Company · Companies Act, 2013</span>
             </div>
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight font-display leading-[1.1]">
-              About MAST<span className="text-[#ea580c]">e</span>R Incubation Foundation
+              About MAST<span className="text-[#772b38]">e</span>R Incubation Foundation
             </h1>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
               MASTeR Incubation Foundation (MIF) is the premier technology business incubator and official{" "}
@@ -288,7 +288,7 @@ export default function AboutPage() {
         <div className="space-y-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-orange-600 uppercase tracking-widest mb-1.5">
+              <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#772b38] uppercase tracking-widest mb-1.5">
                 <Cpu className="w-3.5 h-3.5" />
                 <span>PHYSICAL INFRASTRUCTURE</span>
               </div>

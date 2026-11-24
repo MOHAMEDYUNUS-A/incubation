@@ -79,7 +79,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
     <section
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="relative w-full overflow-hidden mt-[74px] sm:mt-[82px] pt-8 sm:pt-12 pb-12 sm:pb-16 bg-slate-950 flex flex-col justify-center min-h-[540px] sm:min-h-[600px] lg:min-h-[640px]"
+      className="relative w-full overflow-hidden mt-[74px] sm:mt-[82px] pt-8 sm:pt-10 pb-10 sm:pb-12 bg-slate-950 flex flex-col justify-center min-h-[580px] sm:min-h-[640px] lg:min-h-[700px]"
     >
       {/* ================= Campus Photo Slider with Optimized Hardware-Accelerated Top-Framing (Start from Beginning) ================= */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -91,13 +91,13 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
               initial={false}
               animate={{
                 opacity: isActive ? 1 : 0,
-                scale: isActive ? 1.02 : 1.0,
+                scale: isActive ? 1.03 : 1.0,
               }}
               transition={{
                 opacity: { duration: 0.9, ease: "easeInOut" },
                 scale: { duration: 6, ease: "easeOut" },
               }}
-              className="absolute inset-0 bg-cover bg-no-repeat will-change-transform brightness-[0.93] contrast-[1.03]"
+              className="absolute inset-0 bg-cover bg-no-repeat will-change-transform brightness-[0.98] contrast-[1.04]"
               style={{
                 backgroundImage: `url(${slide.image})`,
                 backgroundPosition: "center top",
@@ -108,23 +108,23 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
         })}
 
         {/* Directional gradient: deep contrast shield on left text while keeping dignitaries and faces bright & clear */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/70 via-45% to-slate-950/10 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-950/60 via-50% to-slate-950/5 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-slate-950/30 pointer-events-none" />
       </div>
 
       {/* Main Foreground Content: Synchronously Transitions with the Active Slide */}
       <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 my-auto">
-        <div className="max-w-xl lg:max-w-2xl text-white">
+        <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl text-white">
           {/* Visionary Headline: Synchronized Rotating Focus with Smooth Zero-Shift Transformation */}
           <motion.h1
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.08, ease: "easeOut" }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-[46px] font-black text-white tracking-tight font-display leading-[1.14] mb-3.5 drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-[48px] xl:text-[54px] font-black text-white tracking-tight font-display leading-[1.12] mb-3.5 drop-shadow-[0_4px_18px_rgba(0,0,0,0.95)]"
           >
             TRANSFORMING <br />
             BOLD IDEAS INTO{" "}
-            <span className="inline-block relative overflow-hidden align-baseline h-[1.2em] min-w-[200px] sm:min-w-[280px]">
+            <span className="inline-block relative overflow-hidden align-baseline h-[1.25em] min-w-[240px] sm:min-w-[320px] md:min-w-[380px]">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentSlideIndex}
@@ -132,7 +132,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
                   animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
                   exit={{ y: -16, opacity: 0, filter: "blur(4px)" }}
                   transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-                  className="inline-block text-[#ff8097] font-black drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] whitespace-nowrap"
+                  className="inline-block text-[#ff8097] font-black drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)] whitespace-nowrap"
                 >
                   {activeSlide.rotatingFocus}
                 </motion.span>
@@ -143,7 +143,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           </motion.h1>
 
           {/* Editorial Narrative: Synchronously Transitions with the Active Slide */}
-          <div className="min-h-[56px] sm:min-h-[64px] mb-6">
+          <div className="min-h-[52px] sm:min-h-[60px] mb-5">
             <AnimatePresence mode="wait">
               <motion.p
                 key={currentSlideIndex}
@@ -151,7 +151,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="text-xs sm:text-sm text-slate-100 leading-relaxed font-medium max-w-xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)]"
+                className="text-xs sm:text-sm md:text-base text-slate-100 leading-relaxed font-medium max-w-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]"
               >
                 <strong className="text-white font-bold">MASTeR Incubation Foundation (MIF):</strong>{" "}
                 {activeSlide.narrative}
@@ -159,51 +159,70 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
             </AnimatePresence>
           </div>
 
-          {/* Action CTAs (#772b38 Secondary Color, High Contrast, Enhanced Button Layout & Sizing) */}
+          {/* Action CTAs: Matching Exact Pill Layout (Image 6: #772b38 Secondary Color, Solid White & Outlined Pills) */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.15, ease: "easeOut" }}
-            className="flex flex-wrap items-center gap-3.5 sm:gap-4 pt-2"
+            className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1"
           >
-            <Link href="/apply" className="group">
+            {/* Button 1: Explore MIF Ecosystem -> (#772b38 Secondary Burgundy Pill) */}
+            <Link href="#join-us" className="group">
               <button
-                className="bg-[#772b38] hover:bg-[#5e212b] text-white font-extrabold text-sm sm:text-base px-7 sm:px-8 h-12 sm:h-13 rounded-2xl shadow-xl shadow-[#772b38]/40 hover:shadow-[#772b38]/60 ring-2 ring-white/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2.5"
+                className="bg-[#772b38] hover:bg-[#5e212b] text-white font-extrabold text-sm sm:text-base px-6 sm:px-7 h-12 sm:h-13 rounded-full shadow-xl shadow-[#772b38]/45 ring-1 ring-white/20 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Apply for Incubation</span>
+                <span>Explore MIF Ecosystem</span>
                 <ArrowRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 group-hover:translate-x-1 transition-transform" />
               </button>
             </Link>
 
-            <Link href="/programs">
+            {/* Button 2: Apply For Incubation (Solid Crisp White Pill with Deep Navy Text) */}
+            <Link href="/apply" className="group">
               <button
-                className="bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base px-6 sm:px-7 h-12 sm:h-13 rounded-2xl border-2 border-white/50 hover:border-white backdrop-blur-md shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2"
+                className="bg-white hover:bg-slate-100 text-[#0f2c59] font-black text-sm sm:text-base px-6 sm:px-7 h-12 sm:h-13 rounded-full shadow-xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 flex items-center justify-center cursor-pointer"
               >
-                Incubation Pathways
+                <span>Apply For Incubation</span>
               </button>
             </Link>
 
-            {flags.enableEcosystem && (
-              <Link href="/success-stories">
-                <button
-                  className="bg-slate-900/80 hover:bg-slate-900 text-slate-100 font-bold text-sm sm:text-base px-6 sm:px-7 h-12 sm:h-13 rounded-2xl border border-white/30 hover:border-white/60 backdrop-blur-md shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2"
-                >
-                  <span>Explore Ecosystem</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </Link>
-            )}
+            {/* Button 3: Incubation Pathways (Crisp White Outline Pill) */}
+            <Link href="/programs">
+              <button
+                className="bg-white/5 hover:bg-white/20 text-white font-bold text-sm sm:text-base px-6 sm:px-7 h-12 sm:h-13 rounded-full border-2 border-white/85 hover:border-white backdrop-blur-md shadow-md hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 flex items-center justify-center cursor-pointer"
+              >
+                <span>Incubation Pathways</span>
+              </button>
+            </Link>
 
             {onOpenAI && (
               <button
                 onClick={onOpenAI}
-                className="bg-slate-900/80 hover:bg-slate-900 text-cyan-300 hover:text-cyan-200 font-bold text-xs sm:text-sm px-4.5 h-12 sm:h-13 rounded-2xl border border-cyan-400/40 hover:border-cyan-400 backdrop-blur-md shadow-md hidden sm:inline-flex items-center gap-2 transition-all duration-200 hover:scale-[1.02]"
+                className="bg-slate-900/80 hover:bg-slate-900 text-cyan-300 hover:text-cyan-200 font-bold text-xs sm:text-sm px-5 h-12 sm:h-13 rounded-full border border-cyan-400/40 hover:border-cyan-400 backdrop-blur-md shadow-md hidden sm:inline-flex items-center gap-2 transition-all duration-200 hover:scale-[1.03] cursor-pointer"
               >
-                <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                <Sparkles className="w-4 h-4 text-cyan-400" />
                 <span>AI Diagnostic</span>
               </button>
             )}
           </motion.div>
+
+          {/* Slide Indicator Navigation Dots (Matching Image 5: #772b38 Active Pill & Monospace Counter) */}
+          <div className="flex items-center gap-2.5 mt-5 sm:mt-6 z-10">
+            {slides.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentSlideIndex(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  currentSlideIndex === idx
+                    ? "w-9 bg-[#772b38] shadow-lg shadow-[#772b38]/60"
+                    : "w-2.5 bg-slate-500/50 hover:bg-white/70"
+                }`}
+              />
+            ))}
+            <span className="text-xs font-mono font-bold text-slate-300 ml-2 tracking-wider">
+              0{currentSlideIndex + 1} / 0{slides.length}
+            </span>
+          </div>
         </div>
       </div>
     </section>

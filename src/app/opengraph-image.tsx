@@ -67,13 +67,13 @@ export default async function Image() {
             style={{
               display: "flex",
               alignItems: "center",
-              backgroundColor: "rgba(234, 88, 12, 0.15)",
-              border: "1px solid rgba(234, 88, 12, 0.4)",
+              backgroundColor: "rgba(119, 43, 56, 0.25)",
+              border: "1px solid rgba(119, 43, 56, 0.5)",
               padding: "10px 20px",
               borderRadius: "50px",
               fontSize: "18px",
               fontWeight: 700,
-              color: "#fb923c",
+              color: "#ff8097",
             }}
           >
             MAMCET Campus · Trichy
@@ -129,7 +129,7 @@ export default async function Image() {
               <span style={{ fontSize: "16px", color: "#94a3b8", fontWeight: 600 }}>Verified Passports</span>
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <span style={{ fontSize: "36px", fontWeight: 800, color: "#fb923c" }}>4,000</span>
+              <span style={{ fontSize: "36px", fontWeight: 800, color: "#ff8097" }}>4,000</span>
               <span style={{ fontSize: "16px", color: "#94a3b8", fontWeight: 600 }}>Sq.Ft. Facility</span>
             </div>
           </div>

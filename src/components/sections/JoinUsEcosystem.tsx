@@ -61,21 +61,32 @@ const STAKEHOLDERS = [
 ];
 
 export default function JoinUsEcosystem() {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  React.useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
+
   return (
     <section id="join-us" className="py-20 sm:py-28 bg-slate-950 relative border-b border-slate-800 overflow-hidden">
-      {/* Background Video with Dark Cinematic Overlay */}
+      {/* Background Video with Clearly Visible Playback & Protective Vignette */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-30 filter brightness-90 contrast-115"
+          preload="auto"
+          className="w-full h-full object-cover opacity-80 sm:opacity-85 filter brightness-100 contrast-105"
         >
           <source src="/videos/join-us.mp4" type="video/mp4" />
+          <source src="/videos/join-us-bg.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/80 to-slate-950/95" />
-        <div className="absolute inset-0 bg-[#772b38]/10 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/45 to-slate-950/80" />
+        <div className="absolute inset-0 bg-[#772b38]/12 mix-blend-overlay" />
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
