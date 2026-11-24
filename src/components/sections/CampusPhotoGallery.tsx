@@ -65,7 +65,7 @@ const DEFAULT_GALLERY_PHOTOS: GalleryPhoto[] = [
     title: "MASTeR Incubation Core Committee",
     category: "team",
     categoryLabel: "Foundation Leadership",
-    image: "/images/incubation/team-of-incubation.jpeg",
+    image: "/images/incubation/main-student-hero-section.jpeg",
     caption: "Dedicated faculty mentors, innovation directors, and advisory committee advancing entrepreneurship.",
     location: "MAMCET Trichy",
   },
@@ -145,7 +145,7 @@ export default function CampusPhotoGallery() {
   const row2 = photos.slice(Math.ceil(photos.length / 2));
 
   return (
-    <section id="gallery" className="py-20 sm:py-28 bg-white relative overflow-hidden">
+    <section id="gallery" className="pt-20 sm:pt-28 pb-10 sm:pb-14 bg-white relative overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 mb-10 text-center">
         {/* Header - Moments That Matter (Matching Image 1 Styling) */}
         <h2 className="text-3xl sm:text-5xl md:text-6xl font-serif font-normal text-slate-900 tracking-tight">

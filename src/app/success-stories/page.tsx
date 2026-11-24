@@ -81,10 +81,6 @@ export default function SuccessStoriesIndexPage() {
       <div className="max-w-6xl mx-auto space-y-12">
         {/* Editorial Masthead with Smooth Lightweight Entrance */}
         <FadeUp className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#772b38]/10 text-[#772b38] text-xs font-bold uppercase tracking-wider border border-[#772b38]/20 shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5 text-[#772b38]" />
-            <span>Editorial Showcase · MIF Chronicles</span>
-          </div>
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight font-display">
             From Ideas to Impact
           </h1>

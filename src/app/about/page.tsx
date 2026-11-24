@@ -72,10 +72,6 @@ export default function AboutPage() {
            ========================================================================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100/80 text-blue-900 text-xs font-bold border border-blue-200">
-              <Shield className="w-3.5 h-3.5 text-blue-700" />
-              <span>Section 8 Not-For-Profit Company · Companies Act, 2013</span>
-            </div>
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight font-display leading-[1.1]">
               About MAST<span className="text-[#772b38]">e</span>R Incubation Foundation
             </h1>
@@ -136,10 +132,6 @@ export default function AboutPage() {
         <div className="rounded-3xl bg-gradient-to-br from-[#0f2c59] via-[#091b34] to-slate-900 text-white shadow-xl overflow-hidden border border-blue-900/60">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-10 lg:p-12">
             <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/20 text-red-300 text-xs font-bold uppercase tracking-wider border border-red-500/30">
-                <Award className="w-4 h-4 text-red-400" />
-                <span>Historic Milestone · Grand Inauguration Ceremony</span>
-              </div>
               <h2 className="text-2xl sm:text-4xl font-black font-display tracking-tight text-white leading-tight">
                 Inaugurated by Hon&apos;ble Minister Thiru S. Regupathy
               </h2>
@@ -205,10 +197,6 @@ export default function AboutPage() {
            ========================================================================= */}
         <div className="space-y-10">
           <div className="text-center max-w-3xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#772b38]/10 text-[#772b38] border border-[#772b38]/20 text-xs font-bold uppercase tracking-wider">
-              <Compass className="w-3.5 h-3.5" />
-              <span>FOUNDATIONAL PURPOSE & HORIZONS</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight">
               Vision, Mandate & Strategic Roadmap
             </h2>
@@ -226,9 +214,6 @@ export default function AboutPage() {
                   <div className="w-14 h-14 rounded-2xl bg-[#772b38]/10 border border-[#772b38]/25 flex items-center justify-center text-[#772b38] shadow-xs">
                     <Compass className="w-7 h-7" />
                   </div>
-                  <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#772b38] px-3 py-1 rounded-full bg-[#772b38]/10 border border-[#772b38]/20">
-                    Flagship Vision
-                  </span>
                 </div>
 
                 <div className="space-y-3">
@@ -264,9 +249,6 @@ export default function AboutPage() {
                   <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-rose-300 shadow-xs backdrop-blur-xs">
                     <Target className="w-7 h-7 text-[#ff8097]" />
                   </div>
-                  <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-rose-200 px-3 py-1 rounded-full bg-white/10 border border-white/15">
-                    Section 8 Non-Profit
-                  </span>
                 </div>
 
                 <div className="space-y-3">

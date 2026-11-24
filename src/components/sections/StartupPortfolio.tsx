@@ -86,10 +86,6 @@ export default function StartupPortfolio() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <RevealLeft>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100/70 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wider mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-red-600" />
-              <span>Incubated Startups Showcase</span>
-            </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 font-display tracking-tight">
               Incubated Startups & Cohort Ventures
             </h2>

@@ -58,9 +58,6 @@ export default function EventsNews() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <RevealLeft>
-            <span className="text-xs font-mono font-bold text-[#772b38] uppercase tracking-widest block mb-2">
-              FOUNDER BOOTCAMPS & CALENDAR
-            </span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight">
               Upcoming Workshops & Bootcamps
             </h2>

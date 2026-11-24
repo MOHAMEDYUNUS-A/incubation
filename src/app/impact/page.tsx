@@ -53,10 +53,6 @@ export default function ImpactPage() {
       {/* Page Hero */}
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-14">
         <FadeUp className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#772b38]/10 text-[#772b38] text-xs font-bold uppercase tracking-wider mb-4 border border-[#772b38]/20 shadow-2xs">
-            <Award className="w-4 h-4 text-[#772b38]" />
-            <span>MEASURABLE TRANSLATION FOOTPRINT</span>
-          </div>
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight font-display text-slate-900 leading-tight">
             Ecosystem Impact & Translation Reach
           </h1>

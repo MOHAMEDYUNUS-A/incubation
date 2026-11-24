@@ -102,16 +102,12 @@ export default function ApplyPage() {
       <div className="container max-w-4xl mx-auto px-4 sm:px-6">
         {/* Page Title & Status Link */}
         <FadeUp className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 mb-2">
-            <span className="text-xs font-semibold text-[#772b38] uppercase tracking-widest">
-              Cohort Application Portal
-            </span>
-            <span className="text-slate-300">·</span>
+          <div className="mb-3">
             <Link
               href="/apply/status"
-              className="text-xs font-bold text-[#772b38] hover:text-[#5e212b] hover:underline flex items-center gap-1"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#772b38] hover:text-[#5e212b] hover:underline"
             >
-              <Search className="w-3 h-3" />
+              <Search className="w-3.5 h-3.5" />
               <span>Track Existing Application Status →</span>
             </Link>
           </div>

@@ -13,10 +13,6 @@ export default function ProgramsPage() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header with Smooth FadeUp */}
         <FadeUp className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#772b38]/10 text-[#772b38] text-xs font-bold uppercase tracking-wider mb-3 border border-[#772b38]/20 shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5 text-[#772b38]" />
-            <span>INCUBATION LIFECYCLE & PATHWAYS</span>
-          </div>
           <h1 className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-display">
             Incubation Programs & Services
           </h1>
@@ -75,10 +71,6 @@ export default function ProgramsPage() {
         {/* 6 Core Services Section */}
         <div className="mb-20">
           <FadeUp className="text-center max-w-2xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-800 text-xs font-bold uppercase tracking-wider mb-3 border border-blue-200/70">
-              <Layers className="w-3.5 h-3.5 text-blue-700" />
-              <span>FULL-SPECTRUM SUPPORT</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 font-display">
               6 Pillar Incubation Services
             </h2>

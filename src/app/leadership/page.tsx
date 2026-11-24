@@ -149,10 +149,6 @@ export default function LeadershipPage() {
 
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <FadeUp className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#772b38]/10 text-[#772b38] border border-[#772b38]/20 text-xs font-mono font-bold uppercase tracking-wider mb-4 shadow-2xs">
-              <ShieldCheck className="w-4 h-4 text-[#772b38]" />
-              <span>FOUNDATION GOVERNANCE & TEAM</span>
-            </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight leading-tight">
               Incubation Leadership & Advisory Committee
             </h1>
@@ -166,10 +162,6 @@ export default function LeadershipPage() {
       {/* 01. MEET OUR LEADERSHIP TEAM (Official Banner Board & Executive Directors) */}
       <section className="py-16 sm:py-20 container max-w-7xl mx-auto px-4 sm:px-6">
         <FadeUp className="mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-mono font-bold uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-            <span>MASTeR Incubation Foundation (MIF)</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0f2c59] font-display tracking-tight">
             Meet Our Leadership Team
           </h2>
@@ -241,9 +233,6 @@ export default function LeadershipPage() {
       <section className="py-16 sm:py-20 bg-slate-100/60">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6">
           <FadeUp className="mb-12">
-            <span className="text-xs font-mono font-bold text-[#772b38] uppercase tracking-widest block mb-2">
-              OPERATIONS & PROGRAM DIRECTORS
-            </span>
             <h2 className="text-2xl sm:text-4xl font-black text-slate-900 font-display">
               Incubation Management & Operations
             </h2>
@@ -330,9 +319,6 @@ export default function LeadershipPage() {
       <section className="py-16 bg-white">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6">
           <FadeUp className="max-w-3xl mb-12">
-            <span className="text-xs font-mono font-bold text-[#772b38] uppercase tracking-widest block mb-2">
-              ECOSYSTEM GOVERNANCE
-            </span>
             <h2 className="text-2xl sm:text-4xl font-black text-slate-900 font-display">
               Advisory Board & Technical Steering Council
             </h2>
@@ -380,9 +366,6 @@ export default function LeadershipPage() {
             <div className="mt-16 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#0a182e] via-[#0f2c59] to-[#06101e] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-radial from-rose-500/15 via-transparent to-transparent pointer-events-none" />
               <div className="relative z-10">
-                <span className="text-[10px] font-mono text-rose-300 font-bold uppercase tracking-wider block mb-2">
-                  JOIN OUR MENTOR NETWORK
-                </span>
                 <h3 className="text-2xl sm:text-3xl font-black font-display !text-white text-white">
                   Interested in Mentoring or Advisory?
                 </h3>

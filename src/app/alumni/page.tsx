@@ -143,10 +143,6 @@ export default function AlumniDirectoryPage() {
       <div className="max-w-6xl mx-auto space-y-10">
         {/* Masthead */}
         <FadeUp className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#772b38]/10 text-[#772b38] text-xs font-bold uppercase tracking-wider border border-[#772b38]/20">
-            <GraduationCap className="w-4 h-4 text-[#772b38]" />
-            <span>MIF Alumni Guild · Scaled Ventures</span>
-          </div>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight font-display">
             Alumni Ecosystem & Guild
           </h1>

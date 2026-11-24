@@ -58,11 +58,6 @@ export default function Footer() {
               An institutional technology business incubator incorporated as a <strong className="text-white">Section 8 Not-For-Profit Company</strong> at <strong className="text-white">M.A.M. College of Engineering & Technology (MAMCET)</strong>, Siruganur, Tiruchirappalli. Driving regional student innovation, deep-tech prototyping, and MSME venture incubation.
             </p>
 
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#772b38]/25 border border-[#772b38]/50 text-[#ff8097] text-xs font-semibold shadow-xs">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#ff8097]" />
-              <span>Section 8 Non-Profit Technology Incubator</span>
-            </div>
-
             {/* Direct Social Links & QR Codes */}
             <div className="pt-2">
               <div className="text-[11px] font-bold text-white uppercase tracking-wider mb-2.5">

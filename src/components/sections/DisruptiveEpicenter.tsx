@@ -154,11 +154,11 @@ export default function DisruptiveEpicenter() {
                   Personalized for Your Search
                 </h3>
 
-                {/* "I AM A..." Pill Accent */}
-                <div className="mt-3 mb-4 relative z-10">
-                  <span className="px-3 py-1 rounded-full bg-[#772b38]/10 text-[#772b38] text-xs font-mono font-bold tracking-wider uppercase inline-block border border-[#772b38]/20 shadow-2xs backdrop-blur-xs">
-                    I AM A...
-                  </span>
+                {/* Clean Label */}
+                <div className="mt-3 mb-3 relative z-10">
+                  <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                    Select your journey:
+                  </div>
                 </div>
 
                 {/* 8 Persona Pills with Glass Styling */}

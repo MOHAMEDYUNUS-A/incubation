@@ -43,10 +43,6 @@ export default function FocusAreasPage() {
     <div className="pt-32 sm:pt-36 pb-24 bg-slate-50 min-h-screen">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <FadeUp className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#772b38]/10 text-[#772b38] text-xs font-bold uppercase tracking-wider mb-3 border border-[#772b38]/20 shadow-2xs">
-            <Layers className="w-3.5 h-3.5 text-[#772b38]" />
-            <span>DOMAIN ARCHITECTURE & SPECIALIZATIONS</span>
-          </div>
           <h1 className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight font-display">
             7 Core Engineering Focus Areas
           </h1>

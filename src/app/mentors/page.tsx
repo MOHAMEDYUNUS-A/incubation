@@ -81,11 +81,6 @@ export default function MentorsPage() {
           </div>
 
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#772b38]/10 text-[#772b38] border border-[#772b38]/20 text-xs font-bold tracking-wide uppercase mb-4">
-              <Rocket className="w-3.5 h-3.5" />
-              <span>EXPERT ADVISORY NETWORK · MASTeR INCUBATION FOUNDATION</span>
-            </div>
-
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight leading-tight">
               Our Mentors & Startup Advisors
             </h1>
@@ -301,10 +296,6 @@ export default function MentorsPage() {
       <section className="py-16 bg-white border-y border-slate-200/80">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6">
           <FadeUp className="max-w-2xl mx-auto text-center mb-12">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold uppercase tracking-wider mb-3">
-              <Compass className="w-3.5 h-3.5" />
-              <span>THE MENTORSHIP METHODOLOGY</span>
-            </div>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-display">
               How MIF Mentorship Accelerates Ventures
             </h2>
@@ -374,11 +365,6 @@ export default function MentorsPage() {
             <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#772b38]/40 via-transparent to-transparent pointer-events-none" />
 
             <div className="relative z-10 max-w-2xl">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#772b38]/30 text-[#ff8fa3] border border-[#772b38]/50 text-xs font-bold uppercase tracking-wider mb-4">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>MENTOR EMPANELMENT · CENTRAL TAMIL NADU HUB</span>
-              </span>
-
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-display tracking-tight leading-tight">
                 Are You an Industry Leader or Serial Entrepreneur?
               </h2>

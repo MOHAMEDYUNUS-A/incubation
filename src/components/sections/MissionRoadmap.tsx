@@ -145,11 +145,6 @@ export default function MissionRoadmap() {
          ========================================================================= */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="max-w-3xl space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-800 border border-slate-200 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 text-[#772b38]" />
-            <span>MIF Venture Process</span>
-          </div>
-
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight leading-[1.15]">
             Here&apos;s how we turn ideas into{" "}
             <span className="text-[#772b38]">real-world</span> deep-tech products
@@ -198,9 +193,9 @@ export default function MissionRoadmap() {
                       isEven ? "lg:order-2 lg:pl-6" : "lg:order-1 lg:pr-6"
                     }`}
                   >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-mono font-bold border border-slate-200">
-                      <span>{step.phase}</span>
-                    </div>
+                    <span className="text-xs font-mono font-bold text-[#772b38] uppercase tracking-wider block">
+                      {step.phase}
+                    </span>
 
                     <h3 className="text-xl sm:text-2xl font-black text-slate-900 font-display">
                       {step.headline}

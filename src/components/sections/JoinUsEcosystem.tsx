@@ -70,38 +70,40 @@ export default function JoinUsEcosystem() {
   }, []);
 
   return (
-    <section id="join-us" className="py-20 sm:py-28 bg-slate-950 relative overflow-hidden">
-      {/* Background Video with Clean, Vivid Visibility & Subtle Edge Vignette */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="w-full h-full object-cover opacity-95 sm:opacity-100 filter brightness-105 contrast-105"
-        >
-          <source src="/videos/join-us.mp4" type="video/mp4" />
-          <source src="/videos/join-us-bg.mp4" type="video/mp4" />
-        </video>
-        {/* Clean top and bottom fades for smooth transition into adjacent sections */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-transparent to-slate-950/55 pointer-events-none" />
-      </div>
+    <section id="join-us" className="py-12 sm:py-16 bg-white relative">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="relative rounded-3xl sm:rounded-[36px] overflow-hidden bg-slate-950 border border-slate-800/80 shadow-[0_25px_60px_rgba(15,44,89,0.18)] py-14 sm:py-20 px-6 sm:px-12">
+          {/* Background Video with Clean, Vivid Visibility */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="w-full h-full object-cover opacity-95 filter brightness-105 contrast-105"
+            >
+              <source src="/videos/join-us.mp4" type="video/mp4" />
+              <source src="/videos/join-us-bg.mp4" type="video/mp4" />
+            </video>
+            {/* Subtle dark vignette */}
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/25 to-slate-950/60 pointer-events-none" />
+          </div>
 
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Section Header with High-Contrast Drop Shadow */}
-        <FadeUp className="max-w-3xl mb-14">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight font-display drop-shadow-[0_4px_18px_rgba(0,0,0,0.95)]">
-            Join Us
-          </h2>
-          <p className="text-base sm:text-lg text-slate-200 mt-2 font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-            Be Part of Our Growing Multi-Stakeholder Innovation Ecosystem
-          </p>
-        </FadeUp>
+          <div className="relative z-10">
+            {/* Section Header with High-Contrast Drop Shadow */}
+            <FadeUp className="max-w-3xl mb-12">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight font-display drop-shadow-[0_4px_18px_rgba(0,0,0,0.95)]">
+                Join Us
+              </h2>
+              <p className="text-base sm:text-lg text-slate-200 mt-2 font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+                Be Part of Our Growing Multi-Stakeholder Innovation Ecosystem
+              </p>
+            </FadeUp>
 
-        {/* 8 Cards Grid with Alternating Left/Right Reveals */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* 8 Cards Grid with Alternating Left/Right Reveals */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {STAKEHOLDERS.map((st, idx) => {
             const Icon = st.icon;
             const Wrapper = idx % 2 === 0 ? RevealLeft : RevealRight;
@@ -169,6 +171,8 @@ export default function JoinUsEcosystem() {
               </div>
             </XYZCard>
           </ZoomIn>
+        </div>
+          </div>
         </div>
       </div>
     </section>

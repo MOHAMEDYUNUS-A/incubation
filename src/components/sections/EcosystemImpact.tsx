@@ -96,38 +96,37 @@ const RUNNING_IMPACT_METRICS: ImpactItem[] = [
 
 export default function EcosystemImpact() {
   return (
-    <section className="py-20 sm:py-28 bg-slate-900/10 relative overflow-hidden">
-      {/* Background Video with Clear Cinematic Visibility */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-95 sm:opacity-100 filter brightness-105 contrast-105"
-        >
-          <source src="/videos/impact-bg-video.mp4" type="video/mp4" />
-        </video>
-        {/* Soft edge gradients so video content remains vividly visible while keeping header text ultra-crisp */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/55 via-transparent to-slate-950/50 pointer-events-none" />
-      </div>
-
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Section Header */}
-        <FadeUp className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#772b38]/20 text-[#772b38] text-xs font-bold tracking-wider uppercase mb-3 shadow-xs">
-            <span>MEASURABLE TRANSLATION FOOTPRINT</span>
+    <section className="py-12 sm:py-16 bg-white relative">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="relative rounded-3xl sm:rounded-[36px] overflow-hidden bg-slate-950 border border-slate-800/80 shadow-[0_25px_60px_rgba(15,44,89,0.18)] py-14 sm:py-20 px-6 sm:px-12">
+          {/* Background Video with Clear Cinematic Visibility */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover opacity-95 filter brightness-105 contrast-105"
+            >
+              <source src="/videos/impact-bg-video.mp4" type="video/mp4" />
+            </video>
+            {/* Subtle dark vignette ensuring high contrast */}
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/65 via-slate-950/30 to-slate-950/65 pointer-events-none" />
           </div>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white font-display tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] [text-shadow:_0_2px_12px_rgba(0,0,0,0.95),_0_4px_24px_rgba(0,0,0,0.85)]">
-            MIF Ecosystem Impact
-          </h2>
-          <p className="text-base sm:text-lg text-slate-100 mt-3 font-semibold drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.85)] max-w-2xl mx-auto">
-            Transforming academic research into measurable entrepreneurial capacity across Central Tamil Nadu.
-          </p>
-        </FadeUp>
 
-        {/* Constellation Metrics Grid with Dynamic Running Counters on Scroll (High-Contrast White Cards) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+          <div className="relative z-10">
+            {/* Section Header */}
+            <FadeUp className="text-center max-w-3xl mx-auto mb-14">
+              <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white font-display tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] [text-shadow:_0_2px_12px_rgba(0,0,0,0.95),_0_4px_24px_rgba(0,0,0,0.85)]">
+                MIF Ecosystem Impact
+              </h2>
+              <p className="text-base sm:text-lg text-slate-100 mt-3 font-semibold drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.85)] max-w-2xl mx-auto">
+                Transforming academic research into measurable entrepreneurial capacity across Central Tamil Nadu.
+              </p>
+            </FadeUp>
+
+            {/* Constellation Metrics Grid with Dynamic Running Counters on Scroll (High-Contrast White Cards) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {RUNNING_IMPACT_METRICS.map((m, idx) => {
             const Icon = m.icon;
             const Wrapper = idx % 2 === 0 ? RevealLeft : RevealRight;
@@ -168,6 +167,8 @@ export default function EcosystemImpact() {
               </Wrapper>
             );
           })}
+        </div>
+          </div>
         </div>
       </div>
     </section>
