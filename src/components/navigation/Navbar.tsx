@@ -42,8 +42,7 @@ export default function Navbar() {
         submenu: [
           { name: "About Foundation", href: "/about" },
           { name: "Leadership & Committee", href: "/leadership" },
-          { name: "Governance & Trust", href: "/about#governance" },
-          { name: "Mission M1-M5", href: "/about#mission-roadmap" },
+          { name: "Mission M1-M5 Roadmap", href: "/about#mission-roadmap" },
         ],
       },
       { name: "Focus Area", href: "/focus-areas" },

@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Rocket,
   Lightbulb,
@@ -12,545 +12,301 @@ import {
   Globe2,
   CheckCircle2,
   ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Play,
-  Pause,
-  Sparkles,
-  Layers,
   ShieldCheck,
-  Target,
   Clock,
-  Compass,
+  Sparkles,
 } from "lucide-react";
-import { XYZCard, FadeUp } from "@/components/animations/LightAnimations";
+import { FadeUp, ZoomIn, XYZCard } from "@/components/animations/LightAnimations";
 
-interface MilestoneItem {
-  id: string;
+interface ProcessStep {
+  step: string;
   code: string;
   phase: string;
   duration: string;
   title: string;
-  shortDesc: string;
-  fullDesc: string;
+  headline: string;
+  description: string;
   icon: React.ComponentType<{ className?: string }>;
-  accentColor: string;
-  badgeBg: string;
-  badgeText: string;
-  borderHover: string;
-  glowColor: string;
+  gradient: string;
+  glowShadow: string;
   deliverables: string[];
-  validationGate: string;
+  exitGate: string;
   metric: string;
-  subtrack: string;
 }
 
-const MILESTONES: MilestoneItem[] = [
+const PROCESS_STEPS: ProcessStep[] = [
   {
-    id: "m1",
+    step: "01",
     code: "M1",
     phase: "Phase 01 · Ideation & Design Thinking",
     duration: "Month 0 – 2",
-    title: "Cultivate Mindset",
-    shortDesc: "Cultivate an entrepreneurial mindset among students and faculty through design thinking and creative problem-solving.",
-    fullDesc: "To cultivate an entrepreneurial mindset among students and faculty through design thinking, creative problem-solving and interdisciplinary engagement. Early-stage ideas are tested against user desirability and real-world friction before code or hardware tooling begins.",
+    title: "Cultivate Mindset & Research",
+    headline: "Problem Discovery & Interdisciplinary Ideation",
+    description:
+      "We begin by understanding user pain points, real-world industry friction, and technology constraints. Through design thinking hackathons and problem dossiers, engineering concepts are validated for genuine desirability before fabrication starts.",
     icon: Lightbulb,
-    accentColor: "#772b38",
-    badgeBg: "bg-rose-50",
-    badgeText: "text-[#772b38]",
-    borderHover: "hover:border-[#772b38]/40",
-    glowColor: "rgba(119, 43, 56, 0.15)",
+    gradient: "from-[#772b38] via-[#8c3243] to-[#45151e]",
+    glowShadow: "shadow-[0_20px_50px_rgba(119,43,56,0.3)]",
     deliverables: [
       "Design Thinking & Problem Discovery Bootcamps",
-      "Interdisciplinary Student-Faculty Hackathons",
-      "Customer Empathy Interviews & Problem Dossier",
+      "Interdisciplinary Student-Faculty Ideathons",
+      "Problem-Solution Fit Validation Dossier",
     ],
-    validationGate: "Problem-Solution Fit & Ideation Dossier Approved",
+    exitGate: "Problem-Solution Fit & Ideation Dossier Approved",
     metric: "100+ Student Creators Screened per Cohort",
-    subtrack: "Design Thinking & Ideation",
   },
   {
-    id: "m2",
+    step: "02",
     code: "M2",
-    phase: "Phase 02 · Lab to Proof of Concept",
+    phase: "Phase 02 · Lab to Proof-of-Concept",
     duration: "Month 2 – 4",
     title: "Research Translation",
-    shortDesc: "Transform engineering research and innovative ideas into tangible prototypes, patentable designs, and viable products.",
-    fullDesc: "To facilitate the transformation of engineering knowledge, innovative ideas and research outcomes into practical solutions, products and viable startups. Leveraging MAMCET's rapid prototyping bays, 3D printing equipment, and IoT spectrum testing workbenches.",
+    headline: "Hardware Prototyping & TRL-4 Fabrication",
+    description:
+      "Transforming laboratory breakthroughs into benchtop working prototypes. Startups leverage MAMCET's rapid 3D printing equipment, multi-layer PCB design workbenches, and IoT telemetry testing to reach TRL-4 functional maturity.",
     icon: Microscope,
-    accentColor: "#0284c7",
-    badgeBg: "bg-sky-50",
-    badgeText: "text-sky-700",
-    borderHover: "hover:border-sky-400",
-    glowColor: "rgba(2, 132, 199, 0.15)",
+    gradient: "from-[#0f2c59] via-[#16437e] to-[#081d3c]",
+    glowShadow: "shadow-[0_20px_50px_rgba(15,44,89,0.3)]",
     deliverables: [
-      "Rapid 3D Prototyping & Multi-layer PCB Fabrication",
-      "Institutional Patent Prior-Art Search & Disclosures",
-      "TRL-4 Working Benchtop Hardware Demonstration",
+      "Additive 3D Prototyping & PCB Milling Labs",
+      "Institutional Patent Disclosures & Prior-Art Search",
+      "TRL-4 Working Prototype Demonstration",
     ],
-    validationGate: "TRL-4 Functional Hardware / Software Prototype",
-    metric: "15+ Prototyping Workbenches & Maker Bays",
-    subtrack: "Lab to Market Commercialization",
+    exitGate: "TRL-4 Benchtop Functional Prototype Verified",
+    metric: "15+ Hardware Prototyping Bays & Maker Labs",
   },
   {
-    id: "m3",
+    step: "03",
     code: "M3",
     phase: "Phase 03 · Industrial Alliances & MoUs",
     duration: "Month 4 – 6",
     title: "Industry Collaboration",
-    shortDesc: "Partner with regional industries, corporate sandboxes, and research bodies for co-development, pilots, and field testing.",
-    fullDesc: "To collaborate with industries, startups, and research institutions to provide practical exposure and support technology development, market access and commercialisation. Founders gain direct access to operational manufacturing lines and enterprise testbeds.",
+    headline: "Corporate Sandboxes & Bilateral Pilots",
+    description:
+      "Collaborating with manufacturing corporations, technology enterprises, and research bodies. Founders gain direct access to operational factory lines, live testing environments, and customer pilot agreements.",
     icon: Handshake,
-    accentColor: "#d97706",
-    badgeBg: "bg-amber-50",
-    badgeText: "text-amber-700",
-    borderHover: "hover:border-amber-400",
-    glowColor: "rgba(217, 119, 6, 0.15)",
+    gradient: "from-[#b45309] via-[#d97706] to-[#78350f]",
+    glowShadow: "shadow-[0_20px_50px_rgba(217,119,6,0.3)]",
     deliverables: [
-      "8+ Bilateral Strategic MoUs with Corporate Partners",
-      "Industrial Sandbox Pilots & Field Telemetry Testing",
-      "Corporate Mentorship & Joint Engineering Reviews",
+      "8+ Bilateral Strategic MoUs with Industrial Partners",
+      "Corporate Sandbox Access & Field Telemetry Testing",
+      "Customer Letters of Intent (LOI) & Pilot Trials",
     ],
-    validationGate: "Signed Letter of Intent (LOI) / Industrial Pilot Trial",
+    exitGate: "Signed Letter of Intent / Corporate Sandbox Pilot",
     metric: "8+ Active Industry MoUs & Enterprise Sandboxes",
-    subtrack: "Corporate & Bilateral MoUs",
   },
   {
-    id: "m4",
+    step: "04",
     code: "M4",
     phase: "Phase 04 · Seed Grants & Term Sheets",
     duration: "Month 6 – 9",
     title: "Mentoring & Funding",
-    shortDesc: "Equip aspiring founders with business skills, 1-on-1 venture clinics, and non-dilutive government grant funding (TANSEED/MSME).",
-    fullDesc: "To equip aspiring entrepreneurs with business skills, mentoring, incubation support and access to relevant funding opportunities. Providing line-by-line grant proposal clinics, pitch deck de-risking, and warm introductions to regional angel syndicates.",
+    headline: "TANSEED & Non-Dilutive Grant Deployment",
+    description:
+      "Equipping high-potential ventures with financial runway, cap-table governance, and investor readiness. Founders receive line-by-line grant proposal clinics for StartupTN TANSEED and MSME Idea Hackathon capital.",
     icon: TrendingUp,
-    accentColor: "#059669",
-    badgeBg: "bg-emerald-50",
-    badgeText: "text-emerald-700",
-    borderHover: "hover:border-emerald-400",
-    glowColor: "rgba(5, 150, 105, 0.15)",
+    gradient: "from-[#047857] via-[#059669] to-[#064e3b]",
+    glowShadow: "shadow-[0_20px_50px_rgba(5,150,105,0.3)]",
     deliverables: [
-      "StartupTN TANSEED (₹10L-₹15L) Grant Dossier Preparation",
-      "Ministry of MSME Idea Hackathon (₹15L) Pitch Submissions",
-      "Term Sheet Clinics with Regional Angel Syndicates",
+      "StartupTN TANSEED (₹10L-₹15L) Dossier Submission",
+      "Ministry of MSME Idea Hackathon (₹15L) Sanctions",
+      "Pitch Arena Rounds with Angel Investor Syndicates",
     ],
-    validationGate: "Seed Grant Sanctioned / Angel Syndicate Term Sheet",
+    exitGate: "Seed Grant Disbursed / Angel Syndicate Term Sheet",
     metric: "Up to ₹15 Lakhs Seed Capital Support",
-    subtrack: "TANSEED & MSME Seed Grants",
   },
   {
-    id: "m5",
+    step: "05",
     code: "M5",
     phase: "Phase 05 · Venture Scale & UN SDGs",
     duration: "Month 9 – 12+",
     title: "Sustainable Impact",
-    shortDesc: "Scale ethical, sustainable ventures contributing to industrial growth and societal well-being aligned with UN SDGs.",
-    fullDesc: "To promote ethical, sustainable and socially responsible entrepreneurship that contributes to industrial growth and societal well-being, in alignment with the Sustainable Development Goals (SDGs). Driving regional wealth generation and green technology deployment across Central Tamil Nadu.",
+    headline: "Commercial Scale & UN SDG Alignment",
+    description:
+      "Promoting ethical, scalable, and socially responsible businesses that drive job creation across Central Tamil Nadu. Ventures embed circular economy principles aligned with the United Nations Sustainable Development Goals.",
     icon: Globe2,
-    accentColor: "#7c3aed",
-    badgeBg: "bg-purple-50",
-    badgeText: "text-purple-700",
-    borderHover: "hover:border-purple-400",
-    glowColor: "rgba(124, 58, 237, 0.15)",
+    gradient: "from-[#6b21a8] via-[#7c3aed] to-[#3b0764]",
+    glowShadow: "shadow-[0_20px_50px_rgba(124,58,237,0.3)]",
     deliverables: [
-      "UN SDG Metric Auditing & Green CleanTech Certification",
-      "Regional Job Creation & Tier-2/3 Industrial Spillover",
-      "Commercial Traction, Recurring Revenue & Series-A Pipeline",
+      "UN SDG Metric Auditing & Green Tech Certification",
+      "Regional Job Creation & Industrial Spillover",
+      "Commercial Revenue Generation & Series-A Pipeline",
     ],
-    validationGate: "Commercial Revenue & Audited ESG/SDG Footprint",
-    metric: "UN SDGs 7, 8, 9 & 12 Alignment",
-    subtrack: "UN SDGs & Ethical Tech Scale",
+    exitGate: "Audited Commercial Revenue & SDG Impact Audit",
+    metric: "UN SDGs 7, 8, 9 & 12 Institutional Alignment",
   },
 ];
 
 export default function MissionRoadmap() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
-
-  const activeMilestone = MILESTONES[activeIndex];
-  const ActiveIcon = activeMilestone.icon;
-
-  // Auto-play timer (cycles through M1 -> M5 smoothly every 5.5 seconds)
-  useEffect(() => {
-    if (isAutoPlaying) {
-      autoPlayRef.current = setInterval(() => {
-        setActiveIndex((prev) => (prev + 1) % MILESTONES.length);
-      }, 5500);
-    }
-    return () => {
-      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-    };
-  }, [isAutoPlaying]);
-
-  const handleManualSelect = (idx: number) => {
-    setIsAutoPlaying(false);
-    setActiveIndex(idx);
-  };
-
-  const handleNext = () => {
-    setIsAutoPlaying(false);
-    setActiveIndex((prev) => (prev + 1) % MILESTONES.length);
-  };
-
-  const handlePrev = () => {
-    setIsAutoPlaying(false);
-    setActiveIndex((prev) => (prev - 1 + MILESTONES.length) % MILESTONES.length);
-  };
-
   return (
-    <div id="mission-roadmap" className="space-y-10 scroll-mt-24">
-      {/* Header with Title & Operational Tag */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#772b38] uppercase tracking-widest mb-1.5">
-            <Rocket className="w-3.5 h-3.5" />
-            <span>OPERATIONAL EXCELLENCE ROADMAP</span>
+    <div id="mission-roadmap" className="space-y-12 scroll-mt-24">
+      {/* =========================================================================
+          TOP PROCESS HEADER (Modeled after Reference Image 4)
+         ========================================================================= */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="max-w-3xl space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-800 border border-slate-200 text-xs font-bold uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-[#772b38]" />
+            <span>MIF Venture Process</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 font-display tracking-tight">
-            Strategic Mission Objectives (M1 to M5)
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight leading-[1.15]">
+            Here&apos;s how we turn ideas into{" "}
+            <span className="text-[#772b38]">real-world</span> deep-tech products
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl font-normal leading-relaxed">
-            Structured operational objectives guiding every venture cohort from napkin sketch ideation to prototype validation and market scale.
+
+          <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-2xl">
+            We follow a structured, practical, and business-focused development process to convert engineering
+            breakthroughs into patentable prototypes, funded ventures, and commercial scale.
           </p>
         </div>
 
-        {/* Auto-play and Step Counter Indicator */}
         <div className="flex items-center gap-3 shrink-0">
-          <button
-            type="button"
-            onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
-              isAutoPlaying
-                ? "bg-[#772b38]/10 text-[#772b38] border-[#772b38]/30 shadow-2xs"
-                : "bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200/80"
-            }`}
-            title={isAutoPlaying ? "Pause Auto-Tour" : "Resume Auto-Tour"}
+          <Link
+            href="/programs"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 text-xs font-bold text-slate-700 hover:text-[#772b38] hover:border-[#772b38]/40 transition-colors shadow-2xs"
           >
-            {isAutoPlaying ? (
-              <>
-                <Pause className="w-3 h-3 text-[#772b38]" />
-                <span>Auto-Tour Active</span>
-              </>
-            ) : (
-              <>
-                <Play className="w-3 h-3 text-slate-600" />
-                <span>Play Tour</span>
-              </>
-            )}
-          </button>
-          <span className="px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-mono font-bold border border-slate-200">
-            Phase 0{activeIndex + 1} / 05
-          </span>
+            <span>View 4-Stage Incubation Pathway</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </div>
 
       {/* =========================================================================
-          INTERACTIVE ROADMAP CONNECTING TRACK (SVG Flow Track with Traveling Beam)
+          PROCESS ROADMAP SECTION WITH GLOWING 3D CARDS & CONNECTING DASHED PATH
          ========================================================================= */}
-      <div className="p-4 sm:p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm relative overflow-hidden">
-        {/* Subtle Background Circuit Mesh */}
-        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] opacity-40 pointer-events-none" />
+      <div className="relative py-6 sm:py-10">
+        {/* Ambient Subtle Grid Mesh */}
+        <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none rounded-3xl" />
 
-        {/* Track Nodes (M1 to M5) */}
-        <div className="relative z-10">
-          <div className="grid grid-cols-5 gap-2 sm:gap-4 relative">
-            {/* Connecting Baseline Track Line */}
-            <div className="absolute top-6 left-[10%] right-[10%] h-1 bg-slate-100 rounded-full z-0 hidden sm:block">
-              {/* Animated Progress Bar Fill */}
-              <motion.div
-                className="h-full bg-gradient-to-r from-[#772b38] via-sky-600 to-purple-600 rounded-full"
-                initial={false}
-                animate={{ width: `${(activeIndex / 4) * 100}%` }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              />
-            </div>
+        <div className="relative z-10 space-y-10 sm:space-y-14">
+          {PROCESS_STEPS.map((step, idx) => {
+            const StepIcon = step.icon;
+            const isEven = idx % 2 === 1;
 
-            {MILESTONES.map((m, idx) => {
-              const isActive = idx === activeIndex;
-              const isPassed = idx < activeIndex;
-              const StepIcon = m.icon;
-
-              return (
-                <button
-                  key={m.id}
-                  type="button"
-                  onClick={() => handleManualSelect(idx)}
-                  className="flex flex-col items-center text-center group cursor-pointer relative z-10 focus:outline-none"
-                >
-                  {/* Milestone Node Circle */}
-                  <div className="relative mb-2">
-                    {/* Concentric Radar Ping when Active */}
-                    {isActive && (
-                      <span
-                        className="absolute inset-0 rounded-2xl animate-ping opacity-35"
-                        style={{ backgroundColor: m.accentColor }}
-                      />
-                    )}
-
-                    <div
-                      className={`w-12 h-12 sm:w-13 sm:h-13 rounded-2xl flex items-center justify-center font-display font-black text-xs sm:text-sm transition-all duration-300 border-2 shadow-xs ${
-                        isActive
-                          ? "scale-110 text-white shadow-lg"
-                          : isPassed
-                          ? "bg-slate-900 text-white border-slate-900"
-                          : "bg-white text-slate-600 border-slate-200 group-hover:border-slate-400 group-hover:scale-105"
-                      }`}
-                      style={{
-                        backgroundColor: isActive ? m.accentColor : undefined,
-                        borderColor: isActive ? m.accentColor : undefined,
-                        boxShadow: isActive ? `0 10px 25px -5px ${m.glowColor}` : undefined,
-                      }}
-                    >
-                      <StepIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5" />
-                    </div>
-
-                    {/* Milestone Code Badge */}
-                    <span
-                      className={`absolute -bottom-1 -right-1 text-[9px] font-mono font-black px-1.5 py-0.2 rounded-md border shadow-2xs ${
-                        isActive
-                          ? "bg-white text-slate-900 border-slate-300"
-                          : "bg-slate-100 text-slate-600 border-slate-200"
-                      }`}
-                    >
-                      {m.code}
-                    </span>
-                  </div>
-
-                  {/* Title & Phase Label */}
-                  <div className="mt-1">
-                    <div
-                      className={`text-[11px] sm:text-xs font-bold leading-tight transition-colors line-clamp-1 ${
-                        isActive ? "text-slate-900" : "text-slate-600 group-hover:text-slate-900"
-                      }`}
-                    >
-                      {m.title}
-                    </div>
-                    <div className="text-[10px] text-slate-600 font-mono mt-0.5 hidden md:block">
-                      {m.duration}
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* =========================================================================
-            FEATURED ACTIVE MILESTONE SHOWCASE CARD (Animated Stage Presentation)
-           ========================================================================= */}
-        <div className="mt-8 pt-6 border-t border-slate-100 relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeMilestone.id}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              style={{ willChange: "transform, opacity" }}
-              className="rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-slate-50/90 via-white to-slate-50/50 border border-slate-200/90 shadow-xs relative overflow-hidden"
-            >
-              {/* Dynamic Glow Accent */}
-              <div
-                className="absolute top-0 right-0 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-20"
-                style={{ backgroundColor: activeMilestone.accentColor }}
-              />
-
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start relative z-10">
-                {/* Left Column: Milestone Header & Core Narrative */}
-                <div className="lg:col-span-7 space-y-4">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span
-                      className="px-3 py-1 rounded-full text-xs font-mono font-black border uppercase tracking-wider"
-                      style={{
-                        backgroundColor: `${activeMilestone.accentColor}15`,
-                        color: activeMilestone.accentColor,
-                        borderColor: `${activeMilestone.accentColor}30`,
-                      }}
-                    >
-                      {activeMilestone.code} · {activeMilestone.phase}
-                    </span>
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-mono font-semibold border border-slate-200">
-                      <Clock className="w-3 h-3 text-slate-600" />
-                      <span>{activeMilestone.duration}</span>
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 font-display tracking-tight">
-                    {activeMilestone.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                    {activeMilestone.fullDesc}
-                  </p>
-
-                  {/* Concrete Deliverables & Checkpoints */}
-                  <div className="space-y-2 pt-2">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-slate-600 font-mono">
-                      Milestone Key Deliverables:
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {activeMilestone.deliverables.map((item, dIdx) => (
-                        <div
-                          key={dIdx}
-                          className="flex items-start gap-2 p-2.5 rounded-xl bg-white border border-slate-200/80 text-xs text-slate-700 font-medium shadow-2xs"
-                        >
-                          <CheckCircle2
-                            className="w-3.5 h-3.5 shrink-0 mt-0.5"
-                            style={{ color: activeMilestone.accentColor }}
-                          />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Column: Validation Gate Card & Navigation Controls */}
-                <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6">
-                  {/* Validation Gate Callout Box */}
-                  <div
-                    className="p-5 rounded-2xl border bg-white shadow-xs space-y-3"
-                    style={{ borderColor: `${activeMilestone.accentColor}35` }}
-                  >
-                    <div className="flex items-center gap-2">
-                      <div
-                        className="w-7 h-7 rounded-lg flex items-center justify-center text-white"
-                        style={{ backgroundColor: activeMilestone.accentColor }}
-                      >
-                        <ShieldCheck className="w-4 h-4" />
-                      </div>
-                      <span className="text-xs font-bold uppercase tracking-wider text-slate-800 font-mono">
-                        Milestone Exit Gate
-                      </span>
-                    </div>
-
-                    <div className="text-xs sm:text-sm font-bold text-slate-900">
-                      {activeMilestone.validationGate}
-                    </div>
-
-                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600 font-medium">
-                      <span>Cohort Benchmark</span>
-                      <span
-                        className="font-bold font-mono"
-                        style={{ color: activeMilestone.accentColor }}
-                      >
-                        {activeMilestone.metric}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Interactive Stepper Navigation Controls */}
-                  <div className="flex items-center justify-between pt-2">
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={handlePrev}
-                        className="w-10 h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 flex items-center justify-center transition-colors shadow-2xs active:scale-95"
-                        title="Previous Milestone"
-                      >
-                        <ChevronLeft className="w-4 h-4" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleNext}
-                        className="w-10 h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 flex items-center justify-center transition-colors shadow-2xs active:scale-95"
-                        title="Next Milestone"
-                      >
-                        <ChevronRight className="w-4 h-4" />
-                      </button>
-                    </div>
-
-                    <Link
-                      href="/programs"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#772b38] hover:text-[#5e212b] transition-colors"
-                    >
-                      <span>Explore 4-Stage Pathway</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </div>
-
-      {/* =========================================================================
-          CONNECTED 5-MILESTONE ROADMAP CARDS (Interactive Visual Journey Flow)
-         ========================================================================= */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-        {MILESTONES.map((milestone, idx) => {
-          const isActive = idx === activeIndex;
-          const CardIcon = milestone.icon;
-
-          return (
-            <div
-              key={milestone.id}
-              onClick={() => handleManualSelect(idx)}
-              className="cursor-pointer h-full"
-            >
-              <XYZCard depth={8}>
+            return (
+              <div key={step.step} className="relative">
+                {/* Responsive Layout: Alternating left/right offset on lg screens */}
                 <div
-                  className={`p-5 rounded-2xl bg-white border transition-all duration-300 flex flex-col justify-between h-full group ${
-                    isActive
-                      ? "shadow-lg border-2"
-                      : "border-slate-200/90 shadow-xs hover:shadow-md hover:border-slate-300"
+                  className={`grid grid-cols-1 lg:grid-cols-12 gap-6 items-center ${
+                    isEven ? "lg:flex-row-reverse" : ""
                   }`}
-                  style={{
-                    borderColor: isActive ? milestone.accentColor : undefined,
-                    boxShadow: isActive ? `0 10px 25px -5px ${milestone.glowColor}` : undefined,
-                  }}
                 >
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center text-white transition-transform group-hover:scale-105"
-                        style={{ backgroundColor: milestone.accentColor }}
-                      >
-                        <CardIcon className="w-5 h-5" />
-                      </div>
-                      <span
-                        className="text-xs font-mono font-black px-2.5 py-0.5 rounded-full border"
-                        style={{
-                          backgroundColor: `${milestone.accentColor}15`,
-                          color: milestone.accentColor,
-                          borderColor: `${milestone.accentColor}30`,
-                        }}
-                      >
-                        {milestone.code}
-                      </span>
+                  {/* Step Description / Meta Sidebar on opposite side */}
+                  <div
+                    className={`space-y-3 lg:col-span-5 ${
+                      isEven ? "lg:order-2 lg:pl-6" : "lg:order-1 lg:pr-6"
+                    }`}
+                  >
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-mono font-bold border border-slate-200">
+                      <span>{step.phase}</span>
                     </div>
 
-                    <div>
-                      <div className="text-[10px] font-mono font-semibold text-slate-600 uppercase tracking-wide">
-                        {milestone.duration}
-                      </div>
-                      <h4
-                        className="text-sm font-bold text-slate-900 group-hover:text-[#772b38] transition-colors mt-0.5"
-                      >
-                        {milestone.title}
-                      </h4>
-                      <p className="text-[11.5px] text-slate-600 mt-1 leading-snug line-clamp-3 font-normal">
-                        {milestone.shortDesc}
-                      </p>
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 font-display">
+                      {step.headline}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                      {step.description}
+                    </p>
+
+                    <div className="flex items-center gap-3 pt-2 text-xs font-semibold text-slate-600">
+                      <span className="flex items-center gap-1.5 text-slate-700">
+                        <Clock className="w-3.5 h-3.5 text-[#772b38]" />
+                        <span>Duration: {step.duration}</span>
+                      </span>
+                      <span>·</span>
+                      <span className="text-[#772b38] font-bold">{step.metric}</span>
                     </div>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] font-medium text-slate-600">
-                    <span className="truncate mr-1">{milestone.subtrack}</span>
-                    <span
-                      className="font-bold shrink-0"
-                      style={{ color: milestone.accentColor }}
-                    >
-                      {isActive ? "Active Phase" : "Select"}
-                    </span>
+                  {/* 3D Glowing Process Card (Modeled Directly after Image 4) */}
+                  <div
+                    className={`lg:col-span-7 ${
+                      isEven ? "lg:order-1" : "lg:order-2"
+                    }`}
+                  >
+                    <XYZCard depth={12}>
+                      <div
+                        className={`relative rounded-3xl p-7 sm:p-9 text-white bg-gradient-to-br ${step.gradient} ${step.glowShadow} transition-all duration-300 hover:scale-[1.015] border border-white/20 overflow-hidden group`}
+                      >
+                        {/* Top-center hardware camera/pin dot (Exact design element from reference image 4) */}
+                        <div className="flex justify-center mb-6">
+                          <div className="w-3.5 h-3.5 rounded-full bg-white/30 border-2 border-white/80 shadow-inner" />
+                        </div>
+
+                        {/* Top Header: Step Number & Icon */}
+                        <div className="flex items-start justify-between gap-4 mb-4">
+                          <div>
+                            <span className="text-3xl sm:text-4xl font-black font-mono tracking-tight text-white/90 block">
+                              {step.step}
+                            </span>
+                            <h4 className="text-2xl sm:text-3xl font-black text-white font-display tracking-tight mt-1">
+                              {step.title}
+                            </h4>
+                          </div>
+
+                          <div className="w-12 h-12 rounded-2xl bg-white/15 border border-white/25 flex items-center justify-center text-white shrink-0 backdrop-blur-xs group-hover:scale-110 transition-transform">
+                            <StepIcon className="w-6 h-6" />
+                          </div>
+                        </div>
+
+                        {/* Card Description */}
+                        <p className="text-sm sm:text-base text-white/90 leading-relaxed font-normal mb-6">
+                          {step.description}
+                        </p>
+
+                        {/* Deliverables Pills */}
+                        <div className="space-y-2 mb-6">
+                          <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-white/70">
+                            Key Deliverables & Milestones:
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            {step.deliverables.map((deliv, dIdx) => (
+                              <div
+                                key={dIdx}
+                                className="flex items-start gap-2 p-2 rounded-xl bg-white/10 border border-white/15 text-xs text-white/95 font-medium backdrop-blur-2xs"
+                              >
+                                <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5 text-white" />
+                                <span>{deliv}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Exit Gate Banner */}
+                        <div className="pt-4 border-t border-white/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                          <div className="flex items-center gap-2">
+                            <ShieldCheck className="w-4 h-4 text-white/90 shrink-0" />
+                            <span className="text-white/80 font-medium">Exit Gate:</span>
+                            <span className="font-bold text-white">{step.exitGate}</span>
+                          </div>
+
+                          <span className="font-mono font-bold px-2.5 py-0.5 rounded-full bg-white/20 text-white text-[11px] self-start sm:self-auto">
+                            {step.code} Milestone
+                          </span>
+                        </div>
+                      </div>
+                    </XYZCard>
                   </div>
                 </div>
-              </XYZCard>
-            </div>
-          );
-        })}
+
+                {/* Animated Connecting Dashed Flow Line & Arrow between steps (except last) */}
+                {idx < PROCESS_STEPS.length - 1 && (
+                  <div className="flex items-center justify-center my-6 sm:my-8 pointer-events-none">
+                    <div className="flex flex-col items-center gap-1 text-[#772b38]">
+                      {/* Dashed vertical connector line */}
+                      <div className="w-0.5 h-10 border-l-2 border-dashed border-[#772b38]/50" />
+                      <div className="w-8 h-8 rounded-full bg-[#772b38]/10 border border-[#772b38]/30 flex items-center justify-center text-xs font-bold text-[#772b38] shadow-2xs">
+                        ↓
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

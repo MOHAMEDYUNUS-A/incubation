@@ -25,8 +25,6 @@ import {
   Globe2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import CampusPhotoGallery from "@/components/sections/CampusPhotoGallery";
-import InauguralMomentsGallery from "@/components/sections/InauguralMomentsGallery";
 import MissionRoadmap from "@/components/sections/MissionRoadmap";
 
 export const metadata = {
@@ -64,53 +62,6 @@ export const metadata = {
     images: ["/images/incubation/incubation-centre.jpeg"],
   },
 };
-
-const LEADERSHIP_TEAM = [
-  {
-    name: "Dr. X. Susan Christina",
-    role: "Principal, MAMCET & Director, MIF",
-    organization: "M.A.M. College of Engineering and Technology",
-    image: "/images/leadership/susan-christina.jpg",
-    badge: "Director MIF",
-    specialty: "Institutional Strategy & Research Alliances",
-  },
-  {
-    name: "Dr. B. Muruganantham",
-    role: "Registrar, MAMCET & Assistant Director, MIF",
-    organization: "M.A.M. College of Engineering and Technology",
-    image: "/images/leadership/muruganantham.jpg",
-    badge: "Assistant Director",
-    specialty: "Academic Credit Integration & Regulatory Compliance",
-  },
-  {
-    name: "Dr. S. Rajasekaran",
-    role: "Dean, MASTeR Group & CEO, MIF",
-    organization: "MASTeR Group of Institutions",
-    image: "/images/leadership/rajasekaran.jpg",
-    badge: "CEO MIF",
-    specialty: "Venture Scaling & TANSEED/MSME Seed Syndication",
-  },
-  {
-    name: "Mr. M. Santhosh Kumar",
-    role: "Incubation Manager",
-    organization: "MASTeR Incubation Foundation",
-    image: "/images/incubation/santhosh.jpeg",
-    badge: "Operations Lead",
-    phone: "+91 9361697702",
-    email: "incubationmanager@mamcet.com",
-    specialty: "Cohort Admissions, Prototyping Labs & Startup Passport",
-  },
-  {
-    name: "Ms. Hemalatha Balakrishnan",
-    role: "Incubation Coordinator",
-    organization: "Department of ECE, MAMCET",
-    image: "/images/incubation/incubation-coordinator-hemalatha.jpeg",
-    badge: "Academic Coordinator",
-    phone: "+91 6381945574",
-    email: "hemalathabalakrishnan.ece@mamcet.com",
-    specialty: "Student Venture Screening & Ideation Bootcamps",
-  },
-];
 
 export default function AboutPage() {
   return (
@@ -368,88 +319,7 @@ export default function AboutPage() {
         <MissionRoadmap />
 
         {/* =========================================================================
-            SECTION 6: INAUGURAL MOMENTS INTERACTIVE GALLERY
-           ========================================================================= */}
-        <InauguralMomentsGallery />
-
-        {/* =========================================================================
-            SECTION 7: EXECUTIVE LEADERSHIP TEAM WITH AUTHENTIC PHOTOGRAPHS
-           ========================================================================= */}
-        <div id="governance" className="space-y-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-              <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-widest block mb-1">
-                INSTITUTIONAL GOVERNANCE
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-display tracking-tight">
-                Executive Leadership & Operations Council
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-xl font-normal">
-                Led by academic visionaries, research directors, and startup mentors committed to regional deep-tech empowerment.
-              </p>
-            </div>
-            <Link href="/leadership">
-              <Button className="bg-[#0f2c59] hover:bg-blue-900 text-white font-bold text-xs gap-1.5 self-start md:self-auto">
-                <span>Full Leadership Directory</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Button>
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-            {LEADERSHIP_TEAM.map((leader, idx) => (
-              <div
-                key={idx}
-                className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="relative h-56 bg-slate-100 overflow-hidden">
-                    <img
-                      src={leader.image}
-                      alt={leader.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded-full bg-blue-950/80 backdrop-blur-xs text-[10px] font-bold text-cyan-300 border border-cyan-400/30">
-                      {leader.badge}
-                    </div>
-                  </div>
-                  <div className="p-4 space-y-1.5">
-                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-blue-900 transition-colors">
-                      {leader.name}
-                    </h3>
-                    <div className="text-[11px] font-semibold text-red-600 line-clamp-1">{leader.role}</div>
-                    <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed font-normal pt-1">
-                      {leader.specialty}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="p-4 pt-0 border-t border-slate-100 mt-2 space-y-1 text-[10px] text-slate-500">
-                  {leader.phone && (
-                    <div className="flex items-center gap-1.5 text-slate-700 font-medium">
-                      <Phone className="w-3 h-3 text-cyan-600" />
-                      <span>{leader.phone}</span>
-                    </div>
-                  )}
-                  {leader.email && (
-                    <div className="flex items-center gap-1.5 text-slate-500 truncate">
-                      <Mail className="w-3 h-3 text-cyan-600 shrink-0" />
-                      <span className="truncate">{leader.email}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* =========================================================================
-            SECTION 8: CAMPUS PHOTO GALLERY
-           ========================================================================= */}
-        <CampusPhotoGallery />
-
-        {/* =========================================================================
-            SECTION 9: ECOSYSTEM ALLIANCES & SOCIAL CONNECT
+            SECTION 5: ECOSYSTEM ALLIANCES & SOCIAL CONNECT
            ========================================================================= */}
         <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1 max-w-xl text-center md:text-left">
