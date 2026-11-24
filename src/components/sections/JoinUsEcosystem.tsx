@@ -71,7 +71,7 @@ export default function JoinUsEcosystem() {
 
   return (
     <section id="join-us" className="py-20 sm:py-28 bg-slate-950 relative border-b border-slate-800 overflow-hidden">
-      {/* Background Video with Clearly Visible Playback & Protective Vignette */}
+      {/* Background Video with Clean, Vivid Visibility & Subtle Edge Vignette */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           ref={videoRef}
@@ -80,22 +80,22 @@ export default function JoinUsEcosystem() {
           muted
           playsInline
           preload="auto"
-          className="w-full h-full object-cover opacity-80 sm:opacity-85 filter brightness-100 contrast-105"
+          className="w-full h-full object-cover opacity-95 sm:opacity-100 filter brightness-105 contrast-105"
         >
           <source src="/videos/join-us.mp4" type="video/mp4" />
           <source src="/videos/join-us-bg.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/45 to-slate-950/80" />
-        <div className="absolute inset-0 bg-[#772b38]/12 mix-blend-overlay" />
+        {/* Clean top and bottom fades for smooth transition into adjacent sections */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-transparent to-slate-950/55 pointer-events-none" />
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Section Header */}
+        {/* Section Header with High-Contrast Drop Shadow */}
         <FadeUp className="max-w-3xl mb-14">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight font-display">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight font-display drop-shadow-[0_4px_18px_rgba(0,0,0,0.95)]">
             Join Us
           </h2>
-          <p className="text-base sm:text-lg text-slate-300 mt-2 font-medium">
+          <p className="text-base sm:text-lg text-slate-200 mt-2 font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
             Be Part of Our Growing Multi-Stakeholder Innovation Ecosystem
           </p>
         </FadeUp>
@@ -108,7 +108,7 @@ export default function JoinUsEcosystem() {
             return (
               <Wrapper key={st.role} delay={(idx % 4) * 0.08}>
                 <XYZCard depth={8}>
-                  <div className="h-full p-6 sm:p-7 rounded-3xl bg-slate-900/80 backdrop-blur-md border border-slate-700/70 hover:border-[#772b38] shadow-lg hover:shadow-2xl hover:shadow-[#772b38]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                  <div className="h-full p-6 sm:p-7 rounded-3xl bg-slate-950/85 backdrop-blur-xl border border-slate-700/80 hover:border-[#772b38] shadow-2xl hover:shadow-[#772b38]/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                       <div className="flex items-center justify-between mb-4">
                         <h3 className="text-xl sm:text-2xl font-bold text-white font-display group-hover:text-rose-200 transition-colors">

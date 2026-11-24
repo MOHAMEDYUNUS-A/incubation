@@ -108,19 +108,20 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
         })}
 
         {/* Directional gradient: deep contrast shield on left text while keeping dignitaries and faces bright & clear */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-950/60 via-50% to-slate-950/5 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-slate-950/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/98 via-slate-950/85 via-42% to-slate-950/15 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-transparent to-slate-950/40 pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full sm:w-2/3 h-full bg-[radial-gradient(ellipse_at_top_left,rgba(2,6,23,0.92)_0%,rgba(2,6,23,0.65)_50%,transparent_100%)] pointer-events-none" />
       </div>
 
       {/* Main Foreground Content: Synchronously Transitions with the Active Slide */}
       <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 my-auto">
-        <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl text-white">
-          {/* Visionary Headline: Synchronized Rotating Focus with Smooth Zero-Shift Transformation */}
+        <div className="max-w-xl lg:max-w-2xl xl:max-w-3xl text-white">
+          {/* Visionary Headline: Synchronized Rotating Focus with High-Contrast Typography Shadow */}
           <motion.h1
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.08, ease: "easeOut" }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-[48px] xl:text-[54px] font-black text-white tracking-tight font-display leading-[1.12] mb-3.5 drop-shadow-[0_4px_18px_rgba(0,0,0,0.95)]"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-[48px] xl:text-[54px] font-black text-white tracking-tight font-display leading-[1.12] mb-4 drop-shadow-[0_4px_24px_rgba(0,0,0,1)] [text-shadow:_0_2px_12px_rgba(0,0,0,0.95),_0_4px_28px_rgba(0,0,0,0.9),_0_1px_3px_rgba(0,0,0,1)]"
           >
             TRANSFORMING <br />
             BOLD IDEAS INTO{" "}
@@ -132,7 +133,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
                   animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
                   exit={{ y: -16, opacity: 0, filter: "blur(4px)" }}
                   transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-                  className="inline-block text-[#ff8097] font-black drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)] whitespace-nowrap"
+                  className="inline-block text-[#ff8097] font-black drop-shadow-[0_4px_20px_rgba(0,0,0,1)] [text-shadow:_0_2px_14px_rgba(0,0,0,0.95),_0_6px_30px_rgba(0,0,0,0.9)] whitespace-nowrap"
                 >
                   {activeSlide.rotatingFocus}
                 </motion.span>
@@ -142,8 +143,8 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
             AT MAMCET CAMPUS.
           </motion.h1>
 
-          {/* Editorial Narrative: Synchronously Transitions with the Active Slide */}
-          <div className="min-h-[52px] sm:min-h-[60px] mb-5">
+          {/* Editorial Narrative: High-Contrast Drop Shadow for Optimal Legibility */}
+          <div className="min-h-[52px] sm:min-h-[60px] mb-6">
             <AnimatePresence mode="wait">
               <motion.p
                 key={currentSlideIndex}
@@ -151,9 +152,9 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="text-xs sm:text-sm md:text-base text-slate-100 leading-relaxed font-medium max-w-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]"
+                className="text-xs sm:text-sm md:text-base text-slate-100 leading-relaxed font-medium max-w-2xl drop-shadow-[0_4px_16px_rgba(0,0,0,1)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.95),_0_4px_16px_rgba(0,0,0,0.8)]"
               >
-                <strong className="text-white font-bold">MASTeR Incubation Foundation (MIF):</strong>{" "}
+                <strong className="text-white font-bold [text-shadow:_0_2px_8px_rgba(0,0,0,1)]">MASTeR Incubation Foundation (MIF):</strong>{" "}
                 {activeSlide.narrative}
               </motion.p>
             </AnimatePresence>
@@ -204,25 +205,6 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
               </button>
             )}
           </motion.div>
-
-          {/* Slide Indicator Navigation Dots (Matching Image 5: #772b38 Active Pill & Monospace Counter) */}
-          <div className="flex items-center gap-2.5 mt-5 sm:mt-6 z-10">
-            {slides.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlideIndex(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  currentSlideIndex === idx
-                    ? "w-9 bg-[#772b38] shadow-lg shadow-[#772b38]/60"
-                    : "w-2.5 bg-slate-500/50 hover:bg-white/70"
-                }`}
-              />
-            ))}
-            <span className="text-xs font-mono font-bold text-slate-300 ml-2 tracking-wider">
-              0{currentSlideIndex + 1} / 0{slides.length}
-            </span>
-          </div>
         </div>
       </div>
     </section>

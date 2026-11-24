@@ -25,11 +25,6 @@ const PARTNER_LOGOS = [
     src: "/logos/nba-logo.png",
   },
   {
-    name: "StartupTN",
-    title: "Government of Tamil Nadu",
-    src: "/logos/startuptn.jpg",
-  },
-  {
     name: "MASTeR MIF",
     title: "MASTeR Incubation Foundation",
     src: "/logos/master-incubation-logo.png",

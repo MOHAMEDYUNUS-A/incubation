@@ -20,11 +20,6 @@ const ACCREDITED_LOGOS = [
     height: "h-9 sm:h-12 md:h-14",
   },
   {
-    name: "StartupTN Pre-Incubation Centre (Govt. of Tamil Nadu)",
-    src: "/logos/startuptn.png",
-    height: "h-8 sm:h-11 md:h-12",
-  },
-  {
     name: "All India Council for Technical Education (AICTE)",
     src: "/logos/aicte-logo.png",
     height: "h-9 sm:h-12 md:h-14",
@@ -116,7 +111,7 @@ export default function WelcomeSection() {
           <RevealRight>
             <div className="space-y-4 max-w-3xl mx-auto text-base sm:text-lg text-slate-700 leading-relaxed font-normal">
               <p>
-                <strong className="text-slate-900 font-bold">MASTeR Incubation Foundation (MIF)</strong> is an institutional technology business incubator incorporated as a <strong className="text-slate-900 font-bold">Section 8 Not-For-Profit Company</strong>, based on the green <strong className="text-slate-900 font-bold">M.A.M. College of Engineering and Technology (MAMCET)</strong> campus in Siruganur, Tiruchirappalli.
+                <strong className="text-slate-900 font-bold">MASTeR Incubation Foundation (MIF)</strong> is an institutional technology business incubator incorporated as a <strong className="text-slate-900 font-bold">Section 8 Not-For-Profit Company</strong>, based on the <strong className="text-slate-900 font-bold">M.A.M. College of Engineering and Technology (MAMCET)</strong> campus in Siruganur, Tiruchirappalli.
               </p>
               <p>
                 Recognised by <strong className="text-blue-800 font-bold">StartupTN</strong> as an official Pre-Incubation Centre and the Ministry of MSME as an approved <strong className="text-slate-900 font-bold">Host Institution (HI)</strong>, MIF empowers student innovators, research faculty, and regional founders to build, protect, and scale deep-tech solutions through structured grant readiness and expert industrial mentorship.
