@@ -150,7 +150,7 @@ export default function Navbar() {
 
             <div className="flex items-center gap-3">
               <span className="text-[10px] font-semibold text-cyan-300 hidden md:inline tracking-wide">
-                StartupTN Recognised Pre-Incubation Centre
+                Recognised Technology Business Incubator · MAMCET Campus
               </span>
               <span className="h-3 w-px bg-slate-800 hidden md:inline" />
               <Link
@@ -191,8 +191,8 @@ export default function Navbar() {
                 <span className="text-[10px] sm:text-[11px] font-bold text-slate-700 tracking-tight leading-none mt-1 whitespace-nowrap">
                   Incubation Foundation
                 </span>
-                <span className="text-[9.5px] text-slate-400 font-medium tracking-normal hidden xl:inline mt-0.5 whitespace-nowrap">
-                  MAMCET · StartupTN Pre-Incubation Centre
+                <span className="text-[9.5px] text-slate-500 font-medium tracking-normal hidden xl:inline mt-0.5 whitespace-nowrap">
+                  Technology Business Incubator · MAMCET Campus
                 </span>
               </div>
             </Link>

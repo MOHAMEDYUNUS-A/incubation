@@ -116,45 +116,45 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
           ease: [0.4, 0, 0.2, 1],
         },
       }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#050b14] overflow-hidden select-none cursor-pointer"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-50 overflow-hidden select-none cursor-pointer"
       role="dialog"
       aria-label="MASTeR Incubation Foundation"
       onClick={startZoom}
     >
-      {/* Executive Ambient Radial Gradient (#772b38 Glow & Deep Navy) */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(119,43,56,0.35)_0%,rgba(9,27,52,0.85)_40%,#030712_85%)] pointer-events-none" />
+      {/* Light Theme Ambient Radial Glow (#772b38 Soft Tint & Clean Light Backdrop) */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(119,43,56,0.09)_0%,rgba(241,245,249,0.85)_40%,#f8fafc_90%)] pointer-events-none" />
 
       {/* Subtle Concentric Ambient Rings */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <motion.div
           animate={{
             scale: isZooming ? (prefersReducedMotion ? 1 : 12) : [1, 1.06, 1],
+            opacity: isZooming ? 0 : [0.35, 0.65, 0.35],
+          }}
+          transition={{
+            scale: isZooming
+              ? { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
+              : { duration: 3, repeat: Infinity, ease: "easeInOut" },
+            opacity: isZooming
+              ? { duration: 0.45 }
+              : { duration: 3, repeat: Infinity, ease: "easeInOut" },
+          }}
+          className="w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] rounded-full border-2 border-[#772b38]/25"
+        />
+        <motion.div
+          animate={{
+            scale: isZooming ? (prefersReducedMotion ? 1 : 16) : [1, 1.1, 1],
             opacity: isZooming ? 0 : [0.2, 0.45, 0.2],
           }}
           transition={{
             scale: isZooming
               ? { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
-              : { duration: 3, repeat: Infinity, ease: "easeInOut" },
-            opacity: isZooming
-              ? { duration: 0.45 }
-              : { duration: 3, repeat: Infinity, ease: "easeInOut" },
-          }}
-          className="w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] rounded-full border border-[#772b38]/40"
-        />
-        <motion.div
-          animate={{
-            scale: isZooming ? (prefersReducedMotion ? 1 : 16) : [1, 1.1, 1],
-            opacity: isZooming ? 0 : [0.12, 0.3, 0.12],
-          }}
-          transition={{
-            scale: isZooming
-              ? { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
               : { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.4 },
             opacity: isZooming
               ? { duration: 0.45 }
               : { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.4 },
           }}
-          className="w-[420px] h-[420px] sm:w-[540px] sm:h-[540px] rounded-full border border-blue-400/20"
+          className="w-[420px] h-[420px] sm:w-[540px] sm:h-[540px] rounded-full border border-blue-400/30"
         />
       </div>
 
@@ -185,11 +185,11 @@ export default function SplashScreen({ onZoomStart, onComplete }: SplashScreenPr
         style={{ willChange: "transform, opacity", transformOrigin: "center center" }}
         className="relative z-10 flex flex-col items-center justify-center p-4 pointer-events-none"
       >
-        {/* Ambient Halo Glow */}
-        <div className="absolute -inset-6 rounded-full bg-gradient-to-r from-[#772b38]/45 via-rose-500/25 to-[#772b38]/45 blur-2xl opacity-90 animate-pulse pointer-events-none" />
+        {/* Soft Ambient Halo Glow */}
+        <div className="absolute -inset-6 rounded-full bg-gradient-to-r from-[#772b38]/20 via-rose-300/30 to-[#772b38]/20 blur-2xl opacity-90 animate-pulse pointer-events-none" />
 
-        {/* Clean Logo Card */}
-        <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-3xl bg-white p-4 sm:p-5 flex items-center justify-center border border-white/40 shadow-2xl shadow-rose-950/80">
+        {/* Clean Logo Card in Light Theme */}
+        <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-3xl bg-white p-5 sm:p-6 flex items-center justify-center border border-slate-200/90 shadow-[0_20px_50px_rgba(119,43,56,0.15),0_10px_25px_rgba(15,44,89,0.08)]">
           <img
             src="/logos/official-mif-logo.png"
             alt="MASTeR Incubation Foundation"

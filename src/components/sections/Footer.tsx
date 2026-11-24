@@ -33,8 +33,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-14 border-b border-slate-800">
           {/* Col 1: Brand & Institutional Identity (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-14 h-14 rounded-2xl bg-white p-2 flex items-center justify-center border border-white/20 shadow-md group-hover:scale-105 transition-transform">
+            <Link href="/" className="flex items-center gap-3.5 group">
+              <div className="w-14 h-14 rounded-2xl bg-white p-2 flex items-center justify-center border border-white/20 shadow-md group-hover:scale-105 transition-transform shrink-0">
                 <img
                   src="/logos/official-mif-logo.png"
                   alt="MASTeR Incubation Foundation Crest"
@@ -42,25 +42,25 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-black text-xl sm:text-2xl tracking-tight text-white font-display">
-                  MAST<span className="text-[#772b38]">e</span>R
+                <span className="font-black text-xl sm:text-2xl tracking-tight text-white font-display leading-tight">
+                  MAST<span className="text-[#ff8097]">e</span>R
                 </span>
-                <span className="text-xs text-slate-200 font-bold">
+                <span className="text-xs text-slate-200 font-bold tracking-tight">
                   Incubation Foundation (MIF)
                 </span>
-                <span className="text-[10px] text-slate-400 font-medium">
-                  MAMCET · StartupTN Pre-Incubation Centre
+                <span className="text-[11px] text-slate-400 font-medium tracking-normal mt-0.5">
+                  Technology Business Incubator · MAMCET Campus
                 </span>
               </div>
             </Link>
 
             <p className="text-xs text-slate-300 leading-relaxed pr-2">
-              An institutional technology incubator incorporated as a <strong className="text-white">Section 8 Not-For-Profit Company</strong> at <strong className="text-white">M.A.M. College of Engineering & Technology (MAMCET)</strong>, Siruganur, Trichy. Approved as an official <strong className="text-red-400">StartupTN Pre-Incubation Centre</strong> and <strong className="text-cyan-400">MSME Host Institution</strong>.
+              An institutional technology business incubator incorporated as a <strong className="text-white">Section 8 Not-For-Profit Company</strong> at <strong className="text-white">M.A.M. College of Engineering & Technology (MAMCET)</strong>, Siruganur, Tiruchirappalli. Driving regional student innovation, deep-tech prototyping, and MSME venture incubation.
             </p>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-red-400 text-xs font-semibold">
-              <ShieldCheck className="w-3.5 h-3.5 text-red-400" />
-              <span>Launchpad for your Entrepreneurial Success</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#772b38]/25 border border-[#772b38]/50 text-[#ff8097] text-xs font-semibold shadow-xs">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#ff8097]" />
+              <span>Section 8 Non-Profit Technology Incubator</span>
             </div>
 
             {/* Direct Social Links & QR Codes */}
@@ -73,7 +73,7 @@ export default function Footer() {
                   href="https://www.instagram.com/master_incubation_foundation/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center hover:bg-white/10 hover:border-pink-500/50 transition-all group"
+                  className="p-2.5 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center hover:bg-white/10 hover:border-[#772b38]/60 transition-all group"
                   title="Follow MIF on Instagram"
                 >
                   <img
@@ -90,7 +90,7 @@ export default function Footer() {
                   href="https://in.linkedin.com/in/master-incubation-foundation-02301b446"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center hover:bg-white/10 hover:border-blue-500/50 transition-all group"
+                  className="p-2.5 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center hover:bg-white/10 hover:border-blue-400/60 transition-all group"
                   title="Connect with MIF on LinkedIn"
                 >
                   <img
@@ -106,126 +106,126 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Quick Portals & Navigation (2 cols) */}
-          <div className="lg:col-span-2 space-y-3">
+          {/* Col 2: Quick Portals (3 cols, 2-column balanced grid) */}
+          <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">
               Quick Portals
             </h4>
-            <ul className="space-y-2 text-xs">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
               <li>
-                <Link href="/" className="hover:text-red-400 transition-colors">
+                <Link href="/" className="hover:text-rose-300 transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-red-400 transition-colors">
+                <Link href="/about" className="hover:text-rose-300 transition-colors">
                   About Foundation
                 </Link>
               </li>
               <li>
-                <Link href="/impact" className="hover:text-red-400 transition-colors">
+                <Link href="/impact" className="hover:text-rose-300 transition-colors">
                   Ecosystem Impact
                 </Link>
               </li>
               <li>
-                <Link href="/focus-areas" className="hover:text-red-400 transition-colors">
+                <Link href="/focus-areas" className="hover:text-rose-300 transition-colors">
                   7 Focus Areas
                 </Link>
               </li>
               <li>
-                <Link href="/programs" className="hover:text-red-400 transition-colors">
+                <Link href="/programs" className="hover:text-rose-300 transition-colors">
                   4-Stage Pathway
                 </Link>
               </li>
               <li>
-                <Link href="/facilities" className="hover:text-red-400 transition-colors">
+                <Link href="/facilities" className="hover:text-rose-300 transition-colors">
                   4,000 Sq. Ft. Facility
                 </Link>
               </li>
               <li>
-                <Link href="/startups" className="hover:text-red-400 transition-colors">
+                <Link href="/startups" className="hover:text-rose-300 transition-colors">
                   Startup Directory
                 </Link>
               </li>
               <li>
-                <Link href="/startup-passport/MASTER-SP-2026-0001" className="hover:text-red-400 transition-colors">
-                  Startup Passport
-                </Link>
-              </li>
-              <li>
-                <Link href="/startup-passport/verify/MASTER-SP-2026-0001" className="hover:text-red-400 transition-colors">
-                  Verify Credentials
-                </Link>
-              </li>
-              <li>
-                <Link href="/success-stories" className="hover:text-red-400 transition-colors">
+                <Link href="/success-stories" className="hover:text-rose-300 transition-colors">
                   Success Stories
                 </Link>
               </li>
               <li>
-                <Link href="/alumni" className="hover:text-red-400 transition-colors">
+                <Link href="/alumni" className="hover:text-rose-300 transition-colors">
                   Alumni Guild
                 </Link>
               </li>
               <li>
-                <Link href="/apply/status" className="hover:text-red-400 transition-colors">
+                <Link href="/apply" className="hover:text-rose-300 transition-colors">
+                  Apply for Cohort
+                </Link>
+              </li>
+              <li>
+                <Link href="/apply/status" className="hover:text-rose-300 transition-colors">
                   Track Application
                 </Link>
               </li>
               <li>
-                <Link href="/events" className="hover:text-red-400 transition-colors">
+                <Link href="/events" className="hover:text-rose-300 transition-colors">
                   Events & Bootcamps
                 </Link>
               </li>
               <li>
-                <Link href="/join-us" className="hover:text-red-400 transition-colors">
+                <Link href="/join-us" className="hover:text-rose-300 transition-colors">
                   Join Us (Stakeholders)
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-rose-300 transition-colors">
+                  Contact Office
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Leadership & Direct Verified Contacts (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
+          {/* Col 3: Incubation Leadership (2.5 cols) */}
+          <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">
               Incubation Leadership
             </h4>
             <div className="space-y-3 text-xs">
-              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/50 transition-colors">
+              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#772b38]/70 transition-colors">
                 <div className="font-bold text-white text-sm">{FOUNDATION_INFO.manager.name}</div>
-                <div className="text-[11px] text-red-400 font-semibold">{FOUNDATION_INFO.manager.role}</div>
+                <div className="text-[11px] text-[#ff8097] font-semibold">{FOUNDATION_INFO.manager.role}</div>
                 <a
                   href={`tel:${FOUNDATION_INFO.manager.phone}`}
                   className="text-[11px] text-slate-300 hover:text-white mt-1.5 flex items-center gap-1.5 transition-colors"
                 >
-                  <Phone className="w-3 h-3 text-emerald-400" />
+                  <Phone className="w-3 h-3 text-emerald-400 shrink-0" />
                   <span>{FOUNDATION_INFO.manager.phone}</span>
                 </a>
                 <a
                   href={`mailto:${FOUNDATION_INFO.manager.email}`}
                   className="text-[11px] text-slate-300 hover:text-white truncate flex items-center gap-1.5 mt-0.5 transition-colors"
                 >
-                  <Mail className="w-3 h-3 text-blue-400" />
-                  <span>{FOUNDATION_INFO.manager.email}</span>
+                  <Mail className="w-3 h-3 text-blue-400 shrink-0" />
+                  <span className="truncate">{FOUNDATION_INFO.manager.email}</span>
                 </a>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:border-emerald-400/50 transition-colors">
+              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#772b38]/70 transition-colors">
                 <div className="font-bold text-white text-sm">{FOUNDATION_INFO.coordinator.name}</div>
-                <div className="text-[11px] text-emerald-400 font-semibold">{FOUNDATION_INFO.coordinator.role}</div>
+                <div className="text-[11px] text-[#ff8097] font-semibold">{FOUNDATION_INFO.coordinator.role}</div>
                 <a
                   href={`tel:${FOUNDATION_INFO.coordinator.phone}`}
                   className="text-[11px] text-slate-300 hover:text-white mt-1.5 flex items-center gap-1.5 transition-colors"
                 >
-                  <Phone className="w-3 h-3 text-emerald-400" />
+                  <Phone className="w-3 h-3 text-emerald-400 shrink-0" />
                   <span>{FOUNDATION_INFO.coordinator.phone}</span>
                 </a>
                 <a
                   href={`mailto:${FOUNDATION_INFO.coordinator.email}`}
                   className="text-[11px] text-slate-300 hover:text-white truncate flex items-center gap-1.5 mt-0.5 transition-colors"
                 >
-                  <Mail className="w-3 h-3 text-blue-400" />
-                  <span>{FOUNDATION_INFO.coordinator.email}</span>
+                  <Mail className="w-3 h-3 text-blue-400 shrink-0" />
+                  <span className="truncate">{FOUNDATION_INFO.coordinator.email}</span>
                 </a>
               </div>
             </div>

@@ -108,8 +108,8 @@ export default function EcosystemImpact() {
         >
           <source src="/videos/impact-bg-video.mp4" type="video/mp4" />
         </video>
-        {/* Soft edge gradients so video content remains vividly visible while smoothly connecting sections */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/20 via-transparent to-slate-50/30 pointer-events-none" />
+        {/* Soft edge gradients so video content remains vividly visible while keeping header text ultra-crisp */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/55 via-transparent to-slate-950/50 pointer-events-none" />
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">

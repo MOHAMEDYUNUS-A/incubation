@@ -45,7 +45,7 @@ const SECTORS: FocusSector[] = [
     id: "clean-energy",
     number: "03",
     title: "Renewable Energy & CleanTech",
-    image: "/images/focus-areas/renewable-energy.jpg",
+    image: "/images/focus-areas/renewable-energy-cleantech.jpg",
     tag: "Solar PV Fault AI · Microgrids · Battery",
     icon: Zap,
   },

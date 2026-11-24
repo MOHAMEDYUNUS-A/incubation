@@ -26,7 +26,7 @@ const ICON_MAP: Record<string, React.ElementType> = {
 
 const TRACK_IMAGES: Record<string, string> = {
   "ai-ds": "/images/focus-areas/ai-edge-compute.jpg",
-  "clean-energy": "/images/focus-areas/renewable-energy.jpg",
+  "clean-energy": "/images/focus-areas/renewable-energy-cleantech.jpg",
   "digital-tech": "/images/focus-areas/cloud-saas-cybersecurity.jpg",
   "adv-mfg": "/images/focus-areas/robotics-drones.jpg",
   "iot-smart": "/images/focus-areas/iot-telemetry.jpg",
