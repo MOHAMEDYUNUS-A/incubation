@@ -168,7 +168,7 @@ export default function CampusPhotoGallery() {
               <div
                 key={`r1-${idx}`}
                 onClick={() => setSelectedPhoto(photo)}
-                className="cursor-pointer group relative w-72 sm:w-80 md:w-96 aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-red-500 transition-all duration-300 shrink-0 bg-slate-100"
+                className="cursor-pointer group relative w-72 sm:w-80 md:w-96 aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-[#772b38] transition-all duration-300 shrink-0 bg-slate-100"
               >
                 <img
                   src={photo.image}
@@ -176,26 +176,6 @@ export default function CampusPhotoGallery() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
-
-                <div className="absolute top-3 left-3 z-10">
-                  <span className="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#0f2c59] text-[10px] font-extrabold shadow-xs">
-                    {photo.categoryLabel}
-                  </span>
-                </div>
-
-                <div className="absolute bottom-3 left-4 right-4 z-10 text-white">
-                  <h4 className="font-extrabold text-sm sm:text-base font-display line-clamp-1 !text-white text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] group-hover:text-red-400 transition-colors">
-                    {photo.title}
-                  </h4>
-                  <p className="text-[11px] text-slate-200 line-clamp-1 font-medium mt-0.5 drop-shadow-sm">
-                    {photo.caption}
-                  </p>
-                  <div className="flex items-center gap-1 text-[10px] text-red-400 mt-1 font-bold drop-shadow-sm">
-                    <MapPin className="w-3 h-3 text-red-500" />
-                    <span>{photo.location}</span>
-                  </div>
-                </div>
               </div>
             ))}
           </div>
@@ -206,7 +186,7 @@ export default function CampusPhotoGallery() {
               <div
                 key={`r2-${idx}`}
                 onClick={() => setSelectedPhoto(photo)}
-                className="cursor-pointer group relative w-72 sm:w-80 md:w-96 aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-red-500 transition-all duration-300 shrink-0 bg-slate-100"
+                className="cursor-pointer group relative w-72 sm:w-80 md:w-96 aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-[#772b38] transition-all duration-300 shrink-0 bg-slate-100"
               >
                 <img
                   src={photo.image}
@@ -214,26 +194,6 @@ export default function CampusPhotoGallery() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
-
-                <div className="absolute top-3 left-3 z-10">
-                  <span className="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#0f2c59] text-[10px] font-extrabold shadow-xs">
-                    {photo.categoryLabel}
-                  </span>
-                </div>
-
-                <div className="absolute bottom-3 left-4 right-4 z-10 text-white">
-                  <h4 className="font-extrabold text-sm sm:text-base font-display line-clamp-1 !text-white text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] group-hover:text-red-400 transition-colors">
-                    {photo.title}
-                  </h4>
-                  <p className="text-[11px] text-slate-200 line-clamp-1 font-medium mt-0.5 drop-shadow-sm">
-                    {photo.caption}
-                  </p>
-                  <div className="flex items-center gap-1 text-[10px] text-red-400 mt-1 font-bold drop-shadow-sm">
-                    <MapPin className="w-3 h-3 text-red-500" />
-                    <span>{photo.location}</span>
-                  </div>
-                </div>
               </div>
             ))}
           </div>

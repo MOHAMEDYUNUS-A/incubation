@@ -107,43 +107,41 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
           );
         })}
 
-        {/* Directional gradient: deep contrast shield on left text while keeping dignitaries and faces bright & clear */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/98 via-slate-950/85 via-42% to-slate-950/15 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-transparent to-slate-950/40 pointer-events-none" />
-        <div className="absolute top-0 left-0 w-full sm:w-2/3 h-full bg-[radial-gradient(ellipse_at_top_left,rgba(2,6,23,0.92)_0%,rgba(2,6,23,0.65)_50%,transparent_100%)] pointer-events-none" />
+        {/* Subtle ambient gradients preserving full hero image visibility and colors */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/45 via-slate-950/20 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/25 pointer-events-none" />
       </div>
 
       {/* Main Foreground Content: Synchronously Transitions with the Active Slide */}
       <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6 my-auto">
         <div className="max-w-xl lg:max-w-2xl xl:max-w-3xl text-white">
-          {/* Visionary Headline: Synchronized Rotating Focus with High-Contrast Typography Shadow */}
+          {/* Visionary Headline: Clean 4-Line Stack with Uniform Spacing and Font-Only Text Shadow */}
           <motion.h1
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.08, ease: "easeOut" }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-[48px] xl:text-[54px] font-black text-white tracking-tight font-display leading-[1.12] mb-4 drop-shadow-[0_4px_24px_rgba(0,0,0,1)] [text-shadow:_0_2px_12px_rgba(0,0,0,0.95),_0_4px_28px_rgba(0,0,0,0.9),_0_1px_3px_rgba(0,0,0,1)]"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[58px] font-black text-white tracking-tight font-display leading-[1.08] mb-4 [text-shadow:_0_2px_12px_rgba(0,0,0,0.95),_0_4px_24px_rgba(0,0,0,0.85),_0_1px_3px_rgba(0,0,0,1)]"
           >
-            TRANSFORMING <br />
-            BOLD IDEAS INTO{" "}
-            <span className="inline-block relative overflow-hidden align-baseline h-[1.25em] min-w-[240px] sm:min-w-[320px] md:min-w-[380px]">
+            <span className="block">TRANSFORMING</span>
+            <span className="block">BOLD IDEAS INTO</span>
+            <span className="block h-[1.18em] relative overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentSlideIndex}
-                  initial={{ y: 16, opacity: 0, filter: "blur(4px)" }}
+                  initial={{ y: 20, opacity: 0, filter: "blur(4px)" }}
                   animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                  exit={{ y: -16, opacity: 0, filter: "blur(4px)" }}
-                  transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-                  className="inline-block text-[#ff8097] font-black drop-shadow-[0_4px_20px_rgba(0,0,0,1)] [text-shadow:_0_2px_14px_rgba(0,0,0,0.95),_0_6px_30px_rgba(0,0,0,0.9)] whitespace-nowrap"
+                  exit={{ y: -20, opacity: 0, filter: "blur(4px)" }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="block text-[#ff758f] font-black whitespace-nowrap [text-shadow:_0_2px_14px_rgba(0,0,0,0.95),_0_4px_24px_rgba(0,0,0,0.85)]"
                 >
                   {activeSlide.rotatingFocus}
                 </motion.span>
               </AnimatePresence>
             </span>
-            <br />
-            AT MAMCET CAMPUS.
+            <span className="block">AT MAMCET CAMPUS.</span>
           </motion.h1>
 
-          {/* Editorial Narrative: High-Contrast Drop Shadow for Optimal Legibility */}
+          {/* Editorial Narrative: High-Contrast Drop Shadow on Font */}
           <div className="min-h-[52px] sm:min-h-[60px] mb-6">
             <AnimatePresence mode="wait">
               <motion.p
@@ -152,7 +150,7 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="text-xs sm:text-sm md:text-base text-slate-100 leading-relaxed font-medium max-w-2xl drop-shadow-[0_4px_16px_rgba(0,0,0,1)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.95),_0_4px_16px_rgba(0,0,0,0.8)]"
+                className="text-xs sm:text-sm md:text-base text-slate-100 leading-relaxed font-medium max-w-2xl [text-shadow:_0_2px_8px_rgba(0,0,0,0.95),_0_4px_16px_rgba(0,0,0,0.85)]"
               >
                 <strong className="text-white font-bold [text-shadow:_0_2px_8px_rgba(0,0,0,1)]">MASTeR Incubation Foundation (MIF):</strong>{" "}
                 {activeSlide.narrative}

@@ -96,7 +96,7 @@ const RUNNING_IMPACT_METRICS: ImpactItem[] = [
 
 export default function EcosystemImpact() {
   return (
-    <section className="py-20 sm:py-28 bg-slate-100/70 relative border-b border-slate-200 overflow-hidden">
+    <section className="py-20 sm:py-28 bg-slate-900/10 relative border-b border-slate-200 overflow-hidden">
       {/* Background Video with Clear Cinematic Visibility */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
@@ -104,12 +104,12 @@ export default function EcosystemImpact() {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-65 sm:opacity-75"
+          className="w-full h-full object-cover opacity-95 sm:opacity-100 filter brightness-105 contrast-105"
         >
           <source src="/videos/impact-bg-video.mp4" type="video/mp4" />
         </video>
         {/* Soft edge gradients so video content remains vividly visible while smoothly connecting sections */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/60 via-transparent to-slate-50/75 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/20 via-transparent to-slate-50/30 pointer-events-none" />
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
@@ -118,10 +118,10 @@ export default function EcosystemImpact() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#772b38]/20 text-[#772b38] text-xs font-bold tracking-wider uppercase mb-3 shadow-xs">
             <span>MEASURABLE TRANSLATION FOOTPRINT</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight drop-shadow-sm">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white font-display tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] [text-shadow:_0_2px_12px_rgba(0,0,0,0.95),_0_4px_24px_rgba(0,0,0,0.85)]">
             MIF Ecosystem Impact
           </h2>
-          <p className="text-base sm:text-lg text-slate-800 mt-3 font-semibold drop-shadow-xs max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-100 mt-3 font-semibold drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] [text-shadow:_0_2px_8px_rgba(0,0,0,0.85)] max-w-2xl mx-auto">
             Transforming academic research into measurable entrepreneurial capacity across Central Tamil Nadu.
           </p>
         </FadeUp>
