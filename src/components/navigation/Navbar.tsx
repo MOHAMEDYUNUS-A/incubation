@@ -22,6 +22,7 @@ export default function Navbar() {
   const navLinks = React.useMemo(() => {
     const startupsSubmenu: { name: string; href: string }[] = [
       { name: "Startup Directory", href: "/startups" },
+      { name: "Our Mentors", href: "/mentors" },
     ];
     if (flags.enableDigitalPassport) {
       startupsSubmenu.push({ name: "Digital Startup Passport", href: "/startup-passport/MASTER-SP-2026-0001" });
@@ -42,7 +43,7 @@ export default function Navbar() {
           { name: "About Foundation", href: "/about" },
           { name: "Leadership & Committee", href: "/leadership" },
           { name: "Governance & Trust", href: "/about#governance" },
-          { name: "Mission M1-M5", href: "/about#governance" },
+          { name: "Mission M1-M5", href: "/about#mission-roadmap" },
         ],
       },
       { name: "Focus Area", href: "/focus-areas" },
@@ -58,7 +59,7 @@ export default function Navbar() {
       {
         name: "Startups",
         href: "/startups",
-        submenu: startupsSubmenu.length > 1 ? startupsSubmenu : undefined,
+        submenu: startupsSubmenu,
       },
     ];
 

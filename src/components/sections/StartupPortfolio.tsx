@@ -22,6 +22,7 @@ import {
   CheckCircle2,
   Filter,
   ShieldCheck,
+  Users,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -125,6 +126,14 @@ export default function StartupPortfolio() {
                 <span className="leading-tight">Section-Wise</span>
               </button>
             </div>
+
+            <Link
+              href="/mentors"
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:border-[#772b38]/40 hover:text-[#772b38] text-xs font-semibold text-slate-700 transition-colors shadow-2xs"
+            >
+              <Users className="w-3.5 h-3.5 text-[#772b38]" />
+              <span>Meet Our Mentors</span>
+            </Link>
 
             <Link href="/apply">
               <Button className="bg-[#772b38] hover:bg-[#5e212b] text-white font-bold text-xs h-9 px-4 rounded-xl shadow-xs gap-1.5">
