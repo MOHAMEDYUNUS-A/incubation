@@ -58,7 +58,7 @@ export default function EventsNews() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <RevealLeft>
-            <span className="text-xs font-mono font-bold text-red-600 uppercase tracking-widest block mb-2">
+            <span className="text-xs font-mono font-bold text-[#772b38] uppercase tracking-widest block mb-2">
               FOUNDER BOOTCAMPS & CALENDAR
             </span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 font-display tracking-tight">
@@ -75,14 +75,14 @@ export default function EventsNews() {
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={handleScrollLeft}
-                  className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#dc2626] hover:border-red-400 flex items-center justify-center transition-colors shadow-2xs active:scale-95"
+                  className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#772b38] hover:border-[#772b38]/40 flex items-center justify-center transition-colors shadow-2xs active:scale-95"
                   aria-label="Scroll left"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
                   onClick={handleScrollRight}
-                  className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#dc2626] hover:border-red-400 flex items-center justify-center transition-colors shadow-2xs active:scale-95"
+                  className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#772b38] hover:border-[#772b38]/40 flex items-center justify-center transition-colors shadow-2xs active:scale-95"
                   aria-label="Scroll right"
                 >
                   <ChevronRight className="w-5 h-5" />

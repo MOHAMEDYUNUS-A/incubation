@@ -20,6 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { FadeUp } from "@/components/animations/LightAnimations";
 
 export default function ApplyPage() {
   const [step, setStep] = useState(1);
@@ -100,27 +101,27 @@ export default function ApplyPage() {
     <div className="pt-32 pb-24 bg-slate-50 min-h-screen">
       <div className="container max-w-4xl mx-auto px-4 sm:px-6">
         {/* Page Title & Status Link */}
-        <div className="text-center max-w-2xl mx-auto mb-10">
+        <FadeUp className="text-center max-w-2xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 mb-2">
-            <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">
+            <span className="text-xs font-semibold text-[#772b38] uppercase tracking-widest">
               Cohort Application Portal
             </span>
             <span className="text-slate-300">·</span>
             <Link
               href="/apply/status"
-              className="text-xs font-bold text-red-600 hover:text-red-700 hover:underline flex items-center gap-1"
+              className="text-xs font-bold text-[#772b38] hover:text-[#5e212b] hover:underline flex items-center gap-1"
             >
               <Search className="w-3 h-3" />
               <span>Track Existing Application Status →</span>
             </Link>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-1 font-display">
+          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 mt-1 font-display tracking-tight">
             Apply for Incubation at MIF
           </h1>
-          <p className="text-sm text-slate-600 mt-2">
+          <p className="text-sm text-slate-600 mt-2 font-normal">
             MASTeR Incubation Foundation · StartupTN Recognised Pre-Incubation Centre · MAMCET Trichy
           </p>
-        </div>
+        </FadeUp>
 
         {submittedData ? (
           /* Submission Confirmation Card */

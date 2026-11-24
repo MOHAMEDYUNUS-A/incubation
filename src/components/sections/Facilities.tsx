@@ -9,7 +9,7 @@ import { RevealLeft, RevealRight, ZoomIn, XYZCard } from "@/components/animation
 
 export default function Facilities() {
   return (
-    <section id="facilities" className="py-20 sm:py-24 bg-slate-50 relative border-t border-slate-200">
+    <section id="facilities" className="py-20 sm:py-24 bg-slate-50 relative">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <RevealLeft>

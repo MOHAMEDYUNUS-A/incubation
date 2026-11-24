@@ -15,9 +15,11 @@ import {
   ExternalLink,
   ShieldCheck,
   Search,
+  Sparkles,
 } from "lucide-react";
 import { AlumniProfile } from "@/lib/ecosystem/types";
 import { useSiteContent } from "@/context/ContentContext";
+import { FadeUp, XYZCard } from "@/components/animations/LightAnimations";
 
 export default function AlumniDirectoryPage() {
   const { content } = useSiteContent();
@@ -140,48 +142,50 @@ export default function AlumniDirectoryPage() {
     <div className="min-h-screen bg-slate-50/70 pt-32 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-10">
         {/* Masthead */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-950 text-xs font-black uppercase tracking-widest border border-blue-200">
-            <GraduationCap className="w-4 h-4 text-blue-900" />
-            MIF Alumni Guild · Scaled Ventures
+        <FadeUp className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#772b38]/10 text-[#772b38] text-xs font-bold uppercase tracking-wider border border-[#772b38]/20">
+            <GraduationCap className="w-4 h-4 text-[#772b38]" />
+            <span>MIF Alumni Guild · Scaled Ventures</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight font-display">
             Alumni Ecosystem & Guild
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
             Graduated startups and pioneering founders from MASTeR Incubation Foundation giving back through active mentorship, partnerships, and ecosystem capital.
           </p>
-        </div>
+        </FadeUp>
 
         {/* Filter and Search Bar */}
-        <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="relative w-full sm:w-80">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              placeholder="Search alumni, cohort, or tags..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-950"
-            />
-          </div>
+        <FadeUp delay={0.05}>
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="relative w-full sm:w-80">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                placeholder="Search alumni, cohort, or tags..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-9 pr-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0f2c59]"
+              />
+            </div>
 
-          <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto">
-            {["ALL", "SCALING", "PROFITABLE", "ACTIVE"].map((status) => (
-              <button
-                key={status}
-                onClick={() => setSelectedStatus(status)}
-                className={`px-3 py-1.5 text-xs font-bold rounded-lg transition whitespace-nowrap ${
-                  selectedStatus === status
-                    ? "bg-blue-950 text-white"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                }`}
-              >
-                {status}
-              </button>
-            ))}
+            <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto">
+              {["ALL", "SCALING", "PROFITABLE", "ACTIVE"].map((status) => (
+                <button
+                  key={status}
+                  onClick={() => setSelectedStatus(status)}
+                  className={`px-3 py-1.5 text-xs font-bold rounded-lg transition whitespace-nowrap ${
+                    selectedStatus === status
+                      ? "bg-[#0f2c59] text-white"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  {status}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        </FadeUp>
 
         {/* Alumni Grid */}
         {loading ? (
@@ -194,93 +198,96 @@ export default function AlumniDirectoryPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredAlumni.map((alum) => (
-              <div
-                key={alum.id}
-                className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-md hover:border-slate-300 transition flex flex-col justify-between space-y-6 group"
-              >
-                <div className="space-y-4">
-                  {/* Top Bar: Cohort + Growth Pill */}
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
-                      {alum.graduationCohort}
-                    </span>
-                    <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${
-                      alum.growthStatus === "SCALING"
-                        ? "bg-emerald-100 text-emerald-800 border-emerald-300"
-                        : "bg-blue-100 text-blue-800 border-blue-300"
-                    }`}>
-                      {alum.growthStatus}
-                    </span>
-                  </div>
-
-                  {/* Venture Name & HQ */}
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900 tracking-tight group-hover:text-blue-950 transition">
-                      {alum.startupName}
-                    </h3>
-                    <p className="text-xs text-slate-500 mt-0.5">{alum.headquarters}</p>
-                  </div>
-
-                  {/* Metrics Strip */}
-                  <div className="grid grid-cols-3 gap-2 bg-slate-50 p-3 rounded-2xl border border-slate-100 text-center">
-                    <div>
-                      <span className="text-xs font-black text-slate-900 block">{alum.currentHeadcount}</span>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase">Team Size</span>
-                    </div>
-                    <div>
-                      <span className="text-xs font-black text-emerald-700 block">{alum.totalCapitalRaised}</span>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase">Capital</span>
-                    </div>
-                    <div>
-                      <span className="text-xs font-black text-blue-950 block">{alum.currentRevenueRange}</span>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase">Revenue</span>
-                    </div>
-                  </div>
-
-                  {/* Founders */}
-                  <div className="space-y-1.5">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Leadership</span>
-                    <div className="flex flex-wrap gap-2">
-                      {alum.founders.map((f, i) => (
-                        <div key={i} className="text-xs bg-slate-100 px-2.5 py-1 rounded-lg text-slate-800 font-medium">
-                          <strong>{f.name}</strong> · <span className="text-slate-500">{f.role}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Tags */}
-                  {alum.tags && alum.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 pt-2">
-                      {alum.tags.map((tag, i) => (
-                        <span key={i} className="text-[10px] font-bold px-2 py-0.5 rounded bg-red-50 text-red-800 border border-red-200">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Bottom Actions */}
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                  {alum.willingToMentor ? (
-                    <span className="text-xs font-bold text-emerald-700 flex items-center gap-1">
-                      <Compass className="w-3.5 h-3.5 text-emerald-600" /> Open to Mentoring
-                    </span>
-                  ) : (
-                    <span className="text-xs text-slate-400">Alumni Member</span>
-                  )}
-
-                  <button
-                    onClick={() => handleOpenConnect(alum)}
-                    className="px-4 py-2 text-xs font-bold rounded-xl bg-blue-950 text-white hover:bg-blue-900 transition flex items-center gap-1.5 shadow-sm"
+            {filteredAlumni.map((alum, idx) => (
+              <FadeUp key={alum.id} delay={0.06 * idx}>
+                <XYZCard depth={6}>
+                  <div
+                    className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-xl hover:border-[#772b38]/40 transition-all duration-300 flex flex-col justify-between space-y-6 group h-full"
                   >
-                    <Mail className="w-3.5 h-3.5" />
-                    Connect Request
-                  </button>
-                </div>
-              </div>
+                    <div className="space-y-4">
+                      {/* Top Bar: Cohort + Growth Pill */}
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-mono font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
+                          {alum.graduationCohort}
+                        </span>
+                        <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${
+                          alum.growthStatus === "SCALING"
+                            ? "bg-emerald-100 text-emerald-800 border-emerald-300"
+                            : "bg-blue-100 text-blue-800 border-blue-300"
+                        }`}>
+                          {alum.growthStatus}
+                        </span>
+                      </div>
+
+                      {/* Venture Name & HQ */}
+                      <div>
+                        <h3 className="text-xl font-bold text-slate-900 tracking-tight font-display group-hover:text-[#0f2c59] transition">
+                          {alum.startupName}
+                        </h3>
+                        <p className="text-xs text-slate-500 mt-0.5 font-normal">{alum.headquarters}</p>
+                      </div>
+
+                      {/* Metrics Strip */}
+                      <div className="grid grid-cols-3 gap-2 bg-slate-50 p-3 rounded-2xl border border-slate-100 text-center">
+                        <div>
+                          <span className="text-xs font-black text-slate-900 block">{alum.currentHeadcount}</span>
+                          <span className="text-[10px] font-bold text-slate-400 uppercase">Team Size</span>
+                        </div>
+                        <div>
+                          <span className="text-xs font-black text-emerald-700 block">{alum.totalCapitalRaised}</span>
+                          <span className="text-[10px] font-bold text-slate-400 uppercase">Capital</span>
+                        </div>
+                        <div>
+                          <span className="text-xs font-black text-blue-950 block">{alum.currentRevenueRange}</span>
+                          <span className="text-[10px] font-bold text-slate-400 uppercase">Revenue</span>
+                        </div>
+                      </div>
+
+                      {/* Founders */}
+                      <div className="space-y-1.5">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block font-mono">Leadership</span>
+                        <div className="flex flex-wrap gap-2">
+                          {alum.founders.map((f, i) => (
+                            <div key={i} className="text-xs bg-slate-100 px-2.5 py-1 rounded-lg text-slate-800 font-medium">
+                              <strong>{f.name}</strong> · <span className="text-slate-500">{f.role}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Tags */}
+                      {alum.tags && alum.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5 pt-2">
+                          {alum.tags.map((tag, i) => (
+                            <span key={i} className="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-50 text-[#772b38] border border-rose-200/60">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Bottom Actions */}
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                      {alum.willingToMentor ? (
+                        <span className="text-xs font-bold text-emerald-700 flex items-center gap-1">
+                          <Compass className="w-3.5 h-3.5 text-emerald-600" /> Open to Mentoring
+                        </span>
+                      ) : (
+                        <span className="text-xs text-slate-400">Alumni Member</span>
+                      )}
+
+                      <button
+                        onClick={() => handleOpenConnect(alum)}
+                        className="px-4 py-2 text-xs font-bold rounded-xl bg-[#0f2c59] hover:bg-[#163e7a] text-white transition flex items-center gap-1.5 shadow-sm"
+                      >
+                        <Mail className="w-3.5 h-3.5" />
+                        Connect Request
+                      </button>
+                    </div>
+                  </div>
+                </XYZCard>
+              </FadeUp>
             ))}
           </div>
         )}

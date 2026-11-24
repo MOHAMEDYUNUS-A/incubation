@@ -18,6 +18,10 @@ const buttonVariants = cva(
           "bg-slate-100 text-slate-900 hover:bg-slate-200",
         ghost: "hover:bg-slate-100 text-slate-700 hover:text-slate-900",
         link: "text-blue-600 underline-offset-4 hover:underline",
+        burgundy:
+          "bg-[#772b38] text-white shadow-md shadow-[#772b38]/25 hover:bg-[#5e212b] hover:shadow-[#772b38]/40 ring-1 ring-white/10",
+        navy:
+          "bg-[#0f2c59] text-white shadow-md shadow-[#0f2c59]/25 hover:bg-[#163e7a] hover:shadow-[#0f2c59]/40",
         cyan: "bg-cyan-600 text-white font-semibold shadow-md shadow-cyan-500/20 hover:bg-cyan-700",
         glass: "bg-white/80 text-slate-900 border border-slate-200 backdrop-blur-md hover:bg-white shadow-sm",
       },
