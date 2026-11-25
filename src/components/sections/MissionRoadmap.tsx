@@ -16,7 +16,16 @@ import {
   Clock,
   Sparkles,
 } from "lucide-react";
-import { FadeUp, ZoomIn, XYZCard, RevealLeft, RevealRight } from "@/components/animations/LightAnimations";
+import {
+  FadeUp,
+  ZoomIn,
+  XYZCard,
+  RevealLeft,
+  RevealRight,
+  ScrollTiltIn,
+  ScrollRevealLeft,
+  ScrollRevealRight,
+} from "@/components/animations/LightAnimations";
 
 interface ProcessStep {
   step: string;
@@ -389,12 +398,15 @@ export default function MissionRoadmap() {
                 {/* Animated Connecting Dashed Flow Line & Arrow between steps (except last) */}
                 {idx < PROCESS_STEPS.length - 1 && (
                   <FadeUp delay={0.12} className="flex items-center justify-center my-6 sm:my-8 pointer-events-none">
-                    <div className="flex flex-col items-center gap-1 text-[#772b38]">
-                      {/* Dashed vertical connector line */}
-                      <div className="w-0.5 h-10 border-l-2 border-dashed border-[#772b38]/50" />
-                      <div className="w-8 h-8 rounded-full bg-[#772b38]/10 border border-[#772b38]/30 flex items-center justify-center text-xs font-bold text-[#772b38] shadow-2xs">
-                        ↓
+                    <div className="flex flex-col items-center gap-1.5 text-[#772b38]">
+                      {/* Dashed vertical connector line with pulsing glow */}
+                      <div className="w-0.5 h-12 border-l-2 border-dashed border-[#772b38]/50 animate-pulse-subtle" />
+                      <div className="w-9 h-9 rounded-full bg-white border-2 border-[#772b38] flex items-center justify-center text-xs font-black text-[#772b38] shadow-md shadow-[#772b38]/20 transition-transform">
+                        <span className="text-[13px] font-bold">↓</span>
                       </div>
+                      <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-[#772b38]">
+                        Next: {PROCESS_STEPS[idx + 1].code} · {PROCESS_STEPS[idx + 1].duration}
+                      </span>
                     </div>
                   </FadeUp>
                 )}

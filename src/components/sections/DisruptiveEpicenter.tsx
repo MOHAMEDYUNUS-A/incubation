@@ -171,11 +171,10 @@ export default function DisruptiveEpicenter() {
                       <button
                         key={p.id}
                         onClick={() => setSelectedPersona(p)}
-                        className={`p-3 rounded-2xl border text-xs font-bold flex flex-col items-center justify-center gap-2 transition-all duration-200 ${
-                          isSelected
-                            ? "bg-[#772b38] border-[#772b38] text-white shadow-md shadow-[#772b38]/30 scale-105"
-                            : "bg-white/60 backdrop-blur-md border-white/80 text-slate-700 hover:bg-white hover:border-slate-300 hover:shadow-2xs"
-                        }`}
+                        className={`p-3 rounded-2xl border text-xs font-bold flex flex-col items-center justify-center gap-2 transition-all duration-200 ${isSelected
+                          ? "bg-[#772b38] border-[#772b38] text-white shadow-md shadow-[#772b38]/30 scale-105"
+                          : "bg-white/60 backdrop-blur-md border-white/80 text-slate-700 hover:bg-white hover:border-slate-300 hover:shadow-2xs"
+                          }`}
                       >
                         <Icon className={`w-4 h-4 ${isSelected ? "text-white" : "text-[#0f2c59]"}`} />
                         <span className="truncate">{p.label}</span>

@@ -6,6 +6,7 @@ import Footer from "@/components/sections/Footer";
 import SmoothScroll from "@/components/animations/SmoothScroll";
 import FloatingAIButton from "@/components/ai/FloatingAIButton";
 import GsapScrollProvider from "@/components/animations/GsapScrollProvider";
+import { ScrollProgressBar } from "@/components/animations/LightAnimations";
 import { ContentProvider } from "@/context/ContentContext";
 import JsonLd from "@/components/seo/JsonLd";
 
@@ -183,6 +184,7 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
+        <ScrollProgressBar />
         <ContentProvider>
           <GsapScrollProvider>
             <SmoothScroll>

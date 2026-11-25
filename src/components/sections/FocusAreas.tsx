@@ -13,7 +13,14 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { RevealLeft, RevealRight, FadeUp } from "@/components/animations/LightAnimations";
+import {
+  RevealLeft,
+  RevealRight,
+  FadeUp,
+  StaggerContainer,
+  StaggerItem,
+  XYZCard,
+} from "@/components/animations/LightAnimations";
 
 interface FocusSector {
   id: string;
@@ -111,84 +118,88 @@ export default function FocusAreas() {
           </RevealRight>
         </div>
 
-        {/* 7 Image Cards with Minimal Content (User Request: Image needed + less content) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {SECTORS.map((sector, idx) => {
+        {/* 7 Image Cards with Minimal Content */}
+        <StaggerContainer stagger={0.07} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {SECTORS.map((sector) => {
             const Icon = sector.icon;
             return (
-              <FadeUp key={sector.id} delay={idx * 0.05}>
-                <div className="group h-full rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-xs hover:shadow-xl hover:border-blue-400 transition-all duration-300 flex flex-col justify-between">
-                  <div>
-                    {/* Visual Photo Header */}
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
-                      <img
-                        src={sector.image}
-                        alt={sector.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+              <StaggerItem key={sector.id}>
+                <XYZCard depth={8}>
+                  <div className="group h-full rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-xs hover:shadow-xl hover:border-blue-400 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                      {/* Visual Photo Header */}
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
+                        <img
+                          src={sector.image}
+                          alt={sector.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
 
-                      {/* Floating Icon Pill */}
-                      <div className="absolute top-2.5 left-2.5">
-                        <div className="w-8 h-8 rounded-lg bg-white/95 backdrop-blur-md text-[#0f2c59] flex items-center justify-center shadow-md">
-                          <Icon className="w-4 h-4 text-red-600" />
+                        {/* Floating Icon Pill */}
+                        <div className="absolute top-2.5 left-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-white/95 backdrop-blur-md text-[#0f2c59] flex items-center justify-center shadow-md">
+                            <Icon className="w-4 h-4 text-red-600" />
+                          </div>
+                        </div>
+
+                        {/* Track Number */}
+                        <div className="absolute top-2.5 right-2.5">
+                          <span className="px-2 py-0.5 rounded-md bg-slate-950/70 backdrop-blur-md text-white text-[10px] font-mono font-bold">
+                            {sector.number}
+                          </span>
                         </div>
                       </div>
 
-                      {/* Track Number */}
-                      <div className="absolute top-2.5 right-2.5">
-                        <span className="px-2 py-0.5 rounded-md bg-slate-950/70 backdrop-blur-md text-white text-[10px] font-mono font-bold">
-                          {sector.number}
-                        </span>
+                      {/* Minimal Content: Title Only */}
+                      <div className="p-4 pb-2">
+                        <h3 className="text-base font-bold text-slate-900 font-display group-hover:text-blue-700 transition-colors">
+                          {sector.title}
+                        </h3>
                       </div>
                     </div>
 
-                    {/* Minimal Content: Title Only */}
-                    <div className="p-4 pb-2">
-                      <h3 className="text-base font-bold text-slate-900 font-display group-hover:text-blue-700 transition-colors">
-                        {sector.title}
-                      </h3>
+                    {/* Minimal 1-Line Tag */}
+                    <div className="p-4 pt-0">
+                      <p className="text-[11px] font-medium text-slate-500 pt-2 border-t border-slate-100">
+                        {sector.tag}
+                      </p>
                     </div>
                   </div>
-
-                  {/* Minimal 1-Line Tag */}
-                  <div className="p-4 pt-0">
-                    <p className="text-[11px] font-medium text-slate-500 pt-2 border-t border-slate-100">
-                      {sector.tag}
-                    </p>
-                  </div>
-                </div>
-              </FadeUp>
+                </XYZCard>
+              </StaggerItem>
             );
           })}
 
           {/* 8th Tile: Pitch Your Innovation */}
-          <FadeUp delay={0.35}>
-            <div className="h-full rounded-2xl bg-gradient-to-br from-[#0f2c59] to-[#071324] text-white p-5 flex flex-col justify-between shadow-md border border-blue-900/60 group">
-              <div>
-                <span className="text-[10px] uppercase font-mono tracking-widest text-red-500 font-bold block mb-2">
-                  Track 08 · Open Call
-                </span>
-                <h3 className="text-base sm:text-lg font-bold font-display text-white mb-2">
-                  Building Another Deep-Tech Prototype?
-                </h3>
-                <p className="text-xs text-slate-300 leading-relaxed font-normal">
-                  MIF accepts interdisciplinary innovations spanning mechatronics, biomedical, and aerospace.
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-white/10 mt-4">
-                <Link href="/apply">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-red-500 hover:text-red-400 transition-colors">
-                    <span>Submit Innovation Pitch</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+          <StaggerItem>
+            <XYZCard depth={8}>
+              <div className="h-full rounded-2xl bg-gradient-to-br from-[#0f2c59] to-[#071324] text-white p-5 flex flex-col justify-between shadow-md border border-blue-900/60 group">
+                <div>
+                  <span className="text-[10px] uppercase font-mono tracking-widest text-red-500 font-bold block mb-2">
+                    Track 08 · Open Call
                   </span>
-                </Link>
+                  <h3 className="text-base sm:text-lg font-bold font-display text-white mb-2">
+                    Building Another Deep-Tech Prototype?
+                  </h3>
+                  <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                    MIF accepts interdisciplinary innovations spanning mechatronics, biomedical, and aerospace.
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-white/10 mt-4">
+                  <Link href="/apply">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-red-500 hover:text-red-400 transition-colors">
+                      <span>Submit Innovation Pitch</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
+                  </Link>
+                </div>
               </div>
-            </div>
-          </FadeUp>
-        </div>
+            </XYZCard>
+          </StaggerItem>
+        </StaggerContainer>
       </div>
     </section>
   );

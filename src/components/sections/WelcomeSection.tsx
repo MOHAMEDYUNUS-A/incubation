@@ -11,7 +11,14 @@ import {
   Handshake,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { RevealLeft, RevealRight, FadeUp } from "@/components/animations/LightAnimations";
+import {
+  RevealLeft,
+  RevealRight,
+  FadeUp,
+  StaggerContainer,
+  StaggerItem,
+  XYZCard,
+} from "@/components/animations/LightAnimations";
 
 const ACCREDITED_LOGOS = [
   {
@@ -128,52 +135,58 @@ export default function WelcomeSection() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Card 1: Incubate Technological Ideas */}
-            <FadeUp delay={0.1}>
-              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 shadow-xs hover:shadow-md hover:border-red-400 transition-all flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2.5 mb-3 text-[#0f2c59]">
-                    <Lightbulb className="w-5 h-5 text-red-600 shrink-0" />
-                    <h4 className="text-lg font-bold font-display">Incubate Technological Ideas</h4>
+            <StaggerItem>
+              <XYZCard depth={8}>
+                <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 shadow-xs hover:shadow-md hover:border-red-400 transition-all flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-2.5 mb-3 text-[#0f2c59]">
+                      <Lightbulb className="w-5 h-5 text-red-600 shrink-0" />
+                      <h4 className="text-lg font-bold font-display">Incubate Technological Ideas</h4>
+                    </div>
+                    <p className="text-sm text-slate-700 leading-relaxed font-normal">
+                      MASTeR Incubation Foundation is a dedicated facility to incubate technological ideas and engineering innovations, enabling early-stage start-ups to succeed in the competitive commercial marketplace.
+                    </p>
                   </div>
-                  <p className="text-sm text-slate-700 leading-relaxed font-normal">
-                    MASTeR Incubation Foundation is a dedicated facility to incubate technological ideas and engineering innovations, enabling early-stage start-ups to succeed in the competitive commercial marketplace.
-                  </p>
                 </div>
-              </div>
-            </FadeUp>
+              </XYZCard>
+            </StaggerItem>
 
             {/* Card 2: Research And Development */}
-            <FadeUp delay={0.2}>
-              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 shadow-xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2.5 mb-3 text-[#0f2c59]">
-                    <FlaskConical className="w-5 h-5 text-blue-600 shrink-0" />
-                    <h4 className="text-lg font-bold font-display">Research And Development</h4>
+            <StaggerItem>
+              <XYZCard depth={8}>
+                <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 shadow-xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-2.5 mb-3 text-[#0f2c59]">
+                      <FlaskConical className="w-5 h-5 text-blue-600 shrink-0" />
+                      <h4 className="text-lg font-bold font-display">Research And Development</h4>
+                    </div>
+                    <p className="text-sm text-slate-700 leading-relaxed font-normal">
+                      We bridge critical gaps across the innovation-entrepreneurship-investment ecosystem, ensuring full commercial and patent utilization of academic and departmental R&D breakthroughs.
+                    </p>
                   </div>
-                  <p className="text-sm text-slate-700 leading-relaxed font-normal">
-                    We bridge critical gaps across the innovation-entrepreneurship-investment ecosystem, ensuring full commercial and patent utilization of academic and departmental R&D breakthroughs.
-                  </p>
                 </div>
-              </div>
-            </FadeUp>
+              </XYZCard>
+            </StaggerItem>
 
             {/* Card 3: Guide And Support */}
-            <FadeUp delay={0.3}>
-              <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 shadow-xs hover:shadow-md hover:border-indigo-300 transition-all flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2.5 mb-3 text-[#0f2c59]">
-                    <Handshake className="w-5 h-5 text-indigo-600 shrink-0" />
-                    <h4 className="text-lg font-bold font-display">Guide And Support</h4>
+            <StaggerItem>
+              <XYZCard depth={8}>
+                <div className="h-full p-6 sm:p-7 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 shadow-xs hover:shadow-md hover:border-indigo-300 transition-all flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-2.5 mb-3 text-[#0f2c59]">
+                      <Handshake className="w-5 h-5 text-indigo-600 shrink-0" />
+                      <h4 className="text-lg font-bold font-display">Guide And Support</h4>
+                    </div>
+                    <p className="text-sm text-slate-700 leading-relaxed font-normal">
+                      To guide and support potent student and faculty entrepreneurs to avail non-dilutive seed funding (TANSEED, MSME, EDII-TN) for product realization, field validation, and marketing.
+                    </p>
                   </div>
-                  <p className="text-sm text-slate-700 leading-relaxed font-normal">
-                    To guide and support potent student and faculty entrepreneurs to avail non-dilutive seed funding (TANSEED, MSME, EDII-TN) for product realization, field validation, and marketing.
-                  </p>
                 </div>
-              </div>
-            </FadeUp>
-          </div>
+              </XYZCard>
+            </StaggerItem>
+          </StaggerContainer>
 
           {/* Clean Action CTAs */}
           <div className="pt-10 flex flex-wrap items-center justify-center gap-4">

@@ -1,29 +1,34 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function GsapScrollProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     // Register GSAP plugins safely
     gsap.registerPlugin(ScrollTrigger);
 
-    // Configure ScrollTrigger defaults
+    // Configure ScrollTrigger defaults for optimal 60fps performance
     ScrollTrigger.config({
       ignoreMobileResize: true,
-      autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+      autoRefreshEvents: "visibilitychange,DOMContentLoaded,load,resize",
     });
 
     const ctx = gsap.context(() => {
-      // 1. Lightweight Fade Up Animations
-      const fadeUpElements = document.querySelectorAll('[data-gsap="fade-up"]');
+      // 1. Lightweight Fade Up Animations (data-gsap="fade-up", data-scroll="fade-up", .scroll-fade-up)
+      const fadeUpElements = document.querySelectorAll(
+        '[data-gsap="fade-up"], [data-scroll="fade-up"], .scroll-fade-up'
+      );
       fadeUpElements.forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, y: 18 },
+          { opacity: 0, y: 22 },
           {
             opacity: 1,
             y: 0,
@@ -38,12 +43,14 @@ export default function GsapScrollProvider({ children }: { children: React.React
         );
       });
 
-      // 2. Lightweight Reveal Left Animations
-      const revealLeftElements = document.querySelectorAll('[data-gsap="reveal-left"]');
+      // 2. Lightweight Reveal Left Animations (data-gsap="reveal-left", data-scroll="reveal-left", .scroll-reveal-left)
+      const revealLeftElements = document.querySelectorAll(
+        '[data-gsap="reveal-left"], [data-scroll="reveal-left"], .scroll-reveal-left'
+      );
       revealLeftElements.forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, x: -20 },
+          { opacity: 0, x: -26 },
           {
             opacity: 1,
             x: 0,
@@ -58,12 +65,14 @@ export default function GsapScrollProvider({ children }: { children: React.React
         );
       });
 
-      // 3. Lightweight Reveal Right Animations
-      const revealRightElements = document.querySelectorAll('[data-gsap="reveal-right"]');
+      // 3. Lightweight Reveal Right Animations (data-gsap="reveal-right", data-scroll="reveal-right", .scroll-reveal-right)
+      const revealRightElements = document.querySelectorAll(
+        '[data-gsap="reveal-right"], [data-scroll="reveal-right"], .scroll-reveal-right'
+      );
       revealRightElements.forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, x: 20 },
+          { opacity: 0, x: 26 },
           {
             opacity: 1,
             x: 0,
@@ -78,12 +87,14 @@ export default function GsapScrollProvider({ children }: { children: React.React
         );
       });
 
-      // 4. Lightweight Zoom In Animations
-      const zoomElements = document.querySelectorAll('[data-gsap="zoom-in"]');
+      // 4. Lightweight Zoom In Animations (data-gsap="zoom-in", data-scroll="zoom-in", .scroll-zoom-in)
+      const zoomElements = document.querySelectorAll(
+        '[data-gsap="zoom-in"], [data-scroll="zoom-in"], .scroll-zoom-in'
+      );
       zoomElements.forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, scale: 0.96 },
+          { opacity: 0, scale: 0.94 },
           {
             opacity: 1,
             scale: 1,
@@ -98,24 +109,51 @@ export default function GsapScrollProvider({ children }: { children: React.React
         );
       });
 
-      // 5. Staggered Card Groups
-      const staggerGroups = document.querySelectorAll('[data-gsap-group="stagger"]');
+      // 5. Lightweight 3D Tilt In Animations (data-scroll="tilt-in", .scroll-tilt-in)
+      const tiltElements = document.querySelectorAll(
+        '[data-scroll="tilt-in"], .scroll-tilt-in'
+      );
+      tiltElements.forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 28, rotateX: 6 },
+          {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 90%",
+              once: true,
+            },
+          }
+        );
+      });
+
+      // 6. Staggered Card Groups
+      const staggerGroups = document.querySelectorAll(
+        '[data-gsap-group="stagger"], [data-scroll-group="stagger"], .scroll-stagger-group'
+      );
       staggerGroups.forEach((group) => {
-        const cards = group.querySelectorAll('[data-gsap-item="card"]');
+        const cards = group.querySelectorAll(
+          '[data-gsap-item="card"], [data-scroll-item="card"], .scroll-card'
+        );
         if (cards.length > 0) {
           gsap.fromTo(
             cards,
-            { opacity: 0, y: 30, scale: 0.95 },
+            { opacity: 0, y: 26, scale: 0.96 },
             {
               opacity: 1,
               y: 0,
               scale: 1,
-              duration: 0.7,
-              stagger: 0.1,
+              duration: 0.55,
+              stagger: 0.08,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: group,
-                start: "top 85%",
+                start: "top 88%",
                 once: true,
               },
             }
@@ -124,10 +162,13 @@ export default function GsapScrollProvider({ children }: { children: React.React
       });
     });
 
+    // Refresh triggers on layout changes
+    ScrollTrigger.refresh();
+
     return () => {
       ctx.revert();
     };
-  }, []);
+  }, [pathname]);
 
   return <>{children}</>;
 }

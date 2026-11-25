@@ -542,11 +542,10 @@ export default function ApplyPage() {
                       setActiveTrackTab(fa.categoryKey);
                       setValue("category", fa.categoryKey as any);
                     }}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                      activeTrackTab === fa.categoryKey
-                        ? "bg-[#772b38] text-white shadow-md border border-[#ff8097]/40 scale-105"
-                        : "bg-white/5 text-slate-300 hover:bg-white/15 border border-white/10"
-                    }`}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${activeTrackTab === fa.categoryKey
+                      ? "bg-[#772b38] text-white shadow-md border border-[#ff8097]/40 scale-105"
+                      : "bg-white/5 text-slate-300 hover:bg-white/15 border border-white/10"
+                      }`}
                   >
                     {fa.title}
                   </button>
@@ -581,21 +580,19 @@ export default function ApplyPage() {
                     <span className="text-xs font-bold text-slate-800">
                       Application Quality Score:
                     </span>
-                    <span className={`text-xs font-extrabold px-2 py-0.5 rounded-full ${
-                      applicationStrength >= 80
-                        ? "bg-emerald-100 text-emerald-800 border border-emerald-300"
-                        : applicationStrength >= 50
+                    <span className={`text-xs font-extrabold px-2 py-0.5 rounded-full ${applicationStrength >= 80
+                      ? "bg-emerald-100 text-emerald-800 border border-emerald-300"
+                      : applicationStrength >= 50
                         ? "bg-amber-100 text-amber-800 border border-amber-300"
                         : "bg-slate-200 text-slate-700"
-                    }`}>
+                      }`}>
                       {applicationStrength}% · {applicationStrength >= 80 ? "Investor Ready" : applicationStrength >= 50 ? "Good Progress" : "Initial Draft"}
                     </span>
                   </div>
                   <div className="w-48 sm:w-64 h-2 bg-slate-200 rounded-full overflow-hidden">
                     <div
-                      className={`h-full transition-all duration-500 rounded-full ${
-                        applicationStrength >= 80 ? "bg-emerald-500" : applicationStrength >= 50 ? "bg-amber-500" : "bg-[#772b38]"
-                      }`}
+                      className={`h-full transition-all duration-500 rounded-full ${applicationStrength >= 80 ? "bg-emerald-500" : applicationStrength >= 50 ? "bg-amber-500" : "bg-[#772b38]"
+                        }`}
                       style={{ width: `${applicationStrength}%` }}
                     />
                   </div>
@@ -637,13 +634,12 @@ export default function ApplyPage() {
                     onClick={() => {
                       if (item.s < step) setStep(item.s);
                     }}
-                    className={`text-center pb-2.5 border-b-2 transition-all cursor-pointer ${
-                      step === item.s
-                        ? "border-[#772b38] text-[#772b38] font-bold"
-                        : step > item.s
+                    className={`text-center pb-2.5 border-b-2 transition-all cursor-pointer ${step === item.s
+                      ? "border-[#772b38] text-[#772b38] font-bold"
+                      : step > item.s
                         ? "border-emerald-500 text-emerald-700 font-semibold"
                         : "border-slate-200 text-slate-400 font-normal cursor-not-allowed"
-                    }`}
+                      }`}
                   >
                     <span className="text-[10px] uppercase tracking-wider block">
                       Step 0{item.s}
