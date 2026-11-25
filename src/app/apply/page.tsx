@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -33,6 +34,14 @@ import {
   ChevronDown,
   Building2,
   Lock,
+  User,
+  Phone,
+  Layers,
+  FileText,
+  DollarSign,
+  Rocket,
+  Compass,
+  CheckCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -101,6 +110,57 @@ const TRACK_BENEFITS: Record<string, { grant: string; labs: string; mentor: stri
   },
 };
 
+// TRL Stages Data
+const TRL_STAGES = [
+  {
+    key: "IDEATION",
+    title: "Ideation",
+    trl: "TRL 1 – 2",
+    desc: "Problem discovery, customer interviews & napkin sketches",
+    badge: "Pre-Incubation",
+  },
+  {
+    key: "PROOF_OF_CONCEPT",
+    title: "Proof of Concept",
+    trl: "TRL 3",
+    desc: "Benchtop experiment & feasibility validation in college lab",
+    badge: "Validation",
+  },
+  {
+    key: "PROTOTYPE_MVP",
+    title: "Working Prototype / MVP",
+    trl: "TRL 4 – 5",
+    desc: "Functional hardware or software testable by early adopters",
+    badge: "Seed Ready",
+  },
+  {
+    key: "EARLY_TRACTION",
+    title: "Early Traction",
+    trl: "TRL 6 – 7",
+    desc: "Field-tested with customer letters of intent (LOI) & pilots",
+    badge: "TANSEED Target",
+  },
+  {
+    key: "SCALING",
+    title: "Commercial Scaling",
+    trl: "TRL 8 – 9",
+    desc: "Incorporated Pvt Ltd generating paying commercial revenue",
+    badge: "Market Scale",
+  },
+];
+
+// Common Prototyping Lab Options at MAMCET
+const LAB_EQUIPMENT_OPTIONS = [
+  "Rapid Additive 3D Printing & Slicing",
+  "Multi-Layer PCB Milling & Soldering Bay",
+  "LoRaWAN & IoT Telemetry Gateway",
+  "Embedded Systems & Microcontroller Bench",
+  "High-Performance AI / GPU Workstation",
+  "Mechanical CNC & Lathe Rapid Tooling",
+  "Solar Cell & Battery Testing Lab",
+  "Dedicated 24/7 Coworking Hotdesk",
+];
+
 // FAQ Items
 const APPLICATION_FAQS = [
   {
@@ -118,6 +178,10 @@ const APPLICATION_FAQS = [
   {
     q: "What physical facilities are provided at MAMCET campus?",
     a: "Selected ventures receive dedicated plug-and-play desks in our 4,000 sq.ft. facility, high-speed gigabit networking, 3D printing, PCB milling, electronic test instruments, 15-seater conference boardroom, and access to all 7 departmental testing laboratories.",
+  },
+  {
+    q: "Does MASTeR Incubation Foundation take equity from student startups?",
+    a: "No. Pre-incubation at MIF is 100% equity-free. Student creators and founders retain complete intellectual property and equity ownership of their inventions.",
   },
 ];
 
@@ -137,6 +201,7 @@ export default function ApplyPage() {
   const [statusLookupLoading, setStatusLookupLoading] = useState(false);
   const [statusLookupError, setStatusLookupError] = useState<string | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [selectedLabs, setSelectedLabs] = useState<string[]>([]);
 
   const {
     register,
@@ -149,75 +214,87 @@ export default function ApplyPage() {
   } = useForm<StartupApplicationFormValues>({
     resolver: zodResolver(startupApplicationSchema),
     defaultValues: {
-      collegeOrEntity: "MAMCET",
-      coFoundersCount: 1,
-      stage: "IDEATION",
       category: "ELECTRONICS_IOT_SMART",
+      stage: "PROOF_OF_CONCEPT",
+      coFoundersCount: 1,
+      collegeOrEntity: "MAMCET",
     },
+    mode: "onChange",
   });
 
   const formValues = watch();
 
-  // Feature: Auto-Save Draft to Local Storage
+  // Calculate Real-time Application Strength (0% to 100%)
+  const applicationStrength = useMemo(() => {
+    let score = 0;
+    if (formValues.founderName && formValues.founderName.length >= 2) score += 10;
+    if (formValues.founderEmail && formValues.founderEmail.includes("@")) score += 10;
+    if (formValues.founderPhone && formValues.founderPhone.length >= 10) score += 10;
+    if (formValues.collegeOrEntity && formValues.collegeOrEntity.length >= 3) score += 10;
+    if (formValues.startupName && formValues.startupName.length >= 2) score += 10;
+    if (formValues.category) score += 10;
+    if (formValues.stage) score += 10;
+    if (formValues.problemStatement && formValues.problemStatement.length >= 30) score += 10;
+    if (formValues.proposedSolution && formValues.proposedSolution.length >= 30) score += 10;
+    if (formValues.targetMarket && formValues.targetMarket.length >= 20) score += 10;
+    return Math.min(100, score);
+  }, [formValues]);
+
+  // Load Saved Draft on Mount
   useEffect(() => {
     try {
       const saved = localStorage.getItem("mif_incubation_draft");
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (parsed.data && !submittedData) {
-          reset(parsed.data);
-          setDraftSavedTime(parsed.time || "Recently");
+        reset(parsed.values);
+        if (parsed.values?.category) {
+          setActiveTrackTab(parsed.values.category);
+        }
+        if (parsed.savedAt) {
+          setDraftSavedTime(parsed.savedAt);
         }
       }
     } catch {
-      // LocalStorage access failsafe
+      // Ignore if localStorage unavailable
     }
-  }, [reset, submittedData]);
+  }, [reset]);
 
-  const handleSaveDraft = () => {
-    try {
-      const draftPayload = {
-        data: formValues,
-        time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-      };
-      localStorage.setItem("mif_incubation_draft", JSON.stringify(draftPayload));
-      setDraftSavedTime(draftPayload.time);
-    } catch {
-      // ignore storage error
-    }
-  };
+  // Auto-Save Draft to LocalStorage Debounced
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      try {
+        if (formValues.founderName || formValues.startupName || formValues.problemStatement) {
+          const nowStr = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+          localStorage.setItem(
+            "mif_incubation_draft",
+            JSON.stringify({ values: formValues, savedAt: nowStr })
+          );
+          setDraftSavedTime(nowStr);
+        }
+      } catch {
+        // ignore
+      }
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [formValues]);
 
   const handleClearDraft = () => {
     try {
       localStorage.removeItem("mif_incubation_draft");
-      setDraftSavedTime(null);
       reset({
-        collegeOrEntity: "MAMCET",
-        coFoundersCount: 1,
-        stage: "IDEATION",
         category: "ELECTRONICS_IOT_SMART",
+        stage: "PROOF_OF_CONCEPT",
+        coFoundersCount: 1,
+        collegeOrEntity: "MAMCET",
       });
+      setDraftSavedTime(null);
     } catch {
       // ignore
     }
   };
 
-  // Feature: Real-time Application Strength Score (0 - 100%)
-  const applicationStrength = useMemo(() => {
-    let score = 0;
-    if (formValues.founderName && formValues.founderName.length > 2) score += 15;
-    if (formValues.founderEmail && formValues.founderEmail.includes("@")) score += 10;
-    if (formValues.founderPhone && formValues.founderPhone.length >= 10) score += 10;
-    if (formValues.startupName && formValues.startupName.length > 2) score += 15;
-    if (formValues.category) score += 10;
-    if (formValues.problemStatement && formValues.problemStatement.length >= 30) score += 15;
-    if (formValues.proposedSolution && formValues.proposedSolution.length >= 30) score += 15;
-    if (formValues.targetMarket && formValues.targetMarket.length >= 20) score += 10;
-    if (formValues.pitchDeckUrl && formValues.pitchDeckUrl.length > 5) score += 5;
-    return Math.min(score, 100);
-  }, [formValues]);
-
-  // Feature: Quick Status Lookup
+  // Quick Status Lookup Handler
   const handleQuickStatusLookup = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!statusLookupQuery.trim()) return;
@@ -227,21 +304,20 @@ export default function ApplyPage() {
     setStatusLookupResult(null);
 
     try {
-      const isEmail = statusLookupQuery.includes("@");
-      const param = isEmail
-        ? `email=${encodeURIComponent(statusLookupQuery.trim())}`
-        : `id=${encodeURIComponent(statusLookupQuery.trim())}`;
-
-      const res = await fetch(`/api/applications?${param}`);
-      const json = await res.json();
-
-      if (!res.ok || !json.success) {
-        throw new Error(json.error || "No application record found for this identifier.");
+      const res = await fetch(
+        `/api/applications?search=${encodeURIComponent(statusLookupQuery.trim())}`
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Application not found.");
       }
-
-      setStatusLookupResult(json.data);
+      if (data.data && data.data.length > 0) {
+        setStatusLookupResult(data.data[0]);
+      } else {
+        setStatusLookupError("No application found matching that ID or email.");
+      }
     } catch (err: any) {
-      setStatusLookupError(err.message || "Failed to locate application.");
+      setStatusLookupError(err.message || "Failed to query status.");
     } finally {
       setStatusLookupLoading(false);
     }
@@ -264,14 +340,29 @@ export default function ApplyPage() {
 
     const valid = await trigger(fieldsToValidate);
     if (valid) {
-      handleSaveDraft();
       setStep((prev) => prev + 1);
       setErrorMsg(null);
+      // Smooth scroll back up to form top
+      const formEl = document.getElementById("incubation-form-card");
+      if (formEl) {
+        formEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   };
 
   const prevStep = () => {
     setStep((prev) => Math.max(1, prev - 1));
+  };
+
+  const toggleLabOption = (lab: string) => {
+    let updated: string[];
+    if (selectedLabs.includes(lab)) {
+      updated = selectedLabs.filter((l) => l !== lab);
+    } else {
+      updated = [...selectedLabs, lab];
+    }
+    setSelectedLabs(updated);
+    setValue("labRequirement", updated.join(", "));
   };
 
   const onSubmit = async (data: StartupApplicationFormValues) => {
@@ -313,7 +404,7 @@ export default function ApplyPage() {
       {/* =========================================================================
           CONTINUOUS RUNNING BACKGROUND IMAGERY (PROFESSIONAL MULTI-ROW MARQUEE REEL)
          ========================================================================= */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-25">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-20">
         <div className="space-y-6 sm:space-y-8 -rotate-1 scale-105 transform origin-center">
           {/* Row 1: Flowing Left-to-Right */}
           <div className="flex w-max gap-6 animate-marquee-ltr">
@@ -358,23 +449,6 @@ export default function ApplyPage() {
               </div>
             ))}
           </div>
-
-          {/* Row 3: Gentle Slow Flow */}
-          <div className="flex w-max gap-6 animate-marquee-ltr-slow hidden lg:flex">
-            {[...MARQUEE_ROW_1, ...MARQUEE_ROW_2].map((item, idx) => (
-              <div
-                key={`bg-r3-${idx}`}
-                className="relative w-80 aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shrink-0 bg-slate-900"
-              >
-                <img
-                  src={item.img}
-                  alt={item.label}
-                  className="w-full h-full object-cover filter brightness-85"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Ambient Dark-Blue & Burgundy Atmospheric Overlays */}
@@ -383,26 +457,26 @@ export default function ApplyPage() {
       </div>
 
       {/* =========================================================================
-          FOREGROUND CONTENT: HERO MASTHEAD, APPLICATION FORM & FEATURES
+          FOREGROUND CONTENT: HERO MASTHEAD, 2-COLUMN SPLIT PORTAL & FEATURES
          ========================================================================= */}
-      <div className="relative z-10 container max-w-5xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 container max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Masthead */}
         <FadeUp className="text-center max-w-3xl mx-auto mb-10 space-y-4">
           {/* Institutional Accreditation Pill */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md shadow-sm">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-xs font-bold text-white tracking-wide">
-              StartupTN Recognized Pre-Incubation Centre · MAMCET Campus, Siruganur
+              StartupTN Recognized Pre-Incubation Centre · Ministry of MSME Host Institution (HI)
             </span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white font-display tracking-tight leading-[1.1] [text-shadow:_0_2px_14px_rgba(0,0,0,0.9)]">
-            Apply for Incubation at{" "}
-            <span className="text-[#ff8097]">MIF</span>
+            Apply for Incubation & <br />
+            <span className="text-[#ff8097]">Seed Capital</span>
           </h1>
 
           <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal max-w-2xl mx-auto [text-shadow:_0_1px_6px_rgba(0,0,0,0.8)]">
-            Convert benchtop engineering prototypes and bold research into venture-funded enterprises with 4,000 sq.ft. of prototyping bays, TANSEED seed grants, and 1-on-1 industry mentorship.
+            Convert benchtop engineering prototypes and bold research into venture-funded enterprises with 4,000 sq.ft. of prototyping bays, TANSEED seed grants, and 1-on-1 industry mentorship at MAMCET.
           </p>
 
           {/* Quick Action Buttons */}
@@ -420,7 +494,7 @@ export default function ApplyPage() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/25 text-xs font-bold text-white transition-all shadow-sm hover:scale-[1.02] cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              <span>Review Screening Criteria</span>
+              <span>Review 4-Pillar Screening Rubric</span>
             </button>
           </div>
 
@@ -449,44 +523,37 @@ export default function ApplyPage() {
           /* =========================================================================
               SUBMISSION CONFIRMATION CARD
              ========================================================================= */
-          <div className="p-8 sm:p-12 rounded-3xl bg-white text-slate-900 border-2 border-emerald-500 shadow-2xl text-center space-y-6">
-            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
-              <CheckCircle2 className="w-8 h-8" />
+          <div className="max-w-2xl mx-auto p-8 sm:p-12 rounded-3xl bg-white text-slate-900 border border-slate-200/90 shadow-2xl text-center space-y-6 animate-in fade-in zoom-in-95 duration-300">
+            <div className="w-16 h-16 rounded-3xl bg-emerald-100 border border-emerald-300 text-emerald-700 flex items-center justify-center mx-auto shadow-md">
+              <CheckCircle2 className="w-9 h-9" />
             </div>
 
             <div className="space-y-2">
-              <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                Application Registered Successfully
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                Application Successfully Lodged
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 font-display">
-                Welcome to the MIF Screening Pipeline, {submittedData.founderName}!
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-display">
+                Welcome to the MIF Incubation Pipeline!
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 max-w-lg mx-auto leading-relaxed">
-                Your application for <strong>{submittedData.startupName}</strong> has been logged with Official Application ID:
+              <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                Your proposal has been logged under official tracking reference:
               </p>
-              <div className="inline-block font-mono text-base sm:text-lg font-bold text-blue-900 bg-blue-50 px-4 py-1.5 rounded-xl border border-blue-200 shadow-inner">
-                {submittedData.id}
+              <div className="inline-block px-4 py-2 rounded-xl bg-slate-100 border border-slate-200 text-sm font-mono font-bold text-slate-900 shadow-2xs">
+                ID: {submittedData.id || "APP-PENDING"}
               </div>
             </div>
 
-            {/* Email Confirmation Notice */}
-            <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm flex items-center justify-center gap-2 max-w-lg mx-auto font-medium">
-              <Mail className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>
-                An official receipt with tracking credentials has been sent to <strong>{submittedData.founderEmail}</strong>.
-              </span>
-            </div>
-
+            {/* Workflow steps */}
             <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-left text-xs text-slate-700 space-y-2.5 max-w-lg mx-auto">
               <div className="font-bold text-slate-900 uppercase text-[11px] flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-[#772b38]" />
                 <span>Next Steps in the Incubation Workflow:</span>
               </div>
               <p>
-                <strong>1. Technical Dossier Review:</strong> Incubation Manager Mr. M. Santhosh Kumar and the faculty advisory board will review technical viability within 5 working days.
+                <strong>1. Technical Dossier Review:</strong> Incubation Manager Mr. M. Santhosh Kumar and the faculty advisory board review technical viability within 5 working days.
               </p>
               <p>
-                <strong>2. Pitch Presentation:</strong> Shortlisted founders will receive an invitation to pitch at the MIF Conference Boardroom (or virtually via video).
+                <strong>2. Pitch Presentation:</strong> Shortlisted founders receive an invitation to pitch at the MIF Conference Boardroom (or virtually via video).
               </p>
               <p>
                 <strong>3. Cohort Induction:</strong> Approved ventures are assigned dedicated desks, maker lab workbenches, and TANSEED / MSME grant proposal clinics.
@@ -515,502 +582,841 @@ export default function ApplyPage() {
           </div>
         ) : (
           /* =========================================================================
-              CLEAN MULTI-STEP APPLICATION FORM WITH LIVE STRENGTH METER & FEATURES
+              PREMIER 2-COLUMN INSTITUTIONAL ADMISSIONS PORTAL
              ========================================================================= */
-          <div className="space-y-6">
-            {/* Top Interactive Feature: Track Benefits Inspector */}
-            <div className="p-4 sm:p-5 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-xl">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-                <div className="flex items-center gap-2">
-                  <Cpu className="w-4 h-4 text-[#ff8097]" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-white">
-                    Explore Support by Innovation Track
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* =========================================================================
+                LEFT SIDEBAR: COHORT OVERVIEW, SECTOR ADVISOR & LIVE STRENGTH CHECKLIST
+               ========================================================================= */}
+            <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-32">
+              {/* Feature 1: Interactive Sector Track Advisor */}
+              <div className="p-5 sm:p-6 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-xl space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Cpu className="w-4 h-4 text-[#ff8097]" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-white">
+                      Track Pathways & Grants
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                    Active Cohort
                   </span>
                 </div>
-                <span className="text-[11px] text-slate-300">
-                  Select your sector to view allocated funding & labs:
-                </span>
+
+                <p className="text-[11px] text-slate-300 leading-relaxed font-normal">
+                  Select your innovation track to preview assigned funding schemes, hardware testing bays, and lead research advisors:
+                </p>
+
+                {/* Track Selector Buttons */}
+                <div className="grid grid-cols-1 gap-1.5">
+                  {FOCUS_AREAS.map((fa) => {
+                    const isSelected = activeTrackTab === fa.categoryKey;
+                    return (
+                      <button
+                        key={fa.categoryKey}
+                        type="button"
+                        onClick={() => {
+                          setActiveTrackTab(fa.categoryKey);
+                          setValue("category", fa.categoryKey as any);
+                        }}
+                        className={`w-full p-2.5 rounded-xl text-left text-xs font-medium transition-all flex items-center justify-between cursor-pointer ${
+                          isSelected
+                            ? "bg-[#772b38] text-white shadow-md border border-[#ff8097]/50 font-bold"
+                            : "bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10"
+                        }`}
+                      >
+                        <span className="truncate pr-2">{fa.title}</span>
+                        {isSelected && <Check className="w-3.5 h-3.5 text-white shrink-0" />}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Active Track Highlight Box */}
+                {TRACK_BENEFITS[activeTrackTab] && (
+                  <div className="p-3.5 rounded-2xl bg-white/5 border border-white/15 space-y-2 text-xs">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-amber-300 block">
+                        Eligible Non-Dilutive Grant:
+                      </span>
+                      <span className="font-bold text-white text-xs">
+                        {TRACK_BENEFITS[activeTrackTab].grant}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-cyan-300 block">
+                        Dedicated Testing Facility:
+                      </span>
+                      <span className="text-slate-200 text-[11px]">
+                        {TRACK_BENEFITS[activeTrackTab].labs}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-[#ff8097] block">
+                        Lead Institutional Advisor:
+                      </span>
+                      <span className="text-slate-200 text-[11px]">
+                        {TRACK_BENEFITS[activeTrackTab].mentor}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
 
-              {/* Track Pills */}
-              <div className="flex flex-wrap gap-2 mb-3">
-                {FOCUS_AREAS.map((fa) => (
-                  <button
-                    key={fa.categoryKey}
-                    type="button"
-                    onClick={() => {
-                      setActiveTrackTab(fa.categoryKey);
-                      setValue("category", fa.categoryKey as any);
-                    }}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${activeTrackTab === fa.categoryKey
-                      ? "bg-[#772b38] text-white shadow-md border border-[#ff8097]/40 scale-105"
-                      : "bg-white/5 text-slate-300 hover:bg-white/15 border border-white/10"
-                      }`}
+              {/* Feature 2: Real-time Application Strength Checklist */}
+              <div className="p-5 sm:p-6 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-xl space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-amber-300" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-white">
+                      Readiness Score
+                    </span>
+                  </div>
+                  <span
+                    className={`text-xs font-extrabold px-2.5 py-0.5 rounded-full ${
+                      applicationStrength >= 80
+                        ? "bg-emerald-500/20 text-emerald-300 border border-emerald-400/40"
+                        : applicationStrength >= 50
+                        ? "bg-amber-500/20 text-amber-300 border border-amber-400/40"
+                        : "bg-white/10 text-slate-300"
+                    }`}
                   >
-                    {fa.title}
-                  </button>
-                ))}
-              </div>
+                    {applicationStrength}%
+                  </span>
+                </div>
 
-              {/* Active Track Benefits Box */}
-              {TRACK_BENEFITS[activeTrackTab] && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 border-t border-white/10 text-xs">
-                  <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                    <span className="text-[10px] uppercase font-bold text-amber-300 block">Eligible Grant Pipeline</span>
-                    <span className="font-semibold text-white">{TRACK_BENEFITS[activeTrackTab].grant}</span>
+                {/* Progress bar */}
+                <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+                  <div
+                    className={`h-full transition-all duration-500 rounded-full ${
+                      applicationStrength >= 80
+                        ? "bg-emerald-400"
+                        : applicationStrength >= 50
+                        ? "bg-amber-400"
+                        : "bg-[#ff8097]"
+                    }`}
+                    style={{ width: `${applicationStrength}%` }}
+                  />
+                </div>
+
+                {/* Checklist items */}
+                <div className="space-y-1.5 text-xs text-slate-300">
+                  <div className="flex items-center gap-2">
+                    {formValues.founderName && formValues.founderEmail && formValues.founderPhone ? (
+                      <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    ) : (
+                      <div className="w-3.5 h-3.5 rounded-full border border-white/30 shrink-0" />
+                    )}
+                    <span className={formValues.founderName ? "text-white font-medium" : ""}>
+                      Founder Credentials & Contact
+                    </span>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                    <span className="text-[10px] uppercase font-bold text-cyan-300 block">Dedicated Facilities</span>
-                    <span className="font-semibold text-white">{TRACK_BENEFITS[activeTrackTab].labs}</span>
+
+                  <div className="flex items-center gap-2">
+                    {formValues.startupName && formValues.category ? (
+                      <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    ) : (
+                      <div className="w-3.5 h-3.5 rounded-full border border-white/30 shrink-0" />
+                    )}
+                    <span className={formValues.startupName ? "text-white font-medium" : ""}>
+                      Venture Profile & Domain Track
+                    </span>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                    <span className="text-[10px] uppercase font-bold text-[#ff8097] block">Empaneled Advisor</span>
-                    <span className="font-semibold text-white">{TRACK_BENEFITS[activeTrackTab].mentor}</span>
+
+                  <div className="flex items-center gap-2">
+                    {formValues.problemStatement && formValues.problemStatement.length >= 30 ? (
+                      <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    ) : (
+                      <div className="w-3.5 h-3.5 rounded-full border border-white/30 shrink-0" />
+                    )}
+                    <span className={formValues.problemStatement ? "text-white font-medium" : ""}>
+                      Problem Friction Defined (&ge;30 chars)
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    {formValues.proposedSolution && formValues.proposedSolution.length >= 30 ? (
+                      <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    ) : (
+                      <div className="w-3.5 h-3.5 rounded-full border border-white/30 shrink-0" />
+                    )}
+                    <span className={formValues.proposedSolution ? "text-white font-medium" : ""}>
+                      Technical Architecture (&ge;30 chars)
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    {formValues.targetMarket && formValues.targetMarket.length >= 20 ? (
+                      <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    ) : (
+                      <div className="w-3.5 h-3.5 rounded-full border border-white/30 shrink-0" />
+                    )}
+                    <span className={formValues.targetMarket ? "text-white font-medium" : ""}>
+                      Target Market & Beneficiaries
+                    </span>
                   </div>
                 </div>
-              )}
+
+                <div className="pt-2 border-t border-white/10 text-[11px] text-slate-300">
+                  <span className="font-semibold text-white">Higher scores</span> receive expedited screening and direct board review.
+                </div>
+              </div>
+
+              {/* Feature 3: Institutional Assurances */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-xs text-slate-300 space-y-2">
+                <div className="flex items-center gap-2 text-white font-bold">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <span>Institutional Protections:</span>
+                </div>
+                <p className="leading-relaxed">
+                  • <strong>100% Equity-Free Pre-Incubation</strong> for student and faculty inventors.
+                </p>
+                <p className="leading-relaxed">
+                  • <strong>IP Non-Disclosure:</strong> Confidential proposal screening protects patent disclosures.
+                </p>
+                <p className="leading-relaxed">
+                  • <strong>Inquiries:</strong> Email <a href="mailto:incubation@mamcet.edu.in" className="text-[#ff8097] underline">incubation@mamcet.edu.in</a>.
+                </p>
+              </div>
             </div>
 
-            {/* Main Form Container Card */}
-            <div className="p-6 sm:p-10 rounded-3xl bg-white text-slate-900 border border-slate-200/90 shadow-2xl relative">
-              {/* Application Readiness Score Header Bar */}
-              <div className="mb-8 p-4 rounded-2xl bg-gradient-to-r from-slate-50 via-slate-100/80 to-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-slate-800">
-                      Application Quality Score:
-                    </span>
-                    <span className={`text-xs font-extrabold px-2 py-0.5 rounded-full ${applicationStrength >= 80
-                      ? "bg-emerald-100 text-emerald-800 border border-emerald-300"
-                      : applicationStrength >= 50
-                        ? "bg-amber-100 text-amber-800 border border-amber-300"
-                        : "bg-slate-200 text-slate-700"
-                      }`}>
-                      {applicationStrength}% · {applicationStrength >= 80 ? "Investor Ready" : applicationStrength >= 50 ? "Good Progress" : "Initial Draft"}
-                    </span>
+            {/* =========================================================================
+                RIGHT COLUMN: 4-STEP STREAMLINED APPLICATION FORM
+               ========================================================================= */}
+            <div className="lg:col-span-8 space-y-6">
+              <div
+                id="incubation-form-card"
+                className="p-6 sm:p-10 rounded-3xl bg-white text-slate-900 border border-slate-200/90 shadow-2xl relative scroll-mt-24"
+              >
+                {/* Header: Progress Stepper */}
+                <div className="mb-8">
+                  {/* Step indicators */}
+                  <div className="grid grid-cols-4 gap-2 mb-4">
+                    {[
+                      { s: 1, title: "Founder & Team", icon: User },
+                      { s: 2, title: "Venture Profile", icon: Rocket },
+                      { s: 3, title: "Tech & Market", icon: Cpu },
+                      { s: 4, title: "Labs & Submit", icon: Wrench },
+                    ].map((item) => {
+                      const isPassed = step > item.s;
+                      const isCurrent = step === item.s;
+                      const ItemIcon = item.icon;
+
+                      return (
+                        <div
+                          key={item.s}
+                          onClick={() => {
+                            if (item.s < step) setStep(item.s);
+                          }}
+                          className={`flex flex-col items-center text-center group transition-all ${
+                            item.s < step ? "cursor-pointer" : ""
+                          }`}
+                        >
+                          <div
+                            className={`w-10 h-10 rounded-2xl flex items-center justify-center text-xs font-bold transition-all mb-2 ${
+                              isCurrent
+                                ? "bg-[#772b38] text-white shadow-md shadow-[#772b38]/30 scale-105 ring-2 ring-[#772b38]/40"
+                                : isPassed
+                                ? "bg-emerald-100 text-emerald-800 border border-emerald-300"
+                                : "bg-slate-100 text-slate-400 border border-slate-200"
+                            }`}
+                          >
+                            {isPassed ? <Check className="w-5 h-5 text-emerald-700" /> : <ItemIcon className="w-4 h-4" />}
+                          </div>
+
+                          <span
+                            className={`text-[10px] font-bold uppercase tracking-wider block ${
+                              isCurrent ? "text-[#772b38]" : isPassed ? "text-emerald-700" : "text-slate-400"
+                            }`}
+                          >
+                            Step 0{item.s}
+                          </span>
+                          <span
+                            className={`text-xs truncate max-w-full hidden sm:inline ${
+                              isCurrent ? "text-slate-900 font-bold" : "text-slate-500 font-normal"
+                            }`}
+                          >
+                            {item.title}
+                          </span>
+                        </div>
+                      );
+                    })}
                   </div>
-                  <div className="w-48 sm:w-64 h-2 bg-slate-200 rounded-full overflow-hidden">
+
+                  {/* Horizontal progress bar connecting steps */}
+                  <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
                     <div
-                      className={`h-full transition-all duration-500 rounded-full ${applicationStrength >= 80 ? "bg-emerald-500" : applicationStrength >= 50 ? "bg-amber-500" : "bg-[#772b38]"
-                        }`}
-                      style={{ width: `${applicationStrength}%` }}
+                      className="h-full bg-[#772b38] transition-all duration-300 rounded-full"
+                      style={{ width: `${((step - 1) / 3) * 100}%` }}
                     />
                   </div>
                 </div>
 
-                {/* Draft auto-save status & action */}
-                <div className="flex items-center gap-2 text-xs">
-                  {draftSavedTime ? (
-                    <span className="text-emerald-700 flex items-center gap-1 font-medium">
-                      <Check className="w-3.5 h-3.5" />
-                      Draft saved ({draftSavedTime})
+                {/* Draft auto-save status bar */}
+                <div className="mb-6 pb-4 border-b border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>
+                      {draftSavedTime ? (
+                        <span className="text-emerald-700 font-medium">
+                          Auto-saved locally ({draftSavedTime})
+                        </span>
+                      ) : (
+                        "Auto-saves as you type"
+                      )}
                     </span>
-                  ) : (
-                    <span className="text-slate-400">Auto-saves as you type</span>
-                  )}
+                  </div>
+
                   {draftSavedTime && (
                     <button
                       type="button"
                       onClick={handleClearDraft}
-                      className="text-slate-400 hover:text-red-600 transition-colors underline font-medium"
-                      title="Clear saved draft from browser"
+                      className="text-slate-400 hover:text-rose-600 transition-colors text-xs font-medium cursor-pointer underline"
+                      title="Clear draft data"
                     >
-                      Reset
+                      Reset Draft
                     </button>
                   )}
                 </div>
-              </div>
 
-              {/* Step Navigation Tabs */}
-              <div className="grid grid-cols-4 gap-2 mb-8 pb-4 border-b border-slate-200">
-                {[
-                  { s: 1, title: "Founder & Team" },
-                  { s: 2, title: "Venture Profile" },
-                  { s: 3, title: "Tech & Market" },
-                  { s: 4, title: "Facilities & Submit" },
-                ].map((item) => (
-                  <div
-                    key={item.s}
-                    onClick={() => {
-                      if (item.s < step) setStep(item.s);
-                    }}
-                    className={`text-center pb-2.5 border-b-2 transition-all cursor-pointer ${step === item.s
-                      ? "border-[#772b38] text-[#772b38] font-bold"
-                      : step > item.s
-                        ? "border-emerald-500 text-emerald-700 font-semibold"
-                        : "border-slate-200 text-slate-400 font-normal cursor-not-allowed"
-                      }`}
-                  >
-                    <span className="text-[10px] uppercase tracking-wider block">
-                      Step 0{item.s}
-                    </span>
-                    <span className="text-xs truncate hidden sm:inline">{item.title}</span>
-                  </div>
-                ))}
-              </div>
-
-              {errorMsg && (
-                <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2 mb-6">
-                  <AlertCircle className="w-4 h-4 shrink-0" />
-                  <span>{errorMsg}</span>
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                {/* STEP 1: Founder & Team Info */}
-                {step === 1 && (
-                  <div className="space-y-4 animate-in fade-in duration-200">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-bold text-slate-900">
-                        Step 1: Founder & Innovator Details
-                      </h3>
-                      <span className="text-xs text-slate-500 font-medium">* Required fields</span>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-xs font-semibold text-slate-700 block mb-1">
-                          Primary Founder / Lead Innovator *
-                        </label>
-                        <Input
-                          {...register("founderName")}
-                          placeholder="e.g. Arun Kumar"
-                          className="h-11 rounded-xl text-xs"
-                        />
-                        {errors.founderName && (
-                          <span className="text-[11px] text-rose-600 mt-1 block">
-                            {errors.founderName.message}
-                          </span>
-                        )}
-                      </div>
-
-                      <div>
-                        <label className="text-xs font-semibold text-slate-700 block mb-1">
-                          Official Email Address *
-                        </label>
-                        <Input
-                          type="email"
-                          {...register("founderEmail")}
-                          placeholder="e.g. arun.ece@mamcet.edu.in"
-                          className="h-11 rounded-xl text-xs"
-                        />
-                        {errors.founderEmail && (
-                          <span className="text-[11px] text-rose-600 mt-1 block">
-                            {errors.founderEmail.message}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-xs font-semibold text-slate-700 block mb-1">
-                          Contact WhatsApp / Phone Number *
-                        </label>
-                        <Input
-                          {...register("founderPhone")}
-                          placeholder="+91 9842100000"
-                          className="h-11 rounded-xl text-xs"
-                        />
-                        {errors.founderPhone && (
-                          <span className="text-[11px] text-rose-600 mt-1 block">
-                            {errors.founderPhone.message}
-                          </span>
-                        )}
-                      </div>
-
-                      <div>
-                        <label className="text-xs font-semibold text-slate-700 block mb-1">
-                          Total Co-Founders / Core Team Size
-                        </label>
-                        <Input
-                          type="number"
-                          min={1}
-                          max={10}
-                          {...register("coFoundersCount")}
-                          className="h-11 rounded-xl text-xs"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-semibold text-slate-700 block mb-1">
-                        College / Department / Organization *
-                      </label>
-                      <Input
-                        {...register("collegeOrEntity")}
-                        placeholder="e.g. M.A.M. College of Engineering & Technology (ECE Dept)"
-                        className="h-11 rounded-xl text-xs"
-                      />
-                      {errors.collegeOrEntity && (
-                        <span className="text-[11px] text-rose-600 mt-1 block">
-                          {errors.collegeOrEntity.message}
-                        </span>
-                      )}
-                    </div>
+                {errorMsg && (
+                  <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2 mb-6">
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                    <span>{errorMsg}</span>
                   </div>
                 )}
 
-                {/* STEP 2: Venture Profile */}
-                {step === 2 && (
-                  <div className="space-y-4 animate-in fade-in duration-200">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-bold text-slate-900">
-                        Step 2: Startup & Technology Profile
-                      </h3>
-                      <span className="text-xs text-slate-500 font-medium">Domain Track & TRL</span>
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-semibold text-slate-700 block mb-1">
-                        Startup / Project Name *
-                      </label>
-                      <Input
-                        {...register("startupName")}
-                        placeholder="e.g. AgroSens Telemetry"
-                        className="h-11 rounded-xl text-xs"
-                      />
-                      {errors.startupName && (
-                        <span className="text-[11px] text-rose-600 mt-1 block">
-                          {errors.startupName.message}
-                        </span>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-semibold text-slate-700 block mb-1">
-                        Select MIF Focus Area / Track *
-                      </label>
-                      <select
-                        {...register("category")}
-                        className="w-full h-11 rounded-xl border border-slate-300 bg-white px-3 text-xs text-slate-900 shadow-xs focus:ring-2 focus:ring-[#772b38]"
-                      >
-                        {FOCUS_AREAS.map((fa) => (
-                          <option key={fa.categoryKey} value={fa.categoryKey}>
-                            {fa.title}
-                          </option>
-                        ))}
-                      </select>
-                      {errors.category && (
-                        <span className="text-[11px] text-rose-600 mt-1 block">
-                          {errors.category.message}
-                        </span>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-semibold text-slate-700 block mb-1">
-                        Current Technology Readiness Level (TRL) / Stage *
-                      </label>
-                      <select
-                        {...register("stage")}
-                        className="w-full h-11 rounded-xl border border-slate-300 bg-white px-3 text-xs text-slate-900 shadow-xs focus:ring-2 focus:ring-[#772b38]"
-                      >
-                        <option value="IDEATION">Ideation (Structured concept & napkin sketch)</option>
-                        <option value="PROOF_OF_CONCEPT">Proof of Concept (TRL-3 benchtop experiment)</option>
-                        <option value="PROTOTYPE_MVP">Prototype / MVP (TRL-4 to TRL-5 working model)</option>
-                        <option value="EARLY_TRACTION">Early Traction (Pilot client trials & LOIs signed)</option>
-                        <option value="SCALING">Scaling (Incorporated Private Limited with active revenue)</option>
-                      </select>
-                    </div>
-                  </div>
-                )}
-
-                {/* STEP 3: Problem & Solution */}
-                {step === 3 && (
-                  <div className="space-y-4 animate-in fade-in duration-200">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-bold text-slate-900">
-                        Step 3: Engineering Innovation & Problem Fit
-                      </h3>
-                      <button
-                        type="button"
-                        onClick={() => setShowCriteriaModal(true)}
-                        className="text-xs text-[#772b38] hover:underline font-bold flex items-center gap-1"
-                      >
-                        <Info className="w-3.5 h-3.5" />
-                        <span>View Review Rubric</span>
-                      </button>
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-semibold text-slate-700 block mb-1">
-                        Problem Statement * (Minimum 30 characters)
-                      </label>
-                      <Textarea
-                        {...register("problemStatement")}
-                        rows={3}
-                        placeholder="What friction, agricultural challenge, or industrial inefficiency are you solving?"
-                        className="rounded-xl text-xs"
-                      />
-                      {errors.problemStatement && (
-                        <span className="text-[11px] text-rose-600 mt-1 block">
-                          {errors.problemStatement.message}
-                        </span>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-semibold text-slate-700 block mb-1">
-                        Proposed Technical Solution & Architecture * (Minimum 30 characters)
-                      </label>
-                      <Textarea
-                        {...register("proposedSolution")}
-                        rows={3}
-                        placeholder="Describe your hardware architecture, sensor mesh, microcontroller, or ML algorithm..."
-                        className="rounded-xl text-xs"
-                      />
-                      {errors.proposedSolution && (
-                        <span className="text-[11px] text-rose-600 mt-1 block">
-                          {errors.proposedSolution.message}
-                        </span>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-semibold text-slate-700 block mb-1">
-                        Target Market & Beneficiaries * (Minimum 20 characters)
-                      </label>
-                      <Textarea
-                        {...register("targetMarket")}
-                        rows={2}
-                        placeholder="Who are your initial paying customers or industrial beneficiaries in Tamil Nadu?"
-                        className="rounded-xl text-xs"
-                      />
-                      {errors.targetMarket && (
-                        <span className="text-[11px] text-rose-600 mt-1 block">
-                          {errors.targetMarket.message}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {/* STEP 4: Facility Needs & Pitch Link */}
-                {step === 4 && (
-                  <div className="space-y-4 animate-in fade-in duration-200">
-                    <h3 className="text-lg font-bold text-slate-900">
-                      Step 4: Prototyping Bay Needs & Pitch Deck
-                    </h3>
-
-                    <div>
-                      <label className="text-xs font-semibold text-slate-700 block mb-1">
-                        Specific MAMCET Lab or Testing Facility Needed (Optional)
-                      </label>
-                      <Input
-                        {...register("labRequirement")}
-                        placeholder="e.g. 3D printer access, PCB soldering bay, spectrum analyzer"
-                        className="h-11 rounded-xl text-xs"
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-xs font-semibold text-slate-700 block mb-1">
-                          Seed Funding Target (Optional)
-                        </label>
-                        <Input
-                          {...register("fundingNeeded")}
-                          placeholder="e.g. ₹5,00,000 (TANSEED grant)"
-                          className="h-11 rounded-xl text-xs"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="text-xs font-semibold text-slate-700 block mb-1">
-                          Pitch Deck Google Drive / PDF Link (Optional)
-                        </label>
-                        <Input
-                          {...register("pitchDeckUrl")}
-                          placeholder="https://drive.google.com/file/d/..."
-                          className="h-11 rounded-xl text-xs"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-700 space-y-2">
-                      <div className="flex items-center gap-1.5 text-slate-900 font-bold">
-                        <ShieldCheck className="w-4 h-4 text-[#772b38]" />
-                        <span>Institutional Integrity & Intellectual Property Undertaking:</span>
-                      </div>
-                      <p className="text-slate-600 leading-relaxed font-normal">
-                        By submitting this application, you declare that the submission represents original technical ideation. MIF maintains a strict policy of non-disclosure and institutional guidance toward university and MSME patent protection prior to public commercialization.
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                {/* Form Navigation Buttons */}
-                <div className="flex items-center justify-between pt-6 border-t border-slate-200">
-                  {step > 1 ? (
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={prevStep}
-                      className="border-slate-300 text-slate-700 text-xs gap-1.5 h-11 px-5 rounded-xl cursor-pointer"
-                    >
-                      <ArrowLeft className="w-3.5 h-3.5" />
-                      <span>Back to Step 0{step - 1}</span>
-                    </Button>
-                  ) : (
-                    <div />
-                  )}
-
-                  {step < 4 ? (
-                    <Button
-                      type="button"
-                      onClick={nextStep}
-                      className="bg-[#772b38] hover:bg-[#5e212b] text-white font-bold text-xs gap-1.5 h-11 px-6 rounded-xl shadow-md transition-all hover:scale-[1.02] cursor-pointer"
-                    >
-                      <span>Continue to Step 0{step + 1}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Button>
-                  ) : (
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="bg-[#772b38] hover:bg-[#5e212b] text-white font-black text-xs sm:text-sm px-8 h-12 rounded-xl shadow-xl transition-all hover:scale-[1.02] cursor-pointer disabled:opacity-50"
-                    >
-                      {isSubmitting ? "Registering Application..." : "Submit Formal Application"}
-                    </Button>
-                  )}
-                </div>
-              </form>
-            </div>
-
-            {/* Application FAQ Accordion Section */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-xl space-y-4">
-              <div className="flex items-center gap-2">
-                <HelpCircle className="w-5 h-5 text-[#ff8097]" />
-                <h3 className="text-lg font-bold text-white font-display">
-                  Frequently Asked Questions About MIF Incubation
-                </h3>
-              </div>
-
-              <div className="space-y-3 pt-2">
-                {APPLICATION_FAQS.map((faq, fIdx) => {
-                  const isOpen = openFaqIndex === fIdx;
-                  return (
-                    <div
-                      key={fIdx}
-                      className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden transition-colors"
-                    >
-                      <button
-                        type="button"
-                        onClick={() => setOpenFaqIndex(isOpen ? null : fIdx)}
-                        className="w-full p-4 text-left flex items-center justify-between gap-4 text-xs sm:text-sm font-bold text-white cursor-pointer hover:text-rose-200 transition-colors"
-                      >
-                        <span>{faq.q}</span>
-                        <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${isOpen ? "rotate-180 text-white" : ""}`} />
-                      </button>
-                      {isOpen && (
-                        <div className="px-4 pb-4 text-xs text-slate-300 leading-relaxed font-normal border-t border-white/10 pt-3">
-                          {faq.a}
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  {/* =========================================================================
+                      STEP 1: FOUNDER & TEAM
+                     ========================================================================= */}
+                  {step === 1 && (
+                    <div className="space-y-4 animate-in fade-in duration-200">
+                      <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                        <div>
+                          <h3 className="text-lg font-bold text-slate-900 font-display">
+                            Step 1: Founder & Innovator Details
+                          </h3>
+                          <p className="text-xs text-slate-500">
+                            Primary contact details for proposal correspondence and interview invites.
+                          </p>
                         </div>
-                      )}
+                        <span className="text-xs text-slate-400 font-medium">* Required fields</span>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div>
+                          <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5 mb-1.5">
+                            <User className="w-3.5 h-3.5 text-[#772b38]" />
+                            <span>Primary Founder / Lead Innovator *</span>
+                          </label>
+                          <Input
+                            {...register("founderName")}
+                            placeholder="e.g. Arun Kumar"
+                            className="h-11 rounded-xl text-xs focus:ring-[#772b38]"
+                          />
+                          {errors.founderName && (
+                            <span className="text-[11px] text-rose-600 mt-1 block font-medium">
+                              {errors.founderName.message}
+                            </span>
+                          )}
+                        </div>
+
+                        <div>
+                          <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5 mb-1.5">
+                            <Mail className="w-3.5 h-3.5 text-[#772b38]" />
+                            <span>Official Email Address *</span>
+                          </label>
+                          <Input
+                            type="email"
+                            {...register("founderEmail")}
+                            placeholder="e.g. arun.innovator@mamcet.edu.in"
+                            className="h-11 rounded-xl text-xs focus:ring-[#772b38]"
+                          />
+                          {errors.founderEmail && (
+                            <span className="text-[11px] text-rose-600 mt-1 block font-medium">
+                              {errors.founderEmail.message}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5 mb-1.5">
+                            <Phone className="w-3.5 h-3.5 text-[#772b38]" />
+                            <span>Contact WhatsApp / Phone Number *</span>
+                          </label>
+                          <Input
+                            {...register("founderPhone")}
+                            placeholder="+91 98421 00000"
+                            className="h-11 rounded-xl text-xs focus:ring-[#772b38]"
+                          />
+                          {errors.founderPhone && (
+                            <span className="text-[11px] text-rose-600 mt-1 block font-medium">
+                              {errors.founderPhone.message}
+                            </span>
+                          )}
+                        </div>
+
+                        <div>
+                          <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                            Total Core Team Size
+                          </label>
+                          <div className="grid grid-cols-4 gap-2">
+                            {[1, 2, 3, 4].map((num) => (
+                              <button
+                                key={num}
+                                type="button"
+                                onClick={() => setValue("coFoundersCount", num)}
+                                className={`h-11 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
+                                  formValues.coFoundersCount === num
+                                    ? "bg-[#772b38] text-white border-[#772b38] shadow-xs"
+                                    : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                                }`}
+                              >
+                                {num === 1 ? "Solo" : `${num} Team`}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5 mb-1.5">
+                          <Building2 className="w-3.5 h-3.5 text-[#772b38]" />
+                          <span>College / Department / Organization *</span>
+                        </label>
+                        <Input
+                          {...register("collegeOrEntity")}
+                          placeholder="e.g. M.A.M. College of Engineering & Technology (Dept of ECE / Mechanical)"
+                          className="h-11 rounded-xl text-xs focus:ring-[#772b38]"
+                        />
+                        {errors.collegeOrEntity && (
+                          <span className="text-[11px] text-rose-600 mt-1 block font-medium">
+                            {errors.collegeOrEntity.message}
+                          </span>
+                        )}
+                        <p className="text-[11px] text-slate-500 mt-1">
+                          MIF welcomes students, faculty researchers, alumni, and regional engineering founders.
+                        </p>
+                      </div>
                     </div>
-                  );
-                })}
+                  )}
+
+                  {/* =========================================================================
+                      STEP 2: VENTURE PROFILE & TRL MATURITY
+                     ========================================================================= */}
+                  {step === 2 && (
+                    <div className="space-y-5 animate-in fade-in duration-200">
+                      <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                        <div>
+                          <h3 className="text-lg font-bold text-slate-900 font-display">
+                            Step 2: Startup & Technology Profile
+                          </h3>
+                          <p className="text-xs text-slate-500">
+                            Classify your domain track and current technology readiness maturity level.
+                          </p>
+                        </div>
+                        <span className="text-xs text-slate-400 font-medium">TRL Classification</span>
+                      </div>
+
+                      <div>
+                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5 mb-1.5">
+                          <Rocket className="w-3.5 h-3.5 text-[#772b38]" />
+                          <span>Startup / Project Working Title *</span>
+                        </label>
+                        <Input
+                          {...register("startupName")}
+                          placeholder="e.g. AgroSens Telemetry / NeuroRobotics Kit"
+                          className="h-11 rounded-xl text-xs focus:ring-[#772b38]"
+                        />
+                        {errors.startupName && (
+                          <span className="text-[11px] text-rose-600 mt-1 block font-medium">
+                            {errors.startupName.message}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Visual Sector Selection Grid */}
+                      <div>
+                        <label className="text-xs font-bold text-slate-700 block mb-2">
+                          Select MIF Focus Area / Track *
+                        </label>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {FOCUS_AREAS.map((fa) => {
+                            const isChosen = formValues.category === fa.categoryKey;
+                            return (
+                              <button
+                                key={fa.categoryKey}
+                                type="button"
+                                onClick={() => {
+                                  setValue("category", fa.categoryKey as any);
+                                  setActiveTrackTab(fa.categoryKey);
+                                }}
+                                className={`p-3 rounded-xl border text-left text-xs transition-all flex items-center justify-between cursor-pointer ${
+                                  isChosen
+                                    ? "bg-[#772b38]/10 border-[#772b38] text-[#772b38] font-bold shadow-2xs"
+                                    : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100"
+                                }`}
+                              >
+                                <span>{fa.title}</span>
+                                {isChosen && <Check className="w-4 h-4 text-[#772b38] shrink-0" />}
+                              </button>
+                            );
+                          })}
+                        </div>
+                        {errors.category && (
+                          <span className="text-[11px] text-rose-600 mt-1 block font-medium">
+                            {errors.category.message}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Visual TRL Maturity Selector */}
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <label className="text-xs font-bold text-slate-700 block">
+                            Technology Readiness Level (TRL) *
+                          </label>
+                          <span className="text-[11px] text-slate-400">Select where your prototype stands today</span>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-2">
+                          {TRL_STAGES.map((t) => {
+                            const isChosen = formValues.stage === t.key;
+                            return (
+                              <div
+                                key={t.key}
+                                onClick={() => setValue("stage", t.key as any)}
+                                className={`p-3 rounded-xl border transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${
+                                  isChosen
+                                    ? "bg-slate-900 text-white border-slate-900 shadow-sm"
+                                    : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100"
+                                }`}
+                              >
+                                <div>
+                                  <div className="flex items-center gap-2">
+                                    <span
+                                      className={`text-xs font-bold ${
+                                        isChosen ? "text-white" : "text-slate-900"
+                                      }`}
+                                    >
+                                      {t.title}
+                                    </span>
+                                    <span
+                                      className={`text-[10px] font-mono px-2 py-0.5 rounded-md font-bold ${
+                                        isChosen
+                                          ? "bg-white/20 text-white"
+                                          : "bg-slate-200 text-slate-700"
+                                      }`}
+                                    >
+                                      {t.trl}
+                                    </span>
+                                  </div>
+                                  <p
+                                    className={`text-[11px] mt-0.5 ${
+                                      isChosen ? "text-slate-300" : "text-slate-500"
+                                    }`}
+                                  >
+                                    {t.desc}
+                                  </p>
+                                </div>
+
+                                <span
+                                  className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md self-start sm:self-auto shrink-0 ${
+                                    isChosen
+                                      ? "bg-[#ff8097] text-slate-950 font-black"
+                                      : "bg-slate-200 text-slate-600"
+                                  }`}
+                                >
+                                  {t.badge}
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* =========================================================================
+                      STEP 3: PROBLEM STATEMENT & ENGINEERING ARCHITECTURE
+                     ========================================================================= */}
+                  {step === 3 && (
+                    <div className="space-y-5 animate-in fade-in duration-200">
+                      <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                        <div>
+                          <h3 className="text-lg font-bold text-slate-900 font-display">
+                            Step 3: Engineering Innovation & Problem Fit
+                          </h3>
+                          <p className="text-xs text-slate-500">
+                            Clear technical dossiers accelerate admission and grant allocation.
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setShowCriteriaModal(true)}
+                          className="text-xs text-[#772b38] hover:underline font-bold flex items-center gap-1 cursor-pointer"
+                        >
+                          <Info className="w-3.5 h-3.5" />
+                          <span>View Review Rubric</span>
+                        </button>
+                      </div>
+
+                      <div>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <label className="text-xs font-bold text-slate-700">
+                            Problem Statement * (Friction / Inefficiency / Unmet Need)
+                          </label>
+                          <span
+                            className={`text-[11px] font-mono font-bold ${
+                              (formValues.problemStatement?.length || 0) >= 30
+                                ? "text-emerald-700"
+                                : "text-slate-400"
+                            }`}
+                          >
+                            {formValues.problemStatement?.length || 0} / 30 chars min
+                          </span>
+                        </div>
+                        <Textarea
+                          {...register("problemStatement")}
+                          rows={3}
+                          placeholder="What specific agricultural, industrial, or healthcare friction are you solving? Who suffers from this problem?"
+                          className="rounded-xl text-xs focus:ring-[#772b38]"
+                        />
+                        {errors.problemStatement && (
+                          <span className="text-[11px] text-rose-600 mt-1 block font-medium">
+                            {errors.problemStatement.message}
+                          </span>
+                        )}
+                      </div>
+
+                      <div>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <label className="text-xs font-bold text-slate-700">
+                            Proposed Technical Solution & Architecture *
+                          </label>
+                          <span
+                            className={`text-[11px] font-mono font-bold ${
+                              (formValues.proposedSolution?.length || 0) >= 30
+                                ? "text-emerald-700"
+                                : "text-slate-400"
+                            }`}
+                          >
+                            {formValues.proposedSolution?.length || 0} / 30 chars min
+                          </span>
+                        </div>
+                        <Textarea
+                          {...register("proposedSolution")}
+                          rows={3}
+                          placeholder="Describe your working engineering concept: microcontroller, circuit sensors, ML algorithm, novel materials, or software stack..."
+                          className="rounded-xl text-xs focus:ring-[#772b38]"
+                        />
+                        {errors.proposedSolution && (
+                          <span className="text-[11px] text-rose-600 mt-1 block font-medium">
+                            {errors.proposedSolution.message}
+                          </span>
+                        )}
+                      </div>
+
+                      <div>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <label className="text-xs font-bold text-slate-700">
+                            Target Market & Commercial Beneficiaries *
+                          </label>
+                          <span
+                            className={`text-[11px] font-mono font-bold ${
+                              (formValues.targetMarket?.length || 0) >= 20
+                                ? "text-emerald-700"
+                                : "text-slate-400"
+                            }`}
+                          >
+                            {formValues.targetMarket?.length || 0} / 20 chars min
+                          </span>
+                        </div>
+                        <Textarea
+                          {...register("targetMarket")}
+                          rows={2}
+                          placeholder="Who are your initial target clients in Tamil Nadu or India? (e.g. MSME textile factories, local farmers, tier-2 hospitals)"
+                          className="rounded-xl text-xs focus:ring-[#772b38]"
+                        />
+                        {errors.targetMarket && (
+                          <span className="text-[11px] text-rose-600 mt-1 block font-medium">
+                            {errors.targetMarket.message}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* =========================================================================
+                      STEP 4: PROTOTYPING LAB NEEDS, SEED CAPITAL & SUBMIT
+                     ========================================================================= */}
+                  {step === 4 && (
+                    <div className="space-y-5 animate-in fade-in duration-200">
+                      <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                        <div>
+                          <h3 className="text-lg font-bold text-slate-900 font-display">
+                            Step 4: Prototyping Bay Needs & Pitch Deck
+                          </h3>
+                          <p className="text-xs text-slate-500">
+                            Specify lab equipment access and seed funding targets.
+                          </p>
+                        </div>
+                        <span className="text-xs text-slate-400 font-medium">Final Step</span>
+                      </div>
+
+                      {/* Equipment Checklist */}
+                      <div>
+                        <label className="text-xs font-bold text-slate-700 block mb-2">
+                          MAMCET Prototyping Facilities Required (Select all that apply)
+                        </label>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {LAB_EQUIPMENT_OPTIONS.map((lab) => {
+                            const isSelected = selectedLabs.includes(lab);
+                            return (
+                              <button
+                                key={lab}
+                                type="button"
+                                onClick={() => toggleLabOption(lab)}
+                                className={`p-2.5 rounded-xl border text-left text-xs transition-all flex items-center justify-between cursor-pointer ${
+                                  isSelected
+                                    ? "bg-[#772b38]/10 border-[#772b38] text-[#772b38] font-bold"
+                                    : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100"
+                                }`}
+                              >
+                                <span>{lab}</span>
+                                {isSelected ? (
+                                  <Check className="w-3.5 h-3.5 text-[#772b38] shrink-0" />
+                                ) : (
+                                  <div className="w-3.5 h-3.5 rounded border border-slate-300 shrink-0" />
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5 mb-1.5">
+                            <DollarSign className="w-3.5 h-3.5 text-[#772b38]" />
+                            <span>Seed Funding Target (Optional)</span>
+                          </label>
+                          <Input
+                            {...register("fundingNeeded")}
+                            placeholder="e.g. ₹10,00,000 (TANSEED grant)"
+                            className="h-11 rounded-xl text-xs focus:ring-[#772b38]"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5 mb-1.5">
+                            <FileText className="w-3.5 h-3.5 text-[#772b38]" />
+                            <span>Pitch Deck Google Drive Link (Optional)</span>
+                          </label>
+                          <Input
+                            {...register("pitchDeckUrl")}
+                            placeholder="https://drive.google.com/file/d/..."
+                            className="h-11 rounded-xl text-xs focus:ring-[#772b38]"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Legal Undertaking */}
+                      <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-700 space-y-2">
+                        <div className="flex items-center gap-2 text-slate-900 font-bold">
+                          <ShieldCheck className="w-4 h-4 text-[#772b38]" />
+                          <span>Institutional Integrity & Intellectual Property Undertaking:</span>
+                        </div>
+                        <p className="text-slate-600 leading-relaxed font-normal">
+                          By submitting this proposal, you confirm that this work represents original technical ideation. MIF operates under a strict Non-Disclosure Policy and provides direct guidance for Indian Patent Office (IPO) and MSME patent filing prior to any public disclosure.
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* =========================================================================
+                      FORM STEP NAVIGATION BUTTONS
+                     ========================================================================= */}
+                  <div className="flex items-center justify-between pt-6 border-t border-slate-100">
+                    {step > 1 ? (
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={prevStep}
+                        className="border-slate-300 text-slate-700 text-xs gap-1.5 h-11 px-5 rounded-xl cursor-pointer hover:bg-slate-50"
+                      >
+                        <ArrowLeft className="w-3.5 h-3.5" />
+                        <span>Back to Step 0{step - 1}</span>
+                      </Button>
+                    ) : (
+                      <div />
+                    )}
+
+                    {step < 4 ? (
+                      <Button
+                        type="button"
+                        onClick={nextStep}
+                        className="bg-[#772b38] hover:bg-[#5e212b] text-white font-bold text-xs gap-1.5 h-11 px-6 rounded-xl shadow-md transition-all hover:scale-[1.02] cursor-pointer"
+                      >
+                        <span>Continue to Step 0{step + 1}</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Button>
+                    ) : (
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="bg-[#772b38] hover:bg-[#5e212b] text-white font-black text-xs sm:text-sm px-8 h-12 rounded-xl shadow-xl transition-all hover:scale-[1.02] cursor-pointer disabled:opacity-50"
+                      >
+                        {isSubmitting ? "Registering Application..." : "Submit Formal Application"}
+                      </Button>
+                    )}
+                  </div>
+                </form>
+              </div>
+
+              {/* =========================================================================
+                  APPLICATION FAQ ACCORDION
+                 ========================================================================= */}
+              <div className="p-6 sm:p-8 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-xl space-y-4">
+                <div className="flex items-center gap-2">
+                  <HelpCircle className="w-5 h-5 text-[#ff8097]" />
+                  <h3 className="text-lg font-bold text-white font-display">
+                    Frequently Asked Questions About MIF Incubation
+                  </h3>
+                </div>
+
+                <div className="space-y-3 pt-2">
+                  {APPLICATION_FAQS.map((faq, fIdx) => {
+                    const isOpen = openFaqIndex === fIdx;
+                    return (
+                      <div
+                        key={fIdx}
+                        className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden transition-colors"
+                      >
+                        <button
+                          type="button"
+                          onClick={() => setOpenFaqIndex(isOpen ? null : fIdx)}
+                          className="w-full p-4 text-left flex items-center justify-between gap-4 text-xs sm:text-sm font-bold text-white cursor-pointer hover:text-rose-200 transition-colors"
+                        >
+                          <span>{faq.q}</span>
+                          <ChevronDown
+                            className={`w-4 h-4 text-slate-400 transition-transform ${
+                              isOpen ? "rotate-180 text-white" : ""
+                            }`}
+                          />
+                        </button>
+                        {isOpen && (
+                          <div className="px-4 pb-4 text-xs text-slate-300 leading-relaxed font-normal border-t border-white/10 pt-3">
+                            {faq.a}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
@@ -1029,7 +1435,7 @@ export default function ApplyPage() {
                 <h3 className="text-xl font-bold text-slate-900 mt-0.5">Track Incubation Status</h3>
                 <p className="text-xs text-slate-500">Enter your Application ID (e.g. app-101) or registered founder email.</p>
               </div>
-              <button onClick={() => setShowStatusModal(false)} className="text-slate-400 hover:text-slate-700 font-bold">✕</button>
+              <button onClick={() => setShowStatusModal(false)} className="text-slate-400 hover:text-slate-700 font-bold cursor-pointer">✕</button>
             </div>
 
             <form onSubmit={handleQuickStatusLookup} className="space-y-3">
@@ -1045,7 +1451,7 @@ export default function ApplyPage() {
                 <Button
                   type="submit"
                   disabled={statusLookupLoading}
-                  className="bg-[#772b38] hover:bg-[#5e212b] text-white text-xs font-bold px-5 h-11 rounded-xl"
+                  className="bg-[#772b38] hover:bg-[#5e212b] text-white text-xs font-bold px-5 h-11 rounded-xl cursor-pointer"
                 >
                   {statusLookupLoading ? "Checking..." : "Track"}
                 </Button>
@@ -1095,26 +1501,26 @@ export default function ApplyPage() {
                 <h3 className="text-xl font-bold text-slate-900 mt-0.5">What Makes a Winning Application?</h3>
                 <p className="text-xs text-slate-500">How the MAMCET & StartupTN Screening Committee reviews proposals.</p>
               </div>
-              <button onClick={() => setShowCriteriaModal(false)} className="text-slate-400 hover:text-slate-700 font-bold">✕</button>
+              <button onClick={() => setShowCriteriaModal(false)} className="text-slate-400 hover:text-slate-700 font-bold cursor-pointer">✕</button>
             </div>
 
             <div className="space-y-3 text-xs text-slate-700">
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span className="font-bold text-slate-900 block mb-0.5">1. Problem Friction (25%)</span>
                 <span>Clear evidence of real-world inefficiency or industrial pain points in Tamil Nadu or global markets.</span>
               </div>
 
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span className="font-bold text-slate-900 block mb-0.5">2. Technical Feasibility & TRL (30%)</span>
                 <span>Feasible hardware/software architecture, component roadmap, and readiness to build in MAMCET labs.</span>
               </div>
 
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span className="font-bold text-slate-900 block mb-0.5">3. Addressable Market (20%)</span>
                 <span>Defined target customer profile, willingness to pay, and regional/export scalability.</span>
               </div>
 
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                 <span className="font-bold text-slate-900 block mb-0.5">4. Founder & Team Capability (25%)</span>
                 <span>Technical execution ability, student grit, and multidisciplinary engineering collaboration.</span>
               </div>
@@ -1124,7 +1530,7 @@ export default function ApplyPage() {
               <Button
                 type="button"
                 onClick={() => setShowCriteriaModal(false)}
-                className="bg-[#772b38] hover:bg-[#5e212b] text-white text-xs font-bold px-6 h-10 rounded-xl"
+                className="bg-[#772b38] hover:bg-[#5e212b] text-white text-xs font-bold px-6 h-10 rounded-xl cursor-pointer"
               >
                 Understood, Return to Form
               </Button>
