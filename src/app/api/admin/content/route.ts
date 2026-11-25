@@ -34,6 +34,12 @@ function getStoredContent() {
     if (fs.existsSync(CONTENT_FILE_PATH)) {
       const fileData = fs.readFileSync(CONTENT_FILE_PATH, "utf-8");
       inMemoryStore = JSON.parse(fileData);
+      try {
+        const stat = fs.statSync(CONTENT_FILE_PATH);
+        inMemoryTimestamp = Math.round(stat.mtimeMs);
+      } catch (e) {
+        inMemoryTimestamp = Date.now();
+      }
       return inMemoryStore;
     }
   } catch (err) {

@@ -82,6 +82,8 @@ export default function AdminPage() {
   const handleResetToDefaults = async () => {
     if (confirm("Reset dynamic catalog to official baseline? This clears custom edits made in this browser.")) {
       try {
+        localStorage.removeItem("mif_site_content_v3");
+        localStorage.removeItem("mif_site_content_updated_at_v3");
         localStorage.removeItem("mif_site_content_v2");
         localStorage.removeItem("mif_site_content_updated_at_v2");
         window.location.reload();

@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, ContactFormValues } from "@/lib/validations/contactSchema";
 import { FOUNDATION_INFO } from "@/lib/db/mockData";
+import { useSiteContent } from "@/context/ContentContext";
 import {
   Mail,
   Phone,
@@ -143,6 +144,21 @@ const TRANSIT_MODES = [
 ];
 
 export default function ContactPage() {
+  const { content } = useSiteContent();
+  const contact = content?.contact || {};
+
+  const managerName = contact.managerName || FOUNDATION_INFO.manager.name;
+  const managerRole = contact.managerRole || FOUNDATION_INFO.manager.role;
+  const managerPhone = contact.managerPhone || contact.phone || FOUNDATION_INFO.manager.phone;
+  const managerEmail = contact.managerEmail || contact.email || FOUNDATION_INFO.manager.email;
+
+  const coordinatorName = contact.coordinatorName || FOUNDATION_INFO.coordinator.name;
+  const coordinatorRole = contact.coordinatorRole || FOUNDATION_INFO.coordinator.role;
+  const coordinatorPhone = contact.coordinatorPhone || FOUNDATION_INFO.coordinator.phone;
+  const coordinatorEmail = contact.coordinatorEmail || FOUNDATION_INFO.coordinator.email;
+
+  const address = contact.address || FOUNDATION_INFO.address;
+
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submittedData, setSubmittedData] = useState<{ email: string; name: string } | null>(null);
@@ -218,26 +234,26 @@ export default function ContactPage() {
                   Incubation Operations & Screening
                 </span>
                 <h4 className="text-lg font-bold text-slate-900 font-display">
-                  {FOUNDATION_INFO.manager.name}
+                  {managerName}
                 </h4>
                 <div className="text-xs text-slate-600 font-medium">
-                  {FOUNDATION_INFO.manager.role} · {FOUNDATION_INFO.name}
+                  {managerRole} · {FOUNDATION_INFO.name}
                 </div>
 
                 <div className="pt-3 border-t border-slate-100 space-y-2 text-xs">
                   <a
-                    href={`tel:${FOUNDATION_INFO.manager.phone}`}
+                    href={`tel:${managerPhone}`}
                     className="flex items-center gap-2.5 text-slate-700 hover:text-[#772b38] transition-colors"
                   >
                     <Phone className="w-4 h-4 text-[#772b38] shrink-0" />
-                    <span>{FOUNDATION_INFO.manager.phone}</span>
+                    <span>{managerPhone}</span>
                   </a>
                   <a
-                    href={`mailto:${FOUNDATION_INFO.manager.email}`}
+                    href={`mailto:${managerEmail}`}
                     className="flex items-center gap-2.5 text-slate-700 hover:text-blue-700 transition-colors"
                   >
                     <Mail className="w-4 h-4 text-blue-600 shrink-0" />
-                    <span>{FOUNDATION_INFO.manager.email}</span>
+                    <span>{managerEmail}</span>
                   </a>
                 </div>
               </div>
@@ -250,26 +266,26 @@ export default function ContactPage() {
                   Academic Coordination & Hardware Labs
                 </span>
                 <h4 className="text-lg font-bold text-slate-900 font-display">
-                  {FOUNDATION_INFO.coordinator.name}
+                  {coordinatorName}
                 </h4>
                 <div className="text-xs text-slate-600 font-medium">
-                  {FOUNDATION_INFO.coordinator.role} · {FOUNDATION_INFO.name}
+                  {coordinatorRole} · {FOUNDATION_INFO.name}
                 </div>
 
                 <div className="pt-3 border-t border-slate-100 space-y-2 text-xs">
                   <a
-                    href={`tel:${FOUNDATION_INFO.coordinator.phone}`}
+                    href={`tel:${coordinatorPhone}`}
                     className="flex items-center gap-2.5 text-slate-700 hover:text-[#772b38] transition-colors"
                   >
                     <Phone className="w-4 h-4 text-[#772b38] shrink-0" />
-                    <span>{FOUNDATION_INFO.coordinator.phone}</span>
+                    <span>{coordinatorPhone}</span>
                   </a>
                   <a
-                    href={`mailto:${FOUNDATION_INFO.coordinator.email}`}
+                    href={`mailto:${coordinatorEmail}`}
                     className="flex items-center gap-2.5 text-slate-700 hover:text-blue-700 transition-colors"
                   >
                     <Mail className="w-4 h-4 text-blue-600 shrink-0" />
-                    <span>{FOUNDATION_INFO.coordinator.email}</span>
+                    <span>{coordinatorEmail}</span>
                   </a>
                 </div>
               </div>
@@ -286,7 +302,7 @@ export default function ContactPage() {
                     </h4>
                     <p className="text-xs text-slate-600 leading-relaxed font-normal">
                       {FOUNDATION_INFO.institution} <br />
-                      {FOUNDATION_INFO.address}
+                      {address}
                     </p>
                   </div>
                 </div>

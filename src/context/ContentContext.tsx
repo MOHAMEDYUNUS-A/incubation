@@ -56,35 +56,13 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
       const res = await fetch("/api/admin/content");
       const json = await res.json();
       if (json.success && json.data) {
-        // Check if user has local client modifications in localStorage
-        let clientHasNewerData = false;
+        setContent(json.data);
         try {
-          const localTimeStr = typeof window !== "undefined" ? localStorage.getItem(STORAGE_TIME_KEY) : null;
-          const localDataStr = typeof window !== "undefined" ? localStorage.getItem(STORAGE_KEY) : null;
-          const serverTime = json.timestamp || 0;
-          if (localTimeStr && localDataStr) {
-            const localTime = parseInt(localTimeStr, 10);
-            if (localTime > 0 && localTime >= serverTime) {
-              clientHasNewerData = true;
-              const parsedLocal = JSON.parse(localDataStr);
-              // Preserve client state!
-              setContent((prev) => ({ ...prev, ...parsedLocal }));
-              // Synchronize client modifications to server in background
-              fetch("/api/admin/content", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ fullContent: parsedLocal, timestamp: localTime }),
-              }).catch(() => {});
-            }
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(json.data));
+          if (json.timestamp) {
+            localStorage.setItem(STORAGE_TIME_KEY, json.timestamp.toString());
           }
         } catch (e) {}
-
-        if (!clientHasNewerData) {
-          setContent(json.data);
-          try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(json.data));
-          } catch (e) {}
-        }
       }
     } catch (err) {
       console.warn("Failed to fetch dynamic content, using bundled fallback:", err);

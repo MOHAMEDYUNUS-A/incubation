@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeUp, RevealLeft, RevealRight, XYZCard } from "@/components/animations/LightAnimations";
+import { useSiteContent } from "@/context/ContentContext";
 
 interface LeaderProfile {
   name: string;
@@ -100,6 +101,25 @@ const TRUSTEE_PATRONS = [
 ];
 
 export default function LeadershipPage() {
+  const { content } = useSiteContent();
+
+  const operationsTeam = React.useMemo(() => {
+    const contact = content?.contact || {};
+    return [
+      {
+        ...OPERATIONS_TEAM[0],
+        phone: contact.managerPhone || contact.phone || OPERATIONS_TEAM[0].phone,
+        email: contact.managerEmail || contact.email || OPERATIONS_TEAM[0].email,
+        name: contact.managerName || OPERATIONS_TEAM[0].name,
+      },
+      {
+        ...OPERATIONS_TEAM[1],
+        phone: contact.coordinatorPhone || OPERATIONS_TEAM[1].phone,
+        email: contact.coordinatorEmail || OPERATIONS_TEAM[1].email,
+        name: contact.coordinatorName || OPERATIONS_TEAM[1].name,
+      },
+    ];
+  }, [content?.contact]);
   return (
     <div className="pt-20 sm:pt-24 bg-slate-50 min-h-screen">
       {/* =========================================================================
@@ -284,7 +304,7 @@ export default function LeadershipPage() {
           </FadeUp>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {OPERATIONS_TEAM.map((exec, idx) => (
+            {operationsTeam.map((exec, idx) => (
               <FadeUp key={idx} delay={0.1 * idx}>
                 <XYZCard depth={8}>
                   <div className="rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all duration-300 overflow-hidden flex flex-col justify-between group h-full">

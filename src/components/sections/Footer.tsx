@@ -4,11 +4,28 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FOUNDATION_INFO } from "@/lib/db/mockData";
+import { useSiteContent } from "@/context/ContentContext";
 import { MapPin, Mail, Phone, ExternalLink, ShieldCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   const pathname = usePathname();
+  const { content } = useSiteContent();
+
+  // Dynamically resolve contact information configured by Admin
+  const contact = content?.contact || {};
+  const managerName = contact.managerName || FOUNDATION_INFO.manager.name;
+  const managerRole = contact.managerRole || FOUNDATION_INFO.manager.role;
+  const managerPhone = contact.managerPhone || contact.phone || FOUNDATION_INFO.manager.phone;
+  const managerEmail = contact.managerEmail || contact.email || FOUNDATION_INFO.manager.email;
+
+  const coordinatorName = contact.coordinatorName || FOUNDATION_INFO.coordinator.name;
+  const coordinatorRole = contact.coordinatorRole || FOUNDATION_INFO.coordinator.role;
+  const coordinatorPhone = contact.coordinatorPhone || FOUNDATION_INFO.coordinator.phone;
+  const coordinatorEmail = contact.coordinatorEmail || FOUNDATION_INFO.coordinator.email;
+
+  const address = contact.address || FOUNDATION_INFO.address;
+  const website = contact.socialLinks?.website || FOUNDATION_INFO.website;
 
   // Admin portal has its own dedicated administrative layout and sidebar
   if (pathname?.startsWith("/admin")) {
@@ -177,40 +194,40 @@ export default function Footer() {
             </h4>
             <div className="space-y-3 text-xs">
               <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#772b38]/70 transition-colors">
-                <div className="font-bold text-white text-sm">{FOUNDATION_INFO.manager.name}</div>
-                <div className="text-[11px] text-[#ff8097] font-semibold">{FOUNDATION_INFO.manager.role}</div>
+                <div className="font-bold text-white text-sm">{managerName}</div>
+                <div className="text-[11px] text-[#ff8097] font-semibold">{managerRole}</div>
                 <a
-                  href={`tel:${FOUNDATION_INFO.manager.phone}`}
+                  href={`tel:${managerPhone}`}
                   className="text-[11px] text-slate-300 hover:text-white mt-1.5 flex items-center gap-1.5 transition-colors"
                 >
                   <Phone className="w-3 h-3 text-emerald-400 shrink-0" />
-                  <span>{FOUNDATION_INFO.manager.phone}</span>
+                  <span>{managerPhone}</span>
                 </a>
                 <a
-                  href={`mailto:${FOUNDATION_INFO.manager.email}`}
+                  href={`mailto:${managerEmail}`}
                   className="text-[11px] text-slate-300 hover:text-white truncate flex items-center gap-1.5 mt-0.5 transition-colors"
                 >
                   <Mail className="w-3 h-3 text-blue-400 shrink-0" />
-                  <span className="truncate">{FOUNDATION_INFO.manager.email}</span>
+                  <span className="truncate">{managerEmail}</span>
                 </a>
               </div>
 
               <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#772b38]/70 transition-colors">
-                <div className="font-bold text-white text-sm">{FOUNDATION_INFO.coordinator.name}</div>
-                <div className="text-[11px] text-[#ff8097] font-semibold">{FOUNDATION_INFO.coordinator.role}</div>
+                <div className="font-bold text-white text-sm">{coordinatorName}</div>
+                <div className="text-[11px] text-[#ff8097] font-semibold">{coordinatorRole}</div>
                 <a
-                  href={`tel:${FOUNDATION_INFO.coordinator.phone}`}
+                  href={`tel:${coordinatorPhone}`}
                   className="text-[11px] text-slate-300 hover:text-white mt-1.5 flex items-center gap-1.5 transition-colors"
                 >
                   <Phone className="w-3 h-3 text-emerald-400 shrink-0" />
-                  <span>{FOUNDATION_INFO.coordinator.phone}</span>
+                  <span>{coordinatorPhone}</span>
                 </a>
                 <a
-                  href={`mailto:${FOUNDATION_INFO.coordinator.email}`}
+                  href={`mailto:${coordinatorEmail}`}
                   className="text-[11px] text-slate-300 hover:text-white truncate flex items-center gap-1.5 mt-0.5 transition-colors"
                 >
                   <Mail className="w-3 h-3 text-blue-400 shrink-0" />
-                  <span className="truncate">{FOUNDATION_INFO.coordinator.email}</span>
+                  <span className="truncate">{coordinatorEmail}</span>
                 </a>
               </div>
             </div>
@@ -230,7 +247,7 @@ export default function Footer() {
             >
               <MapPin className="w-4 h-4 text-red-400 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
               <div>
-                <span>{FOUNDATION_INFO.address}</span>
+                <span>{address}</span>
                 <span className="text-red-400 font-bold block mt-1 flex items-center gap-1">
                   View on Google Maps <ExternalLink className="w-3 h-3" />
                 </span>

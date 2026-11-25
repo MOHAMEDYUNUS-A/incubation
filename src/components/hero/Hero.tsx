@@ -59,7 +59,27 @@ export default function Hero({ onOpenAI }: { onOpenAI?: () => void }) {
     enableFounderDashboard: false,
     enablePassportVerification: false,
   };
-  const slides: HeroSlide[] = DEFAULT_SLIDES;
+
+  // Dynamically resolve slides from admin-customized hero content or fallback to default slides
+  const slides: HeroSlide[] = React.useMemo(() => {
+    const hero = content?.hero;
+    if (!hero) return DEFAULT_SLIDES;
+
+    const images = Array.isArray(hero.images) && hero.images.length > 0 ? hero.images : DEFAULT_SLIDES.map((s) => s.image);
+    const rotating = Array.isArray(hero.rotatingTexts) && hero.rotatingTexts.length > 0 ? hero.rotatingTexts : DEFAULT_SLIDES.map((s) => s.rotatingFocus);
+    const narrative = hero.narrative || DEFAULT_SLIDES[0].narrative;
+
+    const count = Math.max(images.length, rotating.length);
+    const result: HeroSlide[] = [];
+    for (let i = 0; i < count; i++) {
+      result.push({
+        image: images[i % images.length] || DEFAULT_SLIDES[i % DEFAULT_SLIDES.length].image,
+        rotatingFocus: rotating[i % rotating.length] || DEFAULT_SLIDES[i % DEFAULT_SLIDES.length].rotatingFocus,
+        narrative: hero.narrative || DEFAULT_SLIDES[i % DEFAULT_SLIDES.length]?.narrative || narrative,
+      });
+    }
+    return result.length > 0 ? result : DEFAULT_SLIDES;
+  }, [content?.hero]);
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
