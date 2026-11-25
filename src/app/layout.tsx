@@ -182,12 +182,12 @@ export default function RootLayout({
       <head>
         <JsonLd />
       </head>
-      <body className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-blue-100 selection:text-blue-900">
+      <body className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
         <ContentProvider>
           <GsapScrollProvider>
             <SmoothScroll>
               <Navbar />
-              <main className="flex-1">{children}</main>
+              <main className="flex-1 w-full overflow-x-hidden">{children}</main>
               <Footer />
               <FloatingAIButton />
             </SmoothScroll>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { MENTORS_LIST, MentorProfileItem } from "@/lib/db/mockData";
 import {
@@ -39,9 +39,47 @@ const CATEGORIES = [
 export default function MentorsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Domains");
+  const [mentorsList, setMentorsList] = useState<MentorProfileItem[]>(MENTORS_LIST);
+
+  // Fetch dynamically added mentors from Admin Portal API
+  useEffect(() => {
+    async function loadDynamicMentors() {
+      try {
+        const res = await fetch("/api/ecosystem/mentors");
+        const json = await res.json();
+        if (json.success && Array.isArray(json.data?.mentors) && json.data.mentors.length > 0) {
+          const dynamicMapped: MentorProfileItem[] = json.data.mentors.map((m: any) => ({
+            id: m.id,
+            name: m.name,
+            role: m.designation,
+            organization: m.organization,
+            category: m.areasOfExpertise?.[0] || "Incubation & Grants",
+            expertise: Array.isArray(m.areasOfExpertise) ? m.areasOfExpertise : [],
+            bio: m.bio || "Empaneled mentor at MASTeR Incubation Foundation.",
+            linkedIn: m.linkedInUrl || "https://in.linkedin.com/in/master-incubation-foundation-02301b446",
+            image: m.avatarUrl || "/logos/official-mif-logo.png",
+          }));
+
+          const seen = new Set<string>();
+          const combined = [...dynamicMapped, ...MENTORS_LIST].filter((item) => {
+            const key = item.name.toLowerCase().trim();
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+          });
+
+          setMentorsList(combined);
+        }
+      } catch (err) {
+        console.error("Failed to load mentors:", err);
+      }
+    }
+
+    loadDynamicMentors();
+  }, []);
 
   const filteredMentors = useMemo(() => {
-    return MENTORS_LIST.filter((mentor) => {
+    return mentorsList.filter((mentor) => {
       const matchesSearch =
         searchTerm === "" ||
         mentor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -57,7 +95,7 @@ export default function MentorsPage() {
 
       return matchesSearch && matchesCategory;
     });
-  }, [searchTerm, selectedCategory]);
+  }, [mentorsList, searchTerm, selectedCategory]);
 
   return (
     <div className="pt-24 pb-20 min-h-screen bg-slate-50 text-slate-800">
@@ -204,6 +242,9 @@ export default function MentorsPage() {
                                 src={mentor.image}
                                 alt={mentor.name}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                onError={(e) => {
+                                  (e.target as HTMLImageElement).src = "/logos/official-mif-logo.png";
+                                }}
                               />
                             </div>
                             <div className="flex flex-col items-end gap-1.5">

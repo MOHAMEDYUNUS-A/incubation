@@ -1,25 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FOUNDATION_INFO } from "@/lib/db/mockData";
-import { MapPin, CheckCircle2, Mail, Phone, ExternalLink, ShieldCheck, ArrowRight } from "lucide-react";
+import { MapPin, Mail, Phone, ExternalLink, ShieldCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 export default function Footer() {
   const pathname = usePathname();
-
-  const [newsEmail, setNewsEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newsEmail) {
-      setSubscribed(true);
-    }
-  };
 
   // Admin portal has its own dedicated administrative layout and sidebar
   if (pathname?.startsWith("/admin")) {
@@ -118,6 +107,17 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/mentors" className="text-[#ff8097] hover:text-white font-semibold transition-colors flex items-center gap-1">
+                  <span>Our Mentors</span>
+                  <ArrowRight className="w-2.5 h-2.5" />
+                </Link>
+              </li>
+              <li>
+                <Link href="/leadership" className="hover:text-rose-300 transition-colors">
+                  Leadership Council
+                </Link>
+              </li>
+              <li>
                 <Link href="/impact" className="hover:text-rose-300 transition-colors">
                   Ecosystem Impact
                 </Link>
@@ -167,20 +167,10 @@ export default function Footer() {
                   Events & Bootcamps
                 </Link>
               </li>
-              <li>
-                <Link href="/join-us" className="hover:text-rose-300 transition-colors">
-                  Join Us (Stakeholders)
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-rose-300 transition-colors">
-                  Contact Office
-                </Link>
-              </li>
             </ul>
           </div>
 
-          {/* Col 3: Incubation Leadership (2.5 cols) */}
+          {/* Col 3: Incubation Leadership (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">
               Incubation Leadership
@@ -226,7 +216,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 4: Campus Location & Grant Alerts (3 cols) */}
+          {/* Col 4: Campus Location & Mentors CTA (3 cols) */}
           <div className="lg:col-span-3 space-y-4">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">
               Campus Location
@@ -247,35 +237,22 @@ export default function Footer() {
               </div>
             </a>
 
-            <div className="pt-2">
-              <h5 className="text-[11px] font-bold text-white uppercase tracking-wider mb-2">
-                Seed Grants & Cohort Alerts
+            <div className="pt-2 space-y-2.5">
+              <h5 className="text-[11px] font-bold text-white uppercase tracking-wider">
+                Our Mentors & Advisory
               </h5>
-              {!subscribed ? (
-                <form onSubmit={handleSubscribe} className="space-y-2">
-                  <Input
-                    type="email"
-                    required
-                    value={newsEmail}
-                    onChange={(e) => setNewsEmail(e.target.value)}
-                    placeholder="Enter email for grant alerts"
-                    className="h-10 text-xs bg-white/10 border-white/20 text-white placeholder:text-slate-400 rounded-xl"
-                  />
-                  <Button
-                    type="submit"
-                    size="sm"
-                    className="w-full bg-[#772b38] hover:bg-[#5e212b] text-white text-xs h-10 font-bold rounded-xl shadow-md gap-1.5"
-                  >
-                    <span>Subscribe for TANSEED Alerts</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Button>
-                </form>
-              ) : (
-                <div className="p-3 rounded-xl bg-emerald-900/40 border border-emerald-500/50 text-emerald-300 text-xs flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Subscribed! You will receive new grant and bootcamp notifications.</span>
-                </div>
-              )}
+              <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                Access empaneled industry leaders, patent attorneys, and deep-tech advisors at MAMCET campus.
+              </p>
+              <Link href="/mentors" className="block w-full pt-1">
+                <Button
+                  size="sm"
+                  className="w-full bg-[#772b38] hover:bg-[#5e212b] text-white text-xs h-11 font-bold rounded-xl shadow-md gap-1.5 transition-all hover:scale-[1.02] cursor-pointer ring-1 ring-white/15"
+                >
+                  <span>Explore Our Mentors</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

@@ -31,6 +31,8 @@ import {
   X,
   FileText,
   Video,
+  UserPlus,
+  Trash2,
 } from "lucide-react";
 import {
   StartupPassport,
@@ -81,6 +83,17 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
   const [sessionFeedback, setSessionFeedback] = useState("");
   const [sessionActionItems, setSessionActionItems] = useState("");
   const [loggingSession, setLoggingSession] = useState(false);
+
+  // Add Mentor Modal State
+  const [mentorModalOpen, setMentorModalOpen] = useState(false);
+  const [newMentorName, setNewMentorName] = useState("");
+  const [newMentorDesignation, setNewMentorDesignation] = useState("");
+  const [newMentorOrg, setNewMentorOrg] = useState("MASTeR Incubation Foundation");
+  const [newMentorExpertise, setNewMentorExpertise] = useState("");
+  const [newMentorBio, setNewMentorBio] = useState("");
+  const [newMentorAvatar, setNewMentorAvatar] = useState("");
+  const [newMentorLinkedIn, setNewMentorLinkedIn] = useState("");
+  const [creatingMentor, setCreatingMentor] = useState(false);
 
   // Stories & AI Assistant state
   const [stories, setStories] = useState<SuccessStory[]>([]);
@@ -280,6 +293,71 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
       showToast("Failed to log session.");
     } finally {
       setLoggingSession(false);
+    }
+  };
+
+  const handleCreateMentor = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newMentorName || !newMentorDesignation) return;
+    setCreatingMentor(true);
+    try {
+      const res = await fetch("/api/ecosystem/mentors", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "create_mentor",
+          name: newMentorName,
+          designation: newMentorDesignation,
+          organization: newMentorOrg || "MASTeR Incubation Foundation",
+          areasOfExpertise: newMentorExpertise.split(",").map((s) => s.trim()).filter(Boolean),
+          bio: newMentorBio || "Empaneled Mentor at MASTeR Incubation Foundation.",
+          avatarUrl: newMentorAvatar || "/logos/official-mif-logo.png",
+          linkedInUrl: newMentorLinkedIn || undefined,
+          addedBy: "Admin Portal",
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        showToast("New mentor empaneled successfully!");
+        setMentorModalOpen(false);
+        setNewMentorName("");
+        setNewMentorDesignation("");
+        setNewMentorOrg("MASTeR Incubation Foundation");
+        setNewMentorExpertise("");
+        setNewMentorBio("");
+        setNewMentorAvatar("");
+        setNewMentorLinkedIn("");
+        fetchMentors();
+      } else {
+        showToast(data.error || "Failed to add mentor.");
+      }
+    } catch (e) {
+      showToast("Error adding mentor.");
+    } finally {
+      setCreatingMentor(false);
+    }
+  };
+
+  const handleDeleteMentor = async (mentorId: string) => {
+    if (!confirm("Are you sure you want to remove this mentor?")) return;
+    try {
+      const res = await fetch("/api/ecosystem/mentors", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "delete_mentor",
+          mentorId,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        showToast("Mentor removed successfully.");
+        fetchMentors();
+      } else {
+        showToast(data.error || "Failed to remove mentor.");
+      }
+    } catch (e) {
+      showToast("Error removing mentor.");
     }
   };
 
@@ -763,6 +841,13 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
 
           <div className="flex items-center gap-2">
             <button
+              onClick={() => setMentorModalOpen(true)}
+              className="px-4 py-2.5 rounded-xl bg-[#772b38] hover:bg-[#5e212b] text-white font-bold text-xs flex items-center gap-1.5 transition shadow-sm"
+            >
+              <UserPlus className="w-4 h-4" />
+              Add New Mentor
+            </button>
+            <button
               onClick={() => setSessionModalOpen(true)}
               className="px-4 py-2.5 rounded-xl bg-blue-950 hover:bg-blue-900 text-white font-bold text-xs flex items-center gap-1.5 transition shadow-sm"
             >
@@ -775,13 +860,32 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
         {/* Mentors Directory Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {mentors.map((m) => (
-            <div key={m.id} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">
-              <div className="flex items-center gap-3">
-                <img src={m.avatarUrl} alt={m.name} className="w-12 h-12 rounded-full object-cover border border-slate-200" />
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">{m.name}</h4>
-                  <p className="text-xs text-slate-500">{m.designation}</p>
+            <div key={m.id} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 relative group">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <img
+                    src={m.avatarUrl || "/logos/official-mif-logo.png"}
+                    alt={m.name}
+                    className="w-12 h-12 rounded-full object-cover border border-slate-200"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "/logos/official-mif-logo.png";
+                    }}
+                  />
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900">{m.name}</h4>
+                    <p className="text-xs text-slate-500">{m.designation}</p>
+                    <p className="text-[11px] text-[#772b38] font-semibold">{m.organization}</p>
+                  </div>
                 </div>
+
+                <button
+                  type="button"
+                  onClick={() => handleDeleteMentor(m.id)}
+                  className="p-1 text-slate-300 hover:text-red-600 transition-colors rounded-lg hover:bg-red-50"
+                  title="Remove Mentor"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
               </div>
               <p className="text-xs text-slate-600 line-clamp-2">{m.bio}</p>
               <div className="flex flex-wrap gap-1 pt-1">
@@ -892,6 +996,124 @@ export default function EcosystemAdminTabs({ tab, showToast }: Props) {
                     className="px-5 py-2 rounded-xl bg-blue-950 text-white font-bold hover:bg-blue-900 transition"
                   >
                     {loggingSession ? "Saving..." : "Save Session"}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* ADD MENTOR MODAL */}
+        {mentorModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
+            <div className="bg-white border border-slate-200 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+              <div className="flex items-start justify-between">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#772b38]">Institutional Empanelment</span>
+                  <h3 className="text-xl font-bold text-slate-900 mt-0.5">Empanel New Mentor</h3>
+                  <p className="text-xs text-slate-500">Add an advisor or industry leader to the MIF mentor network.</p>
+                </div>
+                <button onClick={() => setMentorModalOpen(false)} className="text-slate-400 hover:text-slate-700 font-bold">✕</button>
+              </div>
+
+              <form onSubmit={handleCreateMentor} className="space-y-3.5 text-xs">
+                <div>
+                  <label className="font-bold text-slate-800 block mb-1">Full Name *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Dr. A. Ramanathan"
+                    value={newMentorName}
+                    onChange={(e) => setNewMentorName(e.target.value)}
+                    className="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="font-bold text-slate-800 block mb-1">Designation / Role *</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Senior Principal Scientist"
+                      value={newMentorDesignation}
+                      onChange={(e) => setNewMentorDesignation(e.target.value)}
+                      className="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="font-bold text-slate-800 block mb-1">Organization / Institution</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. MAMCET / ISRO / Industry Partner"
+                      value={newMentorOrg}
+                      onChange={(e) => setNewMentorOrg(e.target.value)}
+                      className="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="font-bold text-slate-800 block mb-1">Areas of Expertise (Comma-separated)</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Hardware Prototyping, Embedded Systems, IoT, Patent Strategy"
+                    value={newMentorExpertise}
+                    onChange={(e) => setNewMentorExpertise(e.target.value)}
+                    className="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
+                  />
+                </div>
+
+                <div>
+                  <label className="font-bold text-slate-800 block mb-1">Professional Bio</label>
+                  <textarea
+                    rows={3}
+                    placeholder="Over 15 years guiding tech startups and engineering spin-offs in product validation..."
+                    value={newMentorBio}
+                    onChange={(e) => setNewMentorBio(e.target.value)}
+                    className="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="font-bold text-slate-800 block mb-1">Avatar / Photo URL</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. /images/incubation/santhosh.jpeg or image URL"
+                      value={newMentorAvatar}
+                      onChange={(e) => setNewMentorAvatar(e.target.value)}
+                      className="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="font-bold text-slate-800 block mb-1">LinkedIn Profile URL</label>
+                    <input
+                      type="url"
+                      placeholder="https://linkedin.com/in/..."
+                      value={newMentorLinkedIn}
+                      onChange={(e) => setNewMentorLinkedIn(e.target.value)}
+                      className="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+                  <button
+                    type="button"
+                    onClick={() => setMentorModalOpen(false)}
+                    className="px-4 py-2 rounded-xl text-slate-600 font-bold hover:bg-slate-100 transition"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={creatingMentor}
+                    className="px-5 py-2 rounded-xl bg-[#772b38] hover:bg-[#5e212b] text-white font-bold transition flex items-center gap-1.5 shadow-md disabled:opacity-50"
+                  >
+                    {creatingMentor ? "Empaneling..." : "Empanel Mentor"}
                   </button>
                 </div>
               </form>

@@ -65,115 +65,111 @@ export default function JoinUsEcosystem() {
 
   React.useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().catch(() => { });
     }
   }, []);
 
   return (
-    <section id="join-us" className="py-12 sm:py-16 bg-white relative">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="relative rounded-3xl sm:rounded-[36px] overflow-hidden bg-slate-950 border border-slate-800/80 shadow-[0_25px_60px_rgba(15,44,89,0.18)] py-14 sm:py-20 px-6 sm:px-12">
-          {/* Background Video with Clean, Vivid Visibility */}
-          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <video
-              ref={videoRef}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              className="w-full h-full object-cover opacity-95 filter brightness-105 contrast-105"
-            >
-              <source src="/videos/join-us.mp4" type="video/mp4" />
-              <source src="/videos/join-us-bg.mp4" type="video/mp4" />
-            </video>
-            {/* Subtle dark vignette */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/25 to-slate-950/60 pointer-events-none" />
-          </div>
+    <section id="join-us" className="relative overflow-hidden bg-slate-950 py-20 sm:py-28 border-y border-slate-800/80">
+      {/* Background Video with Clean, Vivid Visibility */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover opacity-95 filter brightness-105 contrast-105"
+        >
+          <source src="/videos/join-us.mp4" type="video/mp4" />
+          <source src="/videos/join-us-bg.mp4" type="video/mp4" />
+        </video>
+        {/* Subtle dark vignette */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/30 to-slate-950/70 pointer-events-none" />
+      </div>
 
-          <div className="relative z-10">
-            {/* Section Header with High-Contrast Drop Shadow */}
-            <FadeUp className="max-w-3xl mb-12">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight font-display drop-shadow-[0_4px_18px_rgba(0,0,0,0.95)]">
-                Join Us
-              </h2>
-              <p className="text-base sm:text-lg text-slate-200 mt-2 font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-                Be Part of Our Growing Multi-Stakeholder Innovation Ecosystem
-              </p>
-            </FadeUp>
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header with High-Contrast Drop Shadow */}
+        <FadeUp className="max-w-3xl mb-12">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight font-display drop-shadow-[0_4px_18px_rgba(0,0,0,0.95)]">
+            Join Us
+          </h2>
+          <p className="text-base sm:text-lg text-slate-200 mt-2 font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+            Be Part of Our Growing Multi-Stakeholder Innovation Ecosystem
+          </p>
+        </FadeUp>
 
             {/* 8 Cards Grid with Alternating Left/Right Reveals */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {STAKEHOLDERS.map((st, idx) => {
-            const Icon = st.icon;
-            const Wrapper = idx % 2 === 0 ? RevealLeft : RevealRight;
-            return (
-              <Wrapper key={st.role} delay={(idx % 4) * 0.08}>
-                <XYZCard depth={8}>
-                  <div className="h-full p-6 sm:p-7 rounded-3xl bg-slate-950/85 backdrop-blur-xl border border-slate-700/80 hover:border-[#772b38] shadow-2xl hover:shadow-[#772b38]/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-xl sm:text-2xl font-bold text-white font-display group-hover:text-rose-200 transition-colors">
-                          {st.role}
-                        </h3>
-                        <div className="w-11 h-11 rounded-2xl bg-[#772b38]/20 border border-[#772b38]/40 flex items-center justify-center text-[#ff8097] group-hover:scale-110 group-hover:bg-[#772b38] group-hover:text-white transition-all duration-300 shadow-xs">
-                          <Icon className="w-5 h-5" />
+              {STAKEHOLDERS.map((st, idx) => {
+                const Icon = st.icon;
+                const Wrapper = idx % 2 === 0 ? RevealLeft : RevealRight;
+                return (
+                  <Wrapper key={st.role} delay={(idx % 4) * 0.08}>
+                    <XYZCard depth={8}>
+                      <div className="h-full p-6 sm:p-7 rounded-3xl bg-slate-950/85 backdrop-blur-xl border border-slate-700/80 hover:border-[#772b38] shadow-2xl hover:shadow-[#772b38]/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                          <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-xl sm:text-2xl font-bold text-white font-display group-hover:text-rose-200 transition-colors">
+                              {st.role}
+                            </h3>
+                            <div className="w-11 h-11 rounded-2xl bg-[#772b38]/20 border border-[#772b38]/40 flex items-center justify-center text-[#ff8097] group-hover:scale-110 group-hover:bg-[#772b38] group-hover:text-white transition-all duration-300 shadow-xs">
+                              <Icon className="w-5 h-5" />
+                            </div>
+                          </div>
+
+                          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 font-normal">
+                            {st.desc}
+                          </p>
+                        </div>
+
+                        <div className="pt-2">
+                          <Link href={`/apply?${st.applyQuery}`} className="block w-full">
+                            <Button className="w-full bg-[#772b38] hover:bg-[#5e212b] text-white font-extrabold text-xs sm:text-sm h-11 rounded-xl shadow-md shadow-[#772b38]/30 gap-1.5 transition-all duration-200 group-hover:shadow-lg ring-1 ring-white/15">
+                              <span>Register</span>
+                              <ArrowRight className="w-4 h-4" />
+                            </Button>
+                          </Link>
                         </div>
                       </div>
+                    </XYZCard>
+                  </Wrapper>
+                );
+              })}
 
-                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 font-normal">
-                        {st.desc}
+              {/* 8th Callout Card: "COLLABORATE, INNOVATE AND SCALE!" */}
+              <ZoomIn delay={0.32}>
+                <XYZCard depth={8}>
+                  <div className="h-full p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#1e070c] via-[#140508] to-slate-950 text-white shadow-xl flex flex-col justify-between border-2 border-[#772b38]/60 group hover:border-[#772b38] hover:-translate-y-1 transition-all duration-300">
+                    <div>
+                      <span className="text-[10px] font-mono font-bold text-[#ff8097] uppercase tracking-widest block mb-4">
+                        ACCELERATE IMPACT
+                      </span>
+                      <h3 className="text-2xl sm:text-3xl font-black text-white font-display leading-tight mb-3">
+                        COLLABORATE, <br />
+                        <span className="text-[#ff7b90]">INNOVATE</span> <br />
+                        AND SCALE!
+                      </h3>
+                      <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                        Ready to take your idea or partnership to the next level? Our incubation doors at MAMCET are open.
                       </p>
                     </div>
 
-                    <div className="pt-2">
-                      <Link href={`/apply?${st.applyQuery}`} className="block w-full">
-                        <Button className="w-full bg-[#772b38] hover:bg-[#5e212b] text-white font-extrabold text-xs sm:text-sm h-11 rounded-xl shadow-md shadow-[#772b38]/30 gap-1.5 transition-all duration-200 group-hover:shadow-lg ring-1 ring-white/15">
-                          <span>Register</span>
-                          <ArrowRight className="w-4 h-4" />
+                    <div className="pt-4 mt-4 border-t border-slate-700/60">
+                      <Link href="/contact" className="block w-full">
+                        <Button
+                          className="w-full bg-[#772b38] hover:bg-[#5e212b] text-white font-extrabold text-xs h-11 rounded-xl gap-2 shadow-lg shadow-[#772b38]/40 ring-1 ring-white/20 transition-all"
+                        >
+                          <span>Connect with Team</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
                         </Button>
                       </Link>
                     </div>
                   </div>
                 </XYZCard>
-              </Wrapper>
-            );
-          })}
-
-          {/* 8th Callout Card: "COLLABORATE, INNOVATE AND SCALE!" */}
-          <ZoomIn delay={0.32}>
-            <XYZCard depth={8}>
-              <div className="h-full p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#1e070c] via-[#140508] to-slate-950 text-white shadow-xl flex flex-col justify-between border-2 border-[#772b38]/60 group hover:border-[#772b38] hover:-translate-y-1 transition-all duration-300">
-                <div>
-                  <span className="text-[10px] font-mono font-bold text-[#ff8097] uppercase tracking-widest block mb-4">
-                    ACCELERATE IMPACT
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-black text-white font-display leading-tight mb-3">
-                    COLLABORATE, <br />
-                    <span className="text-[#ff7b90]">INNOVATE</span> <br />
-                    AND SCALE!
-                  </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed font-normal">
-                    Ready to take your idea or partnership to the next level? Our incubation doors at MAMCET are open.
-                  </p>
-                </div>
-
-                <div className="pt-4 mt-4 border-t border-slate-700/60">
-                  <Link href="/contact" className="block w-full">
-                    <Button
-                      className="w-full bg-[#772b38] hover:bg-[#5e212b] text-white font-extrabold text-xs h-11 rounded-xl gap-2 shadow-lg shadow-[#772b38]/40 ring-1 ring-white/20 transition-all"
-                    >
-                      <span>Connect with Team</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </XYZCard>
-          </ZoomIn>
-        </div>
-          </div>
-        </div>
+              </ZoomIn>
+            </div>
       </div>
     </section>
   );

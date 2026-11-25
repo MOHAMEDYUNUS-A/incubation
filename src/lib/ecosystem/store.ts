@@ -623,6 +623,40 @@ export function logMentoringSession(
   return newSession;
 }
 
+export function createMentor(
+  mentor: Omit<MentorProfile, "id">,
+  addedBy?: string
+): MentorProfile {
+  const data = getEcosystemData();
+  const newMentor: MentorProfile = {
+    id: `mentor_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+    ...mentor,
+  };
+
+  data.mentors.unshift(newMentor);
+
+  logActivity(
+    `Mentor Onboarded`,
+    "MENTOR",
+    `${newMentor.name} (${newMentor.designation}, ${newMentor.organization}) empaneled as mentor.`,
+    addedBy || "Admin Desk"
+  );
+
+  saveEcosystemData(data);
+  return newMentor;
+}
+
+export function deleteMentor(mentorId: string): boolean {
+  const data = getEcosystemData();
+  const initialLen = data.mentors.length;
+  data.mentors = data.mentors.filter((m) => m.id !== mentorId);
+  if (data.mentors.length < initialLen) {
+    saveEcosystemData(data);
+    return true;
+  }
+  return false;
+}
+
 export function saveSuccessStory(
   story: Omit<SuccessStory, "id"> & { id?: string },
   authorName?: string

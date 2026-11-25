@@ -388,36 +388,19 @@
   ],
   "mentors": [
     {
-      "id": "mentor_1",
-      "name": "Dr. S. Annamalai",
-      "designation": "Former Group Director, Avionics & Guidance",
-      "organization": "ISRO / Defence Research Consultant",
+      "id": "mentor_santhosh",
+      "name": "Mr. M. Santhosh Kumar",
+      "designation": "Incubation Manager",
+      "organization": "MASTeR Incubation Foundation (MIF)",
       "areasOfExpertise": [
-        "Autonomous Guidance",
-        "Aerospace Robotics",
-        "Hardware Failsafes"
+        "Startup Operations",
+        "Government Grants (TANSEED)",
+        "Incubation Policy",
+        "StartupTN Integration"
       ],
-      "bio": "Over 28 years leading mission-critical aerospace hardware development. Advises MIF deeptech startups on DO-178C safety standards and inertial navigation.",
-      "avatarUrl": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&q=80",
-      "linkedInUrl": "https://linkedin.com/in/dr-s-annamalai",
-      "isAvailable": true,
-      "assignedStartups": [
-        "s_1795332004112"
-      ]
-    },
-    {
-      "id": "mentor_2",
-      "name": "Er. Meera Krishnan",
-      "designation": "Managing Partner",
-      "organization": "Kavery Agri Ventures & Angel Network",
-      "areasOfExpertise": [
-        "AgriTech Commercialization",
-        "Venture Capital",
-        "Farmer Producer Orgs"
-      ],
-      "bio": "Experienced venture builder and angel investor who has backed 14 rural tech startups across Southern India with over ₹22 Cr in cumulative follow-on capital.",
-      "avatarUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80",
-      "linkedInUrl": "https://linkedin.com/in/meera-krishnan-vc",
+      "bio": "Guiding student entrepreneurs through design thinking, grant proposals, prototype verification, and StartupTN integration at MAMCET campus.",
+      "avatarUrl": "/images/incubation/santhosh.jpeg",
+      "linkedInUrl": "https://in.linkedin.com/in/master-incubation-foundation-02301b446",
       "isAvailable": true,
       "assignedStartups": [
         "s_1795332004112",
@@ -425,21 +408,60 @@
       ]
     },
     {
-      "id": "mentor_3",
-      "name": "Prof. T. Sundararajan",
-      "designation": "Director of Technology",
-      "organization": "CleanGrid Systems / IEEE Senior Member",
+      "id": "mentor_hemalatha",
+      "name": "Ms. Hemalatha Balakrishnan",
+      "designation": "Incubation Coordinator & Faculty",
+      "organization": "MAMCET ECE & MIF",
       "areasOfExpertise": [
-        "Smart Grids",
-        "Battery Storage",
-        "Power Electronics"
+        "Embedded Systems",
+        "Hardware Prototyping",
+        "Maker Lab Workbenches",
+        "Student Mentorship"
       ],
-      "bio": "Pioneer in distributed renewable microgrids and industrial energy storage with 12 US and Indian patents.",
-      "avatarUrl": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&q=80",
-      "linkedInUrl": "https://linkedin.com/in/t-sundararajan",
+      "bio": "Coordinating interdisciplinary research commercialization, maker lab activities, multi-layer PCB design, and institutional hackathons.",
+      "avatarUrl": "/images/incubation/incubation-coordinator-hemalatha.jpeg",
+      "linkedInUrl": "https://in.linkedin.com/in/master-incubation-foundation-02301b446",
       "isAvailable": true,
       "assignedStartups": [
+        "s_1795332004112",
         "s_1795332004114"
+      ]
+    },
+    {
+      "id": "mentor_maluk",
+      "name": "Dr. M.A. Maluk Mohamed",
+      "designation": "Chairman & Senior Advisory Council",
+      "organization": "MASTeR Group of Institutions",
+      "areasOfExpertise": [
+        "Institutional Strategy",
+        "Higher Education Entrepreneurship",
+        "Venture Governance"
+      ],
+      "bio": "Pioneering institutional innovation and technology transfer ecosystems across MAMCET and regional engineering institutions in Tamil Nadu.",
+      "avatarUrl": "/logos/official-mif-logo.png",
+      "linkedInUrl": "https://in.linkedin.com/in/master-incubation-foundation-02301b446",
+      "isAvailable": true,
+      "assignedStartups": [
+        "s_1795332004112"
+      ]
+    },
+    {
+      "id": "mentor_fathima",
+      "name": "Mrs. Fathima Bathool Maluk",
+      "designation": "Secretary & Chief Executive Officer",
+      "organization": "MASTeR Group of Institutions & MIF",
+      "areasOfExpertise": [
+        "Venture Scaling",
+        "Seed Funding Syndication",
+        "Corporate MoUs",
+        "Industry Partnerships"
+      ],
+      "bio": "Drives venture scaling, seed funding syndication (TANSEED & MSME), accelerator programs, and enterprise investor partnerships for resident startups.",
+      "avatarUrl": "/logos/official-mif-logo.png",
+      "linkedInUrl": "https://in.linkedin.com/in/master-incubation-foundation-02301b446",
+      "isAvailable": true,
+      "assignedStartups": [
+        "s_1795332004113"
       ]
     }
   ],
