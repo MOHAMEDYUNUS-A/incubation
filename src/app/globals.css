@@ -144,12 +144,26 @@
   }
 }
 
+/* Smooth Running Gallery Marquee (Right-to-Left) */
+@keyframes marquee-rtl {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .animate-marquee-ltr {
   animation: marquee-ltr 35s linear infinite;
 }
 
 .animate-marquee-ltr-slow {
   animation: marquee-ltr-slow 45s linear infinite;
+}
+
+.animate-marquee-rtl {
+  animation: marquee-rtl 40s linear infinite;
 }
 
 /* 3D Perspective & Card Flip Utilities */
@@ -310,6 +324,7 @@
   .animate-roll-3d,
   .animate-marquee-ltr,
   .animate-marquee-ltr-slow,
+  .animate-marquee-rtl,
   .animate-page-enter,
   .animate-slide-x-left,
   .animate-slide-x-right,
