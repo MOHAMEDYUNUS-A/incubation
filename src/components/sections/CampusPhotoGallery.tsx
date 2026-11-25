@@ -25,13 +25,13 @@ const DEFAULT_GALLERY_PHOTOS: GalleryPhoto[] = [
     location: "Campus Central Wing, Siruganur",
   },
   {
-    id: "g-santhosh",
-    title: "Mr. M. Santhosh Kumar",
-    category: "team",
-    categoryLabel: "Incubation Manager",
-    image: "/images/incubation/santhosh.jpeg",
-    caption: "Incubation Manager leading founder cohort operations, TANSEED seed grants, and industry alliances.",
-    location: "MIF Executive Office",
+    id: "g-campus-facade",
+    title: "M.A.M. College of Engineering Institutional Campus",
+    category: "facilities",
+    categoryLabel: "Host Institution Campus",
+    image: "/images/incubation/mamcet-main-campus.jpg",
+    caption: "Iconic colonial architectural facade and central academic grounds hosting high-tech innovation labs and MASTeR Incubation Foundation.",
+    location: "MAMCET Campus, Siruganur, Trichy",
   },
   {
     id: "g2",
@@ -88,13 +88,13 @@ const DEFAULT_GALLERY_PHOTOS: GalleryPhoto[] = [
     location: "IoT Workbench",
   },
   {
-    id: "g8",
-    title: "Dr. Hemalatha Balakrishnan",
-    category: "team",
-    categoryLabel: "Incubation Coordinator",
-    image: "/images/incubation/incubation-coordinator-hemalatha.jpeg",
-    caption: "Incubation Coordinator driving interdisciplinary prototyping, grant mentoring, and student hackathons.",
-    location: "MAMCET ECE & MIF",
+    id: "g-student-prototyping",
+    title: "Interdisciplinary Student Innovation Bay",
+    category: "labs",
+    categoryLabel: "Prototyping Lab",
+    image: "/images/incubation/hero-1.jpeg",
+    caption: "Undergraduate and postgraduate innovators building working proof-of-concept prototypes for deep-tech and agritech challenges.",
+    location: "Student Innovation Studio",
   },
   {
     id: "g9",
@@ -136,7 +136,32 @@ const DEFAULT_GALLERY_PHOTOS: GalleryPhoto[] = [
 
 export default function CampusPhotoGallery() {
   const { content } = useSiteContent();
-  const photos: GalleryPhoto[] = (content?.gallery as GalleryPhoto[]) || DEFAULT_GALLERY_PHOTOS;
+  const rawPhotos: GalleryPhoto[] = (content?.gallery as GalleryPhoto[]) || DEFAULT_GALLERY_PHOTOS;
+  // Strictly filter out any flyers, promotional team posters or faculty headshot cards from the campus moments reel
+  const filteredPhotos = rawPhotos.filter(
+    (p) =>
+      !p.image.includes("team-of-incubation") &&
+      !p.image.includes("santhosh") &&
+      !p.image.includes("hemalatha") &&
+      !p.image.includes("flyer") &&
+      p.category !== "team"
+  );
+  // Ensure the iconic MAMCET campus building is always present at the front of the gallery reel
+  const hasCampus = filteredPhotos.some((p) => p.image.includes("mamcet-main-campus"));
+  const photos: GalleryPhoto[] = hasCampus
+    ? filteredPhotos
+    : [
+        {
+          id: "g-campus-facade",
+          title: "M.A.M. College of Engineering Institutional Campus",
+          category: "facilities" as const,
+          categoryLabel: "Host Institution Campus",
+          image: "/images/incubation/mamcet-main-campus.jpg",
+          caption: "Iconic colonial architectural facade and central academic grounds hosting high-tech innovation labs and MASTeR Incubation Foundation.",
+          location: "MAMCET Campus, Siruganur, Trichy",
+        },
+        ...filteredPhotos,
+      ];
 
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto | null>(null);
 

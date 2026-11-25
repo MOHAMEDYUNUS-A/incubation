@@ -148,7 +148,8 @@ const PROCESS_STEPS: ProcessStep[] = [
 
 export default function MissionRoadmap() {
   return (
-    <div id="mission-roadmap" className="space-y-12 scroll-mt-24 overflow-x-hidden">
+    <div id="mission-roadmap" className="space-y-12 scroll-mt-36 sm:scroll-mt-44 overflow-x-hidden relative">
+      <span id="mission-m1-m5" className="absolute -top-36 sm:-top-44 left-0 pointer-events-none" />
       {/* =========================================================================
           TOP PROCESS HEADER (Modeled after Reference Image 4)
          ========================================================================= */}

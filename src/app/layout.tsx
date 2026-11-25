@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/sections/Footer";
@@ -9,19 +8,6 @@ import GsapScrollProvider from "@/components/animations/GsapScrollProvider";
 import { ScrollProgressBar } from "@/components/animations/LightAnimations";
 import { ContentProvider } from "@/context/ContentContext";
 import JsonLd from "@/components/seo/JsonLd";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
-});
 
 export const viewport: Viewport = {
   themeColor: "#091b34",
@@ -179,9 +165,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
+    <html lang="en" className="scroll-smooth">
       <head>
         <JsonLd />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
         <ScrollProgressBar />

@@ -28,8 +28,8 @@ const ContentContext = createContext<ContentContextType>({
   loading: false,
 });
 
-const STORAGE_KEY = "mif_site_content_v2";
-const STORAGE_TIME_KEY = "mif_site_content_updated_at_v2";
+const STORAGE_KEY = "mif_site_content_v3";
+const STORAGE_TIME_KEY = "mif_site_content_updated_at_v3";
 
 export function ContentProvider({ children }: { children: React.ReactNode }) {
   const [content, setContent] = useState<SiteContent>(initialContent);

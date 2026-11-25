@@ -70,7 +70,7 @@ export default function JoinUsEcosystem() {
   }, []);
 
   return (
-    <section id="join-us" className="relative overflow-hidden bg-slate-950 py-20 sm:py-28 border-y border-slate-800/80">
+    <section id="join-us" className="relative overflow-hidden bg-slate-950 py-20 sm:py-28 border-y border-slate-800/40">
       {/* Background Video with Clean, Vivid Visibility */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
@@ -86,8 +86,12 @@ export default function JoinUsEcosystem() {
           <source src="/videos/join-us-bg.mp4" type="video/mp4" />
         </video>
         {/* Subtle dark vignette */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/30 to-slate-950/70 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/30 to-slate-950/80 pointer-events-none" />
       </div>
+
+      {/* Seamless Ambient Top & Bottom Transitions to blend harmoniously with adjacent light sections */}
+      <div className="absolute top-0 inset-x-0 h-12 sm:h-20 bg-gradient-to-b from-white/10 via-slate-950/30 to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 inset-x-0 h-12 sm:h-20 bg-gradient-to-t from-white/10 via-slate-950/30 to-transparent pointer-events-none z-10" />
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header with High-Contrast Drop Shadow */}

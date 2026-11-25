@@ -242,6 +242,7 @@ export default function Navbar() {
                             <Link
                               key={sub.name}
                               href={sub.href}
+                              onClick={() => setActiveDropdown(null)}
                               className="flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-700 hover:bg-[#772b38]/10 hover:text-[#772b38] transition-colors group/sub"
                             >
                               <span>{sub.name}</span>

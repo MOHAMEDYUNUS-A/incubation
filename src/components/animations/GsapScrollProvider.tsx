@@ -160,6 +160,69 @@ export default function GsapScrollProvider({ children }: { children: React.React
           );
         }
       });
+
+      // 7. GSAP Parallax Scroll Scrub (.gsap-parallax, [data-gsap="parallax"])
+      const parallaxElements = document.querySelectorAll(
+        '[data-gsap="parallax"], .gsap-parallax'
+      );
+      parallaxElements.forEach((el) => {
+        gsap.to(el, {
+          yPercent: -12,
+          ease: "none",
+          scrollTrigger: {
+            trigger: el,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.2,
+          },
+        });
+      });
+
+      // 8. GSAP Heading Lift (.gsap-heading, [data-gsap="heading"])
+      const headingElements = document.querySelectorAll(
+        '[data-gsap="heading"], .gsap-heading'
+      );
+      headingElements.forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 32, letterSpacing: "-0.02em" },
+          {
+            opacity: 1,
+            y: 0,
+            letterSpacing: "normal",
+            duration: 0.6,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 90%",
+              once: true,
+            },
+          }
+        );
+      });
+
+      // 9. GSAP Smooth Image Scale Reveal (.gsap-image-reveal, [data-gsap="reveal-image"])
+      const imageReveals = document.querySelectorAll(
+        '[data-gsap="reveal-image"], .gsap-image-reveal'
+      );
+      imageReveals.forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, scale: 1.08, filter: "brightness(90%)" },
+          {
+            opacity: 1,
+            scale: 1,
+            filter: "brightness(100%)",
+            duration: 0.7,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 88%",
+              once: true,
+            },
+          }
+        );
+      });
     });
 
     // Refresh triggers on layout changes

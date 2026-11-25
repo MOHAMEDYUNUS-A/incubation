@@ -34,21 +34,21 @@
     },
     {
       "id": "g3",
-      "title": "MASTeR Incubation Core Committee",
-      "category": "team",
-      "categoryLabel": "Foundation Leadership",
-      "image": "/images/incubation/team-of-incubation.jpeg",
-      "caption": "Dedicated faculty mentors, innovation directors, and advisory committee advancing entrepreneurship.",
-      "location": "MAMCET Trichy"
+      "title": "M.A.M. College of Engineering Institutional Campus",
+      "category": "facilities",
+      "categoryLabel": "Host Institution Campus",
+      "image": "/images/incubation/mamcet-main-campus.jpg",
+      "caption": "Iconic academic facade and central grounds hosting advanced laboratories and MASTeR Incubation Foundation.",
+      "location": "MAMCET Campus, Siruganur, Trichy"
     },
     {
       "id": "g4",
-      "title": "Dr. Hemalatha Balakrishnan",
-      "category": "team",
-      "categoryLabel": "Incubation Coordinator",
-      "image": "/images/incubation/incubation-coordinator-hemalatha.jpeg",
-      "caption": "Incubation Coordinator driving interdisciplinary prototyping, grant mentoring, and student hackathons.",
-      "location": "MAMCET ECE & MIF"
+      "title": "Interdisciplinary Student Innovation Bay",
+      "category": "labs",
+      "categoryLabel": "Prototyping Lab",
+      "image": "/images/incubation/hero-1.jpeg",
+      "caption": "Student innovators and engineering teams fabricating functional prototypes for regional deep-tech challenges.",
+      "location": "Student Innovation Studio"
     },
     {
       "id": "g5",
