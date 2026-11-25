@@ -137,7 +137,7 @@ export default function StartupProfileSlugPage({
                     <MapPin className="w-3.5 h-3.5" /> Siruganur, Trichy
                   </span>
                   <span className="flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5" /> Cohort 2026
+                    <Calendar className="w-3.5 h-3.5" /> Incubated Venture
                   </span>
                 </div>
               </div>
