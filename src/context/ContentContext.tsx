@@ -113,9 +113,27 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
 
     window.addEventListener("storage", handleStorageChange);
     window.addEventListener("mif_content_changed", handleCustomChange);
+
+    // Revalidate with server whenever user refocuses tab or becomes visible
+    const handleVisibilityChange = () => {
+      if (typeof document !== "undefined" && document.visibilityState === "visible") {
+        fetchContent();
+      }
+    };
+    window.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("focus", fetchContent);
+
+    // Continuous 20-second background synchronization between Admin & Live pages
+    const syncInterval = setInterval(() => {
+      fetchContent();
+    }, 20000);
+
     return () => {
       window.removeEventListener("storage", handleStorageChange);
       window.removeEventListener("mif_content_changed", handleCustomChange);
+      window.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("focus", fetchContent);
+      clearInterval(syncInterval);
     };
   }, []);
 

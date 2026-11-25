@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  master-incubation-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: master_incubation_app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=master-incubation-secret-production-key-change-me
+      - ADMIN_PASSWORD=admin
+      - DATABASE_URL=file:./dev.db
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s

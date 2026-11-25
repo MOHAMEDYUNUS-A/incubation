@@ -37,7 +37,7 @@ export default function GsapScrollProvider({ children }: { children: React.React
             scrollTrigger: {
               trigger: el,
               start: "top 92%",
-              once: true,
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -59,7 +59,7 @@ export default function GsapScrollProvider({ children }: { children: React.React
             scrollTrigger: {
               trigger: el,
               start: "top 92%",
-              once: true,
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -81,7 +81,7 @@ export default function GsapScrollProvider({ children }: { children: React.React
             scrollTrigger: {
               trigger: el,
               start: "top 92%",
-              once: true,
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -103,7 +103,7 @@ export default function GsapScrollProvider({ children }: { children: React.React
             scrollTrigger: {
               trigger: el,
               start: "top 92%",
-              once: true,
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -126,7 +126,7 @@ export default function GsapScrollProvider({ children }: { children: React.React
             scrollTrigger: {
               trigger: el,
               start: "top 90%",
-              once: true,
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -154,7 +154,7 @@ export default function GsapScrollProvider({ children }: { children: React.React
               scrollTrigger: {
                 trigger: group,
                 start: "top 88%",
-                once: true,
+                toggleActions: "play none none reverse",
               },
             }
           );
@@ -195,7 +195,7 @@ export default function GsapScrollProvider({ children }: { children: React.React
             scrollTrigger: {
               trigger: el,
               start: "top 90%",
-              once: true,
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -218,7 +218,7 @@ export default function GsapScrollProvider({ children }: { children: React.React
             scrollTrigger: {
               trigger: el,
               start: "top 88%",
-              once: true,
+              toggleActions: "play none none reverse",
             },
           }
         );

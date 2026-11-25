@@ -26,13 +26,13 @@ export function ScrollProgressBar() {
   );
 }
 
-// 1. Left-to-Right Reveal Animation (Lightweight Horizontal X-axis entrance)
+// 1. Left-to-Right Reveal Animation (Bidirectional Horizontal Entrance & Reversal)
 export function RevealLeft({ children, className = "", delay = 0 }: AnimationProps) {
   return (
     <motion.div
       initial={{ opacity: 0, x: -24 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
+      viewport={{ once: false, margin: "-20px" }}
       transition={{ duration: 0.45, delay, ease: [0.16, 1, 0.3, 1] }}
       style={{ willChange: "transform, opacity" }}
       className={className}
@@ -42,13 +42,13 @@ export function RevealLeft({ children, className = "", delay = 0 }: AnimationPro
   );
 }
 
-// 2. Right-to-Left Reveal Animation (Lightweight Horizontal X-axis entrance)
+// 2. Right-to-Left Reveal Animation (Bidirectional Horizontal Entrance & Reversal)
 export function RevealRight({ children, className = "", delay = 0 }: AnimationProps) {
   return (
     <motion.div
       initial={{ opacity: 0, x: 24 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
+      viewport={{ once: false, margin: "-20px" }}
       transition={{ duration: 0.45, delay, ease: [0.16, 1, 0.3, 1] }}
       style={{ willChange: "transform, opacity" }}
       className={className}
@@ -58,13 +58,13 @@ export function RevealRight({ children, className = "", delay = 0 }: AnimationPr
   );
 }
 
-// 3. Zoom-In Lightweight Animation (Subtle scale up from 0.95 to 1 with Fade)
+// 3. Zoom-In Lightweight Animation (Subtle scale up from 0.95 to 1 with Fade & Reverse)
 export function ZoomIn({ children, className = "", delay = 0 }: AnimationProps) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-30px" }}
+      viewport={{ once: false, margin: "-20px" }}
       transition={{ duration: 0.4, delay, ease: [0.16, 1, 0.3, 1] }}
       style={{ willChange: "transform, opacity" }}
       className={className}
@@ -74,13 +74,13 @@ export function ZoomIn({ children, className = "", delay = 0 }: AnimationProps) 
   );
 }
 
-// 4. Zoom-Out Lightweight Animation (Subtle scale down from 1.04 to 1 with Fade)
+// 4. Zoom-Out Lightweight Animation (Subtle scale down from 1.04 to 1 with Fade & Reverse)
 export function ZoomOut({ children, className = "", delay = 0 }: AnimationProps) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 1.04 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-30px" }}
+      viewport={{ once: false, margin: "-20px" }}
       transition={{ duration: 0.4, delay, ease: [0.16, 1, 0.3, 1] }}
       style={{ willChange: "transform, opacity" }}
       className={className}
@@ -90,13 +90,13 @@ export function ZoomOut({ children, className = "", delay = 0 }: AnimationProps)
   );
 }
 
-// 5. Clean Fade-In Animation (Pure Opacity)
+// 5. Clean Fade-In Animation (Pure Opacity with Reverse)
 export function FadeIn({ children, className = "", delay = 0 }: AnimationProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-30px" }}
+      viewport={{ once: false, margin: "-20px" }}
       transition={{ duration: 0.4, delay, ease: "easeOut" }}
       style={{ willChange: "opacity" }}
       className={className}
@@ -106,7 +106,7 @@ export function FadeIn({ children, className = "", delay = 0 }: AnimationProps) 
   );
 }
 
-// 6. Fade-Up Animation (Lightweight Vertical Y-axis with Opacity)
+// 6. Fade-Up Animation (Lightweight Vertical Y-axis with Opacity & Reverse)
 export function FadeUp({
   children,
   className = "",
@@ -117,7 +117,7 @@ export function FadeUp({
     <motion.div
       initial={{ opacity: 0, y: distance }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
+      viewport={{ once: false, margin: "-20px" }}
       transition={{ duration: 0.45, delay, ease: [0.16, 1, 0.3, 1] }}
       style={{ willChange: "transform, opacity" }}
       className={className}
@@ -127,7 +127,7 @@ export function FadeUp({
   );
 }
 
-// 7. ScrollTiltIn Animation (Subtle 3D Perspective Entrance on Scroll)
+// 7. ScrollTiltIn Animation (Subtle 3D Perspective Entrance on Scroll & Reverse)
 export function ScrollTiltIn({
   children,
   className = "",
@@ -137,7 +137,7 @@ export function ScrollTiltIn({
     <motion.div
       initial={{ opacity: 0, y: 28, rotateX: 6 }}
       whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
+      viewport={{ once: false, margin: "-20px" }}
       transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
       style={{ willChange: "transform, opacity", perspective: 1000 }}
       className={className}
@@ -147,7 +147,7 @@ export function ScrollTiltIn({
   );
 }
 
-// 8. StaggerContainer & StaggerItem (For Grid of Cards to cascade on scroll)
+// 8. StaggerContainer & StaggerItem (For Grid of Cards to cascade on scroll & reverse)
 export function StaggerContainer({
   children,
   className = "",
@@ -161,7 +161,7 @@ export function StaggerContainer({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: false, margin: "-30px" }}
       variants={{
         hidden: {},
         visible: {
